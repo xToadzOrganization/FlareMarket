@@ -6498,15 +6498,15 @@
                             <span class="stat-label">POND MCAP</span>
                         </div>
                         <div class="staking-stat-pill highlight">
-                            <span class="stat-big green">24.8%</span>
+                            <span class="stat-big green" id="pool-apy">--</span>
                             <span class="stat-label">APY (180d)</span>
                         </div>
                         <div class="staking-stat-pill">
-                            <span class="stat-big">847</span>
-                            <span class="stat-label">LPs</span>
+                            <span class="stat-big" id="pool-tvl">--</span>
+                            <span class="stat-label">TVL (FLR)</span>
                         </div>
                         <div class="staking-stat-pill">
-                            <span class="stat-big">4,128</span>
+                            <span class="stat-big" id="pool-nfts-staked">--</span>
                             <span class="stat-label">NFTs Staked</span>
                         </div>
                     </div>
@@ -6521,15 +6521,15 @@
                         <!-- Lock Tiers -->
                         <div class="step-label">1. Pick your lock period</div>
                         <div class="lock-tier-row">
-                            <div class="lock-tier-option active">
+                            <div class="lock-tier-option active" onclick="selectLockTier(this, 0)">
                                 <span class="tier-label">30 Days</span>
                                 <span class="tier-mult">1x</span>
                             </div>
-                            <div class="lock-tier-option">
+                            <div class="lock-tier-option" onclick="selectLockTier(this, 1)">
                                 <span class="tier-label">90 Days</span>
                                 <span class="tier-mult">1.5x</span>
                             </div>
-                            <div class="lock-tier-option">
+                            <div class="lock-tier-option" onclick="selectLockTier(this, 2)">
                                 <span class="tier-label">180 Days</span>
                                 <span class="tier-mult">2.5x</span>
                             </div>
@@ -6542,12 +6542,12 @@
                                 <div class="deposit-input-group">
                                     <label>FLR Amount</label>
                                     <div class="deposit-input-row">
-                                        <input type="number" placeholder="0.00" id="flr-input">
+                                        <input type="number" placeholder="0.00" id="flr-input" oninput="calculatePondRequired()">
                                         <span class="token-label">FLR</span>
                                     </div>
                                     <div class="deposit-info">
-                                        <span>Balance: 12,450 FLR</span>
-                                        <button class="max-btn">MAX</button>
+                                        <span id="flr-balance">Balance: -- FLR</span>
+                                        <button class="max-btn" onclick="setMaxFLR()">MAX</button>
                                     </div>
                                 </div>
                                 <div class="deposit-input-group">
@@ -6557,12 +6557,12 @@
                                         <span class="token-label pond">POND</span>
                                     </div>
                                     <div class="deposit-info">
-                                        <span>Balance: 8,420 POND</span>
+                                        <span id="pond-balance">Balance: -- POND</span>
                                         <span class="pond-ratio">0.5x ratio (asymmetric)</span>
                                     </div>
                                 </div>
                             </div>
-                            <button class="deposit-btn">Add Liquidity</button>
+                            <button class="deposit-btn" onclick="doAddLiquidity()">Add Liquidity</button>
                         </div>
 
                         <div class="card-note">
@@ -6574,32 +6574,32 @@
                     <div class="staking-card">
                         <div class="staking-card-header">
                             <h2>⚡ Swap</h2>
-                            <span class="fee-badge">0.5% fee</span>
+                            <span class="fee-badge">1% fee</span>
                         </div>
                         
                         <div class="swap-section">
                             <div class="swap-field">
                                 <label>From</label>
                                 <div class="swap-input-row">
-                                    <input type="number" placeholder="0.00">
-                                    <select>
-                                        <option>FLR</option>
-                                        <option>POND</option>
+                                    <input type="number" placeholder="0.00" id="swap-from-input" oninput="calculateSwapOutput()">
+                                    <select id="swap-from-token" onchange="swapTokensChanged()">
+                                        <option value="FLR">FLR</option>
+                                        <option value="POND">POND</option>
                                     </select>
                                 </div>
                             </div>
-                            <div class="swap-arrow">↓</div>
+                            <div class="swap-arrow" onclick="flipSwapTokens()">↓</div>
                             <div class="swap-field">
                                 <label>To</label>
                                 <div class="swap-input-row">
-                                    <input type="number" placeholder="0.00" readonly>
-                                    <select>
-                                        <option>POND</option>
-                                        <option>FLR</option>
+                                    <input type="number" placeholder="0.00" id="swap-to-input" readonly>
+                                    <select id="swap-to-token" onchange="swapTokensChanged()">
+                                        <option value="POND">POND</option>
+                                        <option value="FLR">FLR</option>
                                     </select>
                                 </div>
                             </div>
-                            <button class="swap-btn">Swap</button>
+                            <button class="swap-btn" onclick="doSwap()">Swap</button>
                         </div>
                     </div>
 
@@ -7700,11 +7700,11 @@
             if (success) {
                 closeConnectModal();
                 // Update header button
-                document.querySelector('.connect-btn').innerHTML = `
-                    <span id="wallet-address">${window.toadz.userAddress ? window.toadz.userAddress.slice(0,6) + '...' + window.toadz.userAddress.slice(-4) : ''}</span>
-                `;
-                // Refresh data
-                window.toadz.refreshUserData();
+                const addr = window.toadz.userAddress;
+                document.querySelector('.connect-btn').innerHTML = addr ? addr.slice(0,6) + '...' + addr.slice(-4) : 'Connected';
+                document.querySelector('.connect-btn').onclick = null; // Disable click after connected
+                // Load pool data
+                loadPoolData();
             }
         }
 
@@ -7942,6 +7942,226 @@
                 card.style.transform = '';
             });
         });
+
+        // ============ POOL INTERACTION FUNCTIONS ============
+        let selectedLockTier = 0;
+        let poolStats = null;
+        let userBalances = null;
+
+        function selectLockTier(el, tier) {
+            document.querySelectorAll('.lock-tier-option').forEach(t => t.classList.remove('active'));
+            el.classList.add('active');
+            selectedLockTier = tier;
+        }
+
+        async function calculatePondRequired() {
+            const flrInput = document.getElementById('flr-input');
+            const pondInput = document.getElementById('pond-input');
+            const flrAmount = parseFloat(flrInput.value) || 0;
+            
+            if (!poolStats || flrAmount <= 0) {
+                pondInput.value = '';
+                return;
+            }
+            
+            // POND required = (FLR * reservePOND / reserveFLR) * 0.5
+            const reserveFLR = parseFloat(poolStats.reserveFLR);
+            const reservePOND = parseFloat(poolStats.reservePOND);
+            
+            if (reserveFLR > 0) {
+                const pondRequired = (flrAmount * reservePOND / reserveFLR) * 0.5;
+                pondInput.value = pondRequired.toFixed(2);
+            }
+        }
+
+        function setMaxFLR() {
+            if (userBalances && userBalances.flr) {
+                const maxFlr = Math.max(0, parseFloat(userBalances.flr) - 1); // Leave 1 FLR for gas
+                document.getElementById('flr-input').value = maxFlr.toFixed(2);
+                calculatePondRequired();
+            }
+        }
+
+        async function doAddLiquidity() {
+            if (!window.toadz || !window.toadz.addLiquidity) {
+                alert('Please connect wallet first');
+                openConnectModal();
+                return;
+            }
+            
+            const flrAmount = parseFloat(document.getElementById('flr-input').value);
+            if (!flrAmount || flrAmount <= 0) {
+                alert('Enter FLR amount');
+                return;
+            }
+            
+            try {
+                await window.toadz.addLiquidity(flrAmount, selectedLockTier);
+                document.getElementById('flr-input').value = '';
+                document.getElementById('pond-input').value = '';
+                loadPoolData();
+            } catch (e) {
+                console.error(e);
+            }
+        }
+
+        async function calculateSwapOutput() {
+            const fromInput = document.getElementById('swap-from-input');
+            const toInput = document.getElementById('swap-to-input');
+            const fromToken = document.getElementById('swap-from-token').value;
+            const amount = parseFloat(fromInput.value) || 0;
+            
+            if (!window.toadz || amount <= 0) {
+                toInput.value = '';
+                return;
+            }
+            
+            const isFLRtoPOND = fromToken === 'FLR';
+            const output = await window.toadz.calculateSwapOutput(amount, isFLRtoPOND);
+            toInput.value = parseFloat(output).toFixed(4);
+        }
+
+        function flipSwapTokens() {
+            const fromSelect = document.getElementById('swap-from-token');
+            const toSelect = document.getElementById('swap-to-token');
+            const temp = fromSelect.value;
+            fromSelect.value = toSelect.value;
+            toSelect.value = temp;
+            calculateSwapOutput();
+        }
+
+        function swapTokensChanged() {
+            const fromSelect = document.getElementById('swap-from-token');
+            const toSelect = document.getElementById('swap-to-token');
+            if (fromSelect.value === toSelect.value) {
+                toSelect.value = fromSelect.value === 'FLR' ? 'POND' : 'FLR';
+            }
+            calculateSwapOutput();
+        }
+
+        async function doSwap() {
+            if (!window.toadz) {
+                alert('Please connect wallet first');
+                openConnectModal();
+                return;
+            }
+            
+            const fromToken = document.getElementById('swap-from-token').value;
+            const fromAmount = parseFloat(document.getElementById('swap-from-input').value);
+            const toAmount = parseFloat(document.getElementById('swap-to-input').value);
+            
+            if (!fromAmount || fromAmount <= 0) {
+                alert('Enter amount to swap');
+                return;
+            }
+            
+            const minOut = toAmount * 0.95; // 5% slippage
+            
+            try {
+                if (fromToken === 'FLR') {
+                    await window.toadz.swapFLRForPOND(fromAmount, minOut);
+                } else {
+                    await window.toadz.swapPONDForFLR(fromAmount, minOut);
+                }
+                document.getElementById('swap-from-input').value = '';
+                document.getElementById('swap-to-input').value = '';
+                loadPoolData();
+            } catch (e) {
+                console.error(e);
+            }
+        }
+
+        async function loadPoolData() {
+            if (!window.toadz) return;
+            
+            try {
+                poolStats = await window.toadz.getPoolStats();
+                if (poolStats) {
+                    document.getElementById('pool-tvl').textContent = parseFloat(poolStats.tvl).toFixed(0);
+                    // APY would need historical data - show placeholder for now
+                    document.getElementById('pool-apy').textContent = '--';
+                    document.getElementById('pool-nfts-staked').textContent = '--';
+                }
+                
+                userBalances = await window.toadz.getUserBalances();
+                if (userBalances) {
+                    document.getElementById('flr-balance').textContent = 'Balance: ' + parseFloat(userBalances.flr).toFixed(2) + ' FLR';
+                    document.getElementById('pond-balance').textContent = 'Balance: ' + parseFloat(userBalances.pond).toFixed(2) + ' POND';
+                }
+            } catch (e) {
+                console.error('Error loading pool data:', e);
+            }
+        }
+
+        // Load pool data when page loads (if wallet already connected)
+        setTimeout(() => {
+            if (window.toadz && window.ethereum && window.ethereum.selectedAddress) {
+                loadPoolData();
+            }
+        }, 1000);
+
+        // Load public pool stats immediately (no wallet needed)
+        async function loadPublicPoolStats() {
+            try {
+                const provider = new ethers.JsonRpcProvider('https://flare-api.flare.network/ext/C/rpc');
+                const poolAddress = '0x42598464cc7fE6507C4ebf9009fe1adccE44b0BC';
+                const poolABI = [
+                    'function getPoolStats() view returns (uint256 reserveFLR, uint256 reservePOND, uint256 totalShares, uint256 tvl, uint256 pondPrice)'
+                ];
+                const pool = new ethers.Contract(poolAddress, poolABI, provider);
+                const stats = await pool.getPoolStats();
+                
+                poolStats = {
+                    reserveFLR: ethers.formatEther(stats[0]),
+                    reservePOND: ethers.formatEther(stats[1]),
+                    totalShares: ethers.formatEther(stats[2]),
+                    tvl: ethers.formatEther(stats[3]),
+                    pondPrice: ethers.formatEther(stats[4])
+                };
+                
+                document.getElementById('pool-tvl').textContent = parseFloat(poolStats.tvl).toFixed(0);
+                document.getElementById('pool-apy').textContent = '--';
+                document.getElementById('pool-nfts-staked').textContent = '--';
+            } catch (e) {
+                console.error('Error loading public pool stats:', e);
+            }
+        }
+        
+        loadPublicPoolStats();
+
+        // Load public pool stats on page load (no wallet needed)
+        async function loadPublicPoolStats() {
+            try {
+                // Use read-only provider
+                const provider = new ethers.JsonRpcProvider('https://flare-api.flare.network/ext/C/rpc');
+                const poolAddress = '0x42598464cc7fE6507C4ebf9009fe1adccE44b0BC';
+                const poolABI = [
+                    'function getPoolStats() view returns (uint256 reserveFLR, uint256 reservePOND, uint256 totalShares, uint256 tvl, uint256 pondPrice)',
+                    'function pondRatio() view returns (uint256)'
+                ];
+                const pool = new ethers.Contract(poolAddress, poolABI, provider);
+                
+                const stats = await pool.getPoolStats();
+                poolStats = {
+                    reserveFLR: ethers.formatEther(stats[0]),
+                    reservePOND: ethers.formatEther(stats[1]),
+                    totalShares: ethers.formatEther(stats[2]),
+                    tvl: ethers.formatEther(stats[3]),
+                    pondPrice: ethers.formatEther(stats[4])
+                };
+                
+                document.getElementById('pool-tvl').textContent = parseFloat(poolStats.tvl).toLocaleString();
+                document.getElementById('pool-apy').textContent = '--';
+                document.getElementById('pool-nfts-staked').textContent = '--';
+                
+                console.log('Pool stats loaded:', poolStats);
+            } catch (e) {
+                console.error('Error loading public pool stats:', e);
+            }
+        }
+        
+        // Load immediately
+        loadPublicPoolStats();
     </script>
     <script src="toadz-web3.js"></script>
 </body>
