@@ -449,6 +449,60 @@
             box-shadow: 0 8px 25px var(--accent-glow);
         }
 
+        /* Toast Notifications */
+        .toast-container {
+            position: fixed;
+            top: 80px;
+            right: 20px;
+            z-index: 10000;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .toast {
+            background: var(--bg-card);
+            border: 1px solid var(--border-subtle);
+            border-radius: 12px;
+            padding: 16px 20px;
+            min-width: 280px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.4);
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            animation: slideIn 0.3s ease;
+        }
+
+        .toast.success { border-color: var(--accent); }
+        .toast.error { border-color: #ff4757; }
+        .toast.info { border-color: #8b5cf6; }
+
+        .toast-icon { font-size: 20px; }
+        .toast-content { flex: 1; }
+        .toast-title { font-weight: 700; font-size: 14px; }
+        .toast-message { font-size: 12px; color: var(--text-secondary); margin-top: 2px; }
+
+        .toast-close {
+            background: none;
+            border: none;
+            color: var(--text-muted);
+            cursor: pointer;
+            font-size: 18px;
+            padding: 0;
+        }
+
+        @keyframes slideIn {
+            from { transform: translateX(100%); opacity: 0; }
+            to { transform: translateX(0); opacity: 1; }
+        }
+
+        @keyframes slideOut {
+            from { transform: translateX(0); opacity: 1; }
+            to { transform: translateX(100%); opacity: 0; }
+        }
+
+        .toast.hiding { animation: slideOut 0.3s ease forwards; }
+
         /* Sidebar LP Widget */
         .sidebar-lp-widget {
             margin-top: 16px;
@@ -5976,6 +6030,7 @@
     </style>
 </head>
 <body>
+    <div class="toast-container" id="toast-container"></div>
     <div class="ambient"></div>
 
     <header class="header">
@@ -7514,6 +7569,35 @@
     </nav>
 
     <script>
+        // Current network state
+        let currentNetwork = 'flare';
+        const INDEXER_URL = 'https://toadz-indexer-production.up.railway.app';
+
+        // Toast notifications
+        function showToast(title, message, type = 'info') {
+            const container = document.getElementById('toast-container');
+            const toast = document.createElement('div');
+            toast.className = `toast ${type}`;
+            
+            const icons = { success: '✓', error: '✕', info: 'ℹ' };
+            
+            toast.innerHTML = `
+                <span class="toast-icon">${icons[type] || icons.info}</span>
+                <div class="toast-content">
+                    <div class="toast-title">${title}</div>
+                    ${message ? `<div class="toast-message">${message}</div>` : ''}
+                </div>
+                <button class="toast-close" onclick="this.parentElement.remove()">×</button>
+            `;
+            
+            container.appendChild(toast);
+            
+            setTimeout(() => {
+                toast.classList.add('hiding');
+                setTimeout(() => toast.remove(), 300);
+            }, 4000);
+        }
+
         // Data
         // PLACEHOLDER DATA - Will be populated from backend/blockchain
         // Collections on Flare - update with real IPFS data when available
@@ -7756,6 +7840,7 @@
         }
 
         function setChain(chain) {
+            currentNetwork = chain;
             document.querySelectorAll('.chain-btn').forEach(b => b.classList.remove('active'));
             document.querySelector(`.chain-btn.${chain}`).classList.add('active');
             
@@ -7768,6 +7853,102 @@
                     vaultSection.classList.add('hidden');
                 }
             }
+            
+            // Load chain-specific data
+            if (chain === 'songbird') {
+                loadSongbirdData();
+            } else {
+                // Reset to Flare (empty for now)
+                renderCollections();
+                renderAllCollections();
+                renderActivityTicker();
+            }
+            
+            showToast('Network', `Switched to ${chain === 'flare' ? 'Flare' : 'Songbird'}`, 'info');
+        }
+
+        // Load Songbird data from indexer
+        async function loadSongbirdData() {
+            try {
+                // Load collections with floors
+                const floorsRes = await fetch(`${INDEXER_URL}/floors`);
+                const floors = await floorsRes.json();
+                
+                // Load recent activity
+                const activityRes = await fetch(`${INDEXER_URL}/events?limit=20`);
+                const events = await activityRes.json();
+                
+                renderSongbirdCollections(floors);
+                renderSongbirdActivity(events);
+            } catch (err) {
+                console.error('Failed to load Songbird data:', err);
+                showToast('Error', 'Failed to load Songbird data', 'error');
+            }
+        }
+
+        function renderSongbirdCollections(floors) {
+            const container = document.getElementById('all-collections-grid');
+            if (!container) return;
+            
+            const collectionInfo = {
+                '0x35afb6ba51839dedd33140a3b704b39933d1e642': { name: 'sToadz', image: 'https://ipfs.io/ipfs/QmP45Rfhy75RybFuLcwd1CR9vF6qznw95qQPxcA5TeBNYk/1.png', supply: 10000 },
+                '0x91aa85a172dd3e7eea4ad1a4b33e90cbf3b99ed8': { name: 'Luxury Lofts', image: 'https://nftstorage.link/ipfs/bafybeiet5uqcxxkpdwyvnufsglah6arxlukxhciz3jy2h2m24scmjyjciq/1.gif', supply: 10000 },
+                '0x360f8b7d9530f55ab8e52394e6527935635f51e7': { name: 'Songbird City', image: 'https://nftstorage.link/ipfs/bafybeibi35a2w5ue6s7s7ka42xhkbbtpplgyvovefetxqwr6fzmvn6umpi/1.png', supply: 10000 }
+            };
+            
+            if (!floors || floors.length === 0) {
+                container.innerHTML = '<div class="empty-state full-width"><div class="empty-icon">🐸</div><p>Loading collections...</p></div>';
+                return;
+            }
+            
+            container.innerHTML = floors.map(f => {
+                const info = collectionInfo[f.collection?.toLowerCase()] || { name: 'Unknown', image: '', supply: '?' };
+                const floorSgb = f.floor_sgb ? parseFloat(f.floor_sgb).toLocaleString() : '--';
+                return `
+                    <div class="collection-card-full" onclick="showPage('collection-detail')">
+                        <div class="collection-card-image">
+                            <img src="${info.image}" alt="${info.name}" onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2280%22>🐸</text></svg>'">
+                            <span class="collection-boost-badge">🔥 LP Boost</span>
+                        </div>
+                        <div class="collection-card-info">
+                            <div class="collection-card-name">${info.name}</div>
+                            <div class="collection-card-stats">
+                                <div class="collection-card-stat">
+                                    <span class="stat-label">Floor</span>
+                                    <span class="stat-value">${floorSgb} SGB</span>
+                                </div>
+                                <div class="collection-card-stat">
+                                    <span class="stat-label">Items</span>
+                                    <span class="stat-value">${info.supply}</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            }).join('');
+        }
+
+        function renderSongbirdActivity(events) {
+            const ticker = document.getElementById('activity-ticker');
+            if (!ticker) return;
+            
+            if (!events || events.length === 0) {
+                ticker.innerHTML = '<div class="ticker-item">No recent activity</div>';
+                return;
+            }
+            
+            const collectionNames = {
+                '0x35afb6ba51839dedd33140a3b704b39933d1e642': 'sToadz',
+                '0x91aa85a172dd3e7eea4ad1a4b33e90cbf3b99ed8': 'Lofts',
+                '0x360f8b7d9530f55ab8e52394e6527935635f51e7': 'SB City'
+            };
+            
+            ticker.innerHTML = events.slice(0, 10).map(e => {
+                const name = collectionNames[e.collection?.toLowerCase()] || 'NFT';
+                const icon = e.event_type === 'sold' ? '💰' : e.event_type === 'listed' ? '📋' : e.event_type === 'staked' ? '🔒' : '🔔';
+                const price = e.price_sgb ? parseFloat(e.price_sgb).toLocaleString() + ' SGB' : '';
+                return `<div class="ticker-item">${icon} ${name} #${e.token_id || '?'} ${e.event_type} ${price}</div>`;
+            }).join('');
         }
 
         // Initialize
@@ -7862,6 +8043,8 @@
                 const addr = window.toadz.userAddress;
                 document.querySelector('.connect-btn').innerHTML = addr ? addr.slice(0,6) + '...' + addr.slice(-4) : 'Connected';
                 document.querySelector('.connect-btn').onclick = null; // Disable click after connected
+                // Show toast
+                showToast('Wallet Connected', addr ? addr.slice(0,6) + '...' + addr.slice(-4) : '', 'success');
                 // Load pool data
                 loadPoolData();
                 // Update my-nfts page if we're on it
