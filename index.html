@@ -7814,13 +7814,28 @@
                     return;
                 }
                 
-                container.innerHTML = storefronts.map(s => `
+                container.innerHTML = storefronts.map(s => {
+                    // Handle emoji vs image avatar
+                    let avatarHtml;
+                    if (s.avatar_type === 'emoji' && s.avatar_emoji) {
+                        avatarHtml = `<div class="fa-avatar" style="background: linear-gradient(135deg, var(--purple), var(--teal)); display: flex; align-items: center; justify-content: center;">
+                            <span style="font-size: 32px;">${s.avatar_emoji}</span>
+                        </div>`;
+                    } else if (s.avatar) {
+                        avatarHtml = `<div class="fa-avatar">
+                            <img src="${s.avatar}" alt="" onerror="this.parentElement.innerHTML='<span style=font-size:32px>${s.name.charAt(0)}</span>'; this.parentElement.style.background='linear-gradient(135deg, var(--purple), var(--teal))'; this.parentElement.style.display='flex'; this.parentElement.style.alignItems='center'; this.parentElement.style.justifyContent='center';">
+                        </div>`;
+                    } else {
+                        avatarHtml = `<div class="fa-avatar" style="background: linear-gradient(135deg, var(--purple), var(--teal)); display: flex; align-items: center; justify-content: center;">
+                            <span style="font-size: 32px;">${s.name.charAt(0)}</span>
+                        </div>`;
+                    }
+                    
+                    return `
                     <div class="featured-artist-card" onclick="viewStorefront('${s.wallet}')">
                         <div class="fa-banner" style="background-image: url('${s.banner || 'https://via.placeholder.com/400x150/1a1a2e/00ff88?text='}')"></div>
                         <div class="fa-content">
-                            <div class="fa-avatar">
-                                <img src="${s.avatar || 'https://via.placeholder.com/80/1a1a2e/00ff88?text=' + s.name.charAt(0)}" alt="" onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2260%22>${s.name.charAt(0)}</text></svg>'">
-                            </div>
+                            ${avatarHtml}
                             <h3 class="fa-name">${s.name}</h3>
                             <p class="fa-style">${s.bio || ''}</p>
                             <div class="fa-stats">
@@ -7828,8 +7843,8 @@
                                 <div class="fa-stat"><span class="fa-stat-value">--</span><span class="fa-stat-label">Volume</span></div>
                             </div>
                         </div>
-                    </div>
-                `).join('');
+                    </div>`;
+                }).join('');
             } catch (err) {
                 console.error('Failed to load storefronts:', err);
                 container.innerHTML = '<div class="empty-state"><p>Failed to load storefronts</p></div>';
