@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
     <title>TOADZ | Premier NFT Marketplace</title>
     <script src="https://cdn.jsdelivr.net/npm/ethers@6/dist/ethers.umd.min.js"></script>
+    <script src="toadz-web3.js"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
     <style>
@@ -227,6 +228,307 @@
             font-size: 9px;
             color: var(--text-muted);
             flex-shrink: 0;
+        }
+
+        /* Empty States */
+        .empty-state {
+            text-align: center;
+            padding: 40px 20px;
+            color: var(--text-secondary);
+            grid-column: 1 / -1;
+        }
+
+        .empty-state.full-width {
+            grid-column: 1 / -1;
+            padding: 60px 20px;
+        }
+
+        .empty-state .empty-icon {
+            font-size: 48px;
+            margin-bottom: 16px;
+            opacity: 0.6;
+        }
+
+        .empty-state p {
+            font-size: 16px;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 8px;
+        }
+
+        .empty-state span {
+            font-size: 13px;
+            color: var(--text-muted);
+        }
+
+        .empty-state .apply-btn {
+            display: inline-block;
+            margin-top: 16px;
+            padding: 12px 24px;
+            background: var(--accent);
+            color: var(--bg-void);
+            border-radius: 8px;
+            font-weight: 700;
+            text-decoration: none;
+            transition: all 150ms ease;
+        }
+
+        .empty-state .apply-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px var(--accent-glow);
+        }
+
+        .ticker-empty {
+            padding: 10px 20px;
+            color: var(--text-muted);
+            font-size: 12px;
+        }
+
+        /* Artist Application Form */
+        .artist-apply-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-subtle);
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.3);
+        }
+
+        .apply-header {
+            text-align: center;
+            margin-bottom: 32px;
+        }
+
+        .apply-header .apply-icon {
+            font-size: 48px;
+            margin-bottom: 16px;
+        }
+
+        .apply-header h2 {
+            font-size: 28px;
+            font-weight: 800;
+            margin-bottom: 12px;
+        }
+
+        .apply-header p {
+            color: var(--text-secondary);
+            font-size: 15px;
+            max-width: 500px;
+            margin: 0 auto;
+        }
+
+        .apply-form {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .form-group label {
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--text-secondary);
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            background: var(--bg-surface);
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            padding: 14px 16px;
+            font-size: 14px;
+            color: var(--text-primary);
+            transition: all 150ms ease;
+            font-family: inherit;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--accent);
+            box-shadow: 0 0 0 3px var(--accent-glow);
+        }
+
+        .form-group input::placeholder,
+        .form-group textarea::placeholder {
+            color: var(--text-muted);
+        }
+
+        .form-group select {
+            cursor: pointer;
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 100px;
+        }
+
+        .apply-submit-btn {
+            background: var(--accent);
+            color: var(--bg-void);
+            border: none;
+            border-radius: 12px;
+            padding: 16px 32px;
+            font-size: 16px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 150ms ease;
+            margin-top: 12px;
+        }
+
+        .apply-submit-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px var(--accent-glow);
+        }
+
+        .apply-note {
+            text-align: center;
+            font-size: 12px;
+            color: var(--text-muted);
+            margin-top: 8px;
+        }
+
+        /* Connect Wallet Prompt */
+        .connect-prompt-section {
+            min-height: 60vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 40px 20px;
+        }
+
+        .connect-prompt-card {
+            text-align: center;
+            background: var(--bg-card);
+            border: 1px solid var(--border-subtle);
+            border-radius: 24px;
+            padding: 60px 40px;
+            max-width: 450px;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.3);
+        }
+
+        .connect-prompt-icon {
+            font-size: 64px;
+            margin-bottom: 24px;
+            opacity: 0.8;
+        }
+
+        .connect-prompt-card h2 {
+            font-size: 28px;
+            font-weight: 800;
+            margin-bottom: 12px;
+        }
+
+        .connect-prompt-card p {
+            color: var(--text-secondary);
+            font-size: 15px;
+            margin-bottom: 32px;
+            line-height: 1.5;
+        }
+
+        .connect-prompt-btn {
+            background: var(--accent);
+            color: var(--bg-void);
+            border: none;
+            border-radius: 12px;
+            padding: 16px 32px;
+            font-size: 16px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 150ms ease;
+        }
+
+        .connect-prompt-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px var(--accent-glow);
+        }
+
+        /* Toast Notifications */
+        .toast-container {
+            position: fixed;
+            top: 80px;
+            right: 20px;
+            z-index: 10000;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .toast {
+            background: var(--bg-card);
+            border: 1px solid var(--border-subtle);
+            border-radius: 12px;
+            padding: 16px 20px;
+            min-width: 280px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.4);
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            animation: slideIn 0.3s ease;
+        }
+
+        .toast.success { border-color: var(--accent); }
+        .toast.error { border-color: #ff4757; }
+        .toast.info { border-color: #8b5cf6; }
+
+        .toast-icon { font-size: 20px; }
+        .toast-content { flex: 1; }
+        .toast-title { font-weight: 700; font-size: 14px; }
+        .toast-message { font-size: 12px; color: var(--text-secondary); margin-top: 2px; }
+
+        .toast-close {
+            background: none;
+            border: none;
+            color: var(--text-muted);
+            cursor: pointer;
+            font-size: 18px;
+            padding: 0;
+        }
+
+        @keyframes slideIn {
+            from { transform: translateX(100%); opacity: 0; }
+            to { transform: translateX(0); opacity: 1; }
+        }
+
+        @keyframes slideOut {
+            from { transform: translateX(0); opacity: 1; }
+            to { transform: translateX(100%); opacity: 0; }
+        }
+
+        .toast.hiding { animation: slideOut 0.3s ease forwards; }
+
+        .hero-cta-btn {
+            background: var(--accent);
+            color: var(--bg-void);
+            border: none;
+            border-radius: 12px;
+            padding: 14px 28px;
+            font-size: 15px;
+            font-weight: 700;
+            cursor: pointer;
+            margin-top: 20px;
+            transition: all 150ms ease;
+        }
+
+        .hero-cta-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px var(--accent-glow);
+        }
+
+        .storefront-fee-note {
+            text-align: center;
+            padding: 12px;
+            background: rgba(0,255,136,0.1);
+            border-radius: 8px;
+            margin-bottom: 16px;
+            font-size: 14px;
+            font-weight: 600;
         }
 
         /* Sidebar LP Widget */
@@ -5753,25 +6055,10 @@
         }
 
         .hidden { display: none !important; }
-
-        /* Storefront Modal */
-        #storefront-modal {
-            display: none;
-            position: fixed;
-            inset: 0;
-            background: rgba(0,0,0,0.8);
-            backdrop-filter: blur(8px);
-            z-index: 9999;
-            align-items: center;
-            justify-content: center;
-            padding: 20px;
-        }
-        #storefront-modal.open {
-            display: flex;
-        }
     </style>
 </head>
 <body>
+    <div class="toast-container" id="toast-container"></div>
     <div class="ambient"></div>
 
     <header class="header">
@@ -5786,7 +6073,7 @@
                 <button class="nav-item" onclick="showPage('collections')">Collections</button>
                 <button class="nav-item highlight" onclick="showPage('staking')">Staking</button>
                 <button class="nav-item" onclick="showPage('artists')">Artists</button>
-                <button class="nav-item live-mint" onclick="showPage('mint')">🔴 Live Mint</button>
+                <button class="nav-item" onclick="showPage('launchpad')">Launchpad</button>
                 <button class="nav-item" onclick="showPage('leaderboard')">🏆 Ranks</button>
                 <button class="nav-item" onclick="showPage('my-nfts')">My NFTs</button>
             </nav>
@@ -5797,7 +6084,7 @@
                     <button class="chain-btn songbird" onclick="setChain('songbird')"><span class="dot"></span>Songbird</button>
                 </div>
                 <button class="connect-btn" onclick="openConnectModal()">Connect</button>
-                <div class="user-menu" onclick="openConnectModal()">👤</div>
+                <div class="user-menu" onclick="handleUserMenuClick()">👤</div>
                 <div class="notif-wrapper">
                     <button class="notif-bell has-notif" onclick="toggleNotifDropdown()">
                         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M14.857 17.082a23.848 23.848 0 005.454-1.31A8.967 8.967 0 0118 9.75v-.7V9A6 6 0 006 9v.75a8.967 8.967 0 01-2.312 6.022c1.733.64 3.56 1.085 5.455 1.31m5.714 0a24.255 24.255 0 01-5.714 0m5.714 0a3 3 0 11-5.714 0"/></svg>
@@ -5850,15 +6137,15 @@
                         <p>The NFT marketplace where all fees flow back to the community</p>
                         <div class="hero-stats-row">
                             <div class="hero-stat-pill">
-                                <span class="stat-value">$1.2M</span>
+                                <span class="stat-value" id="hero-mcap">--</span>
                                 <span class="stat-label">POND MCAP</span>
                             </div>
                             <div class="hero-stat-pill">
-                                <span class="stat-value">30K</span>
+                                <span class="stat-value" id="hero-nfts">--</span>
                                 <span class="stat-label">NFTs</span>
                             </div>
                             <div class="hero-stat-pill">
-                                <span class="stat-value green">24.8%</span>
+                                <span class="stat-value green" id="hero-apy">--</span>
                                 <span class="stat-label">LP APY</span>
                             </div>
                         </div>
@@ -5898,15 +6185,15 @@
                                     </div>
                                     <div class="lp-spotlight-stats">
                                         <div class="lp-fomo-stat">
-                                            <span class="lp-fomo-value">847</span>
+                                            <span class="lp-fomo-value" id="spotlight-stakers">--</span>
                                             <span class="lp-fomo-label">Stakers Earning</span>
                                         </div>
                                         <div class="lp-fomo-stat">
-                                            <span class="lp-fomo-value green">2.4M</span>
+                                            <span class="lp-fomo-value green" id="spotlight-distributed">--</span>
                                             <span class="lp-fomo-label">POND Distributed</span>
                                         </div>
                                         <div class="lp-fomo-stat">
-                                            <span class="lp-fomo-value">$1.2M</span>
+                                            <span class="lp-fomo-value" id="spotlight-tvl">--</span>
                                             <span class="lp-fomo-label">Total Value Locked</span>
                                         </div>
                                     </div>
@@ -6000,113 +6287,11 @@
                         <button class="lb-filter">24 Hours</button>
                     </div>
 
-                    <!-- Top 3 Podium -->
-                    <div class="podium-section">
-                        <div class="podium">
-                            <div class="podium-item second">
-                                <div class="podium-avatar silver-ring">🦊</div>
-                                <div class="podium-name">0x3a1...b7c</div>
-                                <div class="podium-stat">623 NFTs</div>
-                                <div class="podium-value">+9.1K POND</div>
-                                <div class="podium-rank">2</div>
-                            </div>
-                            <div class="podium-item first">
-                                <div class="podium-crown">👑</div>
-                                <div class="podium-avatar gold-ring">🐸</div>
-                                <div class="podium-name username">FrogKing</div>
-                                <div class="podium-stat">847 NFTs</div>
-                                <div class="podium-value">+12.4K POND</div>
-                                <div class="podium-rank">1</div>
-                            </div>
-                            <div class="podium-item third">
-                                <div class="podium-avatar bronze-ring">🐱</div>
-                                <div class="podium-name username">CryptoKitty</div>
-                                <div class="podium-stat">412 NFTs</div>
-                                <div class="podium-value">+6.8K POND</div>
-                                <div class="podium-rank">3</div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Full Leaderboard Tables -->
-                    <div class="lb-tables-grid">
-                        <!-- NFT Stakers -->
-                        <div class="lb-table-card">
-                            <div class="lb-table-header">
-                                <h3>🔒 NFT Stakers</h3>
-                                <span class="lb-table-subtitle">Ranked by POND earned</span>
-                            </div>
-                            <div class="lb-table">
-                                <div class="lb-row header">
-                                    <span class="lb-col rank">Rank</span>
-                                    <span class="lb-col user">User</span>
-                                    <span class="lb-col stat">Staked</span>
-                                    <span class="lb-col value">Earned</span>
-                                </div>
-                                <div class="lb-row"><span class="lb-col rank gold">1</span><span class="lb-col user"><span class="lb-avatar">🐸</span><span class="username">FrogKing</span></span><span class="lb-col stat">847</span><span class="lb-col value green">+12.4K</span></div>
-                                <div class="lb-row"><span class="lb-col rank silver">2</span><span class="lb-col user"><span class="lb-avatar">🦊</span>0x3a1...b7c</span><span class="lb-col stat">623</span><span class="lb-col value green">+9.1K</span></div>
-                                <div class="lb-row"><span class="lb-col rank bronze">3</span><span class="lb-col user"><span class="lb-avatar">🐱</span><span class="username">CryptoKitty</span></span><span class="lb-col stat">412</span><span class="lb-col value green">+6.8K</span></div>
-                                <div class="lb-row"><span class="lb-col rank">4</span><span class="lb-col user"><span class="lb-avatar">🦉</span>0x2b5...c8d</span><span class="lb-col stat">389</span><span class="lb-col value green">+5.2K</span></div>
-                                <div class="lb-row"><span class="lb-col rank">5</span><span class="lb-col user"><span class="lb-avatar">🐻</span><span class="username">DiamondPaws</span></span><span class="lb-col stat">301</span><span class="lb-col value green">+4.1K</span></div>
-                                <div class="lb-row"><span class="lb-col rank">6</span><span class="lb-col user"><span class="lb-avatar">🦅</span>0x5d7...a2b</span><span class="lb-col stat">278</span><span class="lb-col value green">+3.8K</span></div>
-                                <div class="lb-row"><span class="lb-col rank">7</span><span class="lb-col user"><span class="lb-avatar">🐺</span>0x1e8...f3c</span><span class="lb-col stat">234</span><span class="lb-col value green">+3.2K</span></div>
-                                <div class="lb-row"><span class="lb-col rank">8</span><span class="lb-col user"><span class="lb-avatar">🦁</span><span class="username">LionHeart</span></span><span class="lb-col stat">198</span><span class="lb-col value green">+2.7K</span></div>
-                                <div class="lb-row"><span class="lb-col rank">9</span><span class="lb-col user"><span class="lb-avatar">🐯</span>0x4a2...b5f</span><span class="lb-col stat">167</span><span class="lb-col value green">+2.3K</span></div>
-                                <div class="lb-row"><span class="lb-col rank">10</span><span class="lb-col user"><span class="lb-avatar">🦈</span>0x8b3...c6a</span><span class="lb-col stat">145</span><span class="lb-col value green">+1.9K</span></div>
-                            </div>
-                        </div>
-
-                        <!-- Traders -->
-                        <div class="lb-table-card">
-                            <div class="lb-table-header">
-                                <h3>📈 Top Traders</h3>
-                                <span class="lb-table-subtitle">Ranked by volume</span>
-                            </div>
-                            <div class="lb-table">
-                                <div class="lb-row header">
-                                    <span class="lb-col rank">Rank</span>
-                                    <span class="lb-col user">User</span>
-                                    <span class="lb-col stat">Trades</span>
-                                    <span class="lb-col value">Volume</span>
-                                </div>
-                                <div class="lb-row"><span class="lb-col rank gold">1</span><span class="lb-col user"><span class="lb-avatar">💎</span><span class="username">WhaleWatch</span></span><span class="lb-col stat">156</span><span class="lb-col value">2.4M</span></div>
-                                <div class="lb-row"><span class="lb-col rank silver">2</span><span class="lb-col user"><span class="lb-avatar">🚀</span>0x9b7...c1d</span><span class="lb-col stat">98</span><span class="lb-col value">1.8M</span></div>
-                                <div class="lb-row"><span class="lb-col rank bronze">3</span><span class="lb-col user"><span class="lb-avatar">⚡</span><span class="username">FlipMaster</span></span><span class="lb-col stat">87</span><span class="lb-col value">1.2M</span></div>
-                                <div class="lb-row"><span class="lb-col rank">4</span><span class="lb-col user"><span class="lb-avatar">🔥</span>0x7d2...b4c</span><span class="lb-col stat">76</span><span class="lb-col value">980K</span></div>
-                                <div class="lb-row"><span class="lb-col rank">5</span><span class="lb-col user"><span class="lb-avatar">💰</span>0x3e1...f5d</span><span class="lb-col stat">64</span><span class="lb-col value">720K</span></div>
-                                <div class="lb-row"><span class="lb-col rank">6</span><span class="lb-col user"><span class="lb-avatar">🌟</span><span class="username">StarTrader</span></span><span class="lb-col stat">52</span><span class="lb-col value">540K</span></div>
-                                <div class="lb-row"><span class="lb-col rank">7</span><span class="lb-col user"><span class="lb-avatar">🎯</span>0x1b6...d3f</span><span class="lb-col stat">45</span><span class="lb-col value">420K</span></div>
-                                <div class="lb-row"><span class="lb-col rank">8</span><span class="lb-col user"><span class="lb-avatar">⭐</span>0x6c8...a4b</span><span class="lb-col stat">38</span><span class="lb-col value">310K</span></div>
-                                <div class="lb-row"><span class="lb-col rank">9</span><span class="lb-col user"><span class="lb-avatar">🎪</span><span class="username">NFTJunkie</span></span><span class="lb-col stat">31</span><span class="lb-col value">240K</span></div>
-                                <div class="lb-row"><span class="lb-col rank">10</span><span class="lb-col user"><span class="lb-avatar">🎨</span>0x2e7...f6d</span><span class="lb-col stat">27</span><span class="lb-col value">180K</span></div>
-                            </div>
-                        </div>
-
-                        <!-- LP Providers -->
-                        <div class="lb-table-card">
-                            <div class="lb-table-header">
-                                <h3>💧 LP Providers</h3>
-                                <span class="lb-table-subtitle">Ranked by deposit</span>
-                            </div>
-                            <div class="lb-table">
-                                <div class="lb-row header">
-                                    <span class="lb-col rank">Rank</span>
-                                    <span class="lb-col user">User</span>
-                                    <span class="lb-col stat">Mult</span>
-                                    <span class="lb-col value">Deposited</span>
-                                </div>
-                                <div class="lb-row"><span class="lb-col rank gold">1</span><span class="lb-col user"><span class="lb-avatar">🏦</span><span class="username">PondWhale</span></span><span class="lb-col stat">3.5x</span><span class="lb-col value">450K</span></div>
-                                <div class="lb-row"><span class="lb-col rank silver">2</span><span class="lb-col user"><span class="lb-avatar">🐋</span>0x1a6...d4f</span><span class="lb-col stat">2.8x</span><span class="lb-col value">320K</span></div>
-                                <div class="lb-row"><span class="lb-col rank bronze">3</span><span class="lb-col user"><span class="lb-avatar">🦈</span><span class="username">DeepDiver</span></span><span class="lb-col stat">2.1x</span><span class="lb-col value">185K</span></div>
-                                <div class="lb-row"><span class="lb-col rank">4</span><span class="lb-col user"><span class="lb-avatar">🐙</span>0x9f5...c3b</span><span class="lb-col stat">2.5x</span><span class="lb-col value">142K</span></div>
-                                <div class="lb-row"><span class="lb-col rank">5</span><span class="lb-col user"><span class="lb-avatar">🦑</span><span class="username">LiquidKing</span></span><span class="lb-col stat">1.8x</span><span class="lb-col value">98K</span></div>
-                                <div class="lb-row"><span class="lb-col rank">6</span><span class="lb-col user"><span class="lb-avatar">🐠</span>0x7b2...f4a</span><span class="lb-col stat">1.5x</span><span class="lb-col value">76K</span></div>
-                                <div class="lb-row"><span class="lb-col rank">7</span><span class="lb-col user"><span class="lb-avatar">🐡</span>0x5c9...a7c</span><span class="lb-col stat">2.2x</span><span class="lb-col value">54K</span></div>
-                                <div class="lb-row"><span class="lb-col rank">8</span><span class="lb-col user"><span class="lb-avatar">🦐</span><span class="username">ShrimpLP</span></span><span class="lb-col stat">1.2x</span><span class="lb-col value">41K</span></div>
-                                <div class="lb-row"><span class="lb-col rank">9</span><span class="lb-col user"><span class="lb-avatar">🦞</span>0x8e6...c9d</span><span class="lb-col stat">1.0x</span><span class="lb-col value">28K</span></div>
-                                <div class="lb-row"><span class="lb-col rank">10</span><span class="lb-col user"><span class="lb-avatar">🐬</span>0x4f1...e2a</span><span class="lb-col stat">1.5x</span><span class="lb-col value">19K</span></div>
-                            </div>
-                        </div>
+                    <!-- Coming Soon State -->
+                    <div class="empty-state full-width" style="padding: 80px 20px;">
+                        <div class="empty-icon">🏆</div>
+                        <p>Leaderboard coming soon</p>
+                        <span>Rankings will appear once trading begins</span>
                     </div>
                 </div>
             </section>
@@ -6510,7 +6695,7 @@
                     <!-- Stats Row -->
                     <div class="staking-stats-row">
                         <div class="staking-stat-pill">
-                            <span class="stat-big">$1.2M</span>
+                            <span class="stat-big" id="staking-mcap">--</span>
                             <span class="stat-label">POND MCAP</span>
                         </div>
                         <div class="staking-stat-pill highlight">
@@ -6703,19 +6888,17 @@
                         <h1>Artist Storefronts</h1>
                         <p>Discover creators and launch your own storefront</p>
                     </div>
-                    <div style="text-align: center;">
-                        <button class="hero-cta-btn" onclick="openCreateStorefront()">
-                            Create Storefront <span style="opacity: 0.7; font-size: 12px;">10 FLR</span>
-                        </button>
-                    </div>
+                    <button class="hero-cta-btn" onclick="openCreateStorefront()">
+                        Create Storefront <span style="opacity: 0.7; font-size: 12px;">10 FLR</span>
+                    </button>
                 </div>
             </section>
 
-            <!-- Featured Artists - Large Premium Cards -->
-            <section class="featured-artists-section">
+            <!-- Featured Artists -->
+            <section class="section">
                 <div class="container">
                     <div class="featured-artists-grid" id="storefronts-grid">
-                        <!-- Artist 1 - PastaPrimavera -->
+                        <!-- Hardcoded featured artists -->
                         <div class="featured-artist-card" onclick="viewStorefront('0xcEA86bBdb5cd33ddbA8dC0ed3c838605EeF7c715')">
                             <div class="fa-banner" style="background-image: url('https://ipfs.io/ipfs/QmP45Rfhy75RybFuLcwd1CR9vF6qznw95qQPxcA5TeBNYk/421.png')"></div>
                             <div class="fa-content">
@@ -6724,17 +6907,15 @@
                                 </div>
                                 <div class="fa-badge">⭐ FEATURED</div>
                                 <h3 class="fa-name">PastaPrimavera</h3>
-                                <p class="fa-style">Italian-Inspired Digital</p>
+                                <p class="fa-style">Italian-Inspired Digital Art</p>
                                 <div class="fa-stats">
-                                    <div class="fa-stat"><span class="fa-stat-value">156</span><span class="fa-stat-label">Items</span></div>
-                                    <div class="fa-stat"><span class="fa-stat-value">45K</span><span class="fa-stat-label">Volume</span></div>
-                                    <div class="fa-stat"><span class="fa-stat-value">89</span><span class="fa-stat-label">Collectors</span></div>
+                                    <div class="fa-stat"><span class="fa-stat-value">--</span><span class="fa-stat-label">Items</span></div>
+                                    <div class="fa-stat"><span class="fa-stat-value">--</span><span class="fa-stat-label">Volume</span></div>
                                 </div>
                             </div>
                         </div>
 
-                        <!-- Artist 2 - Freak -->
-                        <div class="featured-artist-card" onclick="showPage('artist-storefront')">
+                        <div class="featured-artist-card" onclick="viewStorefront('freak')">
                             <div class="fa-banner" style="background-image: url('https://ipfs.io/ipfs/QmP45Rfhy75RybFuLcwd1CR9vF6qznw95qQPxcA5TeBNYk/667.png')"></div>
                             <div class="fa-content">
                                 <div class="fa-avatar">
@@ -6744,65 +6925,56 @@
                                 <h3 class="fa-name">Freak</h3>
                                 <p class="fa-style">Chaos & Dark Surrealism</p>
                                 <div class="fa-stats">
-                                    <div class="fa-stat"><span class="fa-stat-value">342</span><span class="fa-stat-label">Items</span></div>
-                                    <div class="fa-stat"><span class="fa-stat-value">1.2M</span><span class="fa-stat-label">Volume</span></div>
-                                    <div class="fa-stat"><span class="fa-stat-value">267</span><span class="fa-stat-label">Collectors</span></div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Artist 3 - Luna -->
-                        <div class="featured-artist-card" onclick="showPage('artist-storefront')">
-                            <div class="fa-banner" style="background-image: url('https://ipfs.io/ipfs/QmP45Rfhy75RybFuLcwd1CR9vF6qznw95qQPxcA5TeBNYk/893.png')"></div>
-                            <div class="fa-content">
-                                <div class="fa-avatar">
-                                    <img src="https://ipfs.io/ipfs/QmP45Rfhy75RybFuLcwd1CR9vF6qznw95qQPxcA5TeBNYk/892.png" alt="">
-                                </div>
-                                <div class="fa-badge">⭐ FEATURED</div>
-                                <h3 class="fa-name">Luna</h3>
-                                <p class="fa-style">Celestial Dreams</p>
-                                <div class="fa-stats">
-                                    <div class="fa-stat"><span class="fa-stat-value">89</span><span class="fa-stat-label">Items</span></div>
-                                    <div class="fa-stat"><span class="fa-stat-value">234K</span><span class="fa-stat-label">Volume</span></div>
-                                    <div class="fa-stat"><span class="fa-stat-value">156</span><span class="fa-stat-label">Collectors</span></div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Artist 4 - Mystic -->
-                        <div class="featured-artist-card" onclick="showPage('artist-storefront')">
-                            <div class="fa-banner" style="background-image: url('https://ipfs.io/ipfs/QmP45Rfhy75RybFuLcwd1CR9vF6qznw95qQPxcA5TeBNYk/157.png')"></div>
-                            <div class="fa-content">
-                                <div class="fa-avatar">
-                                    <img src="https://ipfs.io/ipfs/QmP45Rfhy75RybFuLcwd1CR9vF6qznw95qQPxcA5TeBNYk/156.png" alt="">
-                                </div>
-                                <div class="fa-badge new">✨ NEW</div>
-                                <h3 class="fa-name">Mystic</h3>
-                                <p class="fa-style">Ethereal Visions</p>
-                                <div class="fa-stats">
-                                    <div class="fa-stat"><span class="fa-stat-value">67</span><span class="fa-stat-label">Items</span></div>
-                                    <div class="fa-stat"><span class="fa-stat-value">98K</span><span class="fa-stat-label">Volume</span></div>
-                                    <div class="fa-stat"><span class="fa-stat-value">78</span><span class="fa-stat-label">Collectors</span></div>
+                                    <div class="fa-stat"><span class="fa-stat-value">--</span><span class="fa-stat-label">Items</span></div>
+                                    <div class="fa-stat"><span class="fa-stat-value">--</span><span class="fa-stat-label">Volume</span></div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </section>
+        </div>
 
-            <!-- Artistic Divider -->
-            <div class="artist-divider">
-                <div class="divider-line"></div>
-                <div class="divider-text">DISCOVER MORE</div>
-                <div class="divider-line"></div>
-            </div>
-
-            <section class="section">
-                <div class="container">
-                    <h3 class="all-artists-title">All Artists</h3>
-                    <div class="artists-grid" id="artists-grid"></div>
+        <!-- CREATE STOREFRONT MODAL -->
+        <div class="modal" id="storefront-modal" onclick="closeStorefrontModal(event)">
+            <div class="modal-content" style="max-width: 500px;" onclick="event.stopPropagation()">
+                <div class="modal-header">
+                    <h3>Create Your Storefront</h3>
+                    <button class="modal-close" onclick="closeStorefrontModal()">×</button>
                 </div>
-            </section>
+                <form id="storefront-form" class="apply-form">
+                    <div class="form-group">
+                        <label>Artist / Studio Name *</label>
+                        <input type="text" id="sf-name" placeholder="Your artist name" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Bio</label>
+                        <textarea id="sf-bio" placeholder="Tell people about your art..." rows="3"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label>Avatar URL</label>
+                        <input type="url" id="sf-avatar" placeholder="https://... or IPFS link">
+                    </div>
+                    <div class="form-group">
+                        <label>Banner URL</label>
+                        <input type="url" id="sf-banner" placeholder="https://... or IPFS link">
+                    </div>
+                    <div class="form-group">
+                        <label>Twitter / X</label>
+                        <input type="text" id="sf-twitter" placeholder="@handle">
+                    </div>
+                    <div class="form-group">
+                        <label>Website</label>
+                        <input type="url" id="sf-website" placeholder="https://yoursite.com">
+                    </div>
+                    <div class="storefront-fee-note" id="sf-fee-note">
+                        <span>⚡ Cost: 10 FLR</span>
+                    </div>
+                    <button type="submit" class="apply-submit-btn" id="sf-submit-btn">
+                        Create Storefront →
+                    </button>
+                </form>
+            </div>
         </div>
 
         <!-- ARTIST STOREFRONT -->
@@ -6981,125 +7153,114 @@
 
         <!-- MY NFTS PAGE -->
         <div id="page-my-nfts" class="page">
-            <!-- My NFTs Hero -->
-            <section class="page-hero my-nfts-hero">
-                <div class="container">
-                    <div class="my-profile-header">
-                        <div class="my-avatar">
-                            <span>👤</span>
-                        </div>
-                        <div class="my-profile-info">
-                            <h1>My Collection</h1>
-                            <p class="wallet-address">0x1234...5678</p>
-                        </div>
-                    </div>
-                    <div class="hero-stats-mini">
-                        <div class="mini-stat">
-                            <span class="mini-value">12</span>
-                            <span class="mini-label">Owned</span>
-                        </div>
-                        <div class="mini-stat">
-                            <span class="mini-value green">8</span>
-                            <span class="mini-label">Staked</span>
-                        </div>
-                        <div class="mini-stat">
-                            <span class="mini-value purple">3</span>
-                            <span class="mini-label">Listed</span>
-                        </div>
-                        <div class="mini-stat">
-                            <span class="mini-value gold">2</span>
-                            <span class="mini-label">Offers</span>
-                        </div>
-                    </div>
+            <!-- Not Connected State -->
+            <div id="my-nfts-not-connected" class="connect-prompt-section">
+                <div class="connect-prompt-card">
+                    <div class="connect-prompt-icon">👤</div>
+                    <h2>Connect Your Wallet</h2>
+                    <p>Connect your wallet to view your NFTs, track staking rewards, and manage your collection.</p>
+                    <button class="connect-prompt-btn" onclick="openConnectModal()">Connect Wallet →</button>
                 </div>
-            </section>
+            </div>
 
-            <div class="container">
-                <!-- Dashboard Cards -->
-                <div class="my-dashboard-grid">
-                    <!-- Portfolio Value -->
-                    <div class="dashboard-card portfolio-card">
-                        <div class="dashboard-card-header">
-                            <span class="dashboard-icon">💰</span>
-                            <h4>Portfolio Value</h4>
-                        </div>
-                        <div class="portfolio-value-main">
-                            <span class="portfolio-amount">24,850</span>
-                            <span class="portfolio-token">FLR</span>
-                        </div>
-                        <div class="portfolio-change positive">+12.4% (30d)</div>
-                    </div>
-
-                    <!-- Your Rank -->
-                    <div class="dashboard-card rank-card">
-                        <div class="dashboard-card-header">
-                            <span class="dashboard-icon">🏆</span>
-                            <h4>Your Rank</h4>
-                        </div>
-                        <div class="your-rank-display">
-                            <span class="rank-number">#47</span>
-                            <span class="rank-category">NFT Stakers</span>
-                        </div>
-                        <div class="rank-progress">
-                            <div class="rank-progress-bar" style="width: 68%"></div>
-                        </div>
-                        <div class="rank-next">32 more NFTs to reach #40</div>
-                    </div>
-
-                    <!-- Earnings -->
-                    <div class="dashboard-card earnings-card">
-                        <div class="dashboard-card-header">
-                            <span class="dashboard-icon">📈</span>
-                            <h4>POND Earned</h4>
-                        </div>
-                        <div class="earnings-value">
-                            <span class="earnings-amount green">+1,247</span>
-                            <span class="earnings-token">POND</span>
-                        </div>
-                        <div class="earnings-detail">From 8 staked NFTs • 1.2x multiplier</div>
-                    </div>
-
-                    <!-- Recent Activity -->
-                    <div class="dashboard-card activity-card">
-                        <div class="dashboard-card-header">
-                            <span class="dashboard-icon">⚡</span>
-                            <h4>Recent Activity</h4>
-                        </div>
-                        <div class="my-activity-list">
-                            <div class="my-activity-item">
-                                <span class="activity-dot green"></span>
-                                <span>Staked sToadz #421</span>
-                                <span class="activity-time">2h ago</span>
+            <!-- Connected State (hidden by default) -->
+            <div id="my-nfts-connected" style="display: none;">
+                <!-- My NFTs Hero -->
+                <section class="page-hero my-nfts-hero">
+                    <div class="container">
+                        <div class="my-profile-header">
+                            <div class="my-avatar">
+                                <span>👤</span>
                             </div>
-                            <div class="my-activity-item">
-                                <span class="activity-dot gold"></span>
-                                <span>Received offer 850 FLR</span>
-                                <span class="activity-time">5h ago</span>
+                            <div class="my-profile-info">
+                                <h1>My Collection</h1>
+                                <p class="wallet-address" id="my-wallet-address">0x1234...5678</p>
                             </div>
-                            <div class="my-activity-item">
-                                <span class="activity-dot purple"></span>
-                                <span>Listed Loft #89</span>
-                                <span class="activity-time">1d ago</span>
+                        </div>
+                        <div class="hero-stats-mini">
+                            <div class="mini-stat">
+                                <span class="mini-value" id="my-owned-count">--</span>
+                                <span class="mini-label">Owned</span>
                             </div>
-                            <div class="my-activity-item">
-                                <span class="activity-dot green"></span>
-                                <span>Earned +45 POND</span>
-                                <span class="activity-time">1d ago</span>
+                            <div class="mini-stat">
+                                <span class="mini-value green" id="my-staked-count">--</span>
+                                <span class="mini-label">Staked</span>
+                            </div>
+                            <div class="mini-stat">
+                                <span class="mini-value purple" id="my-listed-count">--</span>
+                                <span class="mini-label">Listed</span>
+                            </div>
+                            <div class="mini-stat">
+                                <span class="mini-value gold" id="my-offers-count">--</span>
+                                <span class="mini-label">Offers</span>
                             </div>
                         </div>
                     </div>
-                </div>
-
-                <section class="section">
-                    <div class="tabs">
-                        <button class="tab active">All</button>
-                        <button class="tab">Staked</button>
-                        <button class="tab">Listed</button>
-                        <button class="tab">Offers Received</button>
-                        <button class="tab">My Offers</button>
-                    </div>
-                    <div class="nft-grid" id="my-nfts-grid"></div>
                 </section>
+
+                <div class="container">
+                    <!-- Dashboard Cards -->
+                    <div class="my-dashboard-grid">
+                        <!-- Portfolio Value -->
+                        <div class="dashboard-card portfolio-card">
+                            <div class="dashboard-card-header">
+                                <span class="dashboard-icon">💰</span>
+                                <h4>Portfolio Value</h4>
+                            </div>
+                            <div class="portfolio-value-main">
+                                <span class="portfolio-amount" id="my-portfolio-value">--</span>
+                                <span class="portfolio-token">FLR</span>
+                            </div>
+                            <div class="portfolio-change">--</div>
+                        </div>
+
+                        <!-- Your Rank -->
+                        <div class="dashboard-card rank-card">
+                            <div class="dashboard-card-header">
+                                <span class="dashboard-icon">🏆</span>
+                                <h4>Your Rank</h4>
+                            </div>
+                            <div class="your-rank-display">
+                                <span class="rank-number" id="my-rank">--</span>
+                                <span class="rank-category">NFT Stakers</span>
+                            </div>
+                        </div>
+
+                        <!-- Earnings -->
+                        <div class="dashboard-card earnings-card">
+                            <div class="dashboard-card-header">
+                                <span class="dashboard-icon">📈</span>
+                                <h4>POND Earned</h4>
+                            </div>
+                            <div class="earnings-value">
+                                <span class="earnings-amount green" id="my-pond-earned">--</span>
+                                <span class="earnings-token">POND</span>
+                            </div>
+                        </div>
+
+                        <!-- Recent Activity -->
+                        <div class="dashboard-card activity-card">
+                            <div class="dashboard-card-header">
+                                <span class="dashboard-icon">⚡</span>
+                                <h4>Recent Activity</h4>
+                            </div>
+                            <div class="my-activity-list" id="my-activity-list">
+                                <div class="empty-state" style="padding: 20px;"><p>No activity yet</p></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <section class="section">
+                        <div class="tabs">
+                            <button class="tab active">All</button>
+                            <button class="tab">Staked</button>
+                            <button class="tab">Listed</button>
+                            <button class="tab">Offers Received</button>
+                            <button class="tab">My Offers</button>
+                        </div>
+                        <div class="nft-grid" id="my-nfts-grid"></div>
+                    </section>
+                </div>
             </div>
         </div>
 
@@ -7130,23 +7291,12 @@
             </section>
 
             <div class="container">
-                <!-- Featured Collection Banner -->
-                <div class="featured-collection-banner">
-                    <div class="fcb-images">
-                        <img src="https://ipfs.io/ipfs/QmP45Rfhy75RybFuLcwd1CR9vF6qznw95qQPxcA5TeBNYk/1.png" alt="">
-                        <img src="https://ipfs.io/ipfs/QmP45Rfhy75RybFuLcwd1CR9vF6qznw95qQPxcA5TeBNYk/2.png" alt="">
-                        <img src="https://ipfs.io/ipfs/QmP45Rfhy75RybFuLcwd1CR9vF6qznw95qQPxcA5TeBNYk/3.png" alt="">
-                    </div>
-                    <div class="fcb-content">
-                        <span class="fcb-badge">🔥 TOP VOLUME</span>
-                        <h3 class="fcb-title">sToadz</h3>
-                        <p class="fcb-desc">The original OG. Stake for POND rewards + LP boost multipliers.</p>
-                        <div class="fcb-stats">
-                            <span>Floor: <strong>3.0M FLR</strong></span>
-                            <span>Volume: <strong>26M FLR</strong></span>
-                            <span>Staked: <strong>847</strong></span>
-                        </div>
-                        <button class="fcb-btn" onclick="showPage('collection-detail')">View Collection →</button>
+                <!-- Coming Soon Banner -->
+                <div class="featured-collection-banner" style="background: linear-gradient(135deg, rgba(0,255,136,0.1), rgba(139,92,246,0.1));">
+                    <div class="fcb-content" style="text-align: center; width: 100%;">
+                        <span class="fcb-badge">🚀 COMING SOON</span>
+                        <h3 class="fcb-title">3D Toadz on Flare</h3>
+                        <p class="fcb-desc">New collections launching soon. Lock your Songbird NFTs to receive 3D airdrops.</p>
                     </div>
                 </div>
 
@@ -7212,48 +7362,6 @@
     </main>
 
     <!-- Connect Modal -->
-    <!-- CREATE STOREFRONT MODAL -->
-    <div id="storefront-modal" onclick="closeStorefrontModal(event)">
-        <div class="modal-content" style="max-width: 500px; background: var(--bg-card); border: 1px solid var(--border); border-radius: 24px; max-height: 90vh; overflow-y: auto;" onclick="event.stopPropagation()">
-            <div style="display: flex; justify-content: space-between; align-items: center; padding: 20px 24px; border-bottom: 1px solid var(--border);">
-                <h3 style="font-size: 18px; font-weight: 700; margin: 0;">Create Your Storefront</h3>
-                <button onclick="closeStorefrontModal()" style="background: none; border: none; color: var(--text-muted); font-size: 24px; cursor: pointer;">×</button>
-            </div>
-            <form id="storefront-form" class="apply-form" style="padding: 24px;">
-                <div class="form-group">
-                    <label>Artist / Studio Name *</label>
-                    <input type="text" id="sf-name" placeholder="Your artist name" required>
-                </div>
-                <div class="form-group">
-                    <label>Bio</label>
-                    <textarea id="sf-bio" placeholder="Tell people about your art..." rows="3"></textarea>
-                </div>
-                <div class="form-group">
-                    <label>Avatar URL</label>
-                    <input type="url" id="sf-avatar" placeholder="https://... or IPFS link">
-                </div>
-                <div class="form-group">
-                    <label>Banner URL</label>
-                    <input type="url" id="sf-banner" placeholder="https://... or IPFS link">
-                </div>
-                <div class="form-group">
-                    <label>Twitter / X</label>
-                    <input type="text" id="sf-twitter" placeholder="@handle">
-                </div>
-                <div class="form-group">
-                    <label>Website</label>
-                    <input type="url" id="sf-website" placeholder="https://yoursite.com">
-                </div>
-                <div class="storefront-fee-note" id="sf-fee-note">
-                    <span>⚡ Cost: 10 FLR</span>
-                </div>
-                <button type="submit" class="apply-submit-btn" id="sf-submit-btn">
-                    Create Storefront →
-                </button>
-            </form>
-        </div>
-    </div>
-
     <div class="modal-overlay" id="connect-modal" onclick="closeConnectModal(event)">
         <div class="modal" onclick="event.stopPropagation()">
             <button class="modal-close" onclick="closeConnectModal()">&times;</button>
@@ -7434,9 +7542,9 @@
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 6v12m-3-2.818l.879.659c1.171.879 3.07.879 4.242 0 1.172-.879 1.172-2.303 0-3.182C13.536 12.219 12.768 12 12 12c-.725 0-1.45-.22-2.003-.659-1.106-.879-1.106-2.303 0-3.182s2.9-.879 4.006 0l.415.33M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
                 Stake
             </button>
-            <button class="mobile-nav-item live-mint-mobile" onclick="showPage('mint')">
+            <button class="mobile-nav-item" onclick="showPage('launchpad')">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M15.362 5.214A8.252 8.252 0 0112 21 8.25 8.25 0 016.038 7.048 8.287 8.287 0 009 9.6a8.983 8.983 0 013.361-6.867 8.21 8.21 0 003 2.48z"/><path d="M12 18a3.75 3.75 0 00.495-7.467 5.99 5.99 0 00-1.925 3.546 5.974 5.974 0 01-2.133-1.001A3.75 3.75 0 0012 18z"/></svg>
-                MINT
+                Drops
             </button>
             <button class="mobile-nav-item" onclick="toggleMobileMenu()">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"/></svg>
@@ -7452,7 +7560,6 @@
     </nav>
 
     <script>
-        // Data
         // Current network state
         let currentNetwork = 'flare';
         const INDEXER_URL = 'https://toadz-indexer-production.up.railway.app';
@@ -7460,10 +7567,11 @@
         // Toast notifications
         function showToast(title, message, type = 'info') {
             const container = document.getElementById('toast-container');
-            if (!container) return;
             const toast = document.createElement('div');
             toast.className = `toast ${type}`;
+            
             const icons = { success: '✓', error: '✕', info: 'ℹ' };
+            
             toast.innerHTML = `
                 <span class="toast-icon">${icons[type] || icons.info}</span>
                 <div class="toast-content">
@@ -7472,24 +7580,39 @@
                 </div>
                 <button class="toast-close" onclick="this.parentElement.remove()">×</button>
             `;
+            
             container.appendChild(toast);
+            
             setTimeout(() => {
                 toast.classList.add('hiding');
                 setTimeout(() => toast.remove(), 300);
             }, 4000);
         }
 
-        // Data - empty, loaded from chain/indexer
+        // Data
+        // PLACEHOLDER DATA - Will be populated from backend/blockchain
+        // Collections on Flare - update with real IPFS data when available
         const collections = [];
+
         const auctions = [];
+
         const nfts = [];
+
         const stakingPools = [];
+
         const artists = [];
+
+        // Activity - fetched from indexer backend
         const activity = [];
 
         // Render functions
         function renderAuctions() {
-            document.getElementById('auctions-grid').innerHTML = auctions.map(a => `
+            const grid = document.getElementById('auctions-grid');
+            if (auctions.length === 0) {
+                grid.innerHTML = '<div class="empty-state"><div class="empty-icon">🎯</div><p>No live auctions</p><span>Check back soon</span></div>';
+                return;
+            }
+            grid.innerHTML = auctions.map(a => `
                 <div class="auction-card">
                     <div class="auction-image">
                         <img src="${a.image}" alt="${a.name}">
@@ -7511,7 +7634,12 @@
         }
 
         function renderCollections() {
-            document.getElementById('collections-scroll').innerHTML = collections.map(c => `
+            const scroll = document.getElementById('collections-scroll');
+            if (collections.length === 0) {
+                scroll.innerHTML = '<div class="empty-state"><div class="empty-icon">🐸</div><p>Collections coming soon</p><span>3D Toadz launching on Flare</span></div>';
+                return;
+            }
+            scroll.innerHTML = collections.map(c => `
                 <div class="collection-card" onclick="showPage('collection-detail')">
                     <div class="collection-image">
                         <img src="${c.image}" alt="${c.name}">
@@ -7529,7 +7657,13 @@
         }
 
         function renderNFTs(containerId, data = nfts) {
-            document.getElementById(containerId).innerHTML = data.map(n => `
+            const container = document.getElementById(containerId);
+            if (!container) return;
+            if (data.length === 0) {
+                container.innerHTML = '<div class="empty-state"><div class="empty-icon">🎨</div><p>No NFTs listed yet</p><span>Be the first to list!</span></div>';
+                return;
+            }
+            container.innerHTML = data.map(n => `
                 <div class="nft-card" onclick="openNftModal()">
                     <div class="nft-image">
                         <img src="${n.image}" alt="${n.name}">
@@ -7551,7 +7685,13 @@
         }
 
         function renderStakingPools() {
-            document.getElementById('staking-pools').innerHTML = stakingPools.map(p => `
+            const container = document.getElementById('staking-pools');
+            if (!container) return;
+            if (stakingPools.length === 0) {
+                container.innerHTML = '<div class="empty-state"><div class="empty-icon">🔒</div><p>NFT staking coming soon</p><span>Stake your NFTs for LP boosts</span></div>';
+                return;
+            }
+            container.innerHTML = stakingPools.map(p => `
                 <div class="pool-card">
                     <div class="pool-header">
                         <div class="pool-icon"><img src="${p.image}" alt="${p.name}"></div>
@@ -7583,29 +7723,152 @@
             `).join('');
         }
 
-        function renderArtists() {
-            document.getElementById('artists-grid').innerHTML = artists.map(a => `
-                <div class="artist-card" onclick="showPage('artist-storefront')">
-                    <div class="artist-banner">
-                        <img src="${a.banner}" alt="${a.name}">
-                        ${a.badge ? `<span class="artist-banner-badge ${a.badge}">${a.badge === 'featured' ? '⭐ Featured' : a.badge === 'hot' ? '🔥 Hot' : '📢 Promo'}</span>` : ''}
-                        <div class="artist-avatar"><img src="${a.image}" alt="${a.name}"></div>
-                    </div>
-                    <div class="artist-content">
-                        <h3 class="artist-name">${a.name} <span class="verified-badge">✓</span></h3>
-                        <div class="artist-style">${a.style}</div>
-                        <p class="artist-bio">${a.bio}</p>
-                        <div class="artist-stats">
-                            <div><strong>${a.items}</strong> <span>items</span></div>
-                            <div><strong>${a.volume}</strong> <span>volume</span></div>
+        // Storefront functions
+        const ADMIN_WALLET = '0xcEA86bBdb5cd33ddbA8dC0ed3c838605EeF7c715'.toLowerCase();
+        const FEE_WALLET = '0xcEA86bBdb5cd33ddbA8dC0ed3c838605EeF7c715';
+        const STOREFRONT_FEE = '10'; // 10 FLR
+
+        async function loadStorefronts() {
+            const container = document.getElementById('storefronts-grid');
+            if (!container) return;
+            
+            try {
+                const res = await fetch(`${INDEXER_URL}/api/storefronts`);
+                const storefronts = await res.json();
+                
+                if (!storefronts || storefronts.length === 0) {
+                    container.innerHTML = `
+                        <div class="empty-state" style="grid-column: 1/-1;">
+                            <div class="empty-icon">🎨</div>
+                            <p>No storefronts yet</p>
+                            <span>Be the first creator on TOADZ</span>
+                        </div>`;
+                    return;
+                }
+                
+                container.innerHTML = storefronts.map(s => `
+                    <div class="featured-artist-card" onclick="viewStorefront('${s.wallet}')">
+                        <div class="fa-banner" style="background-image: url('${s.banner || 'https://via.placeholder.com/400x150/1a1a2e/00ff88?text='}')"></div>
+                        <div class="fa-content">
+                            <div class="fa-avatar">
+                                <img src="${s.avatar || 'https://via.placeholder.com/80/1a1a2e/00ff88?text=' + s.name.charAt(0)}" alt="" onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2260%22>${s.name.charAt(0)}</text></svg>'">
+                            </div>
+                            <h3 class="fa-name">${s.name}</h3>
+                            <p class="fa-style">${s.bio || ''}</p>
+                            <div class="fa-stats">
+                                <div class="fa-stat"><span class="fa-stat-value">--</span><span class="fa-stat-label">Items</span></div>
+                                <div class="fa-stat"><span class="fa-stat-value">--</span><span class="fa-stat-label">Volume</span></div>
+                            </div>
                         </div>
                     </div>
-                </div>
-            `).join('');
+                `).join('');
+            } catch (err) {
+                console.error('Failed to load storefronts:', err);
+                container.innerHTML = '<div class="empty-state"><p>Failed to load storefronts</p></div>';
+            }
+        }
+
+        function viewStorefront(wallet) {
+            // TODO: Load specific storefront page
+            showPage('artist-storefront');
+        }
+
+        function openCreateStorefront() {
+            if (!window.toadz || !window.toadz.isConnected) {
+                showToast('Connect Wallet', 'Please connect your wallet first', 'error');
+                openConnectModal();
+                return;
+            }
+            
+            // Check if admin
+            const isAdmin = window.toadz.userAddress?.toLowerCase() === ADMIN_WALLET;
+            const feeNote = document.getElementById('sf-fee-note');
+            if (feeNote) {
+                feeNote.innerHTML = isAdmin ? '<span style="color: var(--accent);">✓ Admin - Free</span>' : '<span>⚡ Cost: 10 FLR</span>';
+            }
+            
+            document.getElementById('storefront-modal').classList.add('open');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeStorefrontModal(e) {
+            if (!e || e.target === e.currentTarget) {
+                document.getElementById('storefront-modal').classList.remove('open');
+                document.body.style.overflow = '';
+            }
+        }
+
+        document.getElementById('storefront-form')?.addEventListener('submit', async function(e) {
+            e.preventDefault();
+            
+            const wallet = window.toadz.userAddress;
+            const isAdmin = wallet?.toLowerCase() === ADMIN_WALLET;
+            
+            const submitBtn = document.getElementById('sf-submit-btn');
+            submitBtn.textContent = 'Creating...';
+            submitBtn.disabled = true;
+            
+            const data = {
+                wallet: wallet,
+                name: document.getElementById('sf-name').value,
+                bio: document.getElementById('sf-bio').value,
+                avatar: document.getElementById('sf-avatar').value,
+                banner: document.getElementById('sf-banner').value,
+                twitter: document.getElementById('sf-twitter').value,
+                website: document.getElementById('sf-website').value
+            };
+            
+            try {
+                // If not admin, send payment first
+                if (!isAdmin) {
+                    const tx = await window.toadz.signer.sendTransaction({
+                        to: FEE_WALLET,
+                        value: ethers.parseEther(STOREFRONT_FEE)
+                    });
+                    await tx.wait();
+                    data.txHash = tx.hash;
+                    showToast('Payment Sent', 'Creating storefront...', 'success');
+                }
+                
+                // Create storefront
+                const res = await fetch(`${INDEXER_URL}/api/storefront`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(data)
+                });
+                
+                const result = await res.json();
+                
+                if (result.success) {
+                    showToast('Storefront Created!', data.name, 'success');
+                    closeStorefrontModal();
+                    this.reset();
+                    loadStorefronts();
+                } else {
+                    throw new Error(result.error || 'Failed to create');
+                }
+            } catch (err) {
+                console.error('Storefront error:', err);
+                showToast('Error', err.message || 'Failed to create storefront', 'error');
+            }
+            
+            submitBtn.textContent = 'Create Storefront →';
+            submitBtn.disabled = false;
+        });
+
+        // Legacy - keep for compatibility
+        function renderArtists() {
+            loadStorefronts();
         }
 
         function renderAllCollections() {
-            document.getElementById('all-collections-grid').innerHTML = collections.map(c => `
+            const container = document.getElementById('all-collections-grid');
+            if (!container) return;
+            if (collections.length === 0) {
+                container.innerHTML = '<div class="empty-state full-width"><div class="empty-icon">🐸</div><p>Collections coming soon</p><span>3D Toadz launching on Flare</span></div>';
+                return;
+            }
+            container.innerHTML = collections.map(c => `
                 <div class="collection-card-full" onclick="showPage('collection-detail')">
                     <div class="collection-card-image">
                         <img src="${c.image}" alt="${c.name}">
@@ -7633,100 +7896,6 @@
         }
 
         // Navigation
-        // Storefront functions
-        const ADMIN_WALLET = '0xcEA86bBdb5cd33ddbA8dC0ed3c838605EeF7c715'.toLowerCase();
-        const FEE_WALLET = '0xcEA86bBdb5cd33ddbA8dC0ed3c838605EeF7c715';
-        const STOREFRONT_FEE = '10';
-
-        function openCreateStorefront() {
-            if (!window.toadz || !window.toadz.isConnected) {
-                showToast('Connect Wallet', 'Please connect your wallet first', 'error');
-                openConnectModal();
-                return;
-            }
-            const isAdmin = window.toadz.userAddress?.toLowerCase() === ADMIN_WALLET;
-            const feeNote = document.getElementById('sf-fee-note');
-            if (feeNote) {
-                feeNote.innerHTML = isAdmin ? '<span style="color: var(--accent);">✓ Admin - Free</span>' : '<span>⚡ Cost: 10 FLR</span>';
-            }
-            document.getElementById('storefront-modal').classList.add('open');
-            document.body.style.overflow = 'hidden';
-        }
-
-        function closeStorefrontModal(e) {
-            if (!e || e.target === e.currentTarget) {
-                document.getElementById('storefront-modal').classList.remove('open');
-                document.body.style.overflow = '';
-            }
-        }
-
-        function viewStorefront(wallet) {
-            showPage('artist-storefront');
-        }
-
-        // Storefront form handler
-        document.addEventListener('DOMContentLoaded', function() {
-            const form = document.getElementById('storefront-form');
-            if (form) {
-                form.addEventListener('submit', async function(e) {
-                    e.preventDefault();
-                    const wallet = window.toadz?.userAddress;
-                    if (!wallet) {
-                        showToast('Error', 'Wallet not connected', 'error');
-                        return;
-                    }
-                    const isAdmin = wallet.toLowerCase() === ADMIN_WALLET;
-                    const submitBtn = document.getElementById('sf-submit-btn');
-                    submitBtn.textContent = 'Creating...';
-                    submitBtn.disabled = true;
-                    
-                    const data = {
-                        wallet: wallet,
-                        name: document.getElementById('sf-name').value,
-                        bio: document.getElementById('sf-bio').value,
-                        avatar: document.getElementById('sf-avatar').value,
-                        banner: document.getElementById('sf-banner').value,
-                        twitter: document.getElementById('sf-twitter').value,
-                        website: document.getElementById('sf-website').value
-                    };
-                    
-                    try {
-                        if (!isAdmin) {
-                            const tx = await window.toadz.signer.sendTransaction({
-                                to: FEE_WALLET,
-                                value: ethers.parseEther(STOREFRONT_FEE)
-                            });
-                            await tx.wait();
-                            data.txHash = tx.hash;
-                            showToast('Payment Sent', 'Creating storefront...', 'success');
-                        }
-                        
-                        const res = await fetch(`${INDEXER_URL}/api/storefront`, {
-                            method: 'POST',
-                            headers: { 'Content-Type': 'application/json' },
-                            body: JSON.stringify(data)
-                        });
-                        const result = await res.json();
-                        
-                        if (result.success) {
-                            showToast('Storefront Created!', data.name, 'success');
-                            closeStorefrontModal();
-                            form.reset();
-                        } else {
-                            throw new Error(result.error || 'Failed to create');
-                        }
-                    } catch (err) {
-                        console.error('Storefront error:', err);
-                        showToast('Error', err.message || 'Failed to create storefront', 'error');
-                    }
-                    
-                    submitBtn.textContent = 'Create Storefront →';
-                    submitBtn.disabled = false;
-                });
-            }
-        });
-
-        // Navigation
         function showPage(page) {
             document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
             document.getElementById('page-' + page).classList.add('active');
@@ -7734,7 +7903,36 @@
             document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
             document.querySelectorAll('.mobile-nav-item').forEach(n => n.classList.remove('active'));
             
+            // Update my-nfts page state based on wallet connection
+            if (page === 'my-nfts') {
+                updateMyNftsPageState();
+            }
+            
             window.scrollTo(0, 0);
+        }
+
+        function updateMyNftsPageState() {
+            const notConnected = document.getElementById('my-nfts-not-connected');
+            const connected = document.getElementById('my-nfts-connected');
+            
+            if (window.toadz && window.toadz.isConnected) {
+                notConnected.style.display = 'none';
+                connected.style.display = 'block';
+                // Update wallet address display
+                const addr = window.toadz.userAddress;
+                document.getElementById('my-wallet-address').textContent = addr ? addr.slice(0,6) + '...' + addr.slice(-4) : '';
+            } else {
+                notConnected.style.display = 'flex';
+                connected.style.display = 'none';
+            }
+        }
+
+        function handleUserMenuClick() {
+            if (window.toadz && window.toadz.isConnected) {
+                showPage('my-nfts');
+            } else {
+                openConnectModal();
+            }
         }
 
         function setChain(chain) {
@@ -7756,19 +7954,20 @@
             if (chain === 'songbird') {
                 loadSongbirdData();
             } else {
-                // Reset to Flare empty state
+                // Reset to Flare (empty for now)
                 renderCollections();
                 renderAllCollections();
+                renderActivityTicker();
             }
             
             showToast('Network', `Switched to ${chain === 'flare' ? 'Flare' : 'Songbird'}`, 'info');
         }
 
-        // Load Songbird data
+        // Load Songbird data from indexer
         async function loadSongbirdData() {
             const container = document.getElementById('all-collections-grid');
             
-            // Hardcoded Songbird collections
+            // Hardcoded Songbird collections for now
             const songbirdCollections = [
                 { name: 'sToadz', image: 'https://ipfs.io/ipfs/QmP45Rfhy75RybFuLcwd1CR9vF6qznw95qQPxcA5TeBNYk/1.png', supply: 10000, floor: '50K SGB' },
                 { name: 'Luxury Lofts', image: 'https://nftstorage.link/ipfs/bafybeiet5uqcxxkpdwyvnufsglah6arxlukxhciz3jy2h2m24scmjyjciq/1.gif', supply: 10000, floor: '25K SGB' },
@@ -7799,7 +7998,7 @@
                 `).join('');
             }
             
-            // Try to load live data from indexer
+            // Try to load live data from indexer (will work after CORS fix deployed)
             try {
                 const floorsRes = await fetch(`${INDEXER_URL}/floors`);
                 if (floorsRes.ok) {
@@ -7809,7 +8008,7 @@
                     }
                 }
             } catch (err) {
-                console.log('Using hardcoded Songbird data');
+                console.log('Using hardcoded Songbird data (indexer not available)');
             }
         }
 
@@ -7823,13 +8022,18 @@
                 '0x360f8b7d9530f55ab8e52394e6527935635f51e7': { name: 'Songbird City', image: 'https://nftstorage.link/ipfs/bafybeibi35a2w5ue6s7s7ka42xhkbbtpplgyvovefetxqwr6fzmvn6umpi/1.png', supply: 10000 }
             };
             
+            if (!floors || floors.length === 0) {
+                container.innerHTML = '<div class="empty-state full-width"><div class="empty-icon">🐸</div><p>Loading collections...</p></div>';
+                return;
+            }
+            
             container.innerHTML = floors.map(f => {
                 const info = collectionInfo[f.collection?.toLowerCase()] || { name: 'Unknown', image: '', supply: '?' };
                 const floorSgb = f.floor_sgb ? parseFloat(f.floor_sgb).toLocaleString() : '--';
                 return `
                     <div class="collection-card-full" onclick="showPage('collection-detail')">
                         <div class="collection-card-image">
-                            <img src="${info.image}" alt="${info.name}">
+                            <img src="${info.image}" alt="${info.name}" onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2280%22>🐸</text></svg>'">
                             <span class="collection-boost-badge">🔥 LP Boost</span>
                         </div>
                         <div class="collection-card-info">
@@ -7841,12 +8045,35 @@
                                 </div>
                                 <div class="collection-card-stat">
                                     <span class="stat-label">Items</span>
-                                    <span class="stat-value">${info.supply.toLocaleString()}</span>
+                                    <span class="stat-value">${info.supply}</span>
                                 </div>
                             </div>
                         </div>
                     </div>
                 `;
+            }).join('');
+        }
+
+        function renderSongbirdActivity(events) {
+            const ticker = document.getElementById('activity-ticker');
+            if (!ticker) return;
+            
+            if (!events || events.length === 0) {
+                ticker.innerHTML = '<div class="ticker-item">No recent activity</div>';
+                return;
+            }
+            
+            const collectionNames = {
+                '0x35afb6ba51839dedd33140a3b704b39933d1e642': 'sToadz',
+                '0x91aa85a172dd3e7eea4ad1a4b33e90cbf3b99ed8': 'Lofts',
+                '0x360f8b7d9530f55ab8e52394e6527935635f51e7': 'SB City'
+            };
+            
+            ticker.innerHTML = events.slice(0, 10).map(e => {
+                const name = collectionNames[e.collection?.toLowerCase()] || 'NFT';
+                const icon = e.event_type === 'sold' ? '💰' : e.event_type === 'listed' ? '📋' : e.event_type === 'staked' ? '🔒' : '🔔';
+                const price = e.price_sgb ? parseFloat(e.price_sgb).toLocaleString() + ' SGB' : '';
+                return `<div class="ticker-item">${icon} ${name} #${e.token_id || '?'} ${e.event_type} ${price}</div>`;
             }).join('');
         }
 
@@ -7863,6 +8090,12 @@
         renderActivityTicker();
 
         function renderActivityTicker() {
+            const ticker = document.getElementById('activity-ticker');
+            if (!ticker) return;
+            if (activity.length === 0) {
+                ticker.innerHTML = '<div class="ticker-empty">No activity yet</div>';
+                return;
+            }
             const items = activity.map(a => `
                 <div class="ticker-item">
                     <img src="${a.image}" alt="${a.name}">
@@ -7874,7 +8107,7 @@
                 </div>
             `).join('');
             // Duplicate for seamless loop
-            document.getElementById('activity-ticker').innerHTML = items + items;
+            ticker.innerHTML = items + items;
         }
 
         // Spotlight Carousel
@@ -7936,8 +8169,12 @@
                 const addr = window.toadz.userAddress;
                 document.querySelector('.connect-btn').innerHTML = addr ? addr.slice(0,6) + '...' + addr.slice(-4) : 'Connected';
                 document.querySelector('.connect-btn').onclick = null; // Disable click after connected
+                // Show toast
+                showToast('Wallet Connected', addr ? addr.slice(0,6) + '...' + addr.slice(-4) : '', 'success');
                 // Load pool data
                 loadPoolData();
+                // Update my-nfts page if we're on it
+                updateMyNftsPageState();
             }
         }
 
@@ -8333,39 +8570,57 @@
             }
         }, 1000);
 
+        // FLR price - fetch from coingecko or hardcode for now
+        const FLR_PRICE_USD = 0.01499;
+        const POND_SUPPLY = 11900000000; // 11.9 billion
+
+        // Artist Application Form Handler
+        document.getElementById('artist-apply-form')?.addEventListener('submit', async function(e) {
+            e.preventDefault();
+            
+            const submitBtn = this.querySelector('button[type="submit"]');
+            const originalText = submitBtn.textContent;
+            submitBtn.textContent = 'Submitting...';
+            submitBtn.disabled = true;
+            
+            const formData = {
+                name: document.getElementById('artist-name').value,
+                email: document.getElementById('artist-email').value,
+                portfolio: document.getElementById('artist-portfolio').value,
+                twitter: document.getElementById('artist-twitter').value,
+                style: document.getElementById('artist-style').value,
+                size: document.getElementById('artist-size').value,
+                bio: document.getElementById('artist-bio').value,
+                wallet: document.getElementById('artist-wallet').value
+            };
+            
+            try {
+                const response = await fetch('https://toadz-indexer-production.up.railway.app/api/artist-apply', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(formData)
+                });
+                
+                const result = await response.json();
+                
+                if (result.success) {
+                    alert('Application submitted! We\'ll review it within 48 hours.');
+                    this.reset();
+                } else {
+                    alert('Error: ' + (result.error || 'Failed to submit'));
+                }
+            } catch (err) {
+                console.error('Submit error:', err);
+                alert('Failed to submit. Please try again or email contact@artdept.fun');
+            }
+            
+            submitBtn.textContent = originalText;
+            submitBtn.disabled = false;
+        });
+
         // Load public pool stats immediately (no wallet needed)
         async function loadPublicPoolStats() {
             try {
-                const provider = new ethers.JsonRpcProvider('https://flare-api.flare.network/ext/C/rpc');
-                const poolAddress = '0x42598464cc7fE6507C4ebf9009fe1adccE44b0BC';
-                const poolABI = [
-                    'function getPoolStats() view returns (uint256 reserveFLR, uint256 reservePOND, uint256 totalShares, uint256 tvl, uint256 pondPrice)'
-                ];
-                const pool = new ethers.Contract(poolAddress, poolABI, provider);
-                const stats = await pool.getPoolStats();
-                
-                poolStats = {
-                    reserveFLR: ethers.formatEther(stats[0]),
-                    reservePOND: ethers.formatEther(stats[1]),
-                    totalShares: ethers.formatEther(stats[2]),
-                    tvl: ethers.formatEther(stats[3]),
-                    pondPrice: ethers.formatEther(stats[4])
-                };
-                
-                document.getElementById('pool-tvl').textContent = parseFloat(poolStats.tvl).toFixed(0);
-                document.getElementById('pool-apy').textContent = '--';
-                document.getElementById('pool-nfts-staked').textContent = '--';
-            } catch (e) {
-                console.error('Error loading public pool stats:', e);
-            }
-        }
-        
-        loadPublicPoolStats();
-
-        // Load public pool stats on page load (no wallet needed)
-        async function loadPublicPoolStats() {
-            try {
-                // Use read-only provider
                 const provider = new ethers.JsonRpcProvider('https://flare-api.flare.network/ext/C/rpc');
                 const poolAddress = '0x42598464cc7fE6507C4ebf9009fe1adccE44b0BC';
                 const poolABI = [
@@ -8375,19 +8630,70 @@
                 const pool = new ethers.Contract(poolAddress, poolABI, provider);
                 
                 const stats = await pool.getPoolStats();
+                const reserveFLR = parseFloat(ethers.formatEther(stats[0]));
+                const reservePOND = parseFloat(ethers.formatEther(stats[1]));
+                const tvl = parseFloat(ethers.formatEther(stats[3]));
+                
                 poolStats = {
-                    reserveFLR: ethers.formatEther(stats[0]),
-                    reservePOND: ethers.formatEther(stats[1]),
+                    reserveFLR: reserveFLR,
+                    reservePOND: reservePOND,
                     totalShares: ethers.formatEther(stats[2]),
-                    tvl: ethers.formatEther(stats[3]),
+                    tvl: tvl,
                     pondPrice: ethers.formatEther(stats[4])
                 };
                 
-                document.getElementById('pool-tvl').textContent = parseFloat(poolStats.tvl).toLocaleString();
-                document.getElementById('pool-apy').textContent = '--';
-                document.getElementById('pool-nfts-staked').textContent = '--';
+                // Calculate POND price: reserveFLR / reservePOND * FLR_PRICE
+                const pondPriceInFLR = reservePOND > 0 ? reserveFLR / reservePOND : 0;
+                const pondPriceUSD = pondPriceInFLR * FLR_PRICE_USD;
+                const marketCap = pondPriceUSD * POND_SUPPLY;
+                const tvlUSD = tvl * FLR_PRICE_USD;
+                
+                // Format market cap
+                function formatUSD(num) {
+                    if (num >= 1000000) return '$' + (num / 1000000).toFixed(2) + 'M';
+                    if (num >= 1000) return '$' + (num / 1000).toFixed(1) + 'K';
+                    return '$' + num.toFixed(0);
+                }
+                
+                // Update all displays
+                const mcapFormatted = formatUSD(marketCap);
+                const tvlFormatted = formatUSD(tvlUSD);
+                
+                // Staking page
+                const poolTvlEl = document.getElementById('pool-tvl');
+                if (poolTvlEl) poolTvlEl.textContent = tvl.toLocaleString(undefined, {maximumFractionDigits: 0});
+                
+                const poolApyEl = document.getElementById('pool-apy');
+                if (poolApyEl) poolApyEl.textContent = '--';
+                
+                const poolNftsEl = document.getElementById('pool-nfts-staked');
+                if (poolNftsEl) poolNftsEl.textContent = '--';
+                
+                const stakingMcapEl = document.getElementById('staking-mcap');
+                if (stakingMcapEl) stakingMcapEl.textContent = mcapFormatted;
+                
+                // Hero stats
+                const heroMcapEl = document.getElementById('hero-mcap');
+                if (heroMcapEl) heroMcapEl.textContent = mcapFormatted;
+                
+                const heroNftsEl = document.getElementById('hero-nfts');
+                if (heroNftsEl) heroNftsEl.textContent = '--';
+                
+                const heroApyEl = document.getElementById('hero-apy');
+                if (heroApyEl) heroApyEl.textContent = '--';
+                
+                // Spotlight
+                const spotlightTvlEl = document.getElementById('spotlight-tvl');
+                if (spotlightTvlEl) spotlightTvlEl.textContent = tvlFormatted;
+                
+                const spotlightStakersEl = document.getElementById('spotlight-stakers');
+                if (spotlightStakersEl) spotlightStakersEl.textContent = '--';
+                
+                const spotlightDistEl = document.getElementById('spotlight-distributed');
+                if (spotlightDistEl) spotlightDistEl.textContent = '--';
                 
                 console.log('Pool stats loaded:', poolStats);
+                console.log('POND price:', pondPriceUSD, 'Market cap:', marketCap);
             } catch (e) {
                 console.error('Error loading public pool stats:', e);
             }
@@ -8396,6 +8702,5 @@
         // Load immediately
         loadPublicPoolStats();
     </script>
-    <script src="toadz-web3.js"></script>
 </body>
 </html>
