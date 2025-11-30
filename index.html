@@ -7356,7 +7356,7 @@
     </main>
 
     <!-- CREATE STOREFRONT MODAL -->
-    <div id="storefront-modal" onclick="closeStorefrontModal(event)">
+    <div id="storefront-modal">
         <div style="background: var(--bg-card); border: 1px solid var(--border); border-radius: 24px; width: 100%; max-width: 500px; position: relative; max-height: 90vh; overflow-y: auto;" onclick="event.stopPropagation()">
             <div style="display: flex; justify-content: space-between; align-items: center; padding: 20px 24px; border-bottom: 1px solid var(--border);">
                 <h3 style="font-size: 18px; font-weight: 700; margin: 0;">Create Your Storefront</h3>
@@ -7910,9 +7910,18 @@
 
         document.getElementById('storefront-form')?.addEventListener('submit', async function(e) {
             e.preventDefault();
+            console.log('Storefront form submitted');
             
-            const wallet = window.toadz.userAddress;
+            const wallet = window.toadz?.userAddress;
+            console.log('Wallet:', wallet);
+            
+            if (!wallet) {
+                showToast('Error', 'Please connect your wallet first', 'error');
+                return;
+            }
+            
             const isAdmin = wallet?.toLowerCase() === ADMIN_WALLET;
+            console.log('Is admin:', isAdmin);
             
             const submitBtn = document.getElementById('sf-submit-btn');
             submitBtn.textContent = 'Creating...';
@@ -7930,10 +7939,15 @@
                 website: document.getElementById('sf-website').value
             };
             
+            console.log('Storefront data:', data);
+            
             try {
                 // If not admin, send payment first
                 if (!isAdmin) {
-                    const tx = await window.toadz.signer.sendTransaction({
+                    console.log('Sending payment...');
+                    const provider = new ethers.BrowserProvider(window.ethereum);
+                    const signer = await provider.getSigner();
+                    const tx = await signer.sendTransaction({
                         to: FEE_WALLET,
                         value: ethers.parseEther(STOREFRONT_FEE)
                     });
@@ -7943,13 +7957,16 @@
                 }
                 
                 // Create storefront
+                console.log('Posting to indexer:', `${INDEXER_URL}/api/storefront`);
                 const res = await fetch(`${INDEXER_URL}/api/storefront`, {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify(data)
                 });
                 
+                console.log('Response status:', res.status);
                 const result = await res.json();
+                console.log('Response:', result);
                 
                 if (result.success) {
                     showToast('Storefront Created!', data.name, 'success');
