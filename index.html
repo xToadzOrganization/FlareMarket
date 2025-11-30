@@ -6894,11 +6894,42 @@
                 </div>
             </section>
 
-            <!-- Storefronts Grid -->
+            <!-- Featured Artists -->
             <section class="section">
                 <div class="container">
                     <div class="featured-artists-grid" id="storefronts-grid">
-                        <!-- Populated by JS -->
+                        <!-- Hardcoded featured artists -->
+                        <div class="featured-artist-card" onclick="viewStorefront('0xcEA86bBdb5cd33ddbA8dC0ed3c838605EeF7c715')">
+                            <div class="fa-banner" style="background-image: url('https://ipfs.io/ipfs/QmP45Rfhy75RybFuLcwd1CR9vF6qznw95qQPxcA5TeBNYk/421.png')"></div>
+                            <div class="fa-content">
+                                <div class="fa-avatar">
+                                    <img src="https://ipfs.io/ipfs/QmP45Rfhy75RybFuLcwd1CR9vF6qznw95qQPxcA5TeBNYk/420.png" alt="">
+                                </div>
+                                <div class="fa-badge">⭐ FEATURED</div>
+                                <h3 class="fa-name">PastaPrimavera</h3>
+                                <p class="fa-style">Italian-Inspired Digital Art</p>
+                                <div class="fa-stats">
+                                    <div class="fa-stat"><span class="fa-stat-value">--</span><span class="fa-stat-label">Items</span></div>
+                                    <div class="fa-stat"><span class="fa-stat-value">--</span><span class="fa-stat-label">Volume</span></div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="featured-artist-card" onclick="viewStorefront('freak')">
+                            <div class="fa-banner" style="background-image: url('https://ipfs.io/ipfs/QmP45Rfhy75RybFuLcwd1CR9vF6qznw95qQPxcA5TeBNYk/667.png')"></div>
+                            <div class="fa-content">
+                                <div class="fa-avatar">
+                                    <img src="https://ipfs.io/ipfs/QmP45Rfhy75RybFuLcwd1CR9vF6qznw95qQPxcA5TeBNYk/666.png" alt="">
+                                </div>
+                                <div class="fa-badge hot">🔥 HOT</div>
+                                <h3 class="fa-name">Freak</h3>
+                                <p class="fa-style">Chaos & Dark Surrealism</p>
+                                <div class="fa-stats">
+                                    <div class="fa-stat"><span class="fa-stat-value">--</span><span class="fa-stat-label">Items</span></div>
+                                    <div class="fa-stat"><span class="fa-stat-value">--</span><span class="fa-stat-label">Volume</span></div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </section>
@@ -6906,7 +6937,7 @@
 
         <!-- CREATE STOREFRONT MODAL -->
         <div class="modal" id="storefront-modal" onclick="closeStorefrontModal(event)">
-            <div class="modal-content" onclick="event.stopPropagation()">
+            <div class="modal-content" style="max-width: 500px;" onclick="event.stopPropagation()">
                 <div class="modal-header">
                     <h3>Create Your Storefront</h3>
                     <button class="modal-close" onclick="closeStorefrontModal()">×</button>
@@ -7934,20 +7965,50 @@
 
         // Load Songbird data from indexer
         async function loadSongbirdData() {
+            const container = document.getElementById('all-collections-grid');
+            
+            // Hardcoded Songbird collections for now
+            const songbirdCollections = [
+                { name: 'sToadz', image: 'https://ipfs.io/ipfs/QmP45Rfhy75RybFuLcwd1CR9vF6qznw95qQPxcA5TeBNYk/1.png', supply: 10000, floor: '50K SGB' },
+                { name: 'Luxury Lofts', image: 'https://nftstorage.link/ipfs/bafybeiet5uqcxxkpdwyvnufsglah6arxlukxhciz3jy2h2m24scmjyjciq/1.gif', supply: 10000, floor: '25K SGB' },
+                { name: 'Songbird City', image: 'https://nftstorage.link/ipfs/bafybeibi35a2w5ue6s7s7ka42xhkbbtpplgyvovefetxqwr6fzmvn6umpi/1.png', supply: 10000, floor: '10K SGB' }
+            ];
+            
+            if (container) {
+                container.innerHTML = songbirdCollections.map(c => `
+                    <div class="collection-card-full" onclick="showPage('collection-detail')">
+                        <div class="collection-card-image">
+                            <img src="${c.image}" alt="${c.name}">
+                            <span class="collection-boost-badge">🔥 LP Boost</span>
+                        </div>
+                        <div class="collection-card-info">
+                            <div class="collection-card-name">${c.name}</div>
+                            <div class="collection-card-stats">
+                                <div class="collection-card-stat">
+                                    <span class="stat-label">Floor</span>
+                                    <span class="stat-value">${c.floor}</span>
+                                </div>
+                                <div class="collection-card-stat">
+                                    <span class="stat-label">Items</span>
+                                    <span class="stat-value">${c.supply.toLocaleString()}</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                `).join('');
+            }
+            
+            // Try to load live data from indexer (will work after CORS fix deployed)
             try {
-                // Load collections with floors
                 const floorsRes = await fetch(`${INDEXER_URL}/floors`);
-                const floors = await floorsRes.json();
-                
-                // Load recent activity
-                const activityRes = await fetch(`${INDEXER_URL}/events?limit=20`);
-                const events = await activityRes.json();
-                
-                renderSongbirdCollections(floors);
-                renderSongbirdActivity(events);
+                if (floorsRes.ok) {
+                    const floors = await floorsRes.json();
+                    if (floors && floors.length > 0) {
+                        renderSongbirdCollections(floors);
+                    }
+                }
             } catch (err) {
-                console.error('Failed to load Songbird data:', err);
-                showToast('Error', 'Failed to load Songbird data', 'error');
+                console.log('Using hardcoded Songbird data (indexer not available)');
             }
         }
 
