@@ -6953,48 +6953,6 @@
             </section>
         </div>
 
-        <!-- CREATE STOREFRONT MODAL -->
-        <div id="storefront-modal" onclick="closeStorefrontModal(event)">
-            <div style="background: var(--bg-card); border: 1px solid var(--border); border-radius: 24px; width: 100%; max-width: 500px; position: relative; max-height: 90vh; overflow-y: auto;" onclick="event.stopPropagation()">
-                <div style="display: flex; justify-content: space-between; align-items: center; padding: 20px 24px; border-bottom: 1px solid var(--border);">
-                    <h3 style="font-size: 18px; font-weight: 700; margin: 0;">Create Your Storefront</h3>
-                    <button onclick="closeStorefrontModal()" style="background: none; border: none; color: var(--text-muted); font-size: 24px; cursor: pointer; padding: 0;">×</button>
-                </div>
-                <form id="storefront-form" class="apply-form">
-                    <div class="form-group">
-                        <label>Artist / Studio Name *</label>
-                        <input type="text" id="sf-name" placeholder="Your artist name" required>
-                    </div>
-                    <div class="form-group">
-                        <label>Bio</label>
-                        <textarea id="sf-bio" placeholder="Tell people about your art..." rows="3"></textarea>
-                    </div>
-                    <div class="form-group">
-                        <label>Avatar URL</label>
-                        <input type="url" id="sf-avatar" placeholder="https://... or IPFS link">
-                    </div>
-                    <div class="form-group">
-                        <label>Banner URL</label>
-                        <input type="url" id="sf-banner" placeholder="https://... or IPFS link">
-                    </div>
-                    <div class="form-group">
-                        <label>Twitter / X</label>
-                        <input type="text" id="sf-twitter" placeholder="@handle">
-                    </div>
-                    <div class="form-group">
-                        <label>Website</label>
-                        <input type="url" id="sf-website" placeholder="https://yoursite.com">
-                    </div>
-                    <div class="storefront-fee-note" id="sf-fee-note">
-                        <span>⚡ Cost: 10 FLR</span>
-                    </div>
-                    <button type="submit" class="apply-submit-btn" id="sf-submit-btn">
-                        Create Storefront →
-                    </button>
-                </form>
-            </div>
-        </div>
-
         <!-- ARTIST STOREFRONT -->
         <div id="page-artist-storefront" class="page">
             <!-- Premium Banner -->
@@ -7378,6 +7336,48 @@
             </div>
         </div>
     </main>
+
+    <!-- CREATE STOREFRONT MODAL -->
+    <div id="storefront-modal" onclick="closeStorefrontModal(event)">
+        <div style="background: var(--bg-card); border: 1px solid var(--border); border-radius: 24px; width: 100%; max-width: 500px; position: relative; max-height: 90vh; overflow-y: auto;" onclick="event.stopPropagation()">
+            <div style="display: flex; justify-content: space-between; align-items: center; padding: 20px 24px; border-bottom: 1px solid var(--border);">
+                <h3 style="font-size: 18px; font-weight: 700; margin: 0;">Create Your Storefront</h3>
+                <button onclick="closeStorefrontModal()" style="background: none; border: none; color: var(--text-muted); font-size: 24px; cursor: pointer; padding: 0;">×</button>
+            </div>
+            <form id="storefront-form" class="apply-form">
+                <div class="form-group">
+                    <label>Artist / Studio Name *</label>
+                    <input type="text" id="sf-name" placeholder="Your artist name" required>
+                </div>
+                <div class="form-group">
+                    <label>Bio</label>
+                    <textarea id="sf-bio" placeholder="Tell people about your art..." rows="3"></textarea>
+                </div>
+                <div class="form-group">
+                    <label>Avatar URL</label>
+                    <input type="url" id="sf-avatar" placeholder="https://... or IPFS link">
+                </div>
+                <div class="form-group">
+                    <label>Banner URL</label>
+                    <input type="url" id="sf-banner" placeholder="https://... or IPFS link">
+                </div>
+                <div class="form-group">
+                    <label>Twitter / X</label>
+                    <input type="text" id="sf-twitter" placeholder="@handle">
+                </div>
+                <div class="form-group">
+                    <label>Website</label>
+                    <input type="url" id="sf-website" placeholder="https://yoursite.com">
+                </div>
+                <div class="storefront-fee-note" id="sf-fee-note">
+                    <span>⚡ Cost: 10 FLR</span>
+                </div>
+                <button type="submit" class="apply-submit-btn" id="sf-submit-btn">
+                    Create Storefront →
+                </button>
+            </form>
+        </div>
+    </div>
 
     <!-- Connect Modal -->
     <div class="modal-overlay" id="connect-modal" onclick="closeConnectModal(event)">
@@ -7982,26 +7982,33 @@
         }
 
         // Load Songbird data from indexer
+        // Songbird collection data - defined once at top level
+        const SONGBIRD_COLLECTIONS = {
+            '0x35afb6ba51839dedd33140a3b704b39933d1e642': { name: 'sToadz', supply: 10000, image: 'https://ipfs.io/ipfs/QmP45Rfhy75RybFuLcwd1CR9vF6qznw95qQPxcA5TeBNYk/1.png' },
+            '0x91aa85a172dd3e7eea4ad1a4b33e90cbf3b99ed8': { name: 'Luxury Lofts', supply: 10000, image: 'https://nftstorage.link/ipfs/bafybeiet5uqcxxkpdwyvnufsglah6arxlukxhciz3jy2h2m24scmjyjciq/1.gif' },
+            '0x360f8b7d9530f55ab8e52394e6527935635f51e7': { name: 'Songbird City', supply: 10000, image: 'https://nftstorage.link/ipfs/bafybeibi35a2w5ue6s7s7ka42xhkbbtpplgyvovefetxqwr6fzmvn6umpi/1.png' },
+            '0x0e759aa7166ab3b2b81abd6d9ed16ac83368f97e': { name: 'The Fat Cats', supply: 1000, image: 'https://ipfs.io/ipfs/QmQFNZXPuL4efM8Dp5j2bme6zySaYEYTNmn1CF2KjAja2A/1.png' },
+            '0xcdb019c0990c033724da55f5a04be6fd6ec1809d': { name: 'The Oracles', supply: 22222, image: 'https://ipfs.io/ipfs/QmfZhkQgWgG98JmaoaiUR5qNYPJh6ZS6HVFk5U6gRPaf1W/1.jpeg' },
+            '0xd83ae2c70916a2360e23683a0d3a3556b2c09935': { name: 'Songbird Punks', supply: 20000, image: 'https://ipfs.io/ipfs/Qmc6cQJaUjBZYfQ1G8tcFhdsyVLn79MKFp1kKB9Cj17gQn/1.png' },
+            '0x279a222a18c033124ab02290ddec97912a8b7185': { name: 'doodcats', supply: 10000, image: 'https://ipfs.io/ipfs/QmWGAWmuHZ4xzMp8eRyB8Ntut9xwPuKej9XmM5AWmsNQLZ/1.png' },
+            '0x7dc06ee0717c6f4905652f46f8f1891e8538e799': { name: 'Rare Pepe Club', supply: 9973, image: 'https://ipfs.io/ipfs/QmRarePepe/1.png' }
+        };
+
         async function loadSongbirdData() {
-            const container = document.getElementById('all-collections-grid');
+            const gridContainer = document.getElementById('all-collections-grid');
             const homeScroll = document.getElementById('collections-scroll');
             
-            // ALL Songbird collections with IPFS images
-            const songbirdCollections = {
-                '0x35afb6ba51839dedd33140a3b704b39933d1e642': { name: 'sToadz', supply: 10000, image: 'https://ipfs.io/ipfs/QmP45Rfhy75RybFuLcwd1CR9vF6qznw95qQPxcA5TeBNYk/1.png' },
-                '0x91aa85a172dd3e7eea4ad1a4b33e90cbf3b99ed8': { name: 'Luxury Lofts', supply: 10000, image: 'https://nftstorage.link/ipfs/bafybeiet5uqcxxkpdwyvnufsglah6arxlukxhciz3jy2h2m24scmjyjciq/1.gif' },
-                '0x360f8b7d9530f55ab8e52394e6527935635f51e7': { name: 'Songbird City', supply: 10000, image: 'https://nftstorage.link/ipfs/bafybeibi35a2w5ue6s7s7ka42xhkbbtpplgyvovefetxqwr6fzmvn6umpi/1.png' },
-                '0x0e759aa7166ab3b2b81abd6d9ed16ac83368f97e': { name: 'The Fat Cats', supply: 1000, image: 'https://ipfs.io/ipfs/QmQFNZXPuL4efM8Dp5j2bme6zySaYEYTNmn1CF2KjAja2A/1.png' },
-                '0xcdb019c0990c033724da55f5a04be6fd6ec1809d': { name: 'The Oracles', supply: 22222, image: 'https://ipfs.io/ipfs/QmfZhkQgWgG98JmaoaiUR5qNYPJh6ZS6HVFk5U6gRPaf1W/1.jpeg' },
-                '0xd83ae2c70916a2360e23683a0d3a3556b2c09935': { name: 'Songbird Punks', supply: 20000, image: 'https://ipfs.io/ipfs/Qmc6cQJaUjBZYfQ1G8tcFhdsyVLn79MKFp1kKB9Cj17gQn/1.png' },
-                '0x279a222a18c033124ab02290ddec97912a8b7185': { name: 'doodcats', supply: 10000, image: 'https://ipfs.io/ipfs/QmWGAWmuHZ4xzMp8eRyB8Ntut9xwPuKej9XmM5AWmsNQLZ/1.png' },
-                '0x7dc06ee0717c6f4905652f46f8f1891e8538e799': { name: 'Rare Pepe Club', supply: 9973, image: 'https://ipfs.io/ipfs/QmRarePepe/1.png' }
-            };
+            console.log('loadSongbirdData called, homeScroll:', !!homeScroll, 'gridContainer:', !!gridContainer);
             
-            // Show loading state
-            if (container) {
-                container.innerHTML = '<div class="empty-state full-width"><div class="empty-icon">⏳</div><p>Loading Songbird collections...</p></div>';
+            // Show loading state on both containers
+            if (gridContainer) {
+                gridContainer.innerHTML = '<div class="empty-state full-width"><div class="empty-icon">⏳</div><p>Loading Songbird collections...</p></div>';
             }
+            if (homeScroll) {
+                homeScroll.innerHTML = '<div class="empty-state"><div class="empty-icon">⏳</div><p>Loading...</p></div>';
+            }
+            
+            let collectionsArray = [];
             
             // Try to load live floors from indexer
             try {
@@ -8010,66 +8017,46 @@
                     const floors = await floorsRes.json();
                     console.log('Floors from indexer:', floors);
                     if (floors && floors.length > 0) {
-                        renderSongbirdCollections(floors, songbirdCollections);
-                        return;
+                        // Merge floor data with collection info
+                        collectionsArray = floors.map(f => {
+                            const addr = f.collection?.toLowerCase();
+                            const info = SONGBIRD_COLLECTIONS[addr] || { name: f.collection?.slice(0,8) + '...', supply: '?', image: '' };
+                            const floorSgb = f.floor_sgb ? parseFloat(f.floor_sgb).toLocaleString(undefined, {maximumFractionDigits: 0}) + ' SGB' : '--';
+                            return { ...info, address: addr, floor: floorSgb };
+                        });
+                        
+                        // Add any collections we have info for but no floor data
+                        Object.entries(SONGBIRD_COLLECTIONS).forEach(([addr, info]) => {
+                            if (!collectionsArray.find(m => m.address === addr)) {
+                                collectionsArray.push({ ...info, address: addr, floor: '--' });
+                            }
+                        });
                     }
                 }
             } catch (err) {
                 console.log('Indexer floors failed:', err);
             }
             
-            // Fallback: show hardcoded collections without live floors
-            if (container) {
-                const collectionsArray = Object.entries(songbirdCollections).map(([addr, info]) => ({
+            // Fallback if no floors data
+            if (collectionsArray.length === 0) {
+                collectionsArray = Object.entries(SONGBIRD_COLLECTIONS).map(([addr, info]) => ({
                     address: addr,
                     ...info,
                     floor: '--'
                 }));
-                
-                container.innerHTML = collectionsArray.map(c => `
-                    <div class="collection-card-full" onclick="showPage('collection-detail')">
-                        <div class="collection-card-image">
-                            <img src="${c.image}" alt="${c.name}" onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2280%22>🐸</text></svg>'">
-                            <span class="collection-boost-badge">🔥 LP Boost</span>
-                        </div>
-                        <div class="collection-card-info">
-                            <div class="collection-card-name">${c.name}</div>
-                            <div class="collection-card-stats">
-                                <div class="collection-card-stat">
-                                    <span class="stat-label">Floor</span>
-                                    <span class="stat-value">${c.floor}</span>
-                                </div>
-                                <div class="collection-card-stat">
-                                    <span class="stat-label">Items</span>
-                                    <span class="stat-value">${c.supply.toLocaleString()}</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                `).join('');
             }
+            
+            console.log('Rendering', collectionsArray.length, 'Songbird collections');
+            
+            // Render to BOTH containers
+            renderSongbirdToGrid(gridContainer, collectionsArray);
+            renderSongbirdToScroll(homeScroll, collectionsArray);
         }
 
-        function renderSongbirdCollections(floors, collectionInfo) {
-            const container = document.getElementById('all-collections-grid');
+        function renderSongbirdToGrid(container, collections) {
             if (!container) return;
             
-            // Merge floor data with collection info
-            const merged = floors.map(f => {
-                const addr = f.collection?.toLowerCase();
-                const info = collectionInfo[addr] || { name: f.collection?.slice(0,8) + '...', supply: '?', image: '' };
-                const floorSgb = f.floor_sgb ? parseFloat(f.floor_sgb).toLocaleString(undefined, {maximumFractionDigits: 0}) + ' SGB' : '--';
-                return { ...info, address: addr, floor: floorSgb };
-            });
-            
-            // Add any collections we have info for but no floor data
-            Object.entries(collectionInfo).forEach(([addr, info]) => {
-                if (!merged.find(m => m.address === addr)) {
-                    merged.push({ ...info, address: addr, floor: '--' });
-                }
-            });
-            
-            container.innerHTML = merged.map(c => `
+            container.innerHTML = collections.map(c => `
                 <div class="collection-card-full" onclick="showPage('collection-detail')">
                     <div class="collection-card-image">
                         <img src="${c.image}" alt="${c.name}" onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2280%22>🐸</text></svg>'">
@@ -8090,6 +8077,32 @@
                     </div>
                 </div>
             `).join('');
+        }
+
+        function renderSongbirdToScroll(container, collections) {
+            if (!container) return;
+            
+            // Use same card format as Flare collections for home scroll
+            container.innerHTML = collections.map(c => `
+                <div class="collection-card" onclick="showPage('collection-detail')">
+                    <div class="collection-image">
+                        <img src="${c.image}" alt="${c.name}" onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2280%22>🐸</text></svg>'">
+                        <span class="collection-badge">LP Boost</span>
+                    </div>
+                    <div class="collection-info">
+                        <div class="collection-name">${c.name}</div>
+                        <div class="collection-meta">
+                            <span class="collection-items">${typeof c.supply === 'number' ? c.supply.toLocaleString() : c.supply} items</span>
+                            <span class="collection-floor">${c.floor}</span>
+                        </div>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        // Keep for backwards compatibility if called elsewhere
+        function renderSongbirdCollections(floors, collectionInfo) {
+            loadSongbirdData();
         }
 
         function renderSongbirdActivity(events) {
