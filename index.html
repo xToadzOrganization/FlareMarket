@@ -6089,6 +6089,54 @@
             border-color: var(--teal);
             background: rgba(0, 200, 200, 0.15);
         }
+        .sf-owner-actions {
+            display: flex;
+            gap: 12px;
+            justify-content: center;
+            margin: -20px 0 30px;
+            flex-wrap: wrap;
+        }
+        .sf-action-btn {
+            padding: 10px 20px;
+            border-radius: 12px;
+            border: 1px solid var(--border);
+            background: var(--bg-card);
+            color: var(--text);
+            cursor: pointer;
+            font-size: 14px;
+            transition: all 0.2s;
+        }
+        .sf-action-btn:hover {
+            border-color: var(--teal);
+            background: rgba(0, 200, 200, 0.1);
+        }
+        .sf-action-btn.delete {
+            border-color: #ff4757;
+            color: #ff4757;
+        }
+        .sf-action-btn.delete:hover {
+            background: rgba(255, 71, 87, 0.15);
+        }
+        .sf-action-btn.verify {
+            border-color: var(--teal);
+            color: var(--teal);
+        }
+        .sf-action-btn.verify:hover {
+            background: rgba(0, 200, 200, 0.15);
+        }
+        .verified-badge {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 20px;
+            height: 20px;
+            background: var(--teal);
+            border-radius: 50%;
+            color: var(--bg-void);
+            font-size: 12px;
+            margin-left: 6px;
+            vertical-align: middle;
+        }
     </style>
 </head>
 <body>
@@ -6971,78 +7019,51 @@
             </section>
         </div>
 
-        <!-- ARTIST STOREFRONT -->
+        <!-- ARTIST STOREFRONT (Dynamic) -->
         <div id="page-artist-storefront" class="page">
-            <!-- Premium Banner -->
-            <div class="artist-banner" style="background-image: url('https://ipfs.io/ipfs/QmP45Rfhy75RybFuLcwd1CR9vF6qznw95qQPxcA5TeBNYk/667.png')">
+            <!-- Banner - populated dynamically -->
+            <div class="artist-banner" id="sf-banner-display">
                 <div class="artist-banner-overlay"></div>
             </div>
 
             <div class="container">
                 <!-- Artist Profile Card -->
                 <section class="artist-profile-section">
-                    <div class="artist-profile-card">
-                        <div class="artist-avatar-large">
-                            <img src="https://ipfs.io/ipfs/QmP45Rfhy75RybFuLcwd1CR9vF6qznw95qQPxcA5TeBNYk/666.png" alt="Freak">
-                            <span class="verified-ring">✓</span>
-                        </div>
-                        <div class="artist-profile-info">
-                            <h1 class="artist-profile-name">Freak</h1>
-                            <p class="artist-profile-style">Chaos & Dark Surrealism</p>
-                            <p class="artist-profile-bio">Creating nightmare fuel and beautiful chaos from the void. Every piece tells a story of madness. Collector of souls, creator of worlds.</p>
-                            <div class="artist-socials">
-                                <a href="#" class="artist-social">𝕏</a>
-                                <a href="#" class="artist-social">📷</a>
-                                <a href="#" class="artist-social">🌐</a>
-                            </div>
-                        </div>
-                        <div class="artist-profile-stats">
-                            <div class="artist-stat-box">
-                                <span class="artist-stat-value">247</span>
-                                <span class="artist-stat-label">Items</span>
-                            </div>
-                            <div class="artist-stat-box">
-                                <span class="artist-stat-value gold">89K</span>
-                                <span class="artist-stat-label">Volume</span>
-                            </div>
-                            <div class="artist-stat-box">
-                                <span class="artist-stat-value">1.2K</span>
-                                <span class="artist-stat-label">Collectors</span>
-                            </div>
-                            <div class="artist-stat-box">
-                                <span class="artist-stat-value purple">42</span>
-                                <span class="artist-stat-label">Tips</span>
-                            </div>
-                        </div>
-                        <div class="artist-actions">
-                            <button class="artist-tip-btn">💰 Tip Artist</button>
-                            <button class="artist-follow-btn">+ Follow</button>
+                    <div class="artist-profile-card" id="sf-profile-card">
+                        <!-- Populated by loadStorefrontPage() -->
+                        <div class="empty-state">
+                            <div class="empty-icon">⏳</div>
+                            <p>Loading artist...</p>
                         </div>
                     </div>
                 </section>
+
+                <!-- Owner/Admin Actions (shown conditionally) -->
+                <div id="sf-owner-actions" class="sf-owner-actions" style="display: none;">
+                    <button class="sf-action-btn edit" onclick="openEditStorefront()">✏️ Edit Storefront</button>
+                    <button class="sf-action-btn upload" onclick="openUploadNFT()">📤 Upload NFT</button>
+                    <button class="sf-action-btn verify" id="sf-verify-btn" style="display: none;" onclick="toggleVerify()">✓ Verify</button>
+                    <button class="sf-action-btn delete" id="sf-delete-btn" style="display: none;" onclick="deleteStorefront()">🗑️ Delete</button>
+                </div>
 
                 <!-- Main Content Grid -->
                 <div class="artist-content-grid">
                     <!-- Left: Main Content -->
                     <div class="artist-main">
-                        <!-- Announcement -->
-                        <div class="artist-announcement">
-                            <div class="announcement-header">
-                                <span class="announcement-icon">📢</span>
-                                <span class="announcement-title">Announcement</span>
-                                <span class="announcement-time">2 hours ago</span>
-                            </div>
-                            <p class="announcement-text">New drop coming this Friday! "Nightmare Collection Vol. 3" - 25 unique pieces. First 10 minters get a free bonus NFT. Don't miss it! 🔥</p>
-                        </div>
-
                         <!-- Tabs & NFTs -->
                         <div class="artist-tabs">
                             <button class="artist-tab active">All Items</button>
-                            <button class="artist-tab">Collections</button>
-                            <button class="artist-tab">On Auction</button>
+                            <button class="artist-tab">On Sale</button>
+                            <button class="artist-tab">Auction</button>
                             <button class="artist-tab">Sold</button>
                         </div>
-                        <div class="nft-grid" id="artist-nfts"></div>
+                        <div class="nft-grid" id="sf-nft-grid">
+                            <div class="empty-state" style="grid-column: 1/-1;">
+                                <div class="empty-icon">🎨</div>
+                                <p>No items yet</p>
+                                <span>Artist hasn't uploaded any NFTs</span>
+                            </div>
+                        </div>
                     </div>
 
                     <!-- Right: Sidebar -->
@@ -7050,54 +7071,137 @@
                         <!-- Activity Feed -->
                         <div class="artist-activity-card">
                             <h4 class="sidebar-card-title"><span class="live-dot"></span>Activity</h4>
-                            <div class="artist-activity-list">
-                                <div class="artist-activity-item">
-                                    <span class="activity-icon sale">💰</span>
-                                    <div class="activity-details">
-                                        <span class="activity-event">Sold Chaos #47</span>
-                                        <span class="activity-amount">2,400 FLR</span>
-                                    </div>
-                                    <span class="activity-ago">2m</span>
-                                </div>
-                                <div class="artist-activity-item">
-                                    <span class="activity-icon tip">🎁</span>
-                                    <div class="activity-details">
-                                        <span class="activity-event">Received tip</span>
-                                        <span class="activity-amount">500 FLR</span>
-                                    </div>
-                                    <span class="activity-ago">15m</span>
-                                </div>
-                                <div class="artist-activity-item">
-                                    <span class="activity-icon upload">📤</span>
-                                    <div class="activity-details">
-                                        <span class="activity-event">Listed Chaos #89</span>
-                                        <span class="activity-amount">1,800 FLR</span>
-                                    </div>
-                                    <span class="activity-ago">1h</span>
-                                </div>
-                                <div class="artist-activity-item">
-                                    <span class="activity-icon sale">💰</span>
-                                    <div class="activity-details">
-                                        <span class="activity-event">Sold Void #12</span>
-                                        <span class="activity-amount">3,100 FLR</span>
-                                    </div>
-                                    <span class="activity-ago">3h</span>
-                                </div>
-                                <div class="artist-activity-item">
-                                    <span class="activity-icon follow">👤</span>
-                                    <div class="activity-details">
-                                        <span class="activity-event">New follower</span>
-                                        <span class="activity-amount">0x3a1...b7c</span>
-                                    </div>
-                                    <span class="activity-ago">5h</span>
-                                </div>
+                            <div class="artist-activity-list" id="sf-activity-list">
+                                <div class="empty-state"><p>No activity yet</p></div>
                             </div>
                         </div>
+                    </aside>
+                </div>
+            </div>
+        </div>
 
-                        <!-- Top Collectors -->
-                        <div class="artist-collectors-card">
-                            <h4 class="sidebar-card-title">🏆 Top Collectors</h4>
-                            <div class="top-collectors-list">
+        <!-- UPLOAD NFT MODAL -->
+        <div id="upload-nft-modal" class="modal-overlay">
+            <div class="modal" style="max-width: 500px;">
+                <button class="modal-close" onclick="closeUploadNFT()">&times;</button>
+                <div style="padding: 24px;">
+                    <h2 style="margin-bottom: 8px;">Upload NFT</h2>
+                    <p style="color: var(--text-muted); margin-bottom: 20px;">Create and list your artwork</p>
+                    
+                    <form id="upload-nft-form" class="apply-form">
+                        <div class="form-group">
+                            <label>Image URL *</label>
+                            <input type="url" id="nft-image" placeholder="IPFS link or image URL" required>
+                            <small style="color: var(--text-muted);">Tip: Upload to <a href="https://nft.storage" target="_blank" style="color: var(--teal);">NFT.Storage</a> for free permanent hosting</small>
+                        </div>
+                        <div class="form-group">
+                            <label>Name *</label>
+                            <input type="text" id="nft-name" placeholder="My Awesome NFT" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Description</label>
+                            <textarea id="nft-description" placeholder="Tell the story behind this piece..." rows="3"></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label>Price (FLR) *</label>
+                            <input type="number" id="nft-price" placeholder="1000" min="1" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Sale Type</label>
+                            <select id="nft-sale-type" style="width: 100%; padding: 12px; background: var(--bg-surface); border: 1px solid var(--border); border-radius: 12px; color: var(--text);">
+                                <option value="fixed">Fixed Price</option>
+                                <option value="auction">Auction</option>
+                            </select>
+                        </div>
+                        <div class="form-group" id="auction-duration-group" style="display: none;">
+                            <label>Auction Duration</label>
+                            <select id="nft-auction-duration" style="width: 100%; padding: 12px; background: var(--bg-surface); border: 1px solid var(--border); border-radius: 12px; color: var(--text);">
+                                <option value="24">24 hours</option>
+                                <option value="48">48 hours</option>
+                                <option value="72">72 hours</option>
+                                <option value="168">7 days</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label style="display: flex; align-items: center; gap: 8px; cursor: pointer;">
+                                <input type="checkbox" id="nft-featured" style="width: 18px; height: 18px;">
+                                <span>⭐ Feature on homepage (costs extra 5 FLR)</span>
+                            </label>
+                        </div>
+                        <button type="submit" class="apply-submit-btn">
+                            Upload & List →
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <!-- EDIT STOREFRONT MODAL -->
+        <div id="edit-storefront-modal" class="modal-overlay">
+            <div class="modal" style="max-width: 500px;">
+                <button class="modal-close" onclick="closeEditStorefront()">&times;</button>
+                <div style="padding: 24px;">
+                    <h2 style="margin-bottom: 20px;">Edit Storefront</h2>
+                    
+                    <form id="edit-storefront-form" class="apply-form">
+                        <div class="form-group">
+                            <label>Artist / Studio Name *</label>
+                            <input type="text" id="edit-sf-name" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Bio</label>
+                            <textarea id="edit-sf-bio" rows="3"></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label>Profile Picture</label>
+                            <div style="display: flex; gap: 12px; align-items: flex-start;">
+                                <div id="edit-sf-avatar-preview" style="width: 64px; height: 64px; min-width: 64px; border-radius: 50%; background: var(--bg-surface); border: 2px solid var(--border); display: flex; align-items: center; justify-content: center; font-size: 32px; overflow: hidden;">
+                                    <span style="color: var(--text-muted);">?</span>
+                                </div>
+                                <div style="flex: 1;">
+                                    <div style="margin-bottom: 8px;">
+                                        <label style="font-size: 11px; color: var(--text-muted); margin-bottom: 4px; display: block;">Pick an emoji</label>
+                                        <div style="display: flex; flex-wrap: wrap; gap: 4px;">
+                                            <button type="button" class="emoji-pick" onclick="selectEditEmoji('🎨')">🎨</button>
+                                            <button type="button" class="emoji-pick" onclick="selectEditEmoji('🖼️')">🖼️</button>
+                                            <button type="button" class="emoji-pick" onclick="selectEditEmoji('✨')">✨</button>
+                                            <button type="button" class="emoji-pick" onclick="selectEditEmoji('🔥')">🔥</button>
+                                            <button type="button" class="emoji-pick" onclick="selectEditEmoji('💎')">💎</button>
+                                            <button type="button" class="emoji-pick" onclick="selectEditEmoji('🐸')">🐸</button>
+                                            <button type="button" class="emoji-pick" onclick="selectEditEmoji('👾')">👾</button>
+                                            <button type="button" class="emoji-pick" onclick="selectEditEmoji('🍝')">🍝</button>
+                                            <button type="button" class="emoji-pick" onclick="selectEditEmoji('🌙')">🌙</button>
+                                            <button type="button" class="emoji-pick" onclick="selectEditEmoji('⚡')">⚡</button>
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <label style="font-size: 11px; color: var(--text-muted); margin-bottom: 4px; display: block;">Or paste image URL</label>
+                                        <input type="text" id="edit-sf-avatar" placeholder="https://... or IPFS link" oninput="previewEditAvatarUrl(this.value)">
+                                    </div>
+                                </div>
+                            </div>
+                            <input type="hidden" id="edit-sf-avatar-type" value="">
+                            <input type="hidden" id="edit-sf-avatar-emoji" value="">
+                        </div>
+                        <div class="form-group">
+                            <label>Banner URL</label>
+                            <input type="url" id="edit-sf-banner" placeholder="https://... or IPFS link">
+                        </div>
+                        <div class="form-group">
+                            <label>Twitter / X</label>
+                            <input type="text" id="edit-sf-twitter" placeholder="@handle">
+                        </div>
+                        <div class="form-group">
+                            <label>Website</label>
+                            <input type="url" id="edit-sf-website" placeholder="https://yoursite.com">
+                        </div>
+                        <button type="submit" class="apply-submit-btn">
+                            Save Changes →
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
                                 <div class="collector-item">
                                     <span class="collector-rank gold">1</span>
                                     <span class="collector-avatar">🐸</span>
@@ -7831,12 +7935,14 @@
                         </div>`;
                     }
                     
+                    const verifiedBadge = s.verified ? '<span class="verified-badge">✓</span>' : '';
+                    
                     return `
                     <div class="featured-artist-card" onclick="viewStorefront('${s.wallet}')">
                         <div class="fa-banner" style="background-image: url('${s.banner || 'https://via.placeholder.com/400x150/1a1a2e/00ff88?text='}')"></div>
                         <div class="fa-content">
                             ${avatarHtml}
-                            <h3 class="fa-name">${s.name}</h3>
+                            <h3 class="fa-name">${s.name}${verifiedBadge}</h3>
                             <p class="fa-style">${s.bio || ''}</p>
                             <div class="fa-stats">
                                 <div class="fa-stat"><span class="fa-stat-value">--</span><span class="fa-stat-label">Items</span></div>
@@ -7851,27 +7957,321 @@
             }
         }
 
+        let currentStorefront = null; // Track currently viewed storefront
+
         function viewStorefront(wallet) {
-            // TODO: Load specific storefront page
+            currentStorefront = wallet;
+            loadStorefrontPage(wallet);
             showPage('artist-storefront');
         }
 
-        // Avatar/Emoji selection for storefront
+        async function loadStorefrontPage(wallet) {
+            const banner = document.getElementById('sf-banner-display');
+            const profileCard = document.getElementById('sf-profile-card');
+            const ownerActions = document.getElementById('sf-owner-actions');
+            const deleteBtn = document.getElementById('sf-delete-btn');
+            const nftGrid = document.getElementById('sf-nft-grid');
+            
+            // Reset
+            profileCard.innerHTML = '<div class="empty-state"><div class="empty-icon">⏳</div><p>Loading artist...</p></div>';
+            ownerActions.style.display = 'none';
+            
+            try {
+                const res = await fetch(`${INDEXER_URL}/api/storefront/${wallet}`);
+                if (!res.ok) throw new Error('Storefront not found');
+                
+                const s = await res.json();
+                console.log('Loaded storefront:', s);
+                
+                // Set banner
+                if (s.banner) {
+                    banner.style.backgroundImage = `url('${s.banner}')`;
+                } else {
+                    banner.style.backgroundImage = 'linear-gradient(135deg, var(--purple), var(--teal))';
+                }
+                
+                // Build avatar HTML
+                let avatarHtml;
+                if (s.avatar_type === 'emoji' && s.avatar_emoji) {
+                    avatarHtml = `<div class="artist-avatar-large" style="background: linear-gradient(135deg, var(--purple), var(--teal)); display: flex; align-items: center; justify-content: center;">
+                        <span style="font-size: 48px;">${s.avatar_emoji}</span>
+                        ${s.verified ? '<span class="verified-badge">✓</span>' : ''}
+                    </div>`;
+                } else if (s.avatar) {
+                    avatarHtml = `<div class="artist-avatar-large">
+                        <img src="${s.avatar}" alt="${s.name}" onerror="this.parentElement.innerHTML='<span style=font-size:48px>${s.name.charAt(0)}</span>'">
+                        ${s.verified ? '<span class="verified-badge">✓</span>' : ''}
+                    </div>`;
+                } else {
+                    avatarHtml = `<div class="artist-avatar-large" style="background: linear-gradient(135deg, var(--purple), var(--teal)); display: flex; align-items: center; justify-content: center;">
+                        <span style="font-size: 48px;">${s.name.charAt(0)}</span>
+                    </div>`;
+                }
+                
+                // Build profile card
+                profileCard.innerHTML = `
+                    ${avatarHtml}
+                    <div class="artist-profile-info">
+                        <h1 class="artist-profile-name">${s.name}${s.verified ? '<span class="verified-badge">✓</span>' : ''}</h1>
+                        <p class="artist-profile-bio">${s.bio || ''}</p>
+                        <div class="artist-socials">
+                            ${s.twitter ? `<a href="https://twitter.com/${s.twitter.replace('@','')}" target="_blank" class="artist-social">𝕏</a>` : ''}
+                            ${s.website ? `<a href="${s.website}" target="_blank" class="artist-social">🌐</a>` : ''}
+                        </div>
+                    </div>
+                    <div class="artist-profile-stats">
+                        <div class="artist-stat-box">
+                            <span class="artist-stat-value">--</span>
+                            <span class="artist-stat-label">Items</span>
+                        </div>
+                        <div class="artist-stat-box">
+                            <span class="artist-stat-value">--</span>
+                            <span class="artist-stat-label">Volume</span>
+                        </div>
+                        <div class="artist-stat-box">
+                            <span class="artist-stat-value">--</span>
+                            <span class="artist-stat-label">Collectors</span>
+                        </div>
+                    </div>
+                `;
+                
+                // Show owner/admin actions
+                const userWallet = window.toadz?.userAddress?.toLowerCase();
+                const isOwner = userWallet === wallet.toLowerCase();
+                const isAdmin = userWallet === ADMIN_WALLET;
+                
+                if (isOwner || isAdmin) {
+                    ownerActions.style.display = 'flex';
+                    deleteBtn.style.display = isAdmin ? 'block' : 'none';
+                    
+                    // Verify button for admin
+                    const verifyBtn = document.getElementById('sf-verify-btn');
+                    if (isAdmin && verifyBtn) {
+                        verifyBtn.style.display = 'block';
+                        verifyBtn.textContent = s.verified ? '✗ Unverify' : '✓ Verify';
+                        verifyBtn.dataset.verified = s.verified ? '1' : '0';
+                    }
+                }
+                
+                // Load artist's NFTs (TODO: implement when NFT upload is working)
+                nftGrid.innerHTML = `
+                    <div class="empty-state" style="grid-column: 1/-1;">
+                        <div class="empty-icon">🎨</div>
+                        <p>No items yet</p>
+                        <span>${isOwner ? 'Click "Upload NFT" to add your first piece!' : 'Artist hasn\'t uploaded any NFTs yet'}</span>
+                    </div>`;
+                    
+            } catch (err) {
+                console.error('Failed to load storefront:', err);
+                profileCard.innerHTML = `
+                    <div class="empty-state">
+                        <div class="empty-icon">❌</div>
+                        <p>Storefront not found</p>
+                    </div>`;
+            }
+        }
+
+        // Delete storefront (admin only)
+        async function deleteStorefront() {
+            if (!currentStorefront) return;
+            
+            if (!confirm('Are you sure you want to delete this storefront? This cannot be undone.')) return;
+            
+            try {
+                const res = await fetch(`${INDEXER_URL}/api/storefront/${currentStorefront}`, {
+                    method: 'DELETE',
+                    headers: {
+                        'x-wallet': window.toadz?.userAddress || ''
+                    }
+                });
+                
+                const result = await res.json();
+                
+                if (result.success) {
+                    showToast('Deleted', 'Storefront removed', 'success');
+                    showPage('artists');
+                    loadStorefronts();
+                } else {
+                    throw new Error(result.error || 'Failed to delete');
+                }
+            } catch (err) {
+                showToast('Error', err.message, 'error');
+            }
+        }
+
+        // Toggle verify status (admin only)
+        async function toggleVerify() {
+            if (!currentStorefront) return;
+            
+            const verifyBtn = document.getElementById('sf-verify-btn');
+            const currentlyVerified = verifyBtn.dataset.verified === '1';
+            
+            try {
+                const res = await fetch(`${INDEXER_URL}/api/storefront/${currentStorefront}/verify`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'x-wallet': window.toadz?.userAddress || ''
+                    },
+                    body: JSON.stringify({ verified: !currentlyVerified })
+                });
+                
+                const result = await res.json();
+                
+                if (result.success) {
+                    showToast(result.verified ? 'Verified' : 'Unverified', 'Status updated', 'success');
+                    loadStorefrontPage(currentStorefront);
+                    loadStorefronts();
+                } else {
+                    throw new Error(result.error || 'Failed to update');
+                }
+            } catch (err) {
+                showToast('Error', err.message, 'error');
+            }
+        }
+
+        // Upload NFT modal
+        function openUploadNFT() {
+            document.getElementById('upload-nft-modal').classList.add('open');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeUploadNFT() {
+            document.getElementById('upload-nft-modal').classList.remove('open');
+            document.body.style.overflow = '';
+        }
+
+        // Toggle auction duration visibility
+        document.getElementById('nft-sale-type')?.addEventListener('change', function() {
+            document.getElementById('auction-duration-group').style.display = 
+                this.value === 'auction' ? 'block' : 'none';
+        });
+
+        // Upload NFT form submit
+        document.getElementById('upload-nft-form')?.addEventListener('submit', async function(e) {
+            e.preventDefault();
+            
+            const data = {
+                wallet: window.toadz?.userAddress,
+                image: document.getElementById('nft-image').value,
+                name: document.getElementById('nft-name').value,
+                description: document.getElementById('nft-description').value,
+                price: document.getElementById('nft-price').value,
+                saleType: document.getElementById('nft-sale-type').value,
+                auctionDuration: document.getElementById('nft-auction-duration').value,
+                featured: document.getElementById('nft-featured').checked
+            };
+            
+            console.log('Upload NFT:', data);
+            
+            // TODO: Implement actual NFT minting/listing
+            showToast('Coming Soon', 'NFT upload will be available soon!', 'info');
+            closeUploadNFT();
+        });
+
+        // Edit storefront modal
+        function openEditStorefront() {
+            if (!currentStorefront) return;
+            
+            // Load current data into form
+            fetch(`${INDEXER_URL}/api/storefront/${currentStorefront}`)
+                .then(res => res.json())
+                .then(s => {
+                    document.getElementById('edit-sf-name').value = s.name || '';
+                    document.getElementById('edit-sf-bio').value = s.bio || '';
+                    document.getElementById('edit-sf-avatar').value = s.avatar || '';
+                    document.getElementById('edit-sf-avatar-type').value = s.avatar_type || 'url';
+                    document.getElementById('edit-sf-avatar-emoji').value = s.avatar_emoji || '';
+                    document.getElementById('edit-sf-banner').value = s.banner || '';
+                    document.getElementById('edit-sf-twitter').value = s.twitter || '';
+                    document.getElementById('edit-sf-website').value = s.website || '';
+                    
+                    // Update preview
+                    const preview = document.getElementById('edit-sf-avatar-preview');
+                    if (s.avatar_type === 'emoji' && s.avatar_emoji) {
+                        preview.innerHTML = `<span style="font-size: 32px;">${s.avatar_emoji}</span>`;
+                        preview.style.background = 'linear-gradient(135deg, var(--purple), var(--teal))';
+                    } else if (s.avatar) {
+                        preview.innerHTML = `<img src="${s.avatar}" style="width: 100%; height: 100%; object-fit: cover;">`;
+                        preview.style.background = 'var(--bg-surface)';
+                    }
+                    
+                    document.getElementById('edit-storefront-modal').classList.add('open');
+                    document.body.style.overflow = 'hidden';
+                });
+        }
+
+        function closeEditStorefront() {
+            document.getElementById('edit-storefront-modal').classList.remove('open');
+            document.body.style.overflow = '';
+        }
+
+        function selectEditEmoji(emoji) {
+            const preview = document.getElementById('edit-sf-avatar-preview');
+            preview.innerHTML = `<span style="font-size: 32px;">${emoji}</span>`;
+            preview.style.background = 'linear-gradient(135deg, var(--purple), var(--teal))';
+            document.getElementById('edit-sf-avatar').value = '';
+            document.getElementById('edit-sf-avatar-type').value = 'emoji';
+            document.getElementById('edit-sf-avatar-emoji').value = emoji;
+        }
+
+        function previewEditAvatarUrl(url) {
+            if (!url) return;
+            const preview = document.getElementById('edit-sf-avatar-preview');
+            preview.style.background = 'var(--bg-surface)';
+            preview.innerHTML = `<img src="${url}" style="width: 100%; height: 100%; object-fit: cover;" onerror="this.parentElement.innerHTML='<span style=color:var(--text-muted)>?</span>'">`;
+            document.getElementById('edit-sf-avatar-type').value = 'url';
+            document.getElementById('edit-sf-avatar-emoji').value = '';
+        }
+
+        // Edit storefront form submit
+        document.getElementById('edit-storefront-form')?.addEventListener('submit', async function(e) {
+            e.preventDefault();
+            
+            const data = {
+                name: document.getElementById('edit-sf-name').value,
+                bio: document.getElementById('edit-sf-bio').value,
+                avatar: document.getElementById('edit-sf-avatar').value,
+                avatarType: document.getElementById('edit-sf-avatar-type').value,
+                avatarEmoji: document.getElementById('edit-sf-avatar-emoji').value,
+                banner: document.getElementById('edit-sf-banner').value,
+                twitter: document.getElementById('edit-sf-twitter').value,
+                website: document.getElementById('edit-sf-website').value
+            };
+            
+            try {
+                const res = await fetch(`${INDEXER_URL}/api/storefront/${currentStorefront}`, {
+                    method: 'PUT',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(data)
+                });
+                
+                const result = await res.json();
+                
+                if (result.success) {
+                    showToast('Saved', 'Storefront updated!', 'success');
+                    closeEditStorefront();
+                    loadStorefrontPage(currentStorefront);
+                    loadStorefronts();
+                } else {
+                    throw new Error(result.error || 'Failed to save');
+                }
+            } catch (err) {
+                showToast('Error', err.message, 'error');
+            }
+        });
+            event.target.classList.add('selected');
+        }
+
+        // Avatar/Emoji selection for CREATE storefront
         function selectEmoji(emoji) {
-            // Update preview
             const preview = document.getElementById('sf-avatar-preview');
             preview.innerHTML = `<span style="font-size: 32px;">${emoji}</span>`;
             preview.style.background = 'linear-gradient(135deg, var(--purple), var(--teal))';
-            
-            // Clear URL input
             document.getElementById('sf-avatar').value = '';
-            
-            // Store selection
             document.getElementById('sf-avatar-type').value = 'emoji';
             document.getElementById('sf-avatar-emoji').value = emoji;
-            
-            // Highlight selected
-            document.querySelectorAll('.emoji-pick').forEach(btn => btn.classList.remove('selected'));
+            document.querySelectorAll('#storefront-modal .emoji-pick').forEach(btn => btn.classList.remove('selected'));
             event.target.classList.add('selected');
         }
 
