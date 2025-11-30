@@ -1,4 +1,4 @@
-// ============ TOADZ WEB3 INTEGRATION ============
+// ============ TOADZ WEB3 INTEGRATION =============
 // Add ethers.js via CDN in HTML: <script src="https://cdn.jsdelivr.net/npm/ethers@6/dist/ethers.umd.min.js"></script>
 
 const CONTRACTS = {
