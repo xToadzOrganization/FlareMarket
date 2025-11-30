@@ -283,6 +283,116 @@
             font-size: 12px;
         }
 
+        /* Artist Application Form */
+        .artist-apply-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-subtle);
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.3);
+        }
+
+        .apply-header {
+            text-align: center;
+            margin-bottom: 32px;
+        }
+
+        .apply-header .apply-icon {
+            font-size: 48px;
+            margin-bottom: 16px;
+        }
+
+        .apply-header h2 {
+            font-size: 28px;
+            font-weight: 800;
+            margin-bottom: 12px;
+        }
+
+        .apply-header p {
+            color: var(--text-secondary);
+            font-size: 15px;
+            max-width: 500px;
+            margin: 0 auto;
+        }
+
+        .apply-form {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .form-group label {
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--text-secondary);
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            background: var(--bg-surface);
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            padding: 14px 16px;
+            font-size: 14px;
+            color: var(--text-primary);
+            transition: all 150ms ease;
+            font-family: inherit;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--accent);
+            box-shadow: 0 0 0 3px var(--accent-glow);
+        }
+
+        .form-group input::placeholder,
+        .form-group textarea::placeholder {
+            color: var(--text-muted);
+        }
+
+        .form-group select {
+            cursor: pointer;
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 100px;
+        }
+
+        .apply-submit-btn {
+            background: var(--accent);
+            color: var(--bg-void);
+            border: none;
+            border-radius: 12px;
+            padding: 16px 32px;
+            font-size: 16px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 150ms ease;
+            margin-top: 12px;
+        }
+
+        .apply-submit-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px var(--accent-glow);
+        }
+
+        .apply-note {
+            text-align: center;
+            font-size: 12px;
+            color: var(--text-muted);
+            margin-top: 8px;
+        }
+
         /* Sidebar LP Widget */
         .sidebar-lp-widget {
             margin-top: 16px;
@@ -5888,15 +5998,15 @@
                         <p>The NFT marketplace where all fees flow back to the community</p>
                         <div class="hero-stats-row">
                             <div class="hero-stat-pill">
-                                <span class="stat-value">$1.2M</span>
+                                <span class="stat-value" id="hero-mcap">--</span>
                                 <span class="stat-label">POND MCAP</span>
                             </div>
                             <div class="hero-stat-pill">
-                                <span class="stat-value">30K</span>
+                                <span class="stat-value" id="hero-nfts">--</span>
                                 <span class="stat-label">NFTs</span>
                             </div>
                             <div class="hero-stat-pill">
-                                <span class="stat-value green">24.8%</span>
+                                <span class="stat-value green" id="hero-apy">--</span>
                                 <span class="stat-label">LP APY</span>
                             </div>
                         </div>
@@ -5936,15 +6046,15 @@
                                     </div>
                                     <div class="lp-spotlight-stats">
                                         <div class="lp-fomo-stat">
-                                            <span class="lp-fomo-value">847</span>
+                                            <span class="lp-fomo-value" id="spotlight-stakers">--</span>
                                             <span class="lp-fomo-label">Stakers Earning</span>
                                         </div>
                                         <div class="lp-fomo-stat">
-                                            <span class="lp-fomo-value green">2.4M</span>
+                                            <span class="lp-fomo-value green" id="spotlight-distributed">--</span>
                                             <span class="lp-fomo-label">POND Distributed</span>
                                         </div>
                                         <div class="lp-fomo-stat">
-                                            <span class="lp-fomo-value">$1.2M</span>
+                                            <span class="lp-fomo-value" id="spotlight-tvl">--</span>
                                             <span class="lp-fomo-label">Total Value Locked</span>
                                         </div>
                                     </div>
@@ -6446,7 +6556,7 @@
                     <!-- Stats Row -->
                     <div class="staking-stats-row">
                         <div class="staking-stat-pill">
-                            <span class="stat-big">$1.2M</span>
+                            <span class="stat-big" id="staking-mcap">--</span>
                             <span class="stat-label">POND MCAP</span>
                         </div>
                         <div class="staking-stat-pill highlight">
@@ -6636,102 +6746,88 @@
                 <div class="container">
                     <div class="page-hero-content">
                         <span class="hero-badge">🎨 CREATOR HUB</span>
-                        <h1>Featured Artists</h1>
-                        <p>Discover and collect from the best digital artists</p>
+                        <h1>Launch Your Art</h1>
+                        <p>Be among the first creators on TOADZ Marketplace</p>
                     </div>
                 </div>
             </section>
 
-            <!-- Featured Artists - Large Premium Cards -->
-            <section class="featured-artists-section">
-                <div class="container">
-                    <div class="featured-artists-grid">
-                        <!-- Artist 1 - PastaPrimavera -->
-                        <div class="featured-artist-card" onclick="showPage('artist-storefront')">
-                            <div class="fa-banner" style="background-image: url('https://ipfs.io/ipfs/QmP45Rfhy75RybFuLcwd1CR9vF6qznw95qQPxcA5TeBNYk/421.png')"></div>
-                            <div class="fa-content">
-                                <div class="fa-avatar">
-                                    <img src="https://ipfs.io/ipfs/QmP45Rfhy75RybFuLcwd1CR9vF6qznw95qQPxcA5TeBNYk/420.png" alt="">
-                                </div>
-                                <div class="fa-badge">⭐ FEATURED</div>
-                                <h3 class="fa-name">PastaPrimavera</h3>
-                                <p class="fa-style">Italian-Inspired Digital</p>
-                                <div class="fa-stats">
-                                    <div class="fa-stat"><span class="fa-stat-value">156</span><span class="fa-stat-label">Items</span></div>
-                                    <div class="fa-stat"><span class="fa-stat-value">45K</span><span class="fa-stat-label">Volume</span></div>
-                                    <div class="fa-stat"><span class="fa-stat-value">89</span><span class="fa-stat-label">Collectors</span></div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Artist 2 - Freak -->
-                        <div class="featured-artist-card" onclick="showPage('artist-storefront')">
-                            <div class="fa-banner" style="background-image: url('https://ipfs.io/ipfs/QmP45Rfhy75RybFuLcwd1CR9vF6qznw95qQPxcA5TeBNYk/667.png')"></div>
-                            <div class="fa-content">
-                                <div class="fa-avatar">
-                                    <img src="https://ipfs.io/ipfs/QmP45Rfhy75RybFuLcwd1CR9vF6qznw95qQPxcA5TeBNYk/666.png" alt="">
-                                </div>
-                                <div class="fa-badge hot">🔥 HOT</div>
-                                <h3 class="fa-name">Freak</h3>
-                                <p class="fa-style">Chaos & Dark Surrealism</p>
-                                <div class="fa-stats">
-                                    <div class="fa-stat"><span class="fa-stat-value">342</span><span class="fa-stat-label">Items</span></div>
-                                    <div class="fa-stat"><span class="fa-stat-value">1.2M</span><span class="fa-stat-label">Volume</span></div>
-                                    <div class="fa-stat"><span class="fa-stat-value">267</span><span class="fa-stat-label">Collectors</span></div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Artist 3 - Luna -->
-                        <div class="featured-artist-card" onclick="showPage('artist-storefront')">
-                            <div class="fa-banner" style="background-image: url('https://ipfs.io/ipfs/QmP45Rfhy75RybFuLcwd1CR9vF6qznw95qQPxcA5TeBNYk/893.png')"></div>
-                            <div class="fa-content">
-                                <div class="fa-avatar">
-                                    <img src="https://ipfs.io/ipfs/QmP45Rfhy75RybFuLcwd1CR9vF6qznw95qQPxcA5TeBNYk/892.png" alt="">
-                                </div>
-                                <div class="fa-badge">⭐ FEATURED</div>
-                                <h3 class="fa-name">Luna</h3>
-                                <p class="fa-style">Celestial Dreams</p>
-                                <div class="fa-stats">
-                                    <div class="fa-stat"><span class="fa-stat-value">89</span><span class="fa-stat-label">Items</span></div>
-                                    <div class="fa-stat"><span class="fa-stat-value">234K</span><span class="fa-stat-label">Volume</span></div>
-                                    <div class="fa-stat"><span class="fa-stat-value">156</span><span class="fa-stat-label">Collectors</span></div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Artist 4 - Mystic -->
-                        <div class="featured-artist-card" onclick="showPage('artist-storefront')">
-                            <div class="fa-banner" style="background-image: url('https://ipfs.io/ipfs/QmP45Rfhy75RybFuLcwd1CR9vF6qznw95qQPxcA5TeBNYk/157.png')"></div>
-                            <div class="fa-content">
-                                <div class="fa-avatar">
-                                    <img src="https://ipfs.io/ipfs/QmP45Rfhy75RybFuLcwd1CR9vF6qznw95qQPxcA5TeBNYk/156.png" alt="">
-                                </div>
-                                <div class="fa-badge new">✨ NEW</div>
-                                <h3 class="fa-name">Mystic</h3>
-                                <p class="fa-style">Ethereal Visions</p>
-                                <div class="fa-stats">
-                                    <div class="fa-stat"><span class="fa-stat-value">67</span><span class="fa-stat-label">Items</span></div>
-                                    <div class="fa-stat"><span class="fa-stat-value">98K</span><span class="fa-stat-label">Volume</span></div>
-                                    <div class="fa-stat"><span class="fa-stat-value">78</span><span class="fa-stat-label">Collectors</span></div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            <!-- Artistic Divider -->
-            <div class="artist-divider">
-                <div class="divider-line"></div>
-                <div class="divider-text">DISCOVER MORE</div>
-                <div class="divider-line"></div>
-            </div>
-
+            <!-- Apply Section -->
             <section class="section">
-                <div class="container">
-                    <h3 class="all-artists-title">All Artists</h3>
-                    <div class="artists-grid" id="artists-grid"></div>
+                <div class="container" style="max-width: 700px;">
+                    <div class="artist-apply-card">
+                        <div class="apply-header">
+                            <div class="apply-icon">🎨</div>
+                            <h2>Apply to be an Artist</h2>
+                            <p>We're looking for talented creators to launch collections on Flare. Zero platform fees for approved artists during launch period.</p>
+                        </div>
+                        
+                        <form id="artist-apply-form" class="apply-form">
+                            <div class="form-group">
+                                <label>Artist / Studio Name *</label>
+                                <input type="text" id="artist-name" placeholder="Your artist name" required>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label>Email *</label>
+                                <input type="email" id="artist-email" placeholder="contact@example.com" required>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label>Portfolio / Website</label>
+                                <input type="url" id="artist-portfolio" placeholder="https://yourportfolio.com">
+                            </div>
+                            
+                            <div class="form-group">
+                                <label>Twitter / X Handle</label>
+                                <input type="text" id="artist-twitter" placeholder="@yourhandle">
+                            </div>
+                            
+                            <div class="form-group">
+                                <label>Art Style *</label>
+                                <select id="artist-style" required>
+                                    <option value="">Select your style</option>
+                                    <option value="generative">Generative / AI-Assisted</option>
+                                    <option value="illustration">Illustration</option>
+                                    <option value="3d">3D Art</option>
+                                    <option value="pixel">Pixel Art</option>
+                                    <option value="photography">Photography</option>
+                                    <option value="abstract">Abstract</option>
+                                    <option value="anime">Anime / Manga</option>
+                                    <option value="surreal">Surrealism</option>
+                                    <option value="other">Other</option>
+                                </select>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label>Collection Size (estimated)</label>
+                                <select id="artist-size">
+                                    <option value="">Select size</option>
+                                    <option value="1-100">1 - 100 pieces</option>
+                                    <option value="100-1000">100 - 1,000 pieces</option>
+                                    <option value="1000-5000">1,000 - 5,000 pieces</option>
+                                    <option value="5000-10000">5,000 - 10,000 pieces</option>
+                                    <option value="10000+">10,000+</option>
+                                </select>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label>Tell us about your art *</label>
+                                <textarea id="artist-bio" placeholder="Describe your art style, inspiration, and what you plan to create..." rows="4" required></textarea>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label>Wallet Address (Flare)</label>
+                                <input type="text" id="artist-wallet" placeholder="0x...">
+                            </div>
+                            
+                            <button type="submit" class="apply-submit-btn">
+                                Submit Application →
+                            </button>
+                            
+                            <p class="apply-note">Applications are reviewed within 48 hours. We'll contact you via email.</p>
+                        </form>
+                    </div>
                 </div>
             </section>
         </div>
@@ -8072,39 +8168,58 @@
             }
         }, 1000);
 
+        // FLR price - fetch from coingecko or hardcode for now
+        const FLR_PRICE_USD = 0.01499;
+        const POND_SUPPLY = 11900000000; // 11.9 billion
+
+        // Artist Application Form Handler
+        document.getElementById('artist-apply-form')?.addEventListener('submit', async function(e) {
+            e.preventDefault();
+            
+            const formData = {
+                name: document.getElementById('artist-name').value,
+                email: document.getElementById('artist-email').value,
+                portfolio: document.getElementById('artist-portfolio').value,
+                twitter: document.getElementById('artist-twitter').value,
+                style: document.getElementById('artist-style').value,
+                size: document.getElementById('artist-size').value,
+                bio: document.getElementById('artist-bio').value,
+                wallet: document.getElementById('artist-wallet').value,
+                timestamp: new Date().toISOString()
+            };
+            
+            // Send email via mailto (simple approach) or webhook
+            const subject = encodeURIComponent(`TOADZ Artist Application: ${formData.name}`);
+            const body = encodeURIComponent(`
+Artist Application
+
+Name: ${formData.name}
+Email: ${formData.email}
+Portfolio: ${formData.portfolio || 'Not provided'}
+Twitter: ${formData.twitter || 'Not provided'}
+Style: ${formData.style}
+Collection Size: ${formData.size || 'Not specified'}
+Wallet: ${formData.wallet || 'Not provided'}
+
+About their art:
+${formData.bio}
+
+Submitted: ${formData.timestamp}
+            `);
+            
+            // Open email client
+            window.location.href = `mailto:contact@artdept.fun?subject=${subject}&body=${body}`;
+            
+            // Show success message
+            alert('Thanks for applying! Your email client should open with the application. If not, please email contact@artdept.fun directly.');
+            
+            // Reset form
+            this.reset();
+        });
+
         // Load public pool stats immediately (no wallet needed)
         async function loadPublicPoolStats() {
             try {
-                const provider = new ethers.JsonRpcProvider('https://flare-api.flare.network/ext/C/rpc');
-                const poolAddress = '0x42598464cc7fE6507C4ebf9009fe1adccE44b0BC';
-                const poolABI = [
-                    'function getPoolStats() view returns (uint256 reserveFLR, uint256 reservePOND, uint256 totalShares, uint256 tvl, uint256 pondPrice)'
-                ];
-                const pool = new ethers.Contract(poolAddress, poolABI, provider);
-                const stats = await pool.getPoolStats();
-                
-                poolStats = {
-                    reserveFLR: ethers.formatEther(stats[0]),
-                    reservePOND: ethers.formatEther(stats[1]),
-                    totalShares: ethers.formatEther(stats[2]),
-                    tvl: ethers.formatEther(stats[3]),
-                    pondPrice: ethers.formatEther(stats[4])
-                };
-                
-                document.getElementById('pool-tvl').textContent = parseFloat(poolStats.tvl).toFixed(0);
-                document.getElementById('pool-apy').textContent = '--';
-                document.getElementById('pool-nfts-staked').textContent = '--';
-            } catch (e) {
-                console.error('Error loading public pool stats:', e);
-            }
-        }
-        
-        loadPublicPoolStats();
-
-        // Load public pool stats on page load (no wallet needed)
-        async function loadPublicPoolStats() {
-            try {
-                // Use read-only provider
                 const provider = new ethers.JsonRpcProvider('https://flare-api.flare.network/ext/C/rpc');
                 const poolAddress = '0x42598464cc7fE6507C4ebf9009fe1adccE44b0BC';
                 const poolABI = [
@@ -8114,19 +8229,70 @@
                 const pool = new ethers.Contract(poolAddress, poolABI, provider);
                 
                 const stats = await pool.getPoolStats();
+                const reserveFLR = parseFloat(ethers.formatEther(stats[0]));
+                const reservePOND = parseFloat(ethers.formatEther(stats[1]));
+                const tvl = parseFloat(ethers.formatEther(stats[3]));
+                
                 poolStats = {
-                    reserveFLR: ethers.formatEther(stats[0]),
-                    reservePOND: ethers.formatEther(stats[1]),
+                    reserveFLR: reserveFLR,
+                    reservePOND: reservePOND,
                     totalShares: ethers.formatEther(stats[2]),
-                    tvl: ethers.formatEther(stats[3]),
+                    tvl: tvl,
                     pondPrice: ethers.formatEther(stats[4])
                 };
                 
-                document.getElementById('pool-tvl').textContent = parseFloat(poolStats.tvl).toLocaleString();
-                document.getElementById('pool-apy').textContent = '--';
-                document.getElementById('pool-nfts-staked').textContent = '--';
+                // Calculate POND price: reserveFLR / reservePOND * FLR_PRICE
+                const pondPriceInFLR = reservePOND > 0 ? reserveFLR / reservePOND : 0;
+                const pondPriceUSD = pondPriceInFLR * FLR_PRICE_USD;
+                const marketCap = pondPriceUSD * POND_SUPPLY;
+                const tvlUSD = tvl * FLR_PRICE_USD;
+                
+                // Format market cap
+                function formatUSD(num) {
+                    if (num >= 1000000) return '$' + (num / 1000000).toFixed(2) + 'M';
+                    if (num >= 1000) return '$' + (num / 1000).toFixed(1) + 'K';
+                    return '$' + num.toFixed(0);
+                }
+                
+                // Update all displays
+                const mcapFormatted = formatUSD(marketCap);
+                const tvlFormatted = formatUSD(tvlUSD);
+                
+                // Staking page
+                const poolTvlEl = document.getElementById('pool-tvl');
+                if (poolTvlEl) poolTvlEl.textContent = tvl.toLocaleString(undefined, {maximumFractionDigits: 0});
+                
+                const poolApyEl = document.getElementById('pool-apy');
+                if (poolApyEl) poolApyEl.textContent = '--';
+                
+                const poolNftsEl = document.getElementById('pool-nfts-staked');
+                if (poolNftsEl) poolNftsEl.textContent = '--';
+                
+                const stakingMcapEl = document.getElementById('staking-mcap');
+                if (stakingMcapEl) stakingMcapEl.textContent = mcapFormatted;
+                
+                // Hero stats
+                const heroMcapEl = document.getElementById('hero-mcap');
+                if (heroMcapEl) heroMcapEl.textContent = mcapFormatted;
+                
+                const heroNftsEl = document.getElementById('hero-nfts');
+                if (heroNftsEl) heroNftsEl.textContent = '--';
+                
+                const heroApyEl = document.getElementById('hero-apy');
+                if (heroApyEl) heroApyEl.textContent = '--';
+                
+                // Spotlight
+                const spotlightTvlEl = document.getElementById('spotlight-tvl');
+                if (spotlightTvlEl) spotlightTvlEl.textContent = tvlFormatted;
+                
+                const spotlightStakersEl = document.getElementById('spotlight-stakers');
+                if (spotlightStakersEl) spotlightStakersEl.textContent = '--';
+                
+                const spotlightDistEl = document.getElementById('spotlight-distributed');
+                if (spotlightDistEl) spotlightDistEl.textContent = '--';
                 
                 console.log('Pool stats loaded:', poolStats);
+                console.log('POND price:', pondPriceUSD, 'Market cap:', marketCap);
             } catch (e) {
                 console.error('Error loading public pool stats:', e);
             }
