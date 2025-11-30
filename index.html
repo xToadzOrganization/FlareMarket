@@ -8269,6 +8269,11 @@
         document.getElementById('artist-apply-form')?.addEventListener('submit', async function(e) {
             e.preventDefault();
             
+            const submitBtn = this.querySelector('button[type="submit"]');
+            const originalText = submitBtn.textContent;
+            submitBtn.textContent = 'Submitting...';
+            submitBtn.disabled = true;
+            
             const formData = {
                 name: document.getElementById('artist-name').value,
                 email: document.getElementById('artist-email').value,
@@ -8277,37 +8282,31 @@
                 style: document.getElementById('artist-style').value,
                 size: document.getElementById('artist-size').value,
                 bio: document.getElementById('artist-bio').value,
-                wallet: document.getElementById('artist-wallet').value,
-                timestamp: new Date().toISOString()
+                wallet: document.getElementById('artist-wallet').value
             };
             
-            // Send email via mailto (simple approach) or webhook
-            const subject = encodeURIComponent(`TOADZ Artist Application: ${formData.name}`);
-            const body = encodeURIComponent(`
-Artist Application
-
-Name: ${formData.name}
-Email: ${formData.email}
-Portfolio: ${formData.portfolio || 'Not provided'}
-Twitter: ${formData.twitter || 'Not provided'}
-Style: ${formData.style}
-Collection Size: ${formData.size || 'Not specified'}
-Wallet: ${formData.wallet || 'Not provided'}
-
-About their art:
-${formData.bio}
-
-Submitted: ${formData.timestamp}
-            `);
+            try {
+                const response = await fetch('https://toadz-indexer-production.up.railway.app/api/artist-apply', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(formData)
+                });
+                
+                const result = await response.json();
+                
+                if (result.success) {
+                    alert('Application submitted! We\'ll review it within 48 hours.');
+                    this.reset();
+                } else {
+                    alert('Error: ' + (result.error || 'Failed to submit'));
+                }
+            } catch (err) {
+                console.error('Submit error:', err);
+                alert('Failed to submit. Please try again or email contact@artdept.fun');
+            }
             
-            // Open email client
-            window.location.href = `mailto:contact@artdept.fun?subject=${subject}&body=${body}`;
-            
-            // Show success message
-            alert('Thanks for applying! Your email client should open with the application. If not, please email contact@artdept.fun directly.');
-            
-            // Reset form
-            this.reset();
+            submitBtn.textContent = originalText;
+            submitBtn.disabled = false;
         });
 
         // Load public pool stats immediately (no wallet needed)
