@@ -503,6 +503,34 @@
 
         .toast.hiding { animation: slideOut 0.3s ease forwards; }
 
+        .hero-cta-btn {
+            background: var(--accent);
+            color: var(--bg-void);
+            border: none;
+            border-radius: 12px;
+            padding: 14px 28px;
+            font-size: 15px;
+            font-weight: 700;
+            cursor: pointer;
+            margin-top: 20px;
+            transition: all 150ms ease;
+        }
+
+        .hero-cta-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px var(--accent-glow);
+        }
+
+        .storefront-fee-note {
+            text-align: center;
+            padding: 12px;
+            background: rgba(0,255,136,0.1);
+            border-radius: 8px;
+            margin-bottom: 16px;
+            font-size: 14px;
+            font-weight: 600;
+        }
+
         /* Sidebar LP Widget */
         .sidebar-lp-widget {
             margin-top: 16px;
@@ -6857,133 +6885,65 @@
                 <div class="container">
                     <div class="page-hero-content">
                         <span class="hero-badge">🎨 CREATOR HUB</span>
-                        <h1>Featured Artists</h1>
-                        <p>Discover and collect from the best digital artists</p>
+                        <h1>Artist Storefronts</h1>
+                        <p>Discover creators and launch your own storefront</p>
                     </div>
+                    <button class="hero-cta-btn" onclick="openCreateStorefront()">
+                        Create Storefront <span style="opacity: 0.7; font-size: 12px;">10 FLR</span>
+                    </button>
                 </div>
             </section>
 
-            <!-- Featured Artists -->
-            <section class="featured-artists-section">
-                <div class="container">
-                    <div class="featured-artists-grid">
-                        <!-- Artist 1 - Freak -->
-                        <div class="featured-artist-card" onclick="showPage('artist-storefront')">
-                            <div class="fa-banner" style="background-image: url('https://ipfs.io/ipfs/QmP45Rfhy75RybFuLcwd1CR9vF6qznw95qQPxcA5TeBNYk/667.png')"></div>
-                            <div class="fa-content">
-                                <div class="fa-avatar">
-                                    <img src="https://ipfs.io/ipfs/QmP45Rfhy75RybFuLcwd1CR9vF6qznw95qQPxcA5TeBNYk/666.png" alt="">
-                                </div>
-                                <div class="fa-badge">⭐ FEATURED</div>
-                                <h3 class="fa-name">Freak</h3>
-                                <p class="fa-style">Chaos & Dark Surrealism</p>
-                                <div class="fa-stats">
-                                    <div class="fa-stat"><span class="fa-stat-value">--</span><span class="fa-stat-label">Items</span></div>
-                                    <div class="fa-stat"><span class="fa-stat-value">--</span><span class="fa-stat-label">Volume</span></div>
-                                    <div class="fa-stat"><span class="fa-stat-value">--</span><span class="fa-stat-label">Collectors</span></div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Artist 2 - PastaPrimavera -->
-                        <div class="featured-artist-card" onclick="showPage('artist-storefront')">
-                            <div class="fa-banner" style="background-image: url('https://ipfs.io/ipfs/QmP45Rfhy75RybFuLcwd1CR9vF6qznw95qQPxcA5TeBNYk/421.png')"></div>
-                            <div class="fa-content">
-                                <div class="fa-avatar">
-                                    <img src="https://ipfs.io/ipfs/QmP45Rfhy75RybFuLcwd1CR9vF6qznw95qQPxcA5TeBNYk/420.png" alt="">
-                                </div>
-                                <div class="fa-badge hot">🔥 HOT</div>
-                                <h3 class="fa-name">PastaPrimavera</h3>
-                                <p class="fa-style">Italian-Inspired Digital</p>
-                                <div class="fa-stats">
-                                    <div class="fa-stat"><span class="fa-stat-value">--</span><span class="fa-stat-label">Items</span></div>
-                                    <div class="fa-stat"><span class="fa-stat-value">--</span><span class="fa-stat-label">Volume</span></div>
-                                    <div class="fa-stat"><span class="fa-stat-value">--</span><span class="fa-stat-label">Collectors</span></div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            <!-- Apply Section -->
+            <!-- Storefronts Grid -->
             <section class="section">
-                <div class="container" style="max-width: 700px;">
-                    <div class="artist-apply-card">
-                        <div class="apply-header">
-                            <div class="apply-icon">🎨</div>
-                            <h2>Apply to be an Artist</h2>
-                            <p>We're looking for talented creators to launch collections on Flare. Zero platform fees for approved artists during launch period.</p>
-                        </div>
-                        
-                        <form id="artist-apply-form" class="apply-form">
-                            <div class="form-group">
-                                <label>Artist / Studio Name *</label>
-                                <input type="text" id="artist-name" placeholder="Your artist name" required>
-                            </div>
-                            
-                            <div class="form-group">
-                                <label>Email *</label>
-                                <input type="email" id="artist-email" placeholder="contact@example.com" required>
-                            </div>
-                            
-                            <div class="form-group">
-                                <label>Portfolio / Website</label>
-                                <input type="url" id="artist-portfolio" placeholder="https://yourportfolio.com">
-                            </div>
-                            
-                            <div class="form-group">
-                                <label>Twitter / X Handle</label>
-                                <input type="text" id="artist-twitter" placeholder="@yourhandle">
-                            </div>
-                            
-                            <div class="form-group">
-                                <label>Art Style *</label>
-                                <select id="artist-style" required>
-                                    <option value="">Select your style</option>
-                                    <option value="generative">Generative / AI-Assisted</option>
-                                    <option value="illustration">Illustration</option>
-                                    <option value="3d">3D Art</option>
-                                    <option value="pixel">Pixel Art</option>
-                                    <option value="photography">Photography</option>
-                                    <option value="abstract">Abstract</option>
-                                    <option value="anime">Anime / Manga</option>
-                                    <option value="surreal">Surrealism</option>
-                                    <option value="other">Other</option>
-                                </select>
-                            </div>
-                            
-                            <div class="form-group">
-                                <label>Collection Size (estimated)</label>
-                                <select id="artist-size">
-                                    <option value="">Select size</option>
-                                    <option value="1-100">1 - 100 pieces</option>
-                                    <option value="100-1000">100 - 1,000 pieces</option>
-                                    <option value="1000-5000">1,000 - 5,000 pieces</option>
-                                    <option value="5000-10000">5,000 - 10,000 pieces</option>
-                                    <option value="10000+">10,000+</option>
-                                </select>
-                            </div>
-                            
-                            <div class="form-group">
-                                <label>Tell us about your art *</label>
-                                <textarea id="artist-bio" placeholder="Describe your art style, inspiration, and what you plan to create..." rows="4" required></textarea>
-                            </div>
-                            
-                            <div class="form-group">
-                                <label>Wallet Address (Flare)</label>
-                                <input type="text" id="artist-wallet" placeholder="0x...">
-                            </div>
-                            
-                            <button type="submit" class="apply-submit-btn">
-                                Submit Application →
-                            </button>
-                            
-                            <p class="apply-note">Applications are reviewed within 48 hours. We'll contact you via email.</p>
-                        </form>
+                <div class="container">
+                    <div class="featured-artists-grid" id="storefronts-grid">
+                        <!-- Populated by JS -->
                     </div>
                 </div>
             </section>
+        </div>
+
+        <!-- CREATE STOREFRONT MODAL -->
+        <div class="modal" id="storefront-modal" onclick="closeStorefrontModal(event)">
+            <div class="modal-content" onclick="event.stopPropagation()">
+                <div class="modal-header">
+                    <h3>Create Your Storefront</h3>
+                    <button class="modal-close" onclick="closeStorefrontModal()">×</button>
+                </div>
+                <form id="storefront-form" class="apply-form">
+                    <div class="form-group">
+                        <label>Artist / Studio Name *</label>
+                        <input type="text" id="sf-name" placeholder="Your artist name" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Bio</label>
+                        <textarea id="sf-bio" placeholder="Tell people about your art..." rows="3"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label>Avatar URL</label>
+                        <input type="url" id="sf-avatar" placeholder="https://... or IPFS link">
+                    </div>
+                    <div class="form-group">
+                        <label>Banner URL</label>
+                        <input type="url" id="sf-banner" placeholder="https://... or IPFS link">
+                    </div>
+                    <div class="form-group">
+                        <label>Twitter / X</label>
+                        <input type="text" id="sf-twitter" placeholder="@handle">
+                    </div>
+                    <div class="form-group">
+                        <label>Website</label>
+                        <input type="url" id="sf-website" placeholder="https://yoursite.com">
+                    </div>
+                    <div class="storefront-fee-note" id="sf-fee-note">
+                        <span>⚡ Cost: 10 FLR</span>
+                    </div>
+                    <button type="submit" class="apply-submit-btn" id="sf-submit-btn">
+                        Create Storefront →
+                    </button>
+                </form>
+            </div>
         </div>
 
         <!-- ARTIST STOREFRONT -->
@@ -7732,37 +7692,142 @@
             `).join('');
         }
 
-        function renderArtists() {
-            const container = document.getElementById('artists-grid');
+        // Storefront functions
+        const ADMIN_WALLET = '0xcEA86bBdb5cd33ddbA8dC0ed3c838605EeF7c715'.toLowerCase();
+        const FEE_WALLET = '0xcEA86bBdb5cd33ddbA8dC0ed3c838605EeF7c715';
+        const STOREFRONT_FEE = '10'; // 10 FLR
+
+        async function loadStorefronts() {
+            const container = document.getElementById('storefronts-grid');
             if (!container) return;
-            if (artists.length === 0) {
-                container.innerHTML = `
-                    <div class="empty-state artist-apply">
-                        <div class="empty-icon">🎨</div>
-                        <p>Be an early creator</p>
-                        <span>Launch your collection on TOADZ</span>
-                        <a href="https://forms.gle/YOUR_FORM_ID" target="_blank" class="apply-btn">Apply to be an Artist →</a>
-                    </div>`;
-                return;
-            }
-            container.innerHTML = artists.map(a => `
-                <div class="artist-card" onclick="showPage('artist-storefront')">
-                    <div class="artist-banner">
-                        <img src="${a.banner}" alt="${a.name}">
-                        ${a.badge ? `<span class="artist-banner-badge ${a.badge}">${a.badge === 'featured' ? '⭐ Featured' : a.badge === 'hot' ? '🔥 Hot' : '📢 Promo'}</span>` : ''}
-                        <div class="artist-avatar"><img src="${a.image}" alt="${a.name}"></div>
-                    </div>
-                    <div class="artist-content">
-                        <h3 class="artist-name">${a.name} <span class="verified-badge">✓</span></h3>
-                        <div class="artist-style">${a.style}</div>
-                        <p class="artist-bio">${a.bio}</p>
-                        <div class="artist-stats">
-                            <div><strong>${a.items}</strong> <span>items</span></div>
-                            <div><strong>${a.volume}</strong> <span>volume</span></div>
+            
+            try {
+                const res = await fetch(`${INDEXER_URL}/api/storefronts`);
+                const storefronts = await res.json();
+                
+                if (!storefronts || storefronts.length === 0) {
+                    container.innerHTML = `
+                        <div class="empty-state" style="grid-column: 1/-1;">
+                            <div class="empty-icon">🎨</div>
+                            <p>No storefronts yet</p>
+                            <span>Be the first creator on TOADZ</span>
+                        </div>`;
+                    return;
+                }
+                
+                container.innerHTML = storefronts.map(s => `
+                    <div class="featured-artist-card" onclick="viewStorefront('${s.wallet}')">
+                        <div class="fa-banner" style="background-image: url('${s.banner || 'https://via.placeholder.com/400x150/1a1a2e/00ff88?text='}')"></div>
+                        <div class="fa-content">
+                            <div class="fa-avatar">
+                                <img src="${s.avatar || 'https://via.placeholder.com/80/1a1a2e/00ff88?text=' + s.name.charAt(0)}" alt="" onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2260%22>${s.name.charAt(0)}</text></svg>'">
+                            </div>
+                            <h3 class="fa-name">${s.name}</h3>
+                            <p class="fa-style">${s.bio || ''}</p>
+                            <div class="fa-stats">
+                                <div class="fa-stat"><span class="fa-stat-value">--</span><span class="fa-stat-label">Items</span></div>
+                                <div class="fa-stat"><span class="fa-stat-value">--</span><span class="fa-stat-label">Volume</span></div>
+                            </div>
                         </div>
                     </div>
-                </div>
-            `).join('');
+                `).join('');
+            } catch (err) {
+                console.error('Failed to load storefronts:', err);
+                container.innerHTML = '<div class="empty-state"><p>Failed to load storefronts</p></div>';
+            }
+        }
+
+        function viewStorefront(wallet) {
+            // TODO: Load specific storefront page
+            showPage('artist-storefront');
+        }
+
+        function openCreateStorefront() {
+            if (!window.toadz || !window.toadz.isConnected) {
+                showToast('Connect Wallet', 'Please connect your wallet first', 'error');
+                openConnectModal();
+                return;
+            }
+            
+            // Check if admin
+            const isAdmin = window.toadz.userAddress?.toLowerCase() === ADMIN_WALLET;
+            const feeNote = document.getElementById('sf-fee-note');
+            if (feeNote) {
+                feeNote.innerHTML = isAdmin ? '<span style="color: var(--accent);">✓ Admin - Free</span>' : '<span>⚡ Cost: 10 FLR</span>';
+            }
+            
+            document.getElementById('storefront-modal').classList.add('open');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeStorefrontModal(e) {
+            if (!e || e.target === e.currentTarget) {
+                document.getElementById('storefront-modal').classList.remove('open');
+                document.body.style.overflow = '';
+            }
+        }
+
+        document.getElementById('storefront-form')?.addEventListener('submit', async function(e) {
+            e.preventDefault();
+            
+            const wallet = window.toadz.userAddress;
+            const isAdmin = wallet?.toLowerCase() === ADMIN_WALLET;
+            
+            const submitBtn = document.getElementById('sf-submit-btn');
+            submitBtn.textContent = 'Creating...';
+            submitBtn.disabled = true;
+            
+            const data = {
+                wallet: wallet,
+                name: document.getElementById('sf-name').value,
+                bio: document.getElementById('sf-bio').value,
+                avatar: document.getElementById('sf-avatar').value,
+                banner: document.getElementById('sf-banner').value,
+                twitter: document.getElementById('sf-twitter').value,
+                website: document.getElementById('sf-website').value
+            };
+            
+            try {
+                // If not admin, send payment first
+                if (!isAdmin) {
+                    const tx = await window.toadz.signer.sendTransaction({
+                        to: FEE_WALLET,
+                        value: ethers.parseEther(STOREFRONT_FEE)
+                    });
+                    await tx.wait();
+                    data.txHash = tx.hash;
+                    showToast('Payment Sent', 'Creating storefront...', 'success');
+                }
+                
+                // Create storefront
+                const res = await fetch(`${INDEXER_URL}/api/storefront`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(data)
+                });
+                
+                const result = await res.json();
+                
+                if (result.success) {
+                    showToast('Storefront Created!', data.name, 'success');
+                    closeStorefrontModal();
+                    this.reset();
+                    loadStorefronts();
+                } else {
+                    throw new Error(result.error || 'Failed to create');
+                }
+            } catch (err) {
+                console.error('Storefront error:', err);
+                showToast('Error', err.message || 'Failed to create storefront', 'error');
+            }
+            
+            submitBtn.textContent = 'Create Storefront →';
+            submitBtn.disabled = false;
+        });
+
+        // Legacy - keep for compatibility
+        function renderArtists() {
+            loadStorefronts();
         }
 
         function renderAllCollections() {
