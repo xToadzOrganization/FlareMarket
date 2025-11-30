@@ -747,5 +747,8 @@ window.toadz = {
     calculateSwapOutput,
     refreshUserData,
     CONTRACTS,
-    CHAINS
+    CHAINS,
+    get userAddress() { return userAddress; },
+    get currentChain() { return currentChain; },
+    get isConnected() { return !!userAddress; }
 };
