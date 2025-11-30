@@ -6055,6 +6055,22 @@
         }
 
         .hidden { display: none !important; }
+
+        /* Storefront Modal - hidden by default */
+        #storefront-modal {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(0,0,0,0.8);
+            backdrop-filter: blur(8px);
+            z-index: 9999;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+        #storefront-modal.open {
+            display: flex;
+        }
     </style>
 </head>
 <body>
@@ -6888,9 +6904,11 @@
                         <h1>Artist Storefronts</h1>
                         <p>Discover creators and launch your own storefront</p>
                     </div>
-                    <button class="hero-cta-btn" onclick="openCreateStorefront()">
-                        Create Storefront <span style="opacity: 0.7; font-size: 12px;">10 FLR</span>
-                    </button>
+                    <div style="text-align: center; margin-top: 20px;">
+                        <button class="hero-cta-btn" onclick="openCreateStorefront()">
+                            Create Storefront <span style="opacity: 0.7; font-size: 12px;">10 FLR</span>
+                        </button>
+                    </div>
                 </div>
             </section>
 
@@ -6936,11 +6954,11 @@
         </div>
 
         <!-- CREATE STOREFRONT MODAL -->
-        <div class="modal" id="storefront-modal" onclick="closeStorefrontModal(event)">
-            <div class="modal-content" style="max-width: 500px;" onclick="event.stopPropagation()">
-                <div class="modal-header">
-                    <h3>Create Your Storefront</h3>
-                    <button class="modal-close" onclick="closeStorefrontModal()">×</button>
+        <div id="storefront-modal" onclick="closeStorefrontModal(event)">
+            <div style="background: var(--bg-card); border: 1px solid var(--border); border-radius: 24px; width: 100%; max-width: 500px; position: relative; max-height: 90vh; overflow-y: auto;" onclick="event.stopPropagation()">
+                <div style="display: flex; justify-content: space-between; align-items: center; padding: 20px 24px; border-bottom: 1px solid var(--border);">
+                    <h3 style="font-size: 18px; font-weight: 700; margin: 0;">Create Your Storefront</h3>
+                    <button onclick="closeStorefrontModal()" style="background: none; border: none; color: var(--text-muted); font-size: 24px; cursor: pointer; padding: 0;">×</button>
                 </div>
                 <form id="storefront-form" class="apply-form">
                     <div class="form-group">
@@ -7966,19 +7984,52 @@
         // Load Songbird data from indexer
         async function loadSongbirdData() {
             const container = document.getElementById('all-collections-grid');
+            const homeScroll = document.getElementById('collections-scroll');
             
-            // Hardcoded Songbird collections for now
-            const songbirdCollections = [
-                { name: 'sToadz', image: 'https://ipfs.io/ipfs/QmP45Rfhy75RybFuLcwd1CR9vF6qznw95qQPxcA5TeBNYk/1.png', supply: 10000, floor: '50K SGB' },
-                { name: 'Luxury Lofts', image: 'https://nftstorage.link/ipfs/bafybeiet5uqcxxkpdwyvnufsglah6arxlukxhciz3jy2h2m24scmjyjciq/1.gif', supply: 10000, floor: '25K SGB' },
-                { name: 'Songbird City', image: 'https://nftstorage.link/ipfs/bafybeibi35a2w5ue6s7s7ka42xhkbbtpplgyvovefetxqwr6fzmvn6umpi/1.png', supply: 10000, floor: '10K SGB' }
-            ];
+            // ALL Songbird collections with IPFS images
+            const songbirdCollections = {
+                '0x35afb6ba51839dedd33140a3b704b39933d1e642': { name: 'sToadz', supply: 10000, image: 'https://ipfs.io/ipfs/QmP45Rfhy75RybFuLcwd1CR9vF6qznw95qQPxcA5TeBNYk/1.png' },
+                '0x91aa85a172dd3e7eea4ad1a4b33e90cbf3b99ed8': { name: 'Luxury Lofts', supply: 10000, image: 'https://nftstorage.link/ipfs/bafybeiet5uqcxxkpdwyvnufsglah6arxlukxhciz3jy2h2m24scmjyjciq/1.gif' },
+                '0x360f8b7d9530f55ab8e52394e6527935635f51e7': { name: 'Songbird City', supply: 10000, image: 'https://nftstorage.link/ipfs/bafybeibi35a2w5ue6s7s7ka42xhkbbtpplgyvovefetxqwr6fzmvn6umpi/1.png' },
+                '0x0e759aa7166ab3b2b81abd6d9ed16ac83368f97e': { name: 'The Fat Cats', supply: 1000, image: 'https://ipfs.io/ipfs/QmQFNZXPuL4efM8Dp5j2bme6zySaYEYTNmn1CF2KjAja2A/1.png' },
+                '0xcdb019c0990c033724da55f5a04be6fd6ec1809d': { name: 'The Oracles', supply: 22222, image: 'https://ipfs.io/ipfs/QmfZhkQgWgG98JmaoaiUR5qNYPJh6ZS6HVFk5U6gRPaf1W/1.jpeg' },
+                '0xd83ae2c70916a2360e23683a0d3a3556b2c09935': { name: 'Songbird Punks', supply: 20000, image: 'https://ipfs.io/ipfs/Qmc6cQJaUjBZYfQ1G8tcFhdsyVLn79MKFp1kKB9Cj17gQn/1.png' },
+                '0x279a222a18c033124ab02290ddec97912a8b7185': { name: 'doodcats', supply: 10000, image: 'https://ipfs.io/ipfs/QmWGAWmuHZ4xzMp8eRyB8Ntut9xwPuKej9XmM5AWmsNQLZ/1.png' },
+                '0x7dc06ee0717c6f4905652f46f8f1891e8538e799': { name: 'Rare Pepe Club', supply: 9973, image: 'https://ipfs.io/ipfs/QmRarePepe/1.png' }
+            };
             
+            // Show loading state
             if (container) {
-                container.innerHTML = songbirdCollections.map(c => `
+                container.innerHTML = '<div class="empty-state full-width"><div class="empty-icon">⏳</div><p>Loading Songbird collections...</p></div>';
+            }
+            
+            // Try to load live floors from indexer
+            try {
+                const floorsRes = await fetch(`${INDEXER_URL}/floors`);
+                if (floorsRes.ok) {
+                    const floors = await floorsRes.json();
+                    console.log('Floors from indexer:', floors);
+                    if (floors && floors.length > 0) {
+                        renderSongbirdCollections(floors, songbirdCollections);
+                        return;
+                    }
+                }
+            } catch (err) {
+                console.log('Indexer floors failed:', err);
+            }
+            
+            // Fallback: show hardcoded collections without live floors
+            if (container) {
+                const collectionsArray = Object.entries(songbirdCollections).map(([addr, info]) => ({
+                    address: addr,
+                    ...info,
+                    floor: '--'
+                }));
+                
+                container.innerHTML = collectionsArray.map(c => `
                     <div class="collection-card-full" onclick="showPage('collection-detail')">
                         <div class="collection-card-image">
-                            <img src="${c.image}" alt="${c.name}">
+                            <img src="${c.image}" alt="${c.name}" onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2280%22>🐸</text></svg>'">
                             <span class="collection-boost-badge">🔥 LP Boost</span>
                         </div>
                         <div class="collection-card-info">
@@ -7997,61 +8048,48 @@
                     </div>
                 `).join('');
             }
-            
-            // Try to load live data from indexer (will work after CORS fix deployed)
-            try {
-                const floorsRes = await fetch(`${INDEXER_URL}/floors`);
-                if (floorsRes.ok) {
-                    const floors = await floorsRes.json();
-                    if (floors && floors.length > 0) {
-                        renderSongbirdCollections(floors);
-                    }
-                }
-            } catch (err) {
-                console.log('Using hardcoded Songbird data (indexer not available)');
-            }
         }
 
-        function renderSongbirdCollections(floors) {
+        function renderSongbirdCollections(floors, collectionInfo) {
             const container = document.getElementById('all-collections-grid');
             if (!container) return;
             
-            const collectionInfo = {
-                '0x35afb6ba51839dedd33140a3b704b39933d1e642': { name: 'sToadz', image: 'https://ipfs.io/ipfs/QmP45Rfhy75RybFuLcwd1CR9vF6qznw95qQPxcA5TeBNYk/1.png', supply: 10000 },
-                '0x91aa85a172dd3e7eea4ad1a4b33e90cbf3b99ed8': { name: 'Luxury Lofts', image: 'https://nftstorage.link/ipfs/bafybeiet5uqcxxkpdwyvnufsglah6arxlukxhciz3jy2h2m24scmjyjciq/1.gif', supply: 10000 },
-                '0x360f8b7d9530f55ab8e52394e6527935635f51e7': { name: 'Songbird City', image: 'https://nftstorage.link/ipfs/bafybeibi35a2w5ue6s7s7ka42xhkbbtpplgyvovefetxqwr6fzmvn6umpi/1.png', supply: 10000 }
-            };
+            // Merge floor data with collection info
+            const merged = floors.map(f => {
+                const addr = f.collection?.toLowerCase();
+                const info = collectionInfo[addr] || { name: f.collection?.slice(0,8) + '...', supply: '?', image: '' };
+                const floorSgb = f.floor_sgb ? parseFloat(f.floor_sgb).toLocaleString(undefined, {maximumFractionDigits: 0}) + ' SGB' : '--';
+                return { ...info, address: addr, floor: floorSgb };
+            });
             
-            if (!floors || floors.length === 0) {
-                container.innerHTML = '<div class="empty-state full-width"><div class="empty-icon">🐸</div><p>Loading collections...</p></div>';
-                return;
-            }
+            // Add any collections we have info for but no floor data
+            Object.entries(collectionInfo).forEach(([addr, info]) => {
+                if (!merged.find(m => m.address === addr)) {
+                    merged.push({ ...info, address: addr, floor: '--' });
+                }
+            });
             
-            container.innerHTML = floors.map(f => {
-                const info = collectionInfo[f.collection?.toLowerCase()] || { name: 'Unknown', image: '', supply: '?' };
-                const floorSgb = f.floor_sgb ? parseFloat(f.floor_sgb).toLocaleString() : '--';
-                return `
-                    <div class="collection-card-full" onclick="showPage('collection-detail')">
-                        <div class="collection-card-image">
-                            <img src="${info.image}" alt="${info.name}" onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2280%22>🐸</text></svg>'">
-                            <span class="collection-boost-badge">🔥 LP Boost</span>
-                        </div>
-                        <div class="collection-card-info">
-                            <div class="collection-card-name">${info.name}</div>
-                            <div class="collection-card-stats">
-                                <div class="collection-card-stat">
-                                    <span class="stat-label">Floor</span>
-                                    <span class="stat-value">${floorSgb} SGB</span>
-                                </div>
-                                <div class="collection-card-stat">
-                                    <span class="stat-label">Items</span>
-                                    <span class="stat-value">${info.supply}</span>
-                                </div>
+            container.innerHTML = merged.map(c => `
+                <div class="collection-card-full" onclick="showPage('collection-detail')">
+                    <div class="collection-card-image">
+                        <img src="${c.image}" alt="${c.name}" onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2280%22>🐸</text></svg>'">
+                        <span class="collection-boost-badge">🔥 LP Boost</span>
+                    </div>
+                    <div class="collection-card-info">
+                        <div class="collection-card-name">${c.name}</div>
+                        <div class="collection-card-stats">
+                            <div class="collection-card-stat">
+                                <span class="stat-label">Floor</span>
+                                <span class="stat-value">${c.floor}</span>
+                            </div>
+                            <div class="collection-card-stat">
+                                <span class="stat-label">Items</span>
+                                <span class="stat-value">${typeof c.supply === 'number' ? c.supply.toLocaleString() : c.supply}</span>
                             </div>
                         </div>
                     </div>
-                `;
-            }).join('');
+                </div>
+            `).join('');
         }
 
         function renderSongbirdActivity(events) {
@@ -8642,26 +8680,32 @@
                     pondPrice: ethers.formatEther(stats[4])
                 };
                 
-                // Calculate POND price: reserveFLR / reservePOND * FLR_PRICE
+                // POND price = FLR in pool / POND in pool (how much FLR you get for 1 POND)
+                // NOT the other way around!
                 const pondPriceInFLR = reservePOND > 0 ? reserveFLR / reservePOND : 0;
                 const pondPriceUSD = pondPriceInFLR * FLR_PRICE_USD;
                 const marketCap = pondPriceUSD * POND_SUPPLY;
                 const tvlUSD = tvl * FLR_PRICE_USD;
                 
-                // Format market cap
+                // Format display
+                function formatNumber(num) {
+                    if (num >= 1000000) return (num / 1000000).toFixed(2) + 'M';
+                    if (num >= 1000) return (num / 1000).toFixed(1) + 'K';
+                    return num.toFixed(0);
+                }
                 function formatUSD(num) {
                     if (num >= 1000000) return '$' + (num / 1000000).toFixed(2) + 'M';
                     if (num >= 1000) return '$' + (num / 1000).toFixed(1) + 'K';
                     return '$' + num.toFixed(0);
                 }
                 
-                // Update all displays
                 const mcapFormatted = formatUSD(marketCap);
-                const tvlFormatted = formatUSD(tvlUSD);
+                const tvlFormatted = formatNumber(tvl) + ' FLR';
+                const tvlUSDFormatted = formatUSD(tvlUSD);
                 
                 // Staking page
                 const poolTvlEl = document.getElementById('pool-tvl');
-                if (poolTvlEl) poolTvlEl.textContent = tvl.toLocaleString(undefined, {maximumFractionDigits: 0});
+                if (poolTvlEl) poolTvlEl.textContent = formatNumber(tvl);
                 
                 const poolApyEl = document.getElementById('pool-apy');
                 if (poolApyEl) poolApyEl.textContent = '--';
@@ -8684,7 +8728,7 @@
                 
                 // Spotlight
                 const spotlightTvlEl = document.getElementById('spotlight-tvl');
-                if (spotlightTvlEl) spotlightTvlEl.textContent = tvlFormatted;
+                if (spotlightTvlEl) spotlightTvlEl.textContent = tvlUSDFormatted;
                 
                 const spotlightStakersEl = document.getElementById('spotlight-stakers');
                 if (spotlightStakersEl) spotlightStakersEl.textContent = '--';
@@ -8692,8 +8736,10 @@
                 const spotlightDistEl = document.getElementById('spotlight-distributed');
                 if (spotlightDistEl) spotlightDistEl.textContent = '--';
                 
-                console.log('Pool stats loaded:', poolStats);
-                console.log('POND price:', pondPriceUSD, 'Market cap:', marketCap);
+                console.log('Pool: FLR=' + reserveFLR.toFixed(2) + ', POND=' + reservePOND.toFixed(2));
+                console.log('POND price in FLR:', pondPriceInFLR.toFixed(8));
+                console.log('POND price USD:', pondPriceUSD.toFixed(10));
+                console.log('Market cap:', marketCap);
             } catch (e) {
                 console.error('Error loading public pool stats:', e);
             }
