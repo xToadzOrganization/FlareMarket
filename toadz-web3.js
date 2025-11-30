@@ -140,7 +140,7 @@ async function connectWallet(walletType = 'metamask') {
         window.ethereum.on('accountsChanged', handleAccountsChanged);
         window.ethereum.on('chainChanged', handleChainChanged);
 
-        closeModal();
+        closeConnectModal();
         return true;
     } catch (error) {
         console.error('Connection error:', error);
@@ -175,6 +175,12 @@ function disconnectWallet() {
     marketplaceContract = null;
     vaultContract = null;
     updateWalletUI();
+}
+
+function closeConnectModal() {
+    const modal = document.getElementById('connect-modal');
+    if (modal) modal.classList.remove('open');
+    document.body.style.overflow = '';
 }
 
 async function switchToFlare() {
@@ -713,12 +719,7 @@ async function calculateSwapOutput(amountIn, isFLRtoPOND) {
 }
 
 // ============ INIT ============
-document.addEventListener('DOMContentLoaded', () => {
-    // Check if already connected
-    if (window.ethereum && window.ethereum.selectedAddress) {
-        connectWallet();
-    }
-});
+// No auto-connect - let user click connect button
 
 // Export for use in HTML
 window.toadz = {
