@@ -5754,7 +5754,7 @@
 
         .hidden { display: none !important; }
 
-        /* Storefront Modal - must be hidden by default */
+        /* Storefront Modal */
         #storefront-modal {
             display: none;
             position: fixed;
@@ -5766,7 +5766,6 @@
             justify-content: center;
             padding: 20px;
         }
-
         #storefront-modal.open {
             display: flex;
         }
@@ -6727,14 +6726,15 @@
                                 <h3 class="fa-name">PastaPrimavera</h3>
                                 <p class="fa-style">Italian-Inspired Digital</p>
                                 <div class="fa-stats">
-                                    <div class="fa-stat"><span class="fa-stat-value">--</span><span class="fa-stat-label">Items</span></div>
-                                    <div class="fa-stat"><span class="fa-stat-value">--</span><span class="fa-stat-label">Volume</span></div>
+                                    <div class="fa-stat"><span class="fa-stat-value">156</span><span class="fa-stat-label">Items</span></div>
+                                    <div class="fa-stat"><span class="fa-stat-value">45K</span><span class="fa-stat-label">Volume</span></div>
+                                    <div class="fa-stat"><span class="fa-stat-value">89</span><span class="fa-stat-label">Collectors</span></div>
                                 </div>
                             </div>
                         </div>
 
                         <!-- Artist 2 - Freak -->
-                        <div class="featured-artist-card" onclick="viewStorefront('freak')">
+                        <div class="featured-artist-card" onclick="showPage('artist-storefront')">
                             <div class="fa-banner" style="background-image: url('https://ipfs.io/ipfs/QmP45Rfhy75RybFuLcwd1CR9vF6qznw95qQPxcA5TeBNYk/667.png')"></div>
                             <div class="fa-content">
                                 <div class="fa-avatar">
@@ -6744,8 +6744,9 @@
                                 <h3 class="fa-name">Freak</h3>
                                 <p class="fa-style">Chaos & Dark Surrealism</p>
                                 <div class="fa-stats">
-                                    <div class="fa-stat"><span class="fa-stat-value">--</span><span class="fa-stat-label">Items</span></div>
-                                    <div class="fa-stat"><span class="fa-stat-value">--</span><span class="fa-stat-label">Volume</span></div>
+                                    <div class="fa-stat"><span class="fa-stat-value">342</span><span class="fa-stat-label">Items</span></div>
+                                    <div class="fa-stat"><span class="fa-stat-value">1.2M</span><span class="fa-stat-label">Volume</span></div>
+                                    <div class="fa-stat"><span class="fa-stat-value">267</span><span class="fa-stat-label">Collectors</span></div>
                                 </div>
                             </div>
                         </div>
@@ -6761,8 +6762,9 @@
                                 <h3 class="fa-name">Luna</h3>
                                 <p class="fa-style">Celestial Dreams</p>
                                 <div class="fa-stats">
-                                    <div class="fa-stat"><span class="fa-stat-value">--</span><span class="fa-stat-label">Items</span></div>
-                                    <div class="fa-stat"><span class="fa-stat-value">--</span><span class="fa-stat-label">Volume</span></div>
+                                    <div class="fa-stat"><span class="fa-stat-value">89</span><span class="fa-stat-label">Items</span></div>
+                                    <div class="fa-stat"><span class="fa-stat-value">234K</span><span class="fa-stat-label">Volume</span></div>
+                                    <div class="fa-stat"><span class="fa-stat-value">156</span><span class="fa-stat-label">Collectors</span></div>
                                 </div>
                             </div>
                         </div>
@@ -6778,8 +6780,8 @@
                                 <h3 class="fa-name">Mystic</h3>
                                 <p class="fa-style">Ethereal Visions</p>
                                 <div class="fa-stats">
-                                    <div class="fa-stat"><span class="fa-stat-value">--</span><span class="fa-stat-label">Items</span></div>
-                                    <div class="fa-stat"><span class="fa-stat-value">--</span><span class="fa-stat-label">Volume</span></div>
+                                    <div class="fa-stat"><span class="fa-stat-value">67</span><span class="fa-stat-label">Items</span></div>
+                                    <div class="fa-stat"><span class="fa-stat-value">98K</span><span class="fa-stat-label">Volume</span></div>
                                     <div class="fa-stat"><span class="fa-stat-value">78</span><span class="fa-stat-label">Collectors</span></div>
                                 </div>
                             </div>
@@ -7213,9 +7215,9 @@
     <!-- CREATE STOREFRONT MODAL -->
     <div id="storefront-modal" onclick="closeStorefrontModal(event)">
         <div class="modal-content" style="max-width: 500px; background: var(--bg-card); border: 1px solid var(--border); border-radius: 24px; max-height: 90vh; overflow-y: auto;" onclick="event.stopPropagation()">
-            <div class="modal-header" style="display: flex; justify-content: space-between; align-items: center; padding: 20px 24px; border-bottom: 1px solid var(--border);">
-                <h3 style="font-size: 18px; font-weight: 700;">Create Your Storefront</h3>
-                <button class="modal-close" onclick="closeStorefrontModal()" style="background: none; border: none; color: var(--text-muted); font-size: 24px; cursor: pointer;">×</button>
+            <div style="display: flex; justify-content: space-between; align-items: center; padding: 20px 24px; border-bottom: 1px solid var(--border);">
+                <h3 style="font-size: 18px; font-weight: 700; margin: 0;">Create Your Storefront</h3>
+                <button onclick="closeStorefrontModal()" style="background: none; border: none; color: var(--text-muted); font-size: 24px; cursor: pointer;">×</button>
             </div>
             <form id="storefront-form" class="apply-form" style="padding: 24px;">
                 <div class="form-group">
@@ -7450,16 +7452,18 @@
     </nav>
 
     <script>
+        // Data
+        // Current network state
+        let currentNetwork = 'flare';
+        const INDEXER_URL = 'https://toadz-indexer-production.up.railway.app';
+
         // Toast notifications
         function showToast(title, message, type = 'info') {
             const container = document.getElementById('toast-container');
             if (!container) return;
-            
             const toast = document.createElement('div');
             toast.className = `toast ${type}`;
-            
             const icons = { success: '✓', error: '✕', info: 'ℹ' };
-            
             toast.innerHTML = `
                 <span class="toast-icon">${icons[type] || icons.info}</span>
                 <div class="toast-content">
@@ -7468,71 +7472,20 @@
                 </div>
                 <button class="toast-close" onclick="this.parentElement.remove()">×</button>
             `;
-            
             container.appendChild(toast);
-            
             setTimeout(() => {
                 toast.classList.add('hiding');
                 setTimeout(() => toast.remove(), 300);
             }, 4000);
         }
 
-        // Data
-        const collections = [
-            { name: "sToadz", items: "10K", floor: "2,400 FLR", volume: "26M FLR", image: "https://ipfs.io/ipfs/QmP45Rfhy75RybFuLcwd1CR9vF6qznw95qQPxcA5TeBNYk/1.png", stakeable: true },
-            { name: "Luxury Lofts", items: "10K", floor: "850 FLR", volume: "8.2M FLR", image: "https://ipfs.io/ipfs/QmZ42mWPA3xihoQxnm7ufKh51n5fhJe7hwfN7VPfy4cZcg", stakeable: true },
-            { name: "Songbird City", items: "10K", floor: "420 FLR", volume: "4.1M FLR", image: "https://ipfs.io/ipfs/QmY5ZwdLP4z2PBXmRgh3djcDYzWvMuizyqfTDhPnXErgBm", stakeable: true },
-            { name: "Fat Cats", items: "1K", floor: "1,200 FLR", volume: "1.8M FLR", image: "https://ipfs.io/ipfs/QmQFNZXPuL4efM8Dp5j2bme6zySaYEYTNmn1CF2KjAja2A/5.png", stakeable: false },
-            { name: "Oracles", items: "22K", floor: "380 FLR", volume: "3.2M FLR", image: "https://ipfs.io/ipfs/QmfZhkQgWgG98JmaoaiUR5qNYPJh6ZS6HVFk5U6gRPaf1W/1.jpeg", stakeable: false },
-            { name: "Punks", items: "20K", floor: "520 FLR", volume: "2.9M FLR", image: "https://ipfs.io/ipfs/Qmc6cQJaUjBZYfQ1G8tcFhdsyVLn79MKFp1kKB9Cj17gQn/1.png", stakeable: false },
-            { name: "Doodcats", items: "10K", floor: "290 FLR", volume: "980K FLR", image: "https://ipfs.io/ipfs/QmWGAWmuHZ4xzMp8eRyB8Ntut9xwPuKej9XmM5AWmsNQLZ/1.png", stakeable: false },
-        ];
-
-        const auctions = [
-            { name: "Chaos Kid #47", artist: "Freak", bid: "1,850 FLR", bids: 12, time: "02:33:41", image: "https://ipfs.io/ipfs/QmP45Rfhy75RybFuLcwd1CR9vF6qznw95qQPxcA5TeBNYk/47.png" },
-            { name: "Celestial #892", artist: "Luna", bid: "3,200 FLR", bids: 8, time: "05:12:09", image: "https://ipfs.io/ipfs/QmP45Rfhy75RybFuLcwd1CR9vF6qznw95qQPxcA5TeBNYk/892.png" },
-            { name: "Mystic Toad #156", artist: "Mystic", bid: "4,500 FLR", bids: 15, time: "11:45:22", image: "https://ipfs.io/ipfs/QmP45Rfhy75RybFuLcwd1CR9vF6qznw95qQPxcA5TeBNYk/156.png" },
-            { name: "Rare Toad #2891", artist: "PastaPrimavera", bid: "2,750 FLR", bids: 6, time: "23:01:55", image: "https://ipfs.io/ipfs/QmP45Rfhy75RybFuLcwd1CR9vF6qznw95qQPxcA5TeBNYk/2891.png" },
-        ];
-
-        const nfts = [
-            { name: "sToadz #9980", collection: "sToadz", price: "12,500 FLR", image: "https://ipfs.io/ipfs/QmP45Rfhy75RybFuLcwd1CR9vF6qznw95qQPxcA5TeBNYk/9980.png", is3d: false, live: true },
-            { name: "sToadz #892", collection: "sToadz", price: "3,200 FLR", image: "https://ipfs.io/ipfs/QmP45Rfhy75RybFuLcwd1CR9vF6qznw95qQPxcA5TeBNYk/892.png", is3d: false },
-            { name: "Loft #156", collection: "Lofts", price: "950 FLR", image: "https://ipfs.io/ipfs/QmZ42mWPA3xihoQxnm7ufKh51n5fhJe7hwfN7VPfy4cZcg", is3d: false },
-            { name: "sToadz #4521", collection: "sToadz", price: "2,400 FLR", image: "https://ipfs.io/ipfs/QmP45Rfhy75RybFuLcwd1CR9vF6qznw95qQPxcA5TeBNYk/4521.png", is3d: false },
-            { name: "Fat Cat #89", collection: "Cats", price: "1,400 FLR", image: "https://ipfs.io/ipfs/QmQFNZXPuL4efM8Dp5j2bme6zySaYEYTNmn1CF2KjAja2A/89.png", is3d: false },
-            { name: "sToadz #7733", collection: "sToadz", price: "4,100 FLR", image: "https://ipfs.io/ipfs/QmP45Rfhy75RybFuLcwd1CR9vF6qznw95qQPxcA5TeBNYk/7733.png", is3d: false, live: true },
-            { name: "Oracle #2891", collection: "Oracles", price: "2,600 FLR", image: "https://ipfs.io/ipfs/QmfZhkQgWgG98JmaoaiUR5qNYPJh6ZS6HVFk5U6gRPaf1W/2891.jpeg", is3d: false },
-            { name: "Punk #423", collection: "Punks", price: "820 FLR", image: "https://ipfs.io/ipfs/Qmc6cQJaUjBZYfQ1G8tcFhdsyVLn79MKFp1kKB9Cj17gQn/423.png", is3d: false },
-            { name: "sToadz #1337", collection: "sToadz", price: "500K", image: "https://ipfs.io/ipfs/QmP45Rfhy75RybFuLcwd1CR9vF6qznw95qQPxcA5TeBNYk/1337.png", is3d: false },
-            { name: "Doodcat #42", collection: "Doodcats", price: "75K", image: "https://ipfs.io/ipfs/QmWGAWmuHZ4xzMp8eRyB8Ntut9xwPuKej9XmM5AWmsNQLZ/42.png", is3d: false },
-        ];
-
-        const stakingPools = [
-            { name: "sToadz", desc: "Original toads", image: "https://ipfs.io/ipfs/QmP45Rfhy75RybFuLcwd1CR9vF6qznw95qQPxcA5TeBNYk/1.png", staked: "4,128", apy: "24%", rewards: "156K POND" },
-            { name: "Luxury Lofts", desc: "Premium real estate", image: "https://ipfs.io/ipfs/QmZ42mWPA3xihoQxnm7ufKh51n5fhJe7hwfN7VPfy4cZcg", staked: "2,341", apy: "18%", rewards: "89K POND" },
-            { name: "Songbird City", desc: "Urban NFTs", image: "https://ipfs.io/ipfs/QmY5ZwdLP4z2PBXmRgh3djcDYzWvMuizyqfTDhPnXErgBm", staked: "1,892", apy: "15%", rewards: "45K POND" },
-        ];
-
-        const artists = [
-            { name: "Freak", style: "Chaos & Dark Surrealism", bio: "Creating nightmare fuel and beautiful chaos from the void.", items: 247, volume: "89K", badge: "featured", image: "https://ipfs.io/ipfs/QmP45Rfhy75RybFuLcwd1CR9vF6qznw95qQPxcA5TeBNYk/666.png", banner: "https://ipfs.io/ipfs/QmP45Rfhy75RybFuLcwd1CR9vF6qznw95qQPxcA5TeBNYk/999.png" },
-            { name: "PastaPrimavera", style: "Italian-Inspired Digital", bio: "Where culinary art meets digital expression.", items: 156, volume: "45K", badge: "hot", image: "https://ipfs.io/ipfs/QmP45Rfhy75RybFuLcwd1CR9vF6qznw95qQPxcA5TeBNYk/420.png", banner: "https://ipfs.io/ipfs/QmP45Rfhy75RybFuLcwd1CR9vF6qznw95qQPxcA5TeBNYk/421.png" },
-            { name: "Luna", style: "Celestial Dreamscapes", bio: "Capturing the magic of moonlit nights and cosmic dreams.", items: 89, volume: "32K", badge: "", image: "https://ipfs.io/ipfs/QmP45Rfhy75RybFuLcwd1CR9vF6qznw95qQPxcA5TeBNYk/777.png", banner: "https://ipfs.io/ipfs/QmP45Rfhy75RybFuLcwd1CR9vF6qznw95qQPxcA5TeBNYk/778.png" },
-            { name: "Mystic", style: "AI-Generated Mystical", bio: "Blending ancient mysticism with cutting-edge AI.", items: 312, volume: "67K", badge: "promo", image: "https://ipfs.io/ipfs/QmP45Rfhy75RybFuLcwd1CR9vF6qznw95qQPxcA5TeBNYk/888.png", banner: "https://ipfs.io/ipfs/QmP45Rfhy75RybFuLcwd1CR9vF6qznw95qQPxcA5TeBNYk/889.png" },
-        ];
-
-        const activity = [
-            { type: "staked", name: "sToadz #9980", price: "+0.001x boost", time: "1m", image: "https://ipfs.io/ipfs/QmP45Rfhy75RybFuLcwd1CR9vF6qznw95qQPxcA5TeBNYk/9980.png" },
-            { type: "sold", name: "sToadz #4521", price: "2,450 FLR", time: "3m", image: "https://ipfs.io/ipfs/QmP45Rfhy75RybFuLcwd1CR9vF6qznw95qQPxcA5TeBNYk/4521.png" },
-            { type: "staked", name: "sToadz #9559", price: "+0.001x boost", time: "5m", image: "https://ipfs.io/ipfs/QmP45Rfhy75RybFuLcwd1CR9vF6qznw95qQPxcA5TeBNYk/9559.png" },
-            { type: "listed", name: "Fat Cat #234", price: "890 FLR", time: "8m", image: "https://ipfs.io/ipfs/QmQFNZXPuL4efM8Dp5j2bme6zySaYEYTNmn1CF2KjAja2A/234.png" },
-            { type: "staked", name: "Loft #1247", price: "+0.001x boost", time: "10m", image: "https://ipfs.io/ipfs/QmZ42mWPA3xihoQxnm7ufKh51n5fhJe7hwfN7VPfy4cZcg" },
-            { type: "bid", name: "sToadz #777", price: "3,200 FLR", time: "12m", image: "https://ipfs.io/ipfs/QmP45Rfhy75RybFuLcwd1CR9vF6qznw95qQPxcA5TeBNYk/777.png" },
-            { type: "staked", name: "sToadz #9558", price: "+0.001x boost", time: "15m", image: "https://ipfs.io/ipfs/QmP45Rfhy75RybFuLcwd1CR9vF6qznw95qQPxcA5TeBNYk/9558.png" },
-            { type: "sold", name: "Oracle #891", price: "450 FLR", time: "18m", image: "https://ipfs.io/ipfs/QmfZhkQgWgG98JmaoaiUR5qNYPJh6ZS6HVFk5U6gRPaf1W/891.jpeg" },
-            { type: "staked", name: "City #2100", price: "+0.001x boost", time: "20m", image: "https://ipfs.io/ipfs/QmY5ZwdLP4z2PBXmRgh3djcDYzWvMuizyqfTDhPnXErgBm" },
-            { type: "sold", name: "Punk #127", price: "920 FLR", time: "22m", image: "https://ipfs.io/ipfs/Qmc6cQJaUjBZYfQ1G8tcFhdsyVLn79MKFp1kKB9Cj17gQn/127.png" },
-        ];
+        // Data - empty, loaded from chain/indexer
+        const collections = [];
+        const auctions = [];
+        const nfts = [];
+        const stakingPools = [];
+        const artists = [];
+        const activity = [];
 
         // Render functions
         function renderAuctions() {
@@ -7679,11 +7632,11 @@
             `).join('');
         }
 
+        // Navigation
         // Storefront functions
         const ADMIN_WALLET = '0xcEA86bBdb5cd33ddbA8dC0ed3c838605EeF7c715'.toLowerCase();
         const FEE_WALLET = '0xcEA86bBdb5cd33ddbA8dC0ed3c838605EeF7c715';
         const STOREFRONT_FEE = '10';
-        const INDEXER_URL = 'https://toadz-indexer-production.up.railway.app';
 
         function openCreateStorefront() {
             if (!window.toadz || !window.toadz.isConnected) {
@@ -7691,13 +7644,11 @@
                 openConnectModal();
                 return;
             }
-            
             const isAdmin = window.toadz.userAddress?.toLowerCase() === ADMIN_WALLET;
             const feeNote = document.getElementById('sf-fee-note');
             if (feeNote) {
                 feeNote.innerHTML = isAdmin ? '<span style="color: var(--accent);">✓ Admin - Free</span>' : '<span>⚡ Cost: 10 FLR</span>';
             }
-            
             document.getElementById('storefront-modal').classList.add('open');
             document.body.style.overflow = 'hidden';
         }
@@ -7713,19 +7664,17 @@
             showPage('artist-storefront');
         }
 
-        // Storefront form submission
+        // Storefront form handler
         document.addEventListener('DOMContentLoaded', function() {
             const form = document.getElementById('storefront-form');
             if (form) {
                 form.addEventListener('submit', async function(e) {
                     e.preventDefault();
-                    
                     const wallet = window.toadz?.userAddress;
                     if (!wallet) {
                         showToast('Error', 'Wallet not connected', 'error');
                         return;
                     }
-                    
                     const isAdmin = wallet.toLowerCase() === ADMIN_WALLET;
                     const submitBtn = document.getElementById('sf-submit-btn');
                     submitBtn.textContent = 'Creating...';
@@ -7757,7 +7706,6 @@
                             headers: { 'Content-Type': 'application/json' },
                             body: JSON.stringify(data)
                         });
-                        
                         const result = await res.json();
                         
                         if (result.success) {
@@ -7790,6 +7738,7 @@
         }
 
         function setChain(chain) {
+            currentNetwork = chain;
             document.querySelectorAll('.chain-btn').forEach(b => b.classList.remove('active'));
             document.querySelector(`.chain-btn.${chain}`).classList.add('active');
             
@@ -7802,6 +7751,103 @@
                     vaultSection.classList.add('hidden');
                 }
             }
+            
+            // Load chain-specific data
+            if (chain === 'songbird') {
+                loadSongbirdData();
+            } else {
+                // Reset to Flare empty state
+                renderCollections();
+                renderAllCollections();
+            }
+            
+            showToast('Network', `Switched to ${chain === 'flare' ? 'Flare' : 'Songbird'}`, 'info');
+        }
+
+        // Load Songbird data
+        async function loadSongbirdData() {
+            const container = document.getElementById('all-collections-grid');
+            
+            // Hardcoded Songbird collections
+            const songbirdCollections = [
+                { name: 'sToadz', image: 'https://ipfs.io/ipfs/QmP45Rfhy75RybFuLcwd1CR9vF6qznw95qQPxcA5TeBNYk/1.png', supply: 10000, floor: '50K SGB' },
+                { name: 'Luxury Lofts', image: 'https://nftstorage.link/ipfs/bafybeiet5uqcxxkpdwyvnufsglah6arxlukxhciz3jy2h2m24scmjyjciq/1.gif', supply: 10000, floor: '25K SGB' },
+                { name: 'Songbird City', image: 'https://nftstorage.link/ipfs/bafybeibi35a2w5ue6s7s7ka42xhkbbtpplgyvovefetxqwr6fzmvn6umpi/1.png', supply: 10000, floor: '10K SGB' }
+            ];
+            
+            if (container) {
+                container.innerHTML = songbirdCollections.map(c => `
+                    <div class="collection-card-full" onclick="showPage('collection-detail')">
+                        <div class="collection-card-image">
+                            <img src="${c.image}" alt="${c.name}">
+                            <span class="collection-boost-badge">🔥 LP Boost</span>
+                        </div>
+                        <div class="collection-card-info">
+                            <div class="collection-card-name">${c.name}</div>
+                            <div class="collection-card-stats">
+                                <div class="collection-card-stat">
+                                    <span class="stat-label">Floor</span>
+                                    <span class="stat-value">${c.floor}</span>
+                                </div>
+                                <div class="collection-card-stat">
+                                    <span class="stat-label">Items</span>
+                                    <span class="stat-value">${c.supply.toLocaleString()}</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                `).join('');
+            }
+            
+            // Try to load live data from indexer
+            try {
+                const floorsRes = await fetch(`${INDEXER_URL}/floors`);
+                if (floorsRes.ok) {
+                    const floors = await floorsRes.json();
+                    if (floors && floors.length > 0) {
+                        renderSongbirdCollections(floors);
+                    }
+                }
+            } catch (err) {
+                console.log('Using hardcoded Songbird data');
+            }
+        }
+
+        function renderSongbirdCollections(floors) {
+            const container = document.getElementById('all-collections-grid');
+            if (!container) return;
+            
+            const collectionInfo = {
+                '0x35afb6ba51839dedd33140a3b704b39933d1e642': { name: 'sToadz', image: 'https://ipfs.io/ipfs/QmP45Rfhy75RybFuLcwd1CR9vF6qznw95qQPxcA5TeBNYk/1.png', supply: 10000 },
+                '0x91aa85a172dd3e7eea4ad1a4b33e90cbf3b99ed8': { name: 'Luxury Lofts', image: 'https://nftstorage.link/ipfs/bafybeiet5uqcxxkpdwyvnufsglah6arxlukxhciz3jy2h2m24scmjyjciq/1.gif', supply: 10000 },
+                '0x360f8b7d9530f55ab8e52394e6527935635f51e7': { name: 'Songbird City', image: 'https://nftstorage.link/ipfs/bafybeibi35a2w5ue6s7s7ka42xhkbbtpplgyvovefetxqwr6fzmvn6umpi/1.png', supply: 10000 }
+            };
+            
+            container.innerHTML = floors.map(f => {
+                const info = collectionInfo[f.collection?.toLowerCase()] || { name: 'Unknown', image: '', supply: '?' };
+                const floorSgb = f.floor_sgb ? parseFloat(f.floor_sgb).toLocaleString() : '--';
+                return `
+                    <div class="collection-card-full" onclick="showPage('collection-detail')">
+                        <div class="collection-card-image">
+                            <img src="${info.image}" alt="${info.name}">
+                            <span class="collection-boost-badge">🔥 LP Boost</span>
+                        </div>
+                        <div class="collection-card-info">
+                            <div class="collection-card-name">${info.name}</div>
+                            <div class="collection-card-stats">
+                                <div class="collection-card-stat">
+                                    <span class="stat-label">Floor</span>
+                                    <span class="stat-value">${floorSgb} SGB</span>
+                                </div>
+                                <div class="collection-card-stat">
+                                    <span class="stat-label">Items</span>
+                                    <span class="stat-value">${info.supply.toLocaleString()}</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            }).join('');
         }
 
         // Initialize
