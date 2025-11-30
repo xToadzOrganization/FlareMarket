@@ -1,0 +1,6852 @@
+{
+  "1": {
+    "id": 1,
+    "name": "Satrap #1",
+    "image": "ipfs://bafybeiee5vcu2osq6ng4wnwxcmabgfgnjnvqci2em4lxv7w7femcvfpbua/100.jpg",
+    "attributes": [
+      {
+        "trait_type": "Class",
+        "value": "Senator"
+      },
+      {
+        "trait_type": "Locus",
+        "value": "Galleria"
+      },
+      {
+        "trait_type": "Persona",
+        "value": "Artemis"
+      }
+    ]
+  },
+  "2": {
+    "id": 2,
+    "name": "Satrap #2",
+    "image": "ipfs://bafybeiee5vcu2osq6ng4wnwxcmabgfgnjnvqci2em4lxv7w7femcvfpbua/153.jpg",
+    "attributes": [
+      {
+        "trait_type": "Class",
+        "value": "Senator"
+      },
+      {
+        "trait_type": "Locus",
+        "value": "Roma"
+      },
+      {
+        "trait_type": "Persona",
+        "value": "Zahara"
+      }
+    ]
+  },
+  "3": {
+    "id": 3,
+    "name": "Satrap #3",
+    "image": "ipfs://bafybeiee5vcu2osq6ng4wnwxcmabgfgnjnvqci2em4lxv7w7femcvfpbua/30.jpg",
+    "attributes": [
+      {
+        "trait_type": "Class",
+        "value": "Senator"
+      },
+      {
+        "trait_type": "Locus",
+        "value": "Treasury Gate"
+      },
+      {
+        "trait_type": "Persona",
+        "value": "Juno"
+      }
+    ]
+  },
+  "4": {
+    "id": 4,
+    "name": "Satrap #4",
+    "image": "ipfs://bafybeiee5vcu2osq6ng4wnwxcmabgfgnjnvqci2em4lxv7w7femcvfpbua/61.jpg",
+    "attributes": [
+      {
+        "trait_type": "Class",
+        "value": "Senator"
+      },
+      {
+        "trait_type": "Locus",
+        "value": "Roth Sun"
+      },
+      {
+        "trait_type": "Persona",
+        "value": "Merti"
+      }
+    ]
+  },
+  "5": {
+    "id": 5,
+    "name": "Satrap #5",
+    "image": "ipfs://bafybeiee5vcu2osq6ng4wnwxcmabgfgnjnvqci2em4lxv7w7femcvfpbua/304.jpg",
+    "attributes": [
+      {
+        "trait_type": "Class",
+        "value": "Senator"
+      },
+      {
+        "trait_type": "Locus",
+        "value": "Patio de Los Leones"
+      },
+      {
+        "trait_type": "Persona",
+        "value": "Zahara"
+      }
+    ]
+  },
+  "6": {
+    "id": 6,
+    "name": "Satrap #6",
+    "image": "ipfs://bafybeiee5vcu2osq6ng4wnwxcmabgfgnjnvqci2em4lxv7w7femcvfpbua/233.jpg",
+    "attributes": [
+      {
+        "trait_type": "Class",
+        "value": "Senator"
+      },
+      {
+        "trait_type": "Locus",
+        "value": "Un Sogno"
+      },
+      {
+        "trait_type": "Persona",
+        "value": "Dara"
+      }
+    ]
+  },
+  "7": {
+    "id": 7,
+    "name": "Satrap #7",
+    "image": "ipfs://bafybeiee5vcu2osq6ng4wnwxcmabgfgnjnvqci2em4lxv7w7femcvfpbua/346.jpg",
+    "attributes": [
+      {
+        "trait_type": "Class",
+        "value": "Senator"
+      },
+      {
+        "trait_type": "Locus",
+        "value": "Garden"
+      },
+      {
+        "trait_type": "Persona",
+        "value": "Darius"
+      }
+    ]
+  },
+  "8": {
+    "id": 8,
+    "name": "Satrap #8",
+    "image": "ipfs://bafybeiee5vcu2osq6ng4wnwxcmabgfgnjnvqci2em4lxv7w7femcvfpbua/339.jpg",
+    "attributes": [
+      {
+        "trait_type": "Class",
+        "value": "Senator"
+      },
+      {
+        "trait_type": "Locus",
+        "value": "Roma"
+      },
+      {
+        "trait_type": "Persona",
+        "value": "Dara"
+      }
+    ]
+  },
+  "9": {
+    "id": 9,
+    "name": "Satrap #9",
+    "image": "ipfs://bafybeiee5vcu2osq6ng4wnwxcmabgfgnjnvqci2em4lxv7w7femcvfpbua/223.jpg",
+    "attributes": [
+      {
+        "trait_type": "Class",
+        "value": "Senator"
+      },
+      {
+        "trait_type": "Style",
+        "value": "Dish"
+      },
+      {
+        "trait_type": "Locus",
+        "value": "Babel"
+      },
+      {
+        "trait_type": "Persona",
+        "value": "Darius"
+      }
+    ]
+  },
+  "10": {
+    "id": 10,
+    "name": "Satrap #10",
+    "image": "ipfs://bafybeiee5vcu2osq6ng4wnwxcmabgfgnjnvqci2em4lxv7w7femcvfpbua/24.jpg",
+    "attributes": [
+      {
+        "trait_type": "Class",
+        "value": "Senator"
+      },
+      {
+        "trait_type": "Locus",
+        "value": "Roth Sun"
+      },
+      {
+        "trait_type": "Persona",
+        "value": "Ardeshir"
+      }
+    ]
+  },
+  "11": {
+    "id": 11,
+    "name": "Satrap #11",
+    "image": "ipfs://bafybeiee5vcu2osq6ng4wnwxcmabgfgnjnvqci2em4lxv7w7femcvfpbua/26.jpg",
+    "attributes": [
+      {
+        "trait_type": "Class",
+        "value": "Senator"
+      },
+      {
+        "trait_type": "Locus",
+        "value": "Giardino"
+      },
+      {
+        "trait_type": "Persona",
+        "value": "Merti"
+      }
+    ]
+  },
+  "12": {
+    "id": 12,
+    "name": "Satrap #12",
+    "image": "ipfs://bafybeiee5vcu2osq6ng4wnwxcmabgfgnjnvqci2em4lxv7w7femcvfpbua/126.jpg",
+    "attributes": [
+      {
+        "trait_type": "Class",
+        "value": "Senator"
+      },
+      {
+        "trait_type": "Locus",
+        "value": "Sanctuary"
+      },
+      {
+        "trait_type": "Persona",
+        "value": "Atlas"
+      }
+    ]
+  },
+  "13": {
+    "id": 13,
+    "name": "Satrap #13",
+    "image": "ipfs://bafybeiee5vcu2osq6ng4wnwxcmabgfgnjnvqci2em4lxv7w7femcvfpbua/122.jpg",
+    "attributes": [
+      {
+        "trait_type": "Class",
+        "value": "Senator"
+      },
+      {
+        "trait_type": "Locus",
+        "value": "Garnier"
+      },
+      {
+        "trait_type": "Persona",
+        "value": "Atlas"
+      }
+    ]
+  },
+  "14": {
+    "id": 14,
+    "name": "Satrap #14",
+    "image": "ipfs://bafybeiee5vcu2osq6ng4wnwxcmabgfgnjnvqci2em4lxv7w7femcvfpbua/75.jpg",
+    "attributes": [
+      {
+        "trait_type": "Class",
+        "value": "Senator"
+      },
+      {
+        "trait_type": "Locus",
+        "value": "Dark Temple"
+      },
+      {
+        "trait_type": "Persona",
+        "value": "Merti"
+      }
+    ]
+  },
+  "15": {
+    "id": 15,
+    "name": "Satrap #15",
+    "image": "ipfs://bafybeiee5vcu2osq6ng4wnwxcmabgfgnjnvqci2em4lxv7w7femcvfpbua/159.jpg",
+    "attributes": [
+      {
+        "trait_type": "Class",
+        "value": "Senator"
+      },
+      {
+        "trait_type": "Locus",
+        "value": "New World Arch"
+      },
+      {
+        "trait_type": "Persona",
+        "value": "Dara"
+      }
+    ]
+  },
+  "16": {
+    "id": 16,
+    "name": "Satrap #16",
+    "image": "ipfs://bafybeiee5vcu2osq6ng4wnwxcmabgfgnjnvqci2em4lxv7w7femcvfpbua/257.jpg",
+    "attributes": [
+      {
+        "trait_type": "Class",
+        "value": "Senator"
+      },
+      {
+        "trait_type": "Locus",
+        "value": "Löwe"
+      },
+      {
+        "trait_type": "Persona",
+        "value": "Merti"
+      }
+    ]
+  },
+  "17": {
+    "id": 17,
+    "name": "Satrap #17",
+    "image": "ipfs://bafybeiee5vcu2osq6ng4wnwxcmabgfgnjnvqci2em4lxv7w7femcvfpbua/286.jpg",
+    "attributes": [
+      {
+        "trait_type": "Class",
+        "value": "Senator"
+      },
+      {
+        "trait_type": "Locus",
+        "value": "Roma"
+      },
+      {
+        "trait_type": "Persona",
+        "value": "Darius"
+      }
+    ]
+  },
+  "18": {
+    "id": 18,
+    "name": "Satrap #18",
+    "image": "ipfs://bafybeiee5vcu2osq6ng4wnwxcmabgfgnjnvqci2em4lxv7w7femcvfpbua/287.jpg",
+    "attributes": [
+      {
+        "trait_type": "Class",
+        "value": "Senator"
+      },
+      {
+        "trait_type": "Locus",
+        "value": "Dark Temple"
+      },
+      {
+        "trait_type": "Persona",
+        "value": "Yax"
+      }
+    ]
+  },
+  "19": {
+    "id": 19,
+    "name": "Satrap #19",
+    "image": "ipfs://bafybeiee5vcu2osq6ng4wnwxcmabgfgnjnvqci2em4lxv7w7femcvfpbua/288.jpg",
+    "attributes": [
+      {
+        "trait_type": "Class",
+        "value": "Senator"
+      },
+      {
+        "trait_type": "Style",
+        "value": "Dish"
+      },
+      {
+        "trait_type": "Locus",
+        "value": "Giardino"
+      },
+      {
+        "trait_type": "Persona",
+        "value": "Merti"
+      }
+    ]
+  },
+  "20": {
+    "id": 20,
+    "name": "Satrap #20",
+    "image": "ipfs://bafybeiee5vcu2osq6ng4wnwxcmabgfgnjnvqci2em4lxv7w7femcvfpbua/244.jpg",
+    "attributes": [
+      {
+        "trait_type": "Class",
+        "value": "Senator"
+      },
+      {
+        "trait_type": "Locus",
+        "value": "Council"
+      },
+      {
+        "trait_type": "Persona",
+        "value": "Minerva"
+      }
+    ]
+  },
+  "21": {
+    "id": 21,
+    "name": "Satrap #21",
+    "image": "ipfs://bafybeiee5vcu2osq6ng4wnwxcmabgfgnjnvqci2em4lxv7w7femcvfpbua/13.jpg",
+    "attributes": [
+      {
+        "trait_type": "Class",
+        "value": "Senator"
+      },
+      {
+        "trait_type": "Locus",
+        "value": "Cave Sanctuary"
+      },
+      {
+        "trait_type": "Persona",
+        "value": "Yax"
+      }
+    ]
+  },
+  "22": {
+    "id": 22,
+    "name": "Satrap #22",
+    "image": "ipfs://bafybeiee5vcu2osq6ng4wnwxcmabgfgnjnvqci2em4lxv7w7femcvfpbua/69.jpg",
+    "attributes": [
+      {
+        "trait_type": "Class",
+        "value": "Senator"
+      },
+      {
+        "trait_type": "Locus",
+        "value": "Council"
+      },
+      {
+        "trait_type": "Persona",
+        "value": "Ervin"
+      }
+    ]
+  },
+  "23": {
+    "id": 23,
+    "name": "Satrap #23",
+    "image": "ipfs://bafybeiee5vcu2osq6ng4wnwxcmabgfgnjnvqci2em4lxv7w7femcvfpbua/151.jpg",
+    "attributes": [
+      {
+        "trait_type": "Class",
+        "value": "Senator"
+      },
+      {
+        "trait_type": "Locus",
+        "value": "Grand Mosque"
+      },
+      {
+        "trait_type": "Persona",
+        "value": "Artemis"
+      }
+    ]
+  },
+  "24": {
+    "id": 24,
+    "name": "Satrap #24",
+    "image": "ipfs://bafybeiee5vcu2osq6ng4wnwxcmabgfgnjnvqci2em4lxv7w7femcvfpbua/146.jpg",
+    "attributes": [
+      {
+        "trait_type": "Class",
+        "value": "Senator"
+      },
+      {
+        "trait_type": "Locus",
+        "value": "Cathedral"
+      },
+      {
+        "trait_type": "Persona",
+        "value": "Atlas"
+      }
+    ]
+  },
+  "25": {
+    "id": 25,
+    "name": "Satrap #25",
+    "image": "ipfs://bafybeiee5vcu2osq6ng4wnwxcmabgfgnjnvqci2em4lxv7w7femcvfpbua/290.jpg",
+    "attributes": [
+      {
+        "trait_type": "Class",
+        "value": "Senator"
+      },
+      {
+        "trait_type": "Locus",
+        "value": "Roth Star"
+      },
+      {
+        "trait_type": "Persona",
+        "value": "Yax"
+      }
+    ]
+  },
+  "26": {
+    "id": 26,
+    "name": "Satrap #26",
+    "image": "ipfs://bafybeiee5vcu2osq6ng4wnwxcmabgfgnjnvqci2em4lxv7w7femcvfpbua/297.jpg",
+    "attributes": [
+      {
+        "trait_type": "Class",
+        "value": "Senator"
+      },
+      {
+        "trait_type": "Locus",
+        "value": "Capriccio"
+      },
+      {
+        "trait_type": "Persona",
+        "value": "Juno"
+      }
+    ]
+  },
+  "27": {
+    "id": 27,
+    "name": "Satrap #27",
+    "image": "ipfs://bafybeiee5vcu2osq6ng4wnwxcmabgfgnjnvqci2em4lxv7w7femcvfpbua/300.jpg",
+    "attributes": [
+      {
+        "trait_type": "Class",
+        "value": "Senator"
+      },
+      {
+        "trait_type": "Locus",
+        "value": "Capriccio"
+      },
+      {
+        "trait_type": "Persona",
+        "value": "Minerva"
+      }
+    ]
+  },
+  "28": {
+    "id": 28,
+    "name": "Satrap #28",
+    "image": "ipfs://bafybeiee5vcu2osq6ng4wnwxcmabgfgnjnvqci2em4lxv7w7femcvfpbua/177.jpg",
+    "attributes": [
+      {
+        "trait_type": "Class",
+        "value": "Senator"
+      },
+      {
+        "trait_type": "Locus",
+        "value": "Satrap Palace"
+      },
+      {
+        "trait_type": "Persona",
+        "value": "Artemis"
+      }
+    ]
+  },
+  "29": {
+    "id": 29,
+    "name": "Satrap #29",
+    "image": "ipfs://bafybeiee5vcu2osq6ng4wnwxcmabgfgnjnvqci2em4lxv7w7femcvfpbua/183.jpg",
+    "attributes": [
+      {
+        "trait_type": "Class",
+        "value": "Senator"
+      },
+      {
+        "trait_type": "Locus",
+        "value": "Babel"
+      },
+      {
+        "trait_type": "Persona",
+        "value": "Juno"
+      }
+    ]
+  },
+  "30": {
+    "id": 30,
+    "name": "Satrap #30",
+    "image": "ipfs://bafybeiee5vcu2osq6ng4wnwxcmabgfgnjnvqci2em4lxv7w7femcvfpbua/7.jpg",
+    "attributes": [
+      {
+        "trait_type": "Class",
+        "value": "Senator"
+      },
+      {
+        "trait_type": "Locus",
+        "value": "Garnier"
+      },
+      {
+        "trait_type": "Persona",
+        "value": "Zahara"
+      }
+    ]
+  },
+  "31": {
+    "id": 31,
+    "name": "Satrap #31",
+    "image": "ipfs://bafybeiee5vcu2osq6ng4wnwxcmabgfgnjnvqci2em4lxv7w7femcvfpbua/1.jpg",
+    "attributes": [
+      {
+        "trait_type": "Class",
+        "value": "Senator"
+      },
+      {
+        "trait_type": "Locus",
+        "value": "Treasury Gate"
+      },
+      {
+        "trait_type": "Persona",
+        "value": "Merti"
+      }
+    ]
+  },
+  "32": {
+    "id": 32,
+    "name": "Satrap #32",
+    "image": "ipfs://bafybeiee5vcu2osq6ng4wnwxcmabgfgnjnvqci2em4lxv7w7femcvfpbua/12.jpg",
+    "attributes": [
+      {
+        "trait_type": "Class",
+        "value": "Senator"
+      },
+      {
+        "trait_type": "Style",
+        "value": "Dish"
+      },
+      {
+        "trait_type": "Locus",
+        "value": "Long Hall"
+      },
+      {
+        "trait_type": "Persona",
+        "value": "Juno"
+      }
+    ]
+  },
+  "33": {
+    "id": 33,
+    "name": "Satrap #33",
+    "image": "ipfs://bafybeiee5vcu2osq6ng4wnwxcmabgfgnjnvqci2em4lxv7w7femcvfpbua/215.jpg",
+    "attributes": [
+      {
+        "trait_type": "Class",
+        "value": "Senator"
+      },
+      {
+        "trait_type": "Locus",
+        "value": "Cave Sanctuary"
+      },
+      {
+        "trait_type": "Persona",
+        "value": "Minerva"
+      }
+    ]
+  },
+  "34": {
+    "id": 34,
+    "name": "Satrap #34",
+    "image": "ipfs://bafybeiee5vcu2osq6ng4wnwxcmabgfgnjnvqci2em4lxv7w7femcvfpbua/134.jpg",
+    "attributes": [
+      {
+        "trait_type": "Class",
+        "value": "Senator"
+      },
+      {
+        "trait_type": "Locus",
+        "value": "Palace"
+      },
+      {
+        "trait_type": "Persona",
+        "value": "Atlas"
+      }
+    ]
+  },
+  "35": {
+    "id": 35,
+    "name": "Satrap #35",
+    "image": "ipfs://bafybeiee5vcu2osq6ng4wnwxcmabgfgnjnvqci2em4lxv7w7femcvfpbua/349.jpg",
+    "attributes": [
+      {
+        "trait_type": "Class",
+        "value": "Senator"
+      },
+      {
+        "trait_type": "Locus",
+        "value": "Löwe"
+      },
+      {
+        "trait_type": "Persona",
+        "value": "Yax"
+      }
+    ]
+  },
+  "36": {
+    "id": 36,
+    "name": "Satrap #36",
+    "image": "ipfs://bafybeiee5vcu2osq6ng4wnwxcmabgfgnjnvqci2em4lxv7w7femcvfpbua/342.jpg",
+    "attributes": [
+      {
+        "trait_type": "Class",
+        "value": "Senator"
+      },
+      {
+        "trait_type": "Locus",
+        "value": "Dark Temple"
+      },
+      {
+        "trait_type": "Persona",
+        "value": "Dara"
+      }
+    ]
+  },
+  "37": {
+    "id": 37,
+    "name": "Satrap #37",
+    "image": "ipfs://bafybeiee5vcu2osq6ng4wnwxcmabgfgnjnvqci2em4lxv7w7femcvfpbua/308.jpg",
+    "attributes": [
+      {
+        "trait_type": "Class",
+        "value": "Senator"
+      },
+      {
+        "trait_type": "Locus",
+        "value": "Paradiso"
+      },
+      {
+        "trait_type": "Persona",
+        "value": "Artemis"
+      }
+    ]
+  },
+  "38": {
+    "id": 38,
+    "name": "Satrap #38",
+    "image": "ipfs://bafybeiee5vcu2osq6ng4wnwxcmabgfgnjnvqci2em4lxv7w7femcvfpbua/250.jpg",
+    "attributes": [
+      {
+        "trait_type": "Class",
+        "value": "Senator"
+      },
+      {
+        "trait_type": "Locus",
+        "value": "Palace"
+      },
+      {
+        "trait_type": "Persona",
+        "value": "Yax"
+      }
+    ]
+  },
+  "39": {
+    "id": 39,
+    "name": "Satrap #39",
+    "image": "ipfs://bafybeiee5vcu2osq6ng4wnwxcmabgfgnjnvqci2em4lxv7w7femcvfpbua/2.jpg",
+    "attributes": [
+      {
+        "trait_type": "Class",
+        "value": "Senator"
+      },
+      {
+        "trait_type": "Locus",
+        "value": "Dungeon Temple"
+      },
+      {
+        "trait_type": "Persona",
+        "value": "Darius"
+      }
+    ]
+  },
+  "40": {
+    "id": 40,
+    "name": "Satrap #40",
+    "image": "ipfs://bafybeiee5vcu2osq6ng4wnwxcmabgfgnjnvqci2em4lxv7w7femcvfpbua/9.jpg",
+    "attributes": [
+      {
+        "trait_type": "Class",
+        "value": "Senator"
+      },
+      {
+        "trait_type": "Locus",
+        "value": "Hambra"
+      },
+      {
+        "trait_type": "Persona",
+        "value": "Yax"
+      }
+    ]
+  },
+  "41": {
+    "id": 41,
+    "name": "Satrap #41",
+    "image": "ipfs://bafybeiee5vcu2osq6ng4wnwxcmabgfgnjnvqci2em4lxv7w7femcvfpbua/78.jpg",
+    "attributes": [
+      {
+        "trait_type": "Class",
+        "value": "Senator"
+      },
+      {
+        "trait_type": "Locus",
+        "value": "Löwe"
+      },
+      {
+        "trait_type": "Persona",
+        "value": "Artemis"
+      }
+    ]
+  },
+  "42": {
+    "id": 42,
+    "name": "Satrap #42",
+    "image": "ipfs://bafybeiee5vcu2osq6ng4wnwxcmabgfgnjnvqci2em4lxv7w7femcvfpbua/132.jpg",
+    "attributes": [
+      {
+        "trait_type": "Class",
+        "value": "Senator"
+      },
+      {
+        "trait_type": "Locus",
+        "value": "Long Hall"
+      },
+      {
+        "trait_type": "Persona",
+        "value": "Joie"
+      }
+    ]
+  },
+  "43": {
+    "id": 43,
+    "name": "Satrap #43",
+    "image": "ipfs://bafybeiee5vcu2osq6ng4wnwxcmabgfgnjnvqci2em4lxv7w7femcvfpbua/140.jpg",
+    "attributes": [
+      {
+        "trait_type": "Class",
+        "value": "Senator"
+      },
+      {
+        "trait_type": "Locus",
+        "value": "Hambra"
+      },
+      {
+        "trait_type": "Persona",
+        "value": "Darius"
+      }
+    ]
+  },
+  "44": {
+    "id": 44,
+    "name": "Satrap #44",
+    "image": "ipfs://bafybeiee5vcu2osq6ng4wnwxcmabgfgnjnvqci2em4lxv7w7femcvfpbua/345.jpg",
+    "attributes": [
+      {
+        "trait_type": "Class",
+        "value": "Senator"
+      },
+      {
+        "trait_type": "Locus",
+        "value": "Meeting Room"
+      },
+      {
+        "trait_type": "Persona",
+        "value": "Atlas"
+      }
+    ]
+  },
+  "45": {
+    "id": 45,
+    "name": "Satrap #45",
+    "image": "ipfs://bafybeiee5vcu2osq6ng4wnwxcmabgfgnjnvqci2em4lxv7w7femcvfpbua/350.jpg",
+    "attributes": [
+      {
+        "trait_type": "Class",
+        "value": "Senator"
+      },
+      {
+        "trait_type": "Locus",
+        "value": "Löwe"
+      },
+      {
+        "trait_type": "Persona",
+        "value": "Dara"
+      }
+    ]
+  },
+  "46": {
+    "id": 46,
+    "name": "Satrap #46",
+    "image": "ipfs://bafybeiee5vcu2osq6ng4wnwxcmabgfgnjnvqci2em4lxv7w7femcvfpbua/298.jpg",
+    "attributes": [
+      {
+        "trait_type": "Class",
+        "value": "Senator"
+      },
+      {
+        "trait_type": "Locus",
+        "value": "Garden"
+      },
+      {
+        "trait_type": "Persona",
+        "value": "Yax"
+      }
+    ]
+  },
+  "47": {
+    "id": 47,
+    "name": "Satrap #47",
+    "image": "ipfs://bafybeiee5vcu2osq6ng4wnwxcmabgfgnjnvqci2em4lxv7w7femcvfpbua/50.jpg",
+    "attributes": [
+      {
+        "trait_type": "Class",
+        "value": "Senator"
+      },
+      {
+        "trait_type": "Locus",
+        "value": "Cave Sanctuary"
+      },
+      {
+        "trait_type": "Persona",
+        "value": "Darius"
+      }
+    ]
+  },
+  "48": {
+    "id": 48,
+    "name": "Satrap #48",
+    "image": "ipfs://bafybeiee5vcu2osq6ng4wnwxcmabgfgnjnvqci2em4lxv7w7femcvfpbua/34.jpg",
+    "attributes": [
+      {
+        "trait_type": "Class",
+        "value": "Senator"
+      },
+      {
+        "trait_type": "Locus",
+        "value": "Rotunda"
+      },
+      {
+        "trait_type": "Persona",
+        "value": "Juno"
+      }
+    ]
+  },
+  "49": {
+    "id": 49,
+    "name": "Satrap #49",
+    "image": "ipfs://bafybeiee5vcu2osq6ng4wnwxcmabgfgnjnvqci2em4lxv7w7femcvfpbua/86.jpg",
+    "attributes": [
+      {
+        "trait_type": "Class",
+        "value": "Senator"
+      },
+      {
+        "trait_type": "Locus",
+        "value": "Grand Mosque"
+      },
+      {
+        "trait_type": "Persona",
+        "value": "Ervin"
+      }
+    ]
+  },
+  "50": {
+    "id": 50,
+    "name": "Satrap #50",
+    "image": "ipfs://bafybeiee5vcu2osq6ng4wnwxcmabgfgnjnvqci2em4lxv7w7femcvfpbua/8.jpg",
+    "attributes": [
+      {
+        "trait_type": "Class",
+        "value": "Senator"
+      },
+      {
+        "trait_type": "Style",
+        "value": "Dish"
+      },
+      {
+        "trait_type": "Locus",
+        "value": "Derafsh Kaviani"
+      },
+      {
+        "trait_type": "Persona",
+        "value": "Ervin"
+      }
+    ]
+  },
+  "51": {
+    "id": 51,
+    "name": "Satrap #51",
+    "image": "ipfs://bafybeiee5vcu2osq6ng4wnwxcmabgfgnjnvqci2em4lxv7w7femcvfpbua/348.jpg",
+    "attributes": [
+      {
+        "trait_type": "Class",
+        "value": "Senator"
+      },
+      {
+        "trait_type": "Locus",
+        "value": "Capriccio"
+      },
+      {
+        "trait_type": "Persona",
+        "value": "Merti"
+      }
+    ]
+  },
+  "52": {
+    "id": 52,
+    "name": "Satrap #52",
+    "image": "ipfs://bafybeiee5vcu2osq6ng4wnwxcmabgfgnjnvqci2em4lxv7w7femcvfpbua/325.jpg",
+    "attributes": [
+      {
+        "trait_type": "Class",
+        "value": "Senator"
+      },
+      {
+        "trait_type": "Locus",
+        "value": "REM"
+      },
+      {
+        "trait_type": "Persona",
+        "value": "Atlas"
+      }
+    ]
+  },
+  "53": {
+    "id": 53,
+    "name": "Satrap #53",
+    "image": "ipfs://bafybeiee5vcu2osq6ng4wnwxcmabgfgnjnvqci2em4lxv7w7femcvfpbua/276.jpg",
+    "attributes": [
+      {
+        "trait_type": "Class",
+        "value": "Senator"
+      },
+      {
+        "trait_type": "Locus",
+        "value": "Garden"
+      },
+      {
+        "trait_type": "Persona",
+        "value": "Ervin"
+      }
+    ]
+  },
+  "54": {
+    "id": 54,
+    "name": "Satrap #54",
+    "image": "ipfs://bafybeiee5vcu2osq6ng4wnwxcmabgfgnjnvqci2em4lxv7w7femcvfpbua/226.jpg",
+    "attributes": [
+      {
+        "trait_type": "Class",
+        "value": "Senator"
+      },
+      {
+        "trait_type": "Locus",
+        "value": "Sanctuary"
+      },
+      {
+        "trait_type": "Persona",
+        "value": "Dara"
+      }
+    ]
+  },
+  "55": {
+    "id": 55,
+    "name": "Satrap #55",
+    "image": "ipfs://bafybeiee5vcu2osq6ng4wnwxcmabgfgnjnvqci2em4lxv7w7femcvfpbua/207.jpg",
+    "attributes": [
+      {
+        "trait_type": "Class",
+        "value": "Senator"
+      },
+      {
+        "trait_type": "Locus",
+        "value": "Council"
+      },
+      {
+        "trait_type": "Persona",
+        "value": "Juno"
+      }
+    ]
+  },
+  "56": {
+    "id": 56,
+    "name": "Satrap #56",
+    "image": "ipfs://bafybeiee5vcu2osq6ng4wnwxcmabgfgnjnvqci2em4lxv7w7femcvfpbua/160.jpg",
+    "attributes": [
+      {
+        "trait_type": "Class",
+        "value": "Senator"
+      },
+      {
+        "trait_type": "Locus",
+        "value": "Long Hall"
+      },
+      {
+        "trait_type": "Persona",
+        "value": "Minerva"
+      }
+    ]
+  },
+  "57": {
+    "id": 57,
+    "name": "Satrap #57",
+    "image": "ipfs://bafybeiee5vcu2osq6ng4wnwxcmabgfgnjnvqci2em4lxv7w7femcvfpbua/135.jpg",
+    "attributes": [
+      {
+        "trait_type": "Class",
+        "value": "Senator"
+      },
+      {
+        "trait_type": "Locus",
+        "value": "Babel"
+      },
+      {
+        "trait_type": "Persona",
+        "value": "Merti"
+      }
+    ]
+  },
+  "58": {
+    "id": 58,
+    "name": "Satrap #58",
+    "image": "ipfs://bafybeiee5vcu2osq6ng4wnwxcmabgfgnjnvqci2em4lxv7w7femcvfpbua/181.jpg",
+    "attributes": [
+      {
+        "trait_type": "Class",
+        "value": "Senator"
+      },
+      {
+        "trait_type": "Locus",
+        "value": "Apadana"
+      },
+      {
+        "trait_type": "Persona",
+        "value": "Darius"
+      }
+    ]
+  },
+  "59": {
+    "id": 59,
+    "name": "Satrap #59",
+    "image": "ipfs://bafybeiee5vcu2osq6ng4wnwxcmabgfgnjnvqci2em4lxv7w7femcvfpbua/88.jpg",
+    "attributes": [
+      {
+        "trait_type": "Class",
+        "value": "Senator"
+      },
+      {
+        "trait_type": "Locus",
+        "value": "Garden"
+      },
+      {
+        "trait_type": "Persona",
+        "value": "Minerva"
+      }
+    ]
+  },
+  "60": {
+    "id": 60,
+    "name": "Satrap #60",
+    "image": "ipfs://bafybeiee5vcu2osq6ng4wnwxcmabgfgnjnvqci2em4lxv7w7femcvfpbua/72.jpg",
+    "attributes": [
+      {
+        "trait_type": "Class",
+        "value": "Senator"
+      },
+      {
+        "trait_type": "Locus",
+        "value": "Underground"
+      },
+      {
+        "trait_type": "Persona",
+        "value": "Dara"
+      }
+    ]
+  },
+  "61": {
+    "id": 61,
+    "name": "Satrap #61",
+    "image": "ipfs://bafybeiee5vcu2osq6ng4wnwxcmabgfgnjnvqci2em4lxv7w7femcvfpbua/82.jpg",
+    "attributes": [
+      {
+        "trait_type": "Class",
+        "value": "Senator"
+      },
+      {
+        "trait_type": "Locus",
+        "value": "Roth Sun"
+      },
+      {
+        "trait_type": "Persona",
+        "value": "Atlas"
+      }
+    ]
+  },
+  "62": {
+    "id": 62,
+    "name": "Satrap #62",
+    "image": "ipfs://bafybeiee5vcu2osq6ng4wnwxcmabgfgnjnvqci2em4lxv7w7femcvfpbua/91.jpg",
+    "attributes": [
+      {
+        "trait_type": "Class",
+        "value": "Senator"
+      },
+      {
+        "trait_type": "Locus",
+        "value": "Town Church"
+      },
+      {
+        "trait_type": "Persona",
+        "value": "Atlas"
+      }
+    ]
+  },
+  "63": {
+    "id": 63,
+    "name": "Satrap #63",
+    "image": "ipfs://bafybeiee5vcu2osq6ng4wnwxcmabgfgnjnvqci2em4lxv7w7femcvfpbua/143.jpg",
+    "attributes": [
+      {
+        "trait_type": "Class",
+        "value": "Senator"
+      },
+      {
+        "trait_type": "Locus",
+        "value": "Giardino"
+      },
+      {
+        "trait_type": "Persona",
+        "value": "Atlas"
+      }
+    ]
+  },
+  "64": {
+    "id": 64,
+    "name": "Satrap #64",
+    "image": "ipfs://bafybeiee5vcu2osq6ng4wnwxcmabgfgnjnvqci2em4lxv7w7femcvfpbua/188.jpg",
+    "attributes": [
+      {
+        "trait_type": "Class",
+        "value": "Senator"
+      },
+      {
+        "trait_type": "Locus",
+        "value": "New World Arch"
+      },
+      {
+        "trait_type": "Persona",
+        "value": "Artemis"
+      }
+    ]
+  },
+  "65": {
+    "id": 65,
+    "name": "Satrap #65",
+    "image": "ipfs://bafybeiee5vcu2osq6ng4wnwxcmabgfgnjnvqci2em4lxv7w7femcvfpbua/80.jpg",
+    "attributes": [
+      {
+        "trait_type": "Class",
+        "value": "Senator"
+      },
+      {
+        "trait_type": "Locus",
+        "value": "Capriccio"
+      },
+      {
+        "trait_type": "Persona",
+        "value": "Darius"
+      }
+    ]
+  },
+  "66": {
+    "id": 66,
+    "name": "Satrap #66",
+    "image": "ipfs://bafybeiee5vcu2osq6ng4wnwxcmabgfgnjnvqci2em4lxv7w7femcvfpbua/343.jpg",
+    "attributes": [
+      {
+        "trait_type": "Class",
+        "value": "Senator"
+      },
+      {
+        "trait_type": "Style",
+        "value": "Dish"
+      },
+      {
+        "trait_type": "Locus",
+        "value": "Rotunda"
+      },
+      {
+        "trait_type": "Persona",
+        "value": "Atlas"
+      }
+    ]
+  },
+  "67": {
+    "id": 67,
+    "name": "Satrap #67",
+    "image": "ipfs://bafybeiee5vcu2osq6ng4wnwxcmabgfgnjnvqci2em4lxv7w7femcvfpbua/327.jpg",
+    "attributes": [
+      {
+        "trait_type": "Class",
+        "value": "Senator"
+      },
+      {
+        "trait_type": "Locus",
+        "value": "Barrel-vaulted Capriccio"
+      },
+      {
+        "trait_type": "Persona",
+        "value": "Zahara"
+      }
+    ]
+  },
+  "68": {
+    "id": 68,
+    "name": "Satrap #68",
+    "image": "ipfs://bafybeiee5vcu2osq6ng4wnwxcmabgfgnjnvqci2em4lxv7w7femcvfpbua/324.jpg",
+    "attributes": [
+      {
+        "trait_type": "Class",
+        "value": "Senator"
+      },
+      {
+        "trait_type": "Locus",
+        "value": "Hambra"
+      },
+      {
+        "trait_type": "Persona",
+        "value": "Ervin"
+      }
+    ]
+  },
+  "69": {
+    "id": 69,
+    "name": "Satrap #69",
+    "image": "ipfs://bafybeiee5vcu2osq6ng4wnwxcmabgfgnjnvqci2em4lxv7w7femcvfpbua/336.jpg",
+    "attributes": [
+      {
+        "trait_type": "Class",
+        "value": "Senator"
+      },
+      {
+        "trait_type": "Locus",
+        "value": "Palace"
+      },
+      {
+        "trait_type": "Persona",
+        "value": "Zahara"
+      }
+    ]
+  },
+  "70": {
+    "id": 70,
+    "name": "Satrap #70",
+    "image": "ipfs://bafybeiee5vcu2osq6ng4wnwxcmabgfgnjnvqci2em4lxv7w7femcvfpbua/321.jpg",
+    "attributes": [
+      {
+        "trait_type": "Class",
+        "value": "Senator"
+      },
+      {
+        "trait_type": "Style",
+        "value": "Dish"
+      },
+      {
+        "trait_type": "Locus",
+        "value": "Council"
+      },
+      {
+        "trait_type": "Persona",
+        "value": "Merti"
+      }
+    ]
+  },
+  "71": {
+    "id": 71,
+    "name": "Satrap #71",
+    "image": "ipfs://bafybeiee5vcu2osq6ng4wnwxcmabgfgnjnvqci2em4lxv7w7femcvfpbua/267.jpg",
+    "attributes": [
+      {
+        "trait_type": "Class",
+        "value": "Senator"
+      },
+      {
+        "trait_type": "Locus",
+        "value": "Capriccio"
+      },
+      {
+        "trait_type": "Persona",
+        "value": "Artemis"
+      }
+    ]
+  },
+  "72": {
+    "id": 72,
+    "name": "Satrap #72",
+    "image": "ipfs://bafybeiee5vcu2osq6ng4wnwxcmabgfgnjnvqci2em4lxv7w7femcvfpbua/209.jpg",
+    "attributes": [
+      {
+        "trait_type": "Class",
+        "value": "Senator"
+      },
+      {
+        "trait_type": "Locus",
+        "value": "Mint"
+      },
+      {
+        "trait_type": "Persona",
+        "value": "Juno"
+      }
+    ]
+  },
+  "73": {
+    "id": 73,
+    "name": "Satrap #73",
+    "image": "ipfs://bafybeiee5vcu2osq6ng4wnwxcmabgfgnjnvqci2em4lxv7w7femcvfpbua/189.jpg",
+    "attributes": [
+      {
+        "trait_type": "Class",
+        "value": "Senator"
+      },
+      {
+        "trait_type": "Style",
+        "value": "Dish"
+      },
+      {
+        "trait_type": "Locus",
+        "value": "Roma"
+      },
+      {
+        "trait_type": "Persona",
+        "value": "Artemis"
+      }
+    ]
+  },
+  "74": {
+    "id": 74,
+    "name": "Satrap #74",
+    "image": "ipfs://bafybeiee5vcu2osq6ng4wnwxcmabgfgnjnvqci2em4lxv7w7femcvfpbua/182.jpg",
+    "attributes": [
+      {
+        "trait_type": "Class",
+        "value": "Senator"
+      },
+      {
+        "trait_type": "Locus",
+        "value": "Satrap Palace"
+      },
+      {
+        "trait_type": "Persona",
+        "value": "Merti"
+      }
+    ]
+  },
+  "75": {
+    "id": 75,
+    "name": "Satrap #75",
+    "image": "ipfs://bafybeiee5vcu2osq6ng4wnwxcmabgfgnjnvqci2em4lxv7w7femcvfpbua/63.jpg",
+    "attributes": [
+      {
+        "trait_type": "Class",
+        "value": "Senator"
+      },
+      {
+        "trait_type": "Style",
+        "value": "Dish"
+      },
+      {
+        "trait_type": "Locus",
+        "value": "Hambra"
+      },
+      {
+        "trait_type": "Persona",
+        "value": "Juno"
+      }
+    ]
+  },
+  "76": {
+    "id": 76,
+    "name": "Satrap #76",
+    "image": "ipfs://bafybeiee5vcu2osq6ng4wnwxcmabgfgnjnvqci2em4lxv7w7femcvfpbua/28.jpg",
+    "attributes": [
+      {
+        "trait_type": "Class",
+        "value": "Senator"
+      },
+      {
+        "trait_type": "Locus",
+        "value": "Mint"
+      },
+      {
+        "trait_type": "Persona",
+        "value": "Minerva"
+      }
+    ]
+  },
+  "77": {
+    "id": 77,
+    "name": "Satrap #77",
+    "image": "ipfs://bafybeiee5vcu2osq6ng4wnwxcmabgfgnjnvqci2em4lxv7w7femcvfpbua/4.jpg",
+    "attributes": [
+      {
+        "trait_type": "Class",
+        "value": "Senator"
+      },
+      {
+        "trait_type": "Locus",
+        "value": "Satrap Palace"
+      },
+      {
+        "trait_type": "Persona",
+        "value": "Minerva"
+      }
+    ]
+  },
+  "78": {
+    "id": 78,
+    "name": "Satrap #78",
+    "image": "ipfs://bafybeiee5vcu2osq6ng4wnwxcmabgfgnjnvqci2em4lxv7w7femcvfpbua/57.jpg",
+    "attributes": [
+      {
+        "trait_type": "Class",
+        "value": "Senator"
+      },
+      {
+        "trait_type": "Locus",
+        "value": "Babel"
+      },
+      {
+        "trait_type": "Persona",
+        "value": "Minerva"
+      }
+    ]
+  },
+  "79": {
+    "id": 79,
+    "name": "Satrap #79",
+    "image": "ipfs://bafybeiee5vcu2osq6ng4wnwxcmabgfgnjnvqci2em4lxv7w7femcvfpbua/341.jpg",
+    "attributes": [
+      {
+        "trait_type": "Class",
+        "value": "Senator"
+      },
+      {
+        "trait_type": "Locus",
+        "value": "Santuario Infectado"
+      },
+      {
+        "trait_type": "Persona",
+        "value": "Zahara"
+      }
+    ]
+  },
+  "80": {
+    "id": 80,
+    "name": "Satrap #80",
+    "image": "ipfs://bafybeiee5vcu2osq6ng4wnwxcmabgfgnjnvqci2em4lxv7w7femcvfpbua/334.jpg",
+    "attributes": [
+      {
+        "trait_type": "Class",
+        "value": "Senator"
+      },
+      {
+        "trait_type": "Locus",
+        "value": "Grand Mosque"
+      },
+      {
+        "trait_type": "Persona",
+        "value": "Zahara"
+      }
+    ]
+  },
+  "81": {
+    "id": 81,
+    "name": "Satrap #81",
+    "image": "ipfs://bafybeiee5vcu2osq6ng4wnwxcmabgfgnjnvqci2em4lxv7w7femcvfpbua/114.jpg",
+    "attributes": [
+      {
+        "trait_type": "Class",
+        "value": "Senator"
+      },
+      {
+        "trait_type": "Locus",
+        "value": "Roth Sun"
+      },
+      {
+        "trait_type": "Persona",
+        "value": "Minerva"
+      }
+    ]
+  },
+  "82": {
+    "id": 82,
+    "name": "Satrap #82",
+    "image": "ipfs://bafybeiee5vcu2osq6ng4wnwxcmabgfgnjnvqci2em4lxv7w7femcvfpbua/102.jpg",
+    "attributes": [
+      {
+        "trait_type": "Class",
+        "value": "Senator"
+      },
+      {
+        "trait_type": "Locus",
+        "value": "Roma"
+      },
+      {
+        "trait_type": "Persona",
+        "value": "Minerva"
+      }
+    ]
+  },
+  "83": {
+    "id": 83,
+    "name": "Satrap #83",
+    "image": "ipfs://bafybeiee5vcu2osq6ng4wnwxcmabgfgnjnvqci2em4lxv7w7femcvfpbua/148.jpg",
+    "attributes": [
+      {
+        "trait_type": "Class",
+        "value": "Senator"
+      },
+      {
+        "trait_type": "Locus",
+        "value": "Rotunda"
+      },
+      {
+        "trait_type": "Persona",
+        "value": "Merti"
+      }
+    ]
+  },
+  "84": {
+    "id": 84,
+    "name": "Satrap #84",
+    "image": "ipfs://bafybeiee5vcu2osq6ng4wnwxcmabgfgnjnvqci2em4lxv7w7femcvfpbua/204.jpg",
+    "attributes": [
+      {
+        "trait_type": "Class",
+        "value": "Senator"
+      },
+      {
+        "trait_type": "Locus",
+        "value": "Garnier"
+      },
+      {
+        "trait_type": "Persona",
+        "value": "Merti"
+      }
+    ]
+  },
+  "85": {
+    "id": 85,
+    "name": "Satrap #85",
+    "image": "ipfs://bafybeiee5vcu2osq6ng4wnwxcmabgfgnjnvqci2em4lxv7w7femcvfpbua/305.jpg",
+    "attributes": [
+      {
+        "trait_type": "Class",
+        "value": "Senator"
+      },
+      {
+        "trait_type": "Locus",
+        "value": "Cathedral"
+      },
+      {
+        "trait_type": "Persona",
+        "value": "Zahara"
+      }
+    ]
+  },
+  "86": {
+    "id": 86,
+    "name": "Satrap #86",
+    "image": "ipfs://bafybeiee5vcu2osq6ng4wnwxcmabgfgnjnvqci2em4lxv7w7femcvfpbua/59.jpg",
+    "attributes": [
+      {
+        "trait_type": "Class",
+        "value": "Senator"
+      },
+      {
+        "trait_type": "Locus",
+        "value": "Garnier"
+      },
+      {
+        "trait_type": "Persona",
+        "value": "Darius"
+      }
+    ]
+  },
+  "87": {
+    "id": 87,
+    "name": "Satrap #87",
+    "image": "ipfs://bafybeiee5vcu2osq6ng4wnwxcmabgfgnjnvqci2em4lxv7w7femcvfpbua/116.jpg",
+    "attributes": [
+      {
+        "trait_type": "Class",
+        "value": "Senator"
+      },
+      {
+        "trait_type": "Style",
+        "value": "Dish"
+      },
+      {
+        "trait_type": "Locus",
+        "value": "Satrap Palace"
+      },
+      {
+        "trait_type": "Persona",
+        "value": "Dara"
+      }
+    ]
+  },
+  "88": {
+    "id": 88,
+    "name": "Satrap #88",
+    "image": "ipfs://bafybeiee5vcu2osq6ng4wnwxcmabgfgnjnvqci2em4lxv7w7femcvfpbua/169.jpg",
+    "attributes": [
+      {
+        "trait_type": "Class",
+        "value": "Senator"
+      },
+      {
+        "trait_type": "Locus",
+        "value": "Roma"
+      },
+      {
+        "trait_type": "Persona",
+        "value": "Atlas"
+      }
+    ]
+  },
+  "89": {
+    "id": 89,
+    "name": "Satrap #89",
+    "image": "ipfs://bafybeiee5vcu2osq6ng4wnwxcmabgfgnjnvqci2em4lxv7w7femcvfpbua/172.jpg",
+    "attributes": [
+      {
+        "trait_type": "Class",
+        "value": "Senator"
+      },
+      {
+        "trait_type": "Locus",
+        "value": "Garden"
+      },
+      {
+        "trait_type": "Persona",
+        "value": "Zahara"
+      }
+    ]
+  },
+  "90": {
+    "id": 90,
+    "name": "Satrap #90",
+    "image": "ipfs://bafybeiee5vcu2osq6ng4wnwxcmabgfgnjnvqci2em4lxv7w7femcvfpbua/230.jpg",
+    "attributes": [
+      {
+        "trait_type": "Class",
+        "value": "Senator"
+      },
+      {
+        "trait_type": "Locus",
+        "value": "Grand Mosque"
+      },
+      {
+        "trait_type": "Persona",
+        "value": "Juno"
+      }
+    ]
+  },
+  "91": {
+    "id": 91,
+    "name": "Satrap #91",
+    "image": "ipfs://bafybeiee5vcu2osq6ng4wnwxcmabgfgnjnvqci2em4lxv7w7femcvfpbua/282.jpg",
+    "attributes": [
+      {
+        "trait_type": "Class",
+        "value": "Senator"
+      },
+      {
+        "trait_type": "Style",
+        "value": "Dish"
+      },
+      {
+        "trait_type": "Locus",
+        "value": "Palace"
+      },
+      {
+        "trait_type": "Persona",
+        "value": "Yax"
+      }
+    ]
+  },
+  "92": {
+    "id": 92,
+    "name": "Satrap #92",
+    "image": "ipfs://bafybeiee5vcu2osq6ng4wnwxcmabgfgnjnvqci2em4lxv7w7femcvfpbua/236.jpg",
+    "attributes": [
+      {
+        "trait_type": "Class",
+        "value": "Senator"
+      },
+      {
+        "trait_type": "Locus",
+        "value": "Satrap Palace"
+      },
+      {
+        "trait_type": "Persona",
+        "value": "Ervin"
+      }
+    ]
+  },
+  "93": {
+    "id": 93,
+    "name": "Satrap #93",
+    "image": "ipfs://bafybeiee5vcu2osq6ng4wnwxcmabgfgnjnvqci2em4lxv7w7femcvfpbua/127.jpg",
+    "attributes": [
+      {
+        "trait_type": "Class",
+        "value": "Senator"
+      },
+      {
+        "trait_type": "Locus",
+        "value": "Mint"
+      },
+      {
+        "trait_type": "Persona",
+        "value": "Dara"
+      }
+    ]
+  },
+  "94": {
+    "id": 94,
+    "name": "Satrap #94",
+    "image": "ipfs://bafybeiee5vcu2osq6ng4wnwxcmabgfgnjnvqci2em4lxv7w7femcvfpbua/129.jpg",
+    "attributes": [
+      {
+        "trait_type": "Class",
+        "value": "Senator"
+      },
+      {
+        "trait_type": "Locus",
+        "value": "Babel"
+      },
+      {
+        "trait_type": "Persona",
+        "value": "Darius"
+      }
+    ]
+  },
+  "95": {
+    "id": 95,
+    "name": "Satrap #95",
+    "image": "ipfs://bafybeiee5vcu2osq6ng4wnwxcmabgfgnjnvqci2em4lxv7w7femcvfpbua/139.jpg",
+    "attributes": [
+      {
+        "trait_type": "Class",
+        "value": "Senator"
+      },
+      {
+        "trait_type": "Locus",
+        "value": "Cathedral"
+      },
+      {
+        "trait_type": "Persona",
+        "value": "Ardeshir"
+      }
+    ]
+  },
+  "96": {
+    "id": 96,
+    "name": "Satrap #96",
+    "image": "ipfs://bafybeiee5vcu2osq6ng4wnwxcmabgfgnjnvqci2em4lxv7w7femcvfpbua/199.jpg",
+    "attributes": [
+      {
+        "trait_type": "Class",
+        "value": "Senator"
+      },
+      {
+        "trait_type": "Locus",
+        "value": "Grand Mosque"
+      },
+      {
+        "trait_type": "Persona",
+        "value": "Merti"
+      }
+    ]
+  },
+  "97": {
+    "id": 97,
+    "name": "Satrap #97",
+    "image": "ipfs://bafybeiee5vcu2osq6ng4wnwxcmabgfgnjnvqci2em4lxv7w7femcvfpbua/200.jpg",
+    "attributes": [
+      {
+        "trait_type": "Class",
+        "value": "Senator"
+      },
+      {
+        "trait_type": "Locus",
+        "value": "Underground"
+      },
+      {
+        "trait_type": "Persona",
+        "value": "Yax"
+      }
+    ]
+  },
+  "98": {
+    "id": 98,
+    "name": "Satrap #98",
+    "image": "ipfs://bafybeiee5vcu2osq6ng4wnwxcmabgfgnjnvqci2em4lxv7w7femcvfpbua/235.jpg",
+    "attributes": [
+      {
+        "trait_type": "Class",
+        "value": "Senator"
+      },
+      {
+        "trait_type": "Locus",
+        "value": "Meeting Room"
+      },
+      {
+        "trait_type": "Persona",
+        "value": "Darius"
+      }
+    ]
+  },
+  "99": {
+    "id": 99,
+    "name": "Satrap #99",
+    "image": "ipfs://bafybeiee5vcu2osq6ng4wnwxcmabgfgnjnvqci2em4lxv7w7femcvfpbua/115.jpg",
+    "attributes": [
+      {
+        "trait_type": "Class",
+        "value": "Senator"
+      },
+      {
+        "trait_type": "Locus",
+        "value": "Palace"
+      },
+      {
+        "trait_type": "Persona",
+        "value": "Ervin"
+      }
+    ]
+  },
+  "100": {
+    "id": 100,
+    "name": "Satrap #100",
+    "image": "ipfs://bafybeiee5vcu2osq6ng4wnwxcmabgfgnjnvqci2em4lxv7w7femcvfpbua/5.jpg",
+    "attributes": [
+      {
+        "trait_type": "Class",
+        "value": "Senator"
+      },
+      {
+        "trait_type": "Locus",
+        "value": "Rotunda"
+      },
+      {
+        "trait_type": "Persona",
+        "value": "Yax"
+      }
+    ]
+  },
+  "101": {
+    "id": 101,
+    "name": "Satrap #101",
+    "image": "ipfs://bafybeiee5vcu2osq6ng4wnwxcmabgfgnjnvqci2em4lxv7w7femcvfpbua/311.jpg",
+    "attributes": [
+      {
+        "trait_type": "Class",
+        "value": "Senator"
+      },
+      {
+        "trait_type": "Locus",
+        "value": "Satrap Palace"
+      },
+      {
+        "trait_type": "Persona",
+        "value": "Atlas"
+      }
+    ]
+  },
+  "102": {
+    "id": 102,
+    "name": "Satrap #102",
+    "image": "ipfs://bafybeiee5vcu2osq6ng4wnwxcmabgfgnjnvqci2em4lxv7w7femcvfpbua/275.jpg",
+    "attributes": [
+      {
+        "trait_type": "Class",
+        "value": "Senator"
+      },
+      {
+        "trait_type": "Style",
+        "value": "Dish"
+      },
+      {
+        "trait_type": "Locus",
+        "value": "Underground"
+      },
+      {
+        "trait_type": "Persona",
+        "value": "Darius"
+      }
+    ]
+  },
+  "103": {
+    "id": 103,
+    "name": "Satrap #103",
+    "image": "ipfs://bafybeiee5vcu2osq6ng4wnwxcmabgfgnjnvqci2em4lxv7w7femcvfpbua/347.jpg",
+    "attributes": [
+      {
+        "trait_type": "Class",
+        "value": "Senator"
+      },
+      {
+        "trait_type": "Locus",
+        "value": "Cave Sanctuary"
+      },
+      {
+        "trait_type": "Persona",
+        "value": "Juno"
+      }
+    ]
+  },
+  "104": {
+    "id": 104,
+    "name": "Satrap #104",
+    "image": "ipfs://bafybeiee5vcu2osq6ng4wnwxcmabgfgnjnvqci2em4lxv7w7femcvfpbua/330.jpg",
+    "attributes": [
+      {
+        "trait_type": "Class",
+        "value": "Senator"
+      },
+      {
+        "trait_type": "Locus",
+        "value": "Babel"
+      },
+      {
+        "trait_type": "Persona",
+        "value": "Ervin"
+      }
+    ]
+  },
+  "105": {
+    "id": 105,
+    "name": "Satrap #105",
+    "image": "ipfs://bafybeiee5vcu2osq6ng4wnwxcmabgfgnjnvqci2em4lxv7w7femcvfpbua/201.jpg",
+    "attributes": [
+      {
+        "trait_type": "Class",
+        "value": "Senator"
+      },
+      {
+        "trait_type": "Locus",
+        "value": "Underground"
+      },
+      {
+        "trait_type": "Persona",
+        "value": "Atlas"
+      }
+    ]
+  },
+  "106": {
+    "id": 106,
+    "name": "Satrap #106",
+    "image": "ipfs://bafybeiee5vcu2osq6ng4wnwxcmabgfgnjnvqci2em4lxv7w7femcvfpbua/216.jpg",
+    "attributes": [
+      {
+        "trait_type": "Class",
+        "value": "Senator"
+      },
+      {
+        "trait_type": "Locus",
+        "value": "Dark Temple"
+      },
+      {
+        "trait_type": "Persona",
+        "value": "Ardeshir"
+      }
+    ]
+  },
+  "107": {
+    "id": 107,
+    "name": "Satrap #107",
+    "image": "ipfs://bafybeiee5vcu2osq6ng4wnwxcmabgfgnjnvqci2em4lxv7w7femcvfpbua/70.jpg",
+    "attributes": [
+      {
+        "trait_type": "Class",
+        "value": "Senator"
+      },
+      {
+        "trait_type": "Locus",
+        "value": "Grand Mosque"
+      },
+      {
+        "trait_type": "Persona",
+        "value": "Atlas"
+      }
+    ]
+  },
+  "108": {
+    "id": 108,
+    "name": "Satrap #108",
+    "image": "ipfs://bafybeiee5vcu2osq6ng4wnwxcmabgfgnjnvqci2em4lxv7w7femcvfpbua/33.jpg",
+    "attributes": [
+      {
+        "trait_type": "Class",
+        "value": "Senator"
+      },
+      {
+        "trait_type": "Locus",
+        "value": "Dark Persepolis"
+      },
+      {
+        "trait_type": "Persona",
+        "value": "Darius"
+      }
+    ]
+  },
+  "109": {
+    "id": 109,
+    "name": "Satrap #109",
+    "image": "ipfs://bafybeiee5vcu2osq6ng4wnwxcmabgfgnjnvqci2em4lxv7w7femcvfpbua/46.jpg",
+    "attributes": [
+      {
+        "trait_type": "Class",
+        "value": "Senator"
+      },
+      {
+        "trait_type": "Locus",
+        "value": "Cathedral"
+      },
+      {
+        "trait_type": "Persona",
+        "value": "Minerva"
+      }
+    ]
+  },
+  "110": {
+    "id": 110,
+    "name": "Satrap #110",
+    "image": "ipfs://bafybeiee5vcu2osq6ng4wnwxcmabgfgnjnvqci2em4lxv7w7femcvfpbua/55.jpg",
+    "attributes": [
+      {
+        "trait_type": "Class",
+        "value": "Senator"
+      },
+      {
+        "trait_type": "Style",
+        "value": "Dish"
+      },
+      {
+        "trait_type": "Locus",
+        "value": "Satrap Palace"
+      },
+      {
+        "trait_type": "Persona",
+        "value": "Zahara"
+      }
+    ]
+  },
+  "111": {
+    "id": 111,
+    "name": "Satrap #111",
+    "image": "ipfs://bafybeiee5vcu2osq6ng4wnwxcmabgfgnjnvqci2em4lxv7w7femcvfpbua/53.jpg",
+    "attributes": [
+      {
+        "trait_type": "Class",
+        "value": "Senator"
+      },
+      {
+        "trait_type": "Locus",
+        "value": "Mint"
+      },
+      {
+        "trait_type": "Persona",
+        "value": "Atlas"
+      }
+    ]
+  },
+  "112": {
+    "id": 112,
+    "name": "Satrap #112",
+    "image": "ipfs://bafybeiee5vcu2osq6ng4wnwxcmabgfgnjnvqci2em4lxv7w7femcvfpbua/65.jpg",
+    "attributes": [
+      {
+        "trait_type": "Class",
+        "value": "Senator"
+      },
+      {
+        "trait_type": "Style",
+        "value": "Dish"
+      },
+      {
+        "trait_type": "Locus",
+        "value": "Derafsh Kaviani"
+      },
+      {
+        "trait_type": "Persona",
+        "value": "Dara"
+      }
+    ]
+  },
+  "113": {
+    "id": 113,
+    "name": "Satrap #113",
+    "image": "ipfs://bafybeiee5vcu2osq6ng4wnwxcmabgfgnjnvqci2em4lxv7w7femcvfpbua/27.jpg",
+    "attributes": [
+      {
+        "trait_type": "Class",
+        "value": "Senator"
+      },
+      {
+        "trait_type": "Style",
+        "value": "Dish"
+      },
+      {
+        "trait_type": "Locus",
+        "value": "Grand Mosque"
+      },
+      {
+        "trait_type": "Persona",
+        "value": "Juno"
+      }
+    ]
+  },
+  "114": {
+    "id": 114,
+    "name": "Satrap #114",
+    "image": "ipfs://bafybeiee5vcu2osq6ng4wnwxcmabgfgnjnvqci2em4lxv7w7femcvfpbua/39.jpg",
+    "attributes": [
+      {
+        "trait_type": "Class",
+        "value": "Senator"
+      },
+      {
+        "trait_type": "Locus",
+        "value": "Grand Mosque"
+      },
+      {
+        "trait_type": "Persona",
+        "value": "Yax"
+      }
+    ]
+  },
+  "115": {
+    "id": 115,
+    "name": "Satrap #115",
+    "image": "ipfs://bafybeiee5vcu2osq6ng4wnwxcmabgfgnjnvqci2em4lxv7w7femcvfpbua/195.jpg",
+    "attributes": [
+      {
+        "trait_type": "Class",
+        "value": "Senator"
+      },
+      {
+        "trait_type": "Locus",
+        "value": "Babel"
+      },
+      {
+        "trait_type": "Persona",
+        "value": "Yax"
+      }
+    ]
+  },
+  "116": {
+    "id": 116,
+    "name": "Satrap #116",
+    "image": "ipfs://bafybeiee5vcu2osq6ng4wnwxcmabgfgnjnvqci2em4lxv7w7femcvfpbua/168.jpg",
+    "attributes": [
+      {
+        "trait_type": "Class",
+        "value": "Senator"
+      },
+      {
+        "trait_type": "Locus",
+        "value": "Giardino"
+      },
+      {
+        "trait_type": "Persona",
+        "value": "Yax"
+      }
+    ]
+  },
+  "117": {
+    "id": 117,
+    "name": "Satrap #117",
+    "image": "ipfs://bafybeiee5vcu2osq6ng4wnwxcmabgfgnjnvqci2em4lxv7w7femcvfpbua/202.jpg",
+    "attributes": [
+      {
+        "trait_type": "Class",
+        "value": "Senator"
+      },
+      {
+        "trait_type": "Locus",
+        "value": "Derafsh Kaviani"
+      },
+      {
+        "trait_type": "Persona",
+        "value": "Darius"
+      }
+    ]
+  },
+  "118": {
+    "id": 118,
+    "name": "Satrap #118",
+    "image": "ipfs://bafybeiee5vcu2osq6ng4wnwxcmabgfgnjnvqci2em4lxv7w7femcvfpbua/193.jpg",
+    "attributes": [
+      {
+        "trait_type": "Class",
+        "value": "Senator"
+      },
+      {
+        "trait_type": "Locus",
+        "value": "Capriccio"
+      },
+      {
+        "trait_type": "Persona",
+        "value": "Dara"
+      }
+    ]
+  },
+  "119": {
+    "id": 119,
+    "name": "Satrap #119",
+    "image": "ipfs://bafybeiee5vcu2osq6ng4wnwxcmabgfgnjnvqci2em4lxv7w7femcvfpbua/329.jpg",
+    "attributes": [
+      {
+        "trait_type": "Class",
+        "value": "Senator"
+      },
+      {
+        "trait_type": "Locus",
+        "value": "Roth Angels"
+      },
+      {
+        "trait_type": "Persona",
+        "value": "Ervin"
+      }
+    ]
+  },
+  "120": {
+    "id": 120,
+    "name": "Satrap #120",
+    "image": "ipfs://bafybeiee5vcu2osq6ng4wnwxcmabgfgnjnvqci2em4lxv7w7femcvfpbua/331.jpg",
+    "attributes": [
+      {
+        "trait_type": "Class",
+        "value": "Senator"
+      },
+      {
+        "trait_type": "Locus",
+        "value": "Sanctuary"
+      },
+      {
+        "trait_type": "Persona",
+        "value": "Minerva"
+      }
+    ]
+  },
+  "121": {
+    "id": 121,
+    "name": "Satrap #121",
+    "image": "ipfs://bafybeiee5vcu2osq6ng4wnwxcmabgfgnjnvqci2em4lxv7w7femcvfpbua/337.jpg",
+    "attributes": [
+      {
+        "trait_type": "Class",
+        "value": "Senator"
+      },
+      {
+        "trait_type": "Locus",
+        "value": "Long Hall"
+      },
+      {
+        "trait_type": "Persona",
+        "value": "Juno"
+      }
+    ]
+  },
+  "122": {
+    "id": 122,
+    "name": "Satrap #122",
+    "image": "ipfs://bafybeiee5vcu2osq6ng4wnwxcmabgfgnjnvqci2em4lxv7w7femcvfpbua/274.jpg",
+    "attributes": [
+      {
+        "trait_type": "Class",
+        "value": "Senator"
+      },
+      {
+        "trait_type": "Locus",
+        "value": "Hambra"
+      },
+      {
+        "trait_type": "Persona",
+        "value": "Zahara"
+      }
+    ]
+  },
+  "123": {
+    "id": 123,
+    "name": "Satrap #123",
+    "image": "ipfs://bafybeiee5vcu2osq6ng4wnwxcmabgfgnjnvqci2em4lxv7w7femcvfpbua/227.jpg",
+    "attributes": [
+      {
+        "trait_type": "Class",
+        "value": "Senator"
+      },
+      {
+        "trait_type": "Style",
+        "value": "Dish"
+      },
+      {
+        "trait_type": "Locus",
+        "value": "Meeting Room"
+      },
+      {
+        "trait_type": "Persona",
+        "value": "Minerva"
+      }
+    ]
+  },
+  "124": {
+    "id": 124,
+    "name": "Satrap #124",
+    "image": "ipfs://bafybeiee5vcu2osq6ng4wnwxcmabgfgnjnvqci2em4lxv7w7femcvfpbua/29.jpg",
+    "attributes": [
+      {
+        "trait_type": "Class",
+        "value": "Senator"
+      },
+      {
+        "trait_type": "Locus",
+        "value": "Hambra"
+      },
+      {
+        "trait_type": "Persona",
+        "value": "Ardeshir"
+      }
+    ]
+  },
+  "125": {
+    "id": 125,
+    "name": "Satrap #125",
+    "image": "ipfs://bafybeiee5vcu2osq6ng4wnwxcmabgfgnjnvqci2em4lxv7w7femcvfpbua/3.jpg",
+    "attributes": [
+      {
+        "trait_type": "Class",
+        "value": "Senator"
+      },
+      {
+        "trait_type": "Style",
+        "value": "Dish"
+      },
+      {
+        "trait_type": "Locus",
+        "value": "Derafsh Kaviani"
+      },
+      {
+        "trait_type": "Persona",
+        "value": "Minerva"
+      }
+    ]
+  },
+  "126": {
+    "id": 126,
+    "name": "Satrap #126",
+    "image": "ipfs://bafybeiee5vcu2osq6ng4wnwxcmabgfgnjnvqci2em4lxv7w7femcvfpbua/14.jpg",
+    "attributes": [
+      {
+        "trait_type": "Class",
+        "value": "Senator"
+      },
+      {
+        "trait_type": "Locus",
+        "value": "Council"
+      },
+      {
+        "trait_type": "Persona",
+        "value": "Atlas"
+      }
+    ]
+  },
+  "127": {
+    "id": 127,
+    "name": "Satrap #127",
+    "image": "ipfs://bafybeiee5vcu2osq6ng4wnwxcmabgfgnjnvqci2em4lxv7w7femcvfpbua/240.jpg",
+    "attributes": [
+      {
+        "trait_type": "Class",
+        "value": "Senator"
+      },
+      {
+        "trait_type": "Locus",
+        "value": "Satrap Palace"
+      },
+      {
+        "trait_type": "Persona",
+        "value": "Yax"
+      }
+    ]
+  },
+  "128": {
+    "id": 128,
+    "name": "Satrap #128",
+    "image": "ipfs://bafybeiee5vcu2osq6ng4wnwxcmabgfgnjnvqci2em4lxv7w7femcvfpbua/238.jpg",
+    "attributes": [
+      {
+        "trait_type": "Class",
+        "value": "Senator"
+      },
+      {
+        "trait_type": "Locus",
+        "value": "Roth Angels"
+      },
+      {
+        "trait_type": "Persona",
+        "value": "Merti"
+      }
+    ]
+  },
+  "129": {
+    "id": 129,
+    "name": "Satrap #129",
+    "image": "ipfs://bafybeiee5vcu2osq6ng4wnwxcmabgfgnjnvqci2em4lxv7w7femcvfpbua/280.jpg",
+    "attributes": [
+      {
+        "trait_type": "Class",
+        "value": "Senator"
+      },
+      {
+        "trait_type": "Locus",
+        "value": "Mint"
+      },
+      {
+        "trait_type": "Persona",
+        "value": "Yax"
+      }
+    ]
+  },
+  "130": {
+    "id": 130,
+    "name": "Satrap #130",
+    "image": "ipfs://bafybeiee5vcu2osq6ng4wnwxcmabgfgnjnvqci2em4lxv7w7femcvfpbua/270.jpg",
+    "attributes": [
+      {
+        "trait_type": "Class",
+        "value": "Senator"
+      },
+      {
+        "trait_type": "Locus",
+        "value": "Dark Temple"
+      },
+      {
+        "trait_type": "Persona",
+        "value": "Artemis"
+      }
+    ]
+  },
+  "131": {
+    "id": 131,
+    "name": "Satrap #131",
+    "image": "ipfs://bafybeiee5vcu2osq6ng4wnwxcmabgfgnjnvqci2em4lxv7w7femcvfpbua/77.jpg",
+    "attributes": [
+      {
+        "trait_type": "Class",
+        "value": "Senator"
+      },
+      {
+        "trait_type": "Locus",
+        "value": "Mint"
+      },
+      {
+        "trait_type": "Persona",
+        "value": "Darius"
+      }
+    ]
+  },
+  "132": {
+    "id": 132,
+    "name": "Satrap #132",
+    "image": "ipfs://bafybeiee5vcu2osq6ng4wnwxcmabgfgnjnvqci2em4lxv7w7femcvfpbua/312.jpg",
+    "attributes": [
+      {
+        "trait_type": "Class",
+        "value": "Senator"
+      },
+      {
+        "trait_type": "Style",
+        "value": "Dish"
+      },
+      {
+        "trait_type": "Locus",
+        "value": "Meeting Room"
+      },
+      {
+        "trait_type": "Persona",
+        "value": "Merti"
+      }
+    ]
+  },
+  "133": {
+    "id": 133,
+    "name": "Satrap #133",
+    "image": "ipfs://bafybeiee5vcu2osq6ng4wnwxcmabgfgnjnvqci2em4lxv7w7femcvfpbua/229.jpg",
+    "attributes": [
+      {
+        "trait_type": "Class",
+        "value": "Senator"
+      },
+      {
+        "trait_type": "Style",
+        "value": "Dish"
+      },
+      {
+        "trait_type": "Locus",
+        "value": "Cathedral"
+      },
+      {
+        "trait_type": "Persona",
+        "value": "Atlas"
+      }
+    ]
+  },
+  "134": {
+    "id": 134,
+    "name": "Satrap #134",
+    "image": "ipfs://bafybeiee5vcu2osq6ng4wnwxcmabgfgnjnvqci2em4lxv7w7femcvfpbua/234.jpg",
+    "attributes": [
+      {
+        "trait_type": "Class",
+        "value": "Senator"
+      },
+      {
+        "trait_type": "Locus",
+        "value": "Roth Angels"
+      },
+      {
+        "trait_type": "Persona",
+        "value": "Juno"
+      }
+    ]
+  },
+  "135": {
+    "id": 135,
+    "name": "Satrap #135",
+    "image": "ipfs://bafybeiee5vcu2osq6ng4wnwxcmabgfgnjnvqci2em4lxv7w7femcvfpbua/175.jpg",
+    "attributes": [
+      {
+        "trait_type": "Class",
+        "value": "Senator"
+      },
+      {
+        "trait_type": "Locus",
+        "value": "Dungeon Temple"
+      },
+      {
+        "trait_type": "Persona",
+        "value": "Zahara"
+      }
+    ]
+  },
+  "136": {
+    "id": 136,
+    "name": "Satrap #136",
+    "image": "ipfs://bafybeiee5vcu2osq6ng4wnwxcmabgfgnjnvqci2em4lxv7w7femcvfpbua/85.jpg",
+    "attributes": [
+      {
+        "trait_type": "Class",
+        "value": "Senator"
+      },
+      {
+        "trait_type": "Locus",
+        "value": "Löwe"
+      },
+      {
+        "trait_type": "Persona",
+        "value": "Minerva"
+      }
+    ]
+  },
+  "137": {
+    "id": 137,
+    "name": "Satrap #137",
+    "image": "ipfs://bafybeiee5vcu2osq6ng4wnwxcmabgfgnjnvqci2em4lxv7w7femcvfpbua/48.jpg",
+    "attributes": [
+      {
+        "trait_type": "Class",
+        "value": "Senator"
+      },
+      {
+        "trait_type": "Locus",
+        "value": "Garnier"
+      },
+      {
+        "trait_type": "Persona",
+        "value": "Minerva"
+      }
+    ]
+  },
+  "138": {
+    "id": 138,
+    "name": "Satrap #138",
+    "image": "ipfs://bafybeiee5vcu2osq6ng4wnwxcmabgfgnjnvqci2em4lxv7w7femcvfpbua/178.jpg",
+    "attributes": [
+      {
+        "trait_type": "Class",
+        "value": "Senator"
+      },
+      {
+        "trait_type": "Locus",
+        "value": "New World Arch"
+      },
+      {
+        "trait_type": "Persona",
+        "value": "Yax"
+      }
+    ]
+  },
+  "139": {
+    "id": 139,
+    "name": "Satrap #139",
+    "image": "ipfs://bafybeiee5vcu2osq6ng4wnwxcmabgfgnjnvqci2em4lxv7w7femcvfpbua/295.jpg",
+    "attributes": [
+      {
+        "trait_type": "Class",
+        "value": "Senator"
+      },
+      {
+        "trait_type": "Style",
+        "value": "Dish"
+      },
+      {
+        "trait_type": "Locus",
+        "value": "Satrap Palace"
+      },
+      {
+        "trait_type": "Persona",
+        "value": "Ervin"
+      }
+    ]
+  },
+  "140": {
+    "id": 140,
+    "name": "Satrap #140",
+    "image": "ipfs://bafybeiee5vcu2osq6ng4wnwxcmabgfgnjnvqci2em4lxv7w7femcvfpbua/344.jpg",
+    "attributes": [
+      {
+        "trait_type": "Class",
+        "value": "Senator"
+      },
+      {
+        "trait_type": "Locus",
+        "value": "Löwe"
+      },
+      {
+        "trait_type": "Persona",
+        "value": "Juno"
+      }
+    ]
+  },
+  "141": {
+    "id": 141,
+    "name": "Satrap #141",
+    "image": "ipfs://bafybeiee5vcu2osq6ng4wnwxcmabgfgnjnvqci2em4lxv7w7femcvfpbua/266.jpg",
+    "attributes": [
+      {
+        "trait_type": "Class",
+        "value": "Senator"
+      },
+      {
+        "trait_type": "Locus",
+        "value": "Underground"
+      },
+      {
+        "trait_type": "Persona",
+        "value": "Merti"
+      }
+    ]
+  },
+  "142": {
+    "id": 142,
+    "name": "Satrap #142",
+    "image": "ipfs://bafybeiee5vcu2osq6ng4wnwxcmabgfgnjnvqci2em4lxv7w7femcvfpbua/273.jpg",
+    "attributes": [
+      {
+        "trait_type": "Class",
+        "value": "Senator"
+      },
+      {
+        "trait_type": "Locus",
+        "value": "Satrap Palace"
+      },
+      {
+        "trait_type": "Persona",
+        "value": "Dara"
+      }
+    ]
+  },
+  "143": {
+    "id": 143,
+    "name": "Satrap #143",
+    "image": "ipfs://bafybeiee5vcu2osq6ng4wnwxcmabgfgnjnvqci2em4lxv7w7femcvfpbua/245.jpg",
+    "attributes": [
+      {
+        "trait_type": "Class",
+        "value": "Senator"
+      },
+      {
+        "trait_type": "Style",
+        "value": "Dish"
+      },
+      {
+        "trait_type": "Locus",
+        "value": "Cathedral"
+      },
+      {
+        "trait_type": "Persona",
+        "value": "Artemis"
+      }
+    ]
+  },
+  "144": {
+    "id": 144,
+    "name": "Satrap #144",
+    "image": "ipfs://bafybeiee5vcu2osq6ng4wnwxcmabgfgnjnvqci2em4lxv7w7femcvfpbua/111.jpg",
+    "attributes": [
+      {
+        "trait_type": "Class",
+        "value": "Senator"
+      },
+      {
+        "trait_type": "Locus",
+        "value": "Roth Sun"
+      },
+      {
+        "trait_type": "Persona",
+        "value": "Darius"
+      }
+    ]
+  },
+  "145": {
+    "id": 145,
+    "name": "Satrap #145",
+    "image": "ipfs://bafybeiee5vcu2osq6ng4wnwxcmabgfgnjnvqci2em4lxv7w7femcvfpbua/113.jpg",
+    "attributes": [
+      {
+        "trait_type": "Class",
+        "value": "Senator"
+      },
+      {
+        "trait_type": "Locus",
+        "value": "New World Arch"
+      },
+      {
+        "trait_type": "Persona",
+        "value": "Juno"
+      }
+    ]
+  },
+  "146": {
+    "id": 146,
+    "name": "Satrap #146",
+    "image": "ipfs://bafybeiee5vcu2osq6ng4wnwxcmabgfgnjnvqci2em4lxv7w7femcvfpbua/165.jpg",
+    "attributes": [
+      {
+        "trait_type": "Class",
+        "value": "Senator"
+      },
+      {
+        "trait_type": "Locus",
+        "value": "Patio de Los Leones"
+      },
+      {
+        "trait_type": "Persona",
+        "value": "Juno"
+      }
+    ]
+  },
+  "147": {
+    "id": 147,
+    "name": "Satrap #147",
+    "image": "ipfs://bafybeiee5vcu2osq6ng4wnwxcmabgfgnjnvqci2em4lxv7w7femcvfpbua/232.jpg",
+    "attributes": [
+      {
+        "trait_type": "Class",
+        "value": "Senator"
+      },
+      {
+        "trait_type": "Locus",
+        "value": "Patio de Los Leones"
+      },
+      {
+        "trait_type": "Persona",
+        "value": "Minerva"
+      }
+    ]
+  },
+  "148": {
+    "id": 148,
+    "name": "Satrap #148",
+    "image": "ipfs://bafybeiee5vcu2osq6ng4wnwxcmabgfgnjnvqci2em4lxv7w7femcvfpbua/260.jpg",
+    "attributes": [
+      {
+        "trait_type": "Class",
+        "value": "Senator"
+      },
+      {
+        "trait_type": "Locus",
+        "value": "Roth Sun"
+      },
+      {
+        "trait_type": "Persona",
+        "value": "Zahara"
+      }
+    ]
+  },
+  "149": {
+    "id": 149,
+    "name": "Satrap #149",
+    "image": "ipfs://bafybeiee5vcu2osq6ng4wnwxcmabgfgnjnvqci2em4lxv7w7femcvfpbua/278.jpg",
+    "attributes": [
+      {
+        "trait_type": "Class",
+        "value": "Senator"
+      },
+      {
+        "trait_type": "Locus",
+        "value": "Town Church"
+      },
+      {
+        "trait_type": "Persona",
+        "value": "Merti"
+      }
+    ]
+  },
+  "150": {
+    "id": 150,
+    "name": "Satrap #150",
+    "image": "ipfs://bafybeiee5vcu2osq6ng4wnwxcmabgfgnjnvqci2em4lxv7w7femcvfpbua/141.jpg",
+    "attributes": [
+      {
+        "trait_type": "Class",
+        "value": "Senator"
+      },
+      {
+        "trait_type": "Locus",
+        "value": "Town Church"
+      },
+      {
+        "trait_type": "Persona",
+        "value": "Artemis"
+      }
+    ]
+  },
+  "151": {
+    "id": 151,
+    "name": "Satrap #151",
+    "image": "ipfs://bafybeiee5vcu2osq6ng4wnwxcmabgfgnjnvqci2em4lxv7w7femcvfpbua/293.jpg",
+    "attributes": [
+      {
+        "trait_type": "Class",
+        "value": "Senator"
+      },
+      {
+        "trait_type": "Style",
+        "value": "Dish"
+      },
+      {
+        "trait_type": "Locus",
+        "value": "Cathedral"
+      },
+      {
+        "trait_type": "Persona",
+        "value": "Ervin"
+      }
+    ]
+  },
+  "152": {
+    "id": 152,
+    "name": "Satrap #152",
+    "image": "ipfs://bafybeiee5vcu2osq6ng4wnwxcmabgfgnjnvqci2em4lxv7w7femcvfpbua/79.jpg",
+    "attributes": [
+      {
+        "trait_type": "Class",
+        "value": "Senator"
+      },
+      {
+        "trait_type": "Locus",
+        "value": "Cathedral"
+      },
+      {
+        "trait_type": "Persona",
+        "value": "Juno"
+      }
+    ]
+  },
+  "153": {
+    "id": 153,
+    "name": "Satrap #153",
+    "image": "ipfs://bafybeiee5vcu2osq6ng4wnwxcmabgfgnjnvqci2em4lxv7w7femcvfpbua/158.jpg",
+    "attributes": [
+      {
+        "trait_type": "Class",
+        "value": "Senator"
+      },
+      {
+        "trait_type": "Locus",
+        "value": "Town Church"
+      },
+      {
+        "trait_type": "Persona",
+        "value": "Juno"
+      }
+    ]
+  },
+  "154": {
+    "id": 154,
+    "name": "Satrap #154",
+    "image": "ipfs://bafybeiee5vcu2osq6ng4wnwxcmabgfgnjnvqci2em4lxv7w7femcvfpbua/93.jpg",
+    "attributes": [
+      {
+        "trait_type": "Class",
+        "value": "Senator"
+      },
+      {
+        "trait_type": "Style",
+        "value": "Dish"
+      },
+      {
+        "trait_type": "Locus",
+        "value": "Dark Temple"
+      },
+      {
+        "trait_type": "Persona",
+        "value": "Yax"
+      }
+    ]
+  },
+  "155": {
+    "id": 155,
+    "name": "Satrap #155",
+    "image": "ipfs://bafybeiee5vcu2osq6ng4wnwxcmabgfgnjnvqci2em4lxv7w7femcvfpbua/84.jpg",
+    "attributes": [
+      {
+        "trait_type": "Class",
+        "value": "Senator"
+      },
+      {
+        "trait_type": "Locus",
+        "value": "Garden"
+      },
+      {
+        "trait_type": "Persona",
+        "value": "Merti"
+      }
+    ]
+  },
+  "156": {
+    "id": 156,
+    "name": "Satrap #156",
+    "image": "ipfs://bafybeiee5vcu2osq6ng4wnwxcmabgfgnjnvqci2em4lxv7w7femcvfpbua/186.jpg",
+    "attributes": [
+      {
+        "trait_type": "Class",
+        "value": "Senator"
+      },
+      {
+        "trait_type": "Style",
+        "value": "Dish"
+      },
+      {
+        "trait_type": "Locus",
+        "value": "Hambra"
+      },
+      {
+        "trait_type": "Persona",
+        "value": "Atlas"
+      }
+    ]
+  },
+  "157": {
+    "id": 157,
+    "name": "Satrap #157",
+    "image": "ipfs://bafybeiee5vcu2osq6ng4wnwxcmabgfgnjnvqci2em4lxv7w7femcvfpbua/37.jpg",
+    "attributes": [
+      {
+        "trait_type": "Class",
+        "value": "Senator"
+      },
+      {
+        "trait_type": "Locus",
+        "value": "Babel"
+      },
+      {
+        "trait_type": "Persona",
+        "value": "Zahara"
+      }
+    ]
+  },
+  "158": {
+    "id": 158,
+    "name": "Satrap #158",
+    "image": "ipfs://bafybeiee5vcu2osq6ng4wnwxcmabgfgnjnvqci2em4lxv7w7femcvfpbua/98.jpg",
+    "attributes": [
+      {
+        "trait_type": "Class",
+        "value": "Senator"
+      },
+      {
+        "trait_type": "Locus",
+        "value": "Roth Angels"
+      },
+      {
+        "trait_type": "Persona",
+        "value": "Artemis"
+      }
+    ]
+  },
+  "159": {
+    "id": 159,
+    "name": "Satrap #159",
+    "image": "ipfs://bafybeiee5vcu2osq6ng4wnwxcmabgfgnjnvqci2em4lxv7w7femcvfpbua/269.jpg",
+    "attributes": [
+      {
+        "trait_type": "Class",
+        "value": "Senator"
+      },
+      {
+        "trait_type": "Locus",
+        "value": "Meeting Room"
+      },
+      {
+        "trait_type": "Persona",
+        "value": "Yax"
+      }
+    ]
+  },
+  "160": {
+    "id": 160,
+    "name": "Satrap #160",
+    "image": "ipfs://bafybeiee5vcu2osq6ng4wnwxcmabgfgnjnvqci2em4lxv7w7femcvfpbua/281.jpg",
+    "attributes": [
+      {
+        "trait_type": "Class",
+        "value": "Senator"
+      },
+      {
+        "trait_type": "Locus",
+        "value": "Dungeon Temple"
+      },
+      {
+        "trait_type": "Persona",
+        "value": "Ervin"
+      }
+    ]
+  },
+  "161": {
+    "id": 161,
+    "name": "Satrap #161",
+    "image": "ipfs://bafybeiee5vcu2osq6ng4wnwxcmabgfgnjnvqci2em4lxv7w7femcvfpbua/253.jpg",
+    "attributes": [
+      {
+        "trait_type": "Class",
+        "value": "Senator"
+      },
+      {
+        "trait_type": "Locus",
+        "value": "New World Arch"
+      },
+      {
+        "trait_type": "Persona",
+        "value": "Ervin"
+      }
+    ]
+  },
+  "162": {
+    "id": 162,
+    "name": "Satrap #162",
+    "image": "ipfs://bafybeiee5vcu2osq6ng4wnwxcmabgfgnjnvqci2em4lxv7w7femcvfpbua/256.jpg",
+    "attributes": [
+      {
+        "trait_type": "Class",
+        "value": "Senator"
+      },
+      {
+        "trait_type": "Locus",
+        "value": "Giardino"
+      },
+      {
+        "trait_type": "Persona",
+        "value": "Dara"
+      }
+    ]
+  },
+  "163": {
+    "id": 163,
+    "name": "Satrap #163",
+    "image": "ipfs://bafybeiee5vcu2osq6ng4wnwxcmabgfgnjnvqci2em4lxv7w7femcvfpbua/185.jpg",
+    "attributes": [
+      {
+        "trait_type": "Class",
+        "value": "Senator"
+      },
+      {
+        "trait_type": "Locus",
+        "value": "Satrap Palace"
+      },
+      {
+        "trait_type": "Persona",
+        "value": "Ardeshir"
+      }
+    ]
+  },
+  "164": {
+    "id": 164,
+    "name": "Satrap #164",
+    "image": "ipfs://bafybeiee5vcu2osq6ng4wnwxcmabgfgnjnvqci2em4lxv7w7femcvfpbua/196.jpg",
+    "attributes": [
+      {
+        "trait_type": "Class",
+        "value": "Senator"
+      },
+      {
+        "trait_type": "Style",
+        "value": "Dish"
+      },
+      {
+        "trait_type": "Locus",
+        "value": "Roth Sun"
+      },
+      {
+        "trait_type": "Persona",
+        "value": "Darius"
+      }
+    ]
+  },
+  "165": {
+    "id": 165,
+    "name": "Satrap #165",
+    "image": "ipfs://bafybeiee5vcu2osq6ng4wnwxcmabgfgnjnvqci2em4lxv7w7femcvfpbua/213.jpg",
+    "attributes": [
+      {
+        "trait_type": "Class",
+        "value": "Senator"
+      },
+      {
+        "trait_type": "Locus",
+        "value": "Hambra"
+      },
+      {
+        "trait_type": "Persona",
+        "value": "Minerva"
+      }
+    ]
+  },
+  "166": {
+    "id": 166,
+    "name": "Satrap #166",
+    "image": "ipfs://bafybeiee5vcu2osq6ng4wnwxcmabgfgnjnvqci2em4lxv7w7femcvfpbua/221.jpg",
+    "attributes": [
+      {
+        "trait_type": "Class",
+        "value": "Senator"
+      },
+      {
+        "trait_type": "Locus",
+        "value": "Barrel-vaulted Capriccio"
+      },
+      {
+        "trait_type": "Persona",
+        "value": "Dara"
+      }
+    ]
+  },
+  "167": {
+    "id": 167,
+    "name": "Satrap #167",
+    "image": "ipfs://bafybeiee5vcu2osq6ng4wnwxcmabgfgnjnvqci2em4lxv7w7femcvfpbua/242.jpg",
+    "attributes": [
+      {
+        "trait_type": "Class",
+        "value": "Senator"
+      },
+      {
+        "trait_type": "Locus",
+        "value": "Capriccio"
+      },
+      {
+        "trait_type": "Persona",
+        "value": "Ervin"
+      }
+    ]
+  },
+  "168": {
+    "id": 168,
+    "name": "Satrap #168",
+    "image": "ipfs://bafybeiee5vcu2osq6ng4wnwxcmabgfgnjnvqci2em4lxv7w7femcvfpbua/120.jpg",
+    "attributes": [
+      {
+        "trait_type": "Class",
+        "value": "Senator"
+      },
+      {
+        "trait_type": "Locus",
+        "value": "Rotunda"
+      },
+      {
+        "trait_type": "Persona",
+        "value": "Zahara"
+      }
+    ]
+  },
+  "169": {
+    "id": 169,
+    "name": "Satrap #169",
+    "image": "ipfs://bafybeiee5vcu2osq6ng4wnwxcmabgfgnjnvqci2em4lxv7w7femcvfpbua/20.jpg",
+    "attributes": [
+      {
+        "trait_type": "Class",
+        "value": "Senator"
+      },
+      {
+        "trait_type": "Locus",
+        "value": "Dungeon Temple"
+      },
+      {
+        "trait_type": "Persona",
+        "value": "Merti"
+      }
+    ]
+  },
+  "170": {
+    "id": 170,
+    "name": "Satrap #170",
+    "image": "ipfs://bafybeiee5vcu2osq6ng4wnwxcmabgfgnjnvqci2em4lxv7w7femcvfpbua/314.jpg",
+    "attributes": [
+      {
+        "trait_type": "Class",
+        "value": "Senator"
+      },
+      {
+        "trait_type": "Locus",
+        "value": "Patio de Los Leones"
+      },
+      {
+        "trait_type": "Persona",
+        "value": "Merti"
+      }
+    ]
+  },
+  "171": {
+    "id": 171,
+    "name": "Satrap #171",
+    "image": "ipfs://bafybeiee5vcu2osq6ng4wnwxcmabgfgnjnvqci2em4lxv7w7femcvfpbua/320.jpg",
+    "attributes": [
+      {
+        "trait_type": "Class",
+        "value": "Senator"
+      },
+      {
+        "trait_type": "Style",
+        "value": "Stamp Dish"
+      },
+      {
+        "trait_type": "Locus",
+        "value": "Council"
+      },
+      {
+        "trait_type": "Persona",
+        "value": "Minerva"
+      }
+    ]
+  },
+  "172": {
+    "id": 172,
+    "name": "Satrap #172",
+    "image": "ipfs://bafybeiee5vcu2osq6ng4wnwxcmabgfgnjnvqci2em4lxv7w7femcvfpbua/332.jpg",
+    "attributes": [
+      {
+        "trait_type": "Class",
+        "value": "Senator"
+      },
+      {
+        "trait_type": "Locus",
+        "value": "Rotunda"
+      },
+      {
+        "trait_type": "Persona",
+        "value": "Atlas"
+      }
+    ]
+  },
+  "173": {
+    "id": 173,
+    "name": "Satrap #173",
+    "image": "ipfs://bafybeiee5vcu2osq6ng4wnwxcmabgfgnjnvqci2em4lxv7w7femcvfpbua/335.jpg",
+    "attributes": [
+      {
+        "trait_type": "Class",
+        "value": "Senator"
+      },
+      {
+        "trait_type": "Locus",
+        "value": "Roth Star"
+      },
+      {
+        "trait_type": "Persona",
+        "value": "Minerva"
+      }
+    ]
+  },
+  "174": {
+    "id": 174,
+    "name": "Satrap #174",
+    "image": "ipfs://bafybeiee5vcu2osq6ng4wnwxcmabgfgnjnvqci2em4lxv7w7femcvfpbua/157.jpg",
+    "attributes": [
+      {
+        "trait_type": "Class",
+        "value": "Senator"
+      },
+      {
+        "trait_type": "Locus",
+        "value": "Underground"
+      },
+      {
+        "trait_type": "Persona",
+        "value": "Darius"
+      }
+    ]
+  },
+  "175": {
+    "id": 175,
+    "name": "Satrap #175",
+    "image": "ipfs://bafybeiee5vcu2osq6ng4wnwxcmabgfgnjnvqci2em4lxv7w7femcvfpbua/145.jpg",
+    "attributes": [
+      {
+        "trait_type": "Class",
+        "value": "Senator"
+      },
+      {
+        "trait_type": "Locus",
+        "value": "Long Hall"
+      },
+      {
+        "trait_type": "Persona",
+        "value": "Zahara"
+      }
+    ]
+  },
+  "176": {
+    "id": 176,
+    "name": "Satrap #176",
+    "image": "ipfs://bafybeiee5vcu2osq6ng4wnwxcmabgfgnjnvqci2em4lxv7w7femcvfpbua/302.jpg",
+    "attributes": [
+      {
+        "trait_type": "Class",
+        "value": "Senator"
+      },
+      {
+        "trait_type": "Locus",
+        "value": "Meeting Room"
+      },
+      {
+        "trait_type": "Persona",
+        "value": "Minerva"
+      }
+    ]
+  },
+  "177": {
+    "id": 177,
+    "name": "Satrap #177",
+    "image": "ipfs://bafybeiee5vcu2osq6ng4wnwxcmabgfgnjnvqci2em4lxv7w7femcvfpbua/45.jpg",
+    "attributes": [
+      {
+        "trait_type": "Class",
+        "value": "Senator"
+      },
+      {
+        "trait_type": "Locus",
+        "value": "Roth Sun"
+      },
+      {
+        "trait_type": "Persona",
+        "value": "Artemis"
+      }
+    ]
+  },
+  "178": {
+    "id": 178,
+    "name": "Satrap #178",
+    "image": "ipfs://bafybeiee5vcu2osq6ng4wnwxcmabgfgnjnvqci2em4lxv7w7femcvfpbua/10.jpg",
+    "attributes": [
+      {
+        "trait_type": "Class",
+        "value": "Senator"
+      },
+      {
+        "trait_type": "Locus",
+        "value": "Meeting Room"
+      },
+      {
+        "trait_type": "Persona",
+        "value": "Ervin"
+      }
+    ]
+  },
+  "179": {
+    "id": 179,
+    "name": "Satrap #179",
+    "image": "ipfs://bafybeiee5vcu2osq6ng4wnwxcmabgfgnjnvqci2em4lxv7w7femcvfpbua/23.jpg",
+    "attributes": [
+      {
+        "trait_type": "Class",
+        "value": "Senator"
+      },
+      {
+        "trait_type": "Locus",
+        "value": "Grand Mosque"
+      },
+      {
+        "trait_type": "Persona",
+        "value": "Dara"
+      }
+    ]
+  },
+  "180": {
+    "id": 180,
+    "name": "Satrap #180",
+    "image": "ipfs://bafybeiee5vcu2osq6ng4wnwxcmabgfgnjnvqci2em4lxv7w7femcvfpbua/108.jpg",
+    "attributes": [
+      {
+        "trait_type": "Class",
+        "value": "Senator"
+      },
+      {
+        "trait_type": "Locus",
+        "value": "Meeting Room"
+      },
+      {
+        "trait_type": "Persona",
+        "value": "Dara"
+      }
+    ]
+  },
+  "181": {
+    "id": 181,
+    "name": "Satrap #181",
+    "image": "ipfs://bafybeiee5vcu2osq6ng4wnwxcmabgfgnjnvqci2em4lxv7w7femcvfpbua/198.jpg",
+    "attributes": [
+      {
+        "trait_type": "Class",
+        "value": "Senator"
+      },
+      {
+        "trait_type": "Locus",
+        "value": "Sanctuary"
+      },
+      {
+        "trait_type": "Persona",
+        "value": "Yax"
+      }
+    ]
+  },
+  "182": {
+    "id": 182,
+    "name": "Satrap #182",
+    "image": "ipfs://bafybeiee5vcu2osq6ng4wnwxcmabgfgnjnvqci2em4lxv7w7femcvfpbua/264.jpg",
+    "attributes": [
+      {
+        "trait_type": "Class",
+        "value": "Senator"
+      },
+      {
+        "trait_type": "Locus",
+        "value": "Capriccio"
+      },
+      {
+        "trait_type": "Persona",
+        "value": "Ardeshir"
+      }
+    ]
+  },
+  "183": {
+    "id": 183,
+    "name": "Satrap #183",
+    "image": "ipfs://bafybeiee5vcu2osq6ng4wnwxcmabgfgnjnvqci2em4lxv7w7femcvfpbua/174.jpg",
+    "attributes": [
+      {
+        "trait_type": "Class",
+        "value": "Senator"
+      },
+      {
+        "trait_type": "Locus",
+        "value": "Meeting Room"
+      },
+      {
+        "trait_type": "Persona",
+        "value": "Juno"
+      }
+    ]
+  },
+  "184": {
+    "id": 184,
+    "name": "Satrap #184",
+    "image": "ipfs://bafybeiee5vcu2osq6ng4wnwxcmabgfgnjnvqci2em4lxv7w7femcvfpbua/271.jpg",
+    "attributes": [
+      {
+        "trait_type": "Class",
+        "value": "Senator"
+      },
+      {
+        "trait_type": "Locus",
+        "value": "Roth Angels"
+      },
+      {
+        "trait_type": "Persona",
+        "value": "Yax"
+      }
+    ]
+  },
+  "185": {
+    "id": 185,
+    "name": "Satrap #185",
+    "image": "ipfs://bafybeiee5vcu2osq6ng4wnwxcmabgfgnjnvqci2em4lxv7w7femcvfpbua/6.jpg",
+    "attributes": [
+      {
+        "trait_type": "Class",
+        "value": "Senator"
+      },
+      {
+        "trait_type": "Locus",
+        "value": "Roma"
+      },
+      {
+        "trait_type": "Persona",
+        "value": "Juno"
+      }
+    ]
+  },
+  "186": {
+    "id": 186,
+    "name": "Satrap #186",
+    "image": "ipfs://bafybeiee5vcu2osq6ng4wnwxcmabgfgnjnvqci2em4lxv7w7femcvfpbua/89.jpg",
+    "attributes": [
+      {
+        "trait_type": "Class",
+        "value": "Senator"
+      },
+      {
+        "trait_type": "Locus",
+        "value": "Sanctuary"
+      },
+      {
+        "trait_type": "Persona",
+        "value": "Ervin"
+      }
+    ]
+  },
+  "187": {
+    "id": 187,
+    "name": "Satrap #187",
+    "image": "ipfs://bafybeiee5vcu2osq6ng4wnwxcmabgfgnjnvqci2em4lxv7w7femcvfpbua/259.jpg",
+    "attributes": [
+      {
+        "trait_type": "Class",
+        "value": "Senator"
+      },
+      {
+        "trait_type": "Locus",
+        "value": "Persepolis"
+      },
+      {
+        "trait_type": "Persona",
+        "value": "Holy Juno"
+      }
+    ]
+  },
+  "188": {
+    "id": 188,
+    "name": "Satrap #188",
+    "image": "ipfs://bafybeiee5vcu2osq6ng4wnwxcmabgfgnjnvqci2em4lxv7w7femcvfpbua/96.jpg",
+    "attributes": [
+      {
+        "trait_type": "Class",
+        "value": "Senator"
+      },
+      {
+        "trait_type": "Style",
+        "value": "Dish"
+      },
+      {
+        "trait_type": "Locus",
+        "value": "Meeting Room"
+      },
+      {
+        "trait_type": "Persona",
+        "value": "Yax"
+      }
+    ]
+  },
+  "189": {
+    "id": 189,
+    "name": "Satrap #189",
+    "image": "ipfs://bafybeiee5vcu2osq6ng4wnwxcmabgfgnjnvqci2em4lxv7w7femcvfpbua/318.jpg",
+    "attributes": [
+      {
+        "trait_type": "Class",
+        "value": "Senator"
+      },
+      {
+        "trait_type": "Style",
+        "value": "Dish"
+      },
+      {
+        "trait_type": "Locus",
+        "value": "Palace"
+      },
+      {
+        "trait_type": "Persona",
+        "value": "Dara"
+      }
+    ]
+  },
+  "190": {
+    "id": 190,
+    "name": "Satrap #190",
+    "image": "ipfs://bafybeiee5vcu2osq6ng4wnwxcmabgfgnjnvqci2em4lxv7w7femcvfpbua/296.jpg",
+    "attributes": [
+      {
+        "trait_type": "Class",
+        "value": "Senator"
+      },
+      {
+        "trait_type": "Locus",
+        "value": "Palace"
+      },
+      {
+        "trait_type": "Persona",
+        "value": "Merti"
+      }
+    ]
+  },
+  "191": {
+    "id": 191,
+    "name": "Satrap #191",
+    "image": "ipfs://bafybeiee5vcu2osq6ng4wnwxcmabgfgnjnvqci2em4lxv7w7femcvfpbua/306.jpg",
+    "attributes": [
+      {
+        "trait_type": "Class",
+        "value": "Senator"
+      },
+      {
+        "trait_type": "Style",
+        "value": "Dish"
+      },
+      {
+        "trait_type": "Locus",
+        "value": "Cave Sanctuary"
+      },
+      {
+        "trait_type": "Persona",
+        "value": "Ervin"
+      }
+    ]
+  },
+  "192": {
+    "id": 192,
+    "name": "Satrap #192",
+    "image": "ipfs://bafybeiee5vcu2osq6ng4wnwxcmabgfgnjnvqci2em4lxv7w7femcvfpbua/284.jpg",
+    "attributes": [
+      {
+        "trait_type": "Class",
+        "value": "Senator"
+      },
+      {
+        "trait_type": "Locus",
+        "value": "Cave Sanctuary"
+      },
+      {
+        "trait_type": "Persona",
+        "value": "Dara"
+      }
+    ]
+  },
+  "193": {
+    "id": 193,
+    "name": "Satrap #193",
+    "image": "ipfs://bafybeiee5vcu2osq6ng4wnwxcmabgfgnjnvqci2em4lxv7w7femcvfpbua/190.jpg",
+    "attributes": [
+      {
+        "trait_type": "Class",
+        "value": "Senator"
+      },
+      {
+        "trait_type": "Locus",
+        "value": "Cave Sanctuary"
+      },
+      {
+        "trait_type": "Persona",
+        "value": "Ardeshir"
+      }
+    ]
+  },
+  "194": {
+    "id": 194,
+    "name": "Satrap #194",
+    "image": "ipfs://bafybeiee5vcu2osq6ng4wnwxcmabgfgnjnvqci2em4lxv7w7femcvfpbua/203.jpg",
+    "attributes": [
+      {
+        "trait_type": "Class",
+        "value": "Senator"
+      },
+      {
+        "trait_type": "Locus",
+        "value": "Roma"
+      },
+      {
+        "trait_type": "Persona",
+        "value": "Ervin"
+      }
+    ]
+  },
+  "195": {
+    "id": 195,
+    "name": "Satrap #195",
+    "image": "ipfs://bafybeiee5vcu2osq6ng4wnwxcmabgfgnjnvqci2em4lxv7w7femcvfpbua/239.jpg",
+    "attributes": [
+      {
+        "trait_type": "Class",
+        "value": "Senator"
+      },
+      {
+        "trait_type": "Locus",
+        "value": "Long Hall"
+      },
+      {
+        "trait_type": "Persona",
+        "value": "Atlas"
+      }
+    ]
+  },
+  "196": {
+    "id": 196,
+    "name": "Satrap #196",
+    "image": "ipfs://bafybeiee5vcu2osq6ng4wnwxcmabgfgnjnvqci2em4lxv7w7femcvfpbua/164.jpg",
+    "attributes": [
+      {
+        "trait_type": "Class",
+        "value": "Senator"
+      },
+      {
+        "trait_type": "Locus",
+        "value": "Löwe"
+      },
+      {
+        "trait_type": "Persona",
+        "value": "Ardeshir"
+      }
+    ]
+  },
+  "197": {
+    "id": 197,
+    "name": "Satrap #197",
+    "image": "ipfs://bafybeiee5vcu2osq6ng4wnwxcmabgfgnjnvqci2em4lxv7w7femcvfpbua/41.jpg",
+    "attributes": [
+      {
+        "trait_type": "Class",
+        "value": "Senator"
+      },
+      {
+        "trait_type": "Locus",
+        "value": "Mint"
+      },
+      {
+        "trait_type": "Persona",
+        "value": "Ervin"
+      }
+    ]
+  },
+  "198": {
+    "id": 198,
+    "name": "Satrap #198",
+    "image": "ipfs://bafybeiee5vcu2osq6ng4wnwxcmabgfgnjnvqci2em4lxv7w7femcvfpbua/32.jpg",
+    "attributes": [
+      {
+        "trait_type": "Class",
+        "value": "Senator"
+      },
+      {
+        "trait_type": "Locus",
+        "value": "Underground"
+      },
+      {
+        "trait_type": "Persona",
+        "value": "Zahara"
+      }
+    ]
+  },
+  "199": {
+    "id": 199,
+    "name": "Satrap #199",
+    "image": "ipfs://bafybeiee5vcu2osq6ng4wnwxcmabgfgnjnvqci2em4lxv7w7femcvfpbua/206.jpg",
+    "attributes": [
+      {
+        "trait_type": "Class",
+        "value": "Senator"
+      },
+      {
+        "trait_type": "Locus",
+        "value": "Roth Star"
+      },
+      {
+        "trait_type": "Persona",
+        "value": "Juno"
+      }
+    ]
+  },
+  "200": {
+    "id": 200,
+    "name": "Satrap #200",
+    "image": "ipfs://bafybeiee5vcu2osq6ng4wnwxcmabgfgnjnvqci2em4lxv7w7femcvfpbua/22.jpg",
+    "attributes": [
+      {
+        "trait_type": "Class",
+        "value": "Senator"
+      },
+      {
+        "trait_type": "Locus",
+        "value": "Garden"
+      },
+      {
+        "trait_type": "Persona",
+        "value": "Ardeshir"
+      }
+    ]
+  },
+  "201": {
+    "id": 201,
+    "name": "Satrap #201",
+    "image": "ipfs://bafybeiee5vcu2osq6ng4wnwxcmabgfgnjnvqci2em4lxv7w7femcvfpbua/99.jpg",
+    "attributes": [
+      {
+        "trait_type": "Class",
+        "value": "Senator"
+      },
+      {
+        "trait_type": "Locus",
+        "value": "Löwe"
+      },
+      {
+        "trait_type": "Persona",
+        "value": "Atlas"
+      }
+    ]
+  },
+  "202": {
+    "id": 202,
+    "name": "Satrap #202",
+    "image": "ipfs://bafybeiee5vcu2osq6ng4wnwxcmabgfgnjnvqci2em4lxv7w7femcvfpbua/101.jpg",
+    "attributes": [
+      {
+        "trait_type": "Class",
+        "value": "Senator"
+      },
+      {
+        "trait_type": "Style",
+        "value": "Dish"
+      },
+      {
+        "trait_type": "Locus",
+        "value": "Garden"
+      },
+      {
+        "trait_type": "Persona",
+        "value": "Dara"
+      }
+    ]
+  },
+  "203": {
+    "id": 203,
+    "name": "Satrap #203",
+    "image": "ipfs://bafybeiee5vcu2osq6ng4wnwxcmabgfgnjnvqci2em4lxv7w7femcvfpbua/18.jpg",
+    "attributes": [
+      {
+        "trait_type": "Class",
+        "value": "Senator"
+      },
+      {
+        "trait_type": "Locus",
+        "value": "Rotunda"
+      },
+      {
+        "trait_type": "Persona",
+        "value": "Ervin"
+      }
+    ]
+  },
+  "204": {
+    "id": 204,
+    "name": "Satrap #204",
+    "image": "ipfs://bafybeiee5vcu2osq6ng4wnwxcmabgfgnjnvqci2em4lxv7w7femcvfpbua/252.jpg",
+    "attributes": [
+      {
+        "trait_type": "Class",
+        "value": "Senator"
+      },
+      {
+        "trait_type": "Locus",
+        "value": "Palace"
+      },
+      {
+        "trait_type": "Persona",
+        "value": "Juno"
+      }
+    ]
+  },
+  "205": {
+    "id": 205,
+    "name": "Satrap #205",
+    "image": "ipfs://bafybeiee5vcu2osq6ng4wnwxcmabgfgnjnvqci2em4lxv7w7femcvfpbua/176.jpg",
+    "attributes": [
+      {
+        "trait_type": "Class",
+        "value": "Senator"
+      },
+      {
+        "trait_type": "Locus",
+        "value": "Council"
+      },
+      {
+        "trait_type": "Persona",
+        "value": "Dara"
+      }
+    ]
+  },
+  "206": {
+    "id": 206,
+    "name": "Satrap #206",
+    "image": "ipfs://bafybeiee5vcu2osq6ng4wnwxcmabgfgnjnvqci2em4lxv7w7femcvfpbua/11.jpg",
+    "attributes": [
+      {
+        "trait_type": "Class",
+        "value": "Senator"
+      },
+      {
+        "trait_type": "Locus",
+        "value": "Garden"
+      },
+      {
+        "trait_type": "Persona",
+        "value": "Juno"
+      }
+    ]
+  },
+  "207": {
+    "id": 207,
+    "name": "Satrap #207",
+    "image": "ipfs://bafybeiee5vcu2osq6ng4wnwxcmabgfgnjnvqci2em4lxv7w7femcvfpbua/104.jpg",
+    "attributes": [
+      {
+        "trait_type": "Class",
+        "value": "Senator"
+      },
+      {
+        "trait_type": "Style",
+        "value": "Dish"
+      },
+      {
+        "trait_type": "Locus",
+        "value": "Grand Mosque"
+      },
+      {
+        "trait_type": "Persona",
+        "value": "Ardeshir"
+      }
+    ]
+  },
+  "208": {
+    "id": 208,
+    "name": "Satrap #208",
+    "image": "ipfs://bafybeiee5vcu2osq6ng4wnwxcmabgfgnjnvqci2em4lxv7w7femcvfpbua/87.jpg",
+    "attributes": [
+      {
+        "trait_type": "Class",
+        "value": "Senator"
+      },
+      {
+        "trait_type": "Locus",
+        "value": "Cave Sanctuary"
+      },
+      {
+        "trait_type": "Persona",
+        "value": "Atlas"
+      }
+    ]
+  },
+  "209": {
+    "id": 209,
+    "name": "Satrap #209",
+    "image": "ipfs://bafybeiee5vcu2osq6ng4wnwxcmabgfgnjnvqci2em4lxv7w7femcvfpbua/173.jpg",
+    "attributes": [
+      {
+        "trait_type": "Class",
+        "value": "Senator"
+      },
+      {
+        "trait_type": "Locus",
+        "value": "Roth Angels"
+      },
+      {
+        "trait_type": "Persona",
+        "value": "Minerva"
+      }
+    ]
+  },
+  "210": {
+    "id": 210,
+    "name": "Satrap #210",
+    "image": "ipfs://bafybeiee5vcu2osq6ng4wnwxcmabgfgnjnvqci2em4lxv7w7femcvfpbua/208.jpg",
+    "attributes": [
+      {
+        "trait_type": "Class",
+        "value": "Senator"
+      },
+      {
+        "trait_type": "Locus",
+        "value": "Grand Mosque"
+      },
+      {
+        "trait_type": "Persona",
+        "value": "Darius"
+      }
+    ]
+  },
+  "211": {
+    "id": 211,
+    "name": "Satrap #211",
+    "image": "ipfs://bafybeiee5vcu2osq6ng4wnwxcmabgfgnjnvqci2em4lxv7w7femcvfpbua/228.jpg",
+    "attributes": [
+      {
+        "trait_type": "Class",
+        "value": "Senator"
+      },
+      {
+        "trait_type": "Locus",
+        "value": "Roth Star"
+      },
+      {
+        "trait_type": "Persona",
+        "value": "Merti"
+      }
+    ]
+  },
+  "212": {
+    "id": 212,
+    "name": "Satrap #212",
+    "image": "ipfs://bafybeiee5vcu2osq6ng4wnwxcmabgfgnjnvqci2em4lxv7w7femcvfpbua/340.jpg",
+    "attributes": [
+      {
+        "trait_type": "Class",
+        "value": "Senator"
+      },
+      {
+        "trait_type": "Locus",
+        "value": "Löwe"
+      },
+      {
+        "trait_type": "Persona",
+        "value": "Zahara"
+      }
+    ]
+  },
+  "213": {
+    "id": 213,
+    "name": "Satrap #213",
+    "image": "ipfs://bafybeiee5vcu2osq6ng4wnwxcmabgfgnjnvqci2em4lxv7w7femcvfpbua/326.jpg",
+    "attributes": [
+      {
+        "trait_type": "Class",
+        "value": "Senator"
+      },
+      {
+        "trait_type": "Locus",
+        "value": "Roya Derafsh Kaviani"
+      },
+      {
+        "trait_type": "Persona",
+        "value": "Merti"
+      }
+    ]
+  },
+  "214": {
+    "id": 214,
+    "name": "Satrap #214",
+    "image": "ipfs://bafybeiee5vcu2osq6ng4wnwxcmabgfgnjnvqci2em4lxv7w7femcvfpbua/123.jpg",
+    "attributes": [
+      {
+        "trait_type": "Class",
+        "value": "Senator"
+      },
+      {
+        "trait_type": "Style",
+        "value": "Stamp Mosaic Dish"
+      },
+      {
+        "trait_type": "Locus",
+        "value": "Cave Sanctuary"
+      },
+      {
+        "trait_type": "Persona",
+        "value": "Zahara"
+      }
+    ]
+  },
+  "215": {
+    "id": 215,
+    "name": "Satrap #215",
+    "image": "ipfs://bafybeiee5vcu2osq6ng4wnwxcmabgfgnjnvqci2em4lxv7w7femcvfpbua/112.jpg",
+    "attributes": [
+      {
+        "trait_type": "Class",
+        "value": "Senator"
+      },
+      {
+        "trait_type": "Locus",
+        "value": "Patio de Los Leones"
+      },
+      {
+        "trait_type": "Persona",
+        "value": "Yax"
+      }
+    ]
+  },
+  "216": {
+    "id": 216,
+    "name": "Satrap #216",
+    "image": "ipfs://bafybeiee5vcu2osq6ng4wnwxcmabgfgnjnvqci2em4lxv7w7femcvfpbua/110.jpg",
+    "attributes": [
+      {
+        "trait_type": "Class",
+        "value": "Senator"
+      },
+      {
+        "trait_type": "Locus",
+        "value": "Meeting Room"
+      },
+      {
+        "trait_type": "Persona",
+        "value": "Ardeshir"
+      }
+    ]
+  },
+  "217": {
+    "id": 217,
+    "name": "Satrap #217",
+    "image": "ipfs://bafybeiee5vcu2osq6ng4wnwxcmabgfgnjnvqci2em4lxv7w7femcvfpbua/219.jpg",
+    "attributes": [
+      {
+        "trait_type": "Class",
+        "value": "Senator"
+      },
+      {
+        "trait_type": "Locus",
+        "value": "Dungeon Temple"
+      },
+      {
+        "trait_type": "Persona",
+        "value": "Juno"
+      }
+    ]
+  },
+  "218": {
+    "id": 218,
+    "name": "Satrap #218",
+    "image": "ipfs://bafybeiee5vcu2osq6ng4wnwxcmabgfgnjnvqci2em4lxv7w7femcvfpbua/301.jpg",
+    "attributes": [
+      {
+        "trait_type": "Class",
+        "value": "Senator"
+      },
+      {
+        "trait_type": "Locus",
+        "value": "Meeting Room"
+      },
+      {
+        "trait_type": "Persona",
+        "value": "Zahara"
+      }
+    ]
+  },
+  "219": {
+    "id": 219,
+    "name": "Satrap #219",
+    "image": "ipfs://bafybeiee5vcu2osq6ng4wnwxcmabgfgnjnvqci2em4lxv7w7femcvfpbua/258.jpg",
+    "attributes": [
+      {
+        "trait_type": "Class",
+        "value": "Senator"
+      },
+      {
+        "trait_type": "Locus",
+        "value": "Derafsh Kaviani"
+      },
+      {
+        "trait_type": "Persona",
+        "value": "Merti"
+      }
+    ]
+  },
+  "220": {
+    "id": 220,
+    "name": "Satrap #220",
+    "image": "ipfs://bafybeiee5vcu2osq6ng4wnwxcmabgfgnjnvqci2em4lxv7w7femcvfpbua/133.jpg",
+    "attributes": [
+      {
+        "trait_type": "Class",
+        "value": "Senator"
+      },
+      {
+        "trait_type": "Locus",
+        "value": "Roth Star"
+      },
+      {
+        "trait_type": "Persona",
+        "value": "Ervin"
+      }
+    ]
+  },
+  "221": {
+    "id": 221,
+    "name": "Satrap #221",
+    "image": "ipfs://bafybeiee5vcu2osq6ng4wnwxcmabgfgnjnvqci2em4lxv7w7femcvfpbua/19.jpg",
+    "attributes": [
+      {
+        "trait_type": "Class",
+        "value": "Senator"
+      },
+      {
+        "trait_type": "Locus",
+        "value": "Patio de Los Leones"
+      },
+      {
+        "trait_type": "Persona",
+        "value": "Artemis"
+      }
+    ]
+  },
+  "222": {
+    "id": 222,
+    "name": "Satrap #222",
+    "image": "ipfs://bafybeiee5vcu2osq6ng4wnwxcmabgfgnjnvqci2em4lxv7w7femcvfpbua/71.jpg",
+    "attributes": [
+      {
+        "trait_type": "Class",
+        "value": "Senator"
+      },
+      {
+        "trait_type": "Locus",
+        "value": "Hambra"
+      },
+      {
+        "trait_type": "Persona",
+        "value": "Atlas"
+      }
+    ]
+  },
+  "223": {
+    "id": 223,
+    "name": "Satrap #223",
+    "image": "ipfs://bafybeiee5vcu2osq6ng4wnwxcmabgfgnjnvqci2em4lxv7w7femcvfpbua/292.jpg",
+    "attributes": [
+      {
+        "trait_type": "Class",
+        "value": "Senator"
+      },
+      {
+        "trait_type": "Locus",
+        "value": "Cathedral"
+      },
+      {
+        "trait_type": "Persona",
+        "value": "Artemis"
+      }
+    ]
+  },
+  "224": {
+    "id": 224,
+    "name": "Satrap #224",
+    "image": "ipfs://bafybeiee5vcu2osq6ng4wnwxcmabgfgnjnvqci2em4lxv7w7femcvfpbua/131.jpg",
+    "attributes": [
+      {
+        "trait_type": "Class",
+        "value": "Senator"
+      },
+      {
+        "trait_type": "Locus",
+        "value": "Rotunda"
+      },
+      {
+        "trait_type": "Persona",
+        "value": "Minerva"
+      }
+    ]
+  },
+  "225": {
+    "id": 225,
+    "name": "Satrap #225",
+    "image": "ipfs://bafybeiee5vcu2osq6ng4wnwxcmabgfgnjnvqci2em4lxv7w7femcvfpbua/184.jpg",
+    "attributes": [
+      {
+        "trait_type": "Class",
+        "value": "Senator"
+      },
+      {
+        "trait_type": "Locus",
+        "value": "New World Arch"
+      },
+      {
+        "trait_type": "Persona",
+        "value": "Darius"
+      }
+    ]
+  },
+  "226": {
+    "id": 226,
+    "name": "Satrap #226",
+    "image": "ipfs://bafybeiee5vcu2osq6ng4wnwxcmabgfgnjnvqci2em4lxv7w7femcvfpbua/307.jpg",
+    "attributes": [
+      {
+        "trait_type": "Class",
+        "value": "Senator"
+      },
+      {
+        "trait_type": "Locus",
+        "value": "Hambra"
+      },
+      {
+        "trait_type": "Persona",
+        "value": "Dara"
+      }
+    ]
+  },
+  "227": {
+    "id": 227,
+    "name": "Satrap #227",
+    "image": "ipfs://bafybeiee5vcu2osq6ng4wnwxcmabgfgnjnvqci2em4lxv7w7femcvfpbua/333.jpg",
+    "attributes": [
+      {
+        "trait_type": "Class",
+        "value": "Senator"
+      },
+      {
+        "trait_type": "Locus",
+        "value": "Underground"
+      },
+      {
+        "trait_type": "Persona",
+        "value": "Ardeshir"
+      }
+    ]
+  },
+  "228": {
+    "id": 228,
+    "name": "Satrap #228",
+    "image": "ipfs://bafybeiee5vcu2osq6ng4wnwxcmabgfgnjnvqci2em4lxv7w7femcvfpbua/105.jpg",
+    "attributes": [
+      {
+        "trait_type": "Class",
+        "value": "Senator"
+      },
+      {
+        "trait_type": "Locus",
+        "value": "Council"
+      },
+      {
+        "trait_type": "Persona",
+        "value": "Darius"
+      }
+    ]
+  },
+  "229": {
+    "id": 229,
+    "name": "Satrap #229",
+    "image": "ipfs://bafybeiee5vcu2osq6ng4wnwxcmabgfgnjnvqci2em4lxv7w7femcvfpbua/54.jpg",
+    "attributes": [
+      {
+        "trait_type": "Class",
+        "value": "Senator"
+      },
+      {
+        "trait_type": "Style",
+        "value": "Dish"
+      },
+      {
+        "trait_type": "Locus",
+        "value": "Babel"
+      },
+      {
+        "trait_type": "Persona",
+        "value": "Ervin"
+      }
+    ]
+  },
+  "230": {
+    "id": 230,
+    "name": "Satrap #230",
+    "image": "ipfs://bafybeiee5vcu2osq6ng4wnwxcmabgfgnjnvqci2em4lxv7w7femcvfpbua/42.jpg",
+    "attributes": [
+      {
+        "trait_type": "Class",
+        "value": "Senator"
+      },
+      {
+        "trait_type": "Locus",
+        "value": "Underground"
+      },
+      {
+        "trait_type": "Persona",
+        "value": "Minerva"
+      }
+    ]
+  },
+  "231": {
+    "id": 231,
+    "name": "Satrap #231",
+    "image": "ipfs://bafybeiee5vcu2osq6ng4wnwxcmabgfgnjnvqci2em4lxv7w7femcvfpbua/25.jpg",
+    "attributes": [
+      {
+        "trait_type": "Class",
+        "value": "Senator"
+      },
+      {
+        "trait_type": "Locus",
+        "value": "Town Church"
+      },
+      {
+        "trait_type": "Persona",
+        "value": "Zahara"
+      }
+    ]
+  },
+  "232": {
+    "id": 232,
+    "name": "Satrap #232",
+    "image": "ipfs://bafybeiee5vcu2osq6ng4wnwxcmabgfgnjnvqci2em4lxv7w7femcvfpbua/142.jpg",
+    "attributes": [
+      {
+        "trait_type": "Class",
+        "value": "Senator"
+      },
+      {
+        "trait_type": "Locus",
+        "value": "Roth Angels"
+      },
+      {
+        "trait_type": "Persona",
+        "value": "Ardeshir"
+      }
+    ]
+  },
+  "233": {
+    "id": 233,
+    "name": "Satrap #233",
+    "image": "ipfs://bafybeiee5vcu2osq6ng4wnwxcmabgfgnjnvqci2em4lxv7w7femcvfpbua/16.jpg",
+    "attributes": [
+      {
+        "trait_type": "Class",
+        "value": "Senator"
+      },
+      {
+        "trait_type": "Locus",
+        "value": "Derafsh Kaviani"
+      },
+      {
+        "trait_type": "Persona",
+        "value": "Yax"
+      }
+    ]
+  },
+  "234": {
+    "id": 234,
+    "name": "Satrap #234",
+    "image": "ipfs://bafybeiee5vcu2osq6ng4wnwxcmabgfgnjnvqci2em4lxv7w7femcvfpbua/60.jpg",
+    "attributes": [
+      {
+        "trait_type": "Class",
+        "value": "Senator"
+      },
+      {
+        "trait_type": "Locus",
+        "value": "Löwe"
+      },
+      {
+        "trait_type": "Persona",
+        "value": "Darius"
+      }
+    ]
+  },
+  "235": {
+    "id": 235,
+    "name": "Satrap #235",
+    "image": "ipfs://bafybeiee5vcu2osq6ng4wnwxcmabgfgnjnvqci2em4lxv7w7femcvfpbua/205.jpg",
+    "attributes": [
+      {
+        "trait_type": "Class",
+        "value": "Senator"
+      },
+      {
+        "trait_type": "Locus",
+        "value": "Sueno de patio de Los Leones"
+      },
+      {
+        "trait_type": "Persona",
+        "value": "Ervin"
+      }
+    ]
+  },
+  "236": {
+    "id": 236,
+    "name": "Satrap #236",
+    "image": "ipfs://bafybeiee5vcu2osq6ng4wnwxcmabgfgnjnvqci2em4lxv7w7femcvfpbua/90.jpg",
+    "attributes": [
+      {
+        "trait_type": "Class",
+        "value": "Senator"
+      },
+      {
+        "trait_type": "Locus",
+        "value": "Hambra"
+      },
+      {
+        "trait_type": "Persona",
+        "value": "Juno"
+      }
+    ]
+  },
+  "237": {
+    "id": 237,
+    "name": "Satrap #237",
+    "image": "ipfs://bafybeiee5vcu2osq6ng4wnwxcmabgfgnjnvqci2em4lxv7w7femcvfpbua/56.jpg",
+    "attributes": [
+      {
+        "trait_type": "Class",
+        "value": "Senator"
+      },
+      {
+        "trait_type": "Locus",
+        "value": "Treasury Gate"
+      },
+      {
+        "trait_type": "Persona",
+        "value": "Dara"
+      }
+    ]
+  },
+  "238": {
+    "id": 238,
+    "name": "Satrap #238",
+    "image": "ipfs://bafybeiee5vcu2osq6ng4wnwxcmabgfgnjnvqci2em4lxv7w7femcvfpbua/179.jpg",
+    "attributes": [
+      {
+        "trait_type": "Class",
+        "value": "Senator"
+      },
+      {
+        "trait_type": "Locus",
+        "value": "Dark Temple"
+      },
+      {
+        "trait_type": "Persona",
+        "value": "Zahara"
+      }
+    ]
+  },
+  "239": {
+    "id": 239,
+    "name": "Satrap #239",
+    "image": "ipfs://bafybeiee5vcu2osq6ng4wnwxcmabgfgnjnvqci2em4lxv7w7femcvfpbua/150.jpg",
+    "attributes": [
+      {
+        "trait_type": "Class",
+        "value": "Senator"
+      },
+      {
+        "trait_type": "Style",
+        "value": "Stamp Mosaic Dish"
+      },
+      {
+        "trait_type": "Locus",
+        "value": "Treasury Gate"
+      },
+      {
+        "trait_type": "Persona",
+        "value": "Zahara"
+      }
+    ]
+  },
+  "240": {
+    "id": 240,
+    "name": "Satrap #240",
+    "image": "ipfs://bafybeiee5vcu2osq6ng4wnwxcmabgfgnjnvqci2em4lxv7w7femcvfpbua/247.jpg",
+    "attributes": [
+      {
+        "trait_type": "Class",
+        "value": "Senator"
+      },
+      {
+        "trait_type": "Style",
+        "value": "Dish"
+      },
+      {
+        "trait_type": "Locus",
+        "value": "Cave Sanctuary"
+      },
+      {
+        "trait_type": "Persona",
+        "value": "Yax"
+      }
+    ]
+  },
+  "241": {
+    "id": 241,
+    "name": "Satrap #241",
+    "image": "ipfs://bafybeiee5vcu2osq6ng4wnwxcmabgfgnjnvqci2em4lxv7w7femcvfpbua/212.jpg",
+    "attributes": [
+      {
+        "trait_type": "Class",
+        "value": "Senator"
+      },
+      {
+        "trait_type": "Locus",
+        "value": "Sogno di Capriccio"
+      },
+      {
+        "trait_type": "Persona",
+        "value": "Yax"
+      }
+    ]
+  },
+  "242": {
+    "id": 242,
+    "name": "Satrap #242",
+    "image": "ipfs://bafybeiee5vcu2osq6ng4wnwxcmabgfgnjnvqci2em4lxv7w7femcvfpbua/328.jpg",
+    "attributes": [
+      {
+        "trait_type": "Class",
+        "value": "Senator"
+      },
+      {
+        "trait_type": "Locus",
+        "value": "Long Hall"
+      },
+      {
+        "trait_type": "Persona",
+        "value": "Artemis"
+      }
+    ]
+  },
+  "243": {
+    "id": 243,
+    "name": "Satrap #243",
+    "image": "ipfs://bafybeiee5vcu2osq6ng4wnwxcmabgfgnjnvqci2em4lxv7w7femcvfpbua/309.jpg",
+    "attributes": [
+      {
+        "trait_type": "Class",
+        "value": "Senator"
+      },
+      {
+        "trait_type": "Locus",
+        "value": "Capriccio"
+      },
+      {
+        "trait_type": "Persona",
+        "value": "Atlas"
+      }
+    ]
+  },
+  "244": {
+    "id": 244,
+    "name": "Satrap #244",
+    "image": "ipfs://bafybeiee5vcu2osq6ng4wnwxcmabgfgnjnvqci2em4lxv7w7femcvfpbua/121.jpg",
+    "attributes": [
+      {
+        "trait_type": "Class",
+        "value": "Senator"
+      },
+      {
+        "trait_type": "Locus",
+        "value": "Cave Sanctuary"
+      },
+      {
+        "trait_type": "Persona",
+        "value": "Zahara"
+      }
+    ]
+  },
+  "245": {
+    "id": 245,
+    "name": "Satrap #245",
+    "image": "ipfs://bafybeiee5vcu2osq6ng4wnwxcmabgfgnjnvqci2em4lxv7w7femcvfpbua/15.jpg",
+    "attributes": [
+      {
+        "trait_type": "Class",
+        "value": "Senator"
+      },
+      {
+        "trait_type": "Locus",
+        "value": "Grand Mosque"
+      },
+      {
+        "trait_type": "Persona",
+        "value": "Ardeshir"
+      }
+    ]
+  },
+  "246": {
+    "id": 246,
+    "name": "Satrap #246",
+    "image": "ipfs://bafybeiee5vcu2osq6ng4wnwxcmabgfgnjnvqci2em4lxv7w7femcvfpbua/17.jpg",
+    "attributes": [
+      {
+        "trait_type": "Class",
+        "value": "Senator"
+      },
+      {
+        "trait_type": "Locus",
+        "value": "Town Church"
+      },
+      {
+        "trait_type": "Persona",
+        "value": "Ervin"
+      }
+    ]
+  },
+  "247": {
+    "id": 247,
+    "name": "Satrap #247",
+    "image": "ipfs://bafybeiee5vcu2osq6ng4wnwxcmabgfgnjnvqci2em4lxv7w7femcvfpbua/21.jpg",
+    "attributes": [
+      {
+        "trait_type": "Class",
+        "value": "Senator"
+      },
+      {
+        "trait_type": "Locus",
+        "value": "Roth Star"
+      },
+      {
+        "trait_type": "Persona",
+        "value": "Dara"
+      }
+    ]
+  },
+  "248": {
+    "id": 248,
+    "name": "Satrap #248",
+    "image": "ipfs://bafybeiee5vcu2osq6ng4wnwxcmabgfgnjnvqci2em4lxv7w7femcvfpbua/31.jpg",
+    "attributes": [
+      {
+        "trait_type": "Class",
+        "value": "Senator"
+      },
+      {
+        "trait_type": "Style",
+        "value": "Dish"
+      },
+      {
+        "trait_type": "Locus",
+        "value": "Hambra"
+      },
+      {
+        "trait_type": "Persona",
+        "value": "Zahara"
+      }
+    ]
+  },
+  "249": {
+    "id": 249,
+    "name": "Satrap #249",
+    "image": "ipfs://bafybeiee5vcu2osq6ng4wnwxcmabgfgnjnvqci2em4lxv7w7femcvfpbua/166.jpg",
+    "attributes": [
+      {
+        "trait_type": "Class",
+        "value": "Senator"
+      },
+      {
+        "trait_type": "Locus",
+        "value": "Long Hall"
+      },
+      {
+        "trait_type": "Persona",
+        "value": "Darius"
+      }
+    ]
+  },
+  "250": {
+    "id": 250,
+    "name": "Satrap #250",
+    "image": "ipfs://bafybeiee5vcu2osq6ng4wnwxcmabgfgnjnvqci2em4lxv7w7femcvfpbua/94.jpg",
+    "attributes": [
+      {
+        "trait_type": "Class",
+        "value": "Senator"
+      },
+      {
+        "trait_type": "Style",
+        "value": "Dish"
+      },
+      {
+        "trait_type": "Locus",
+        "value": "Hambra"
+      },
+      {
+        "trait_type": "Persona",
+        "value": "Merti"
+      }
+    ]
+  },
+  "251": {
+    "id": 251,
+    "name": "Satrap #251",
+    "image": "ipfs://bafybeiee5vcu2osq6ng4wnwxcmabgfgnjnvqci2em4lxv7w7femcvfpbua/147.jpg",
+    "attributes": [
+      {
+        "trait_type": "Class",
+        "value": "Senator"
+      },
+      {
+        "trait_type": "Locus",
+        "value": "Dark Temple"
+      },
+      {
+        "trait_type": "Persona",
+        "value": "Ervin"
+      }
+    ]
+  },
+  "252": {
+    "id": 252,
+    "name": "Satrap #252",
+    "image": "ipfs://bafybeiee5vcu2osq6ng4wnwxcmabgfgnjnvqci2em4lxv7w7femcvfpbua/277.jpg",
+    "attributes": [
+      {
+        "trait_type": "Class",
+        "value": "Senator"
+      },
+      {
+        "trait_type": "Locus",
+        "value": "Mint"
+      },
+      {
+        "trait_type": "Persona",
+        "value": "Zahara"
+      }
+    ]
+  },
+  "253": {
+    "id": 253,
+    "name": "Satrap #253",
+    "image": "ipfs://bafybeiee5vcu2osq6ng4wnwxcmabgfgnjnvqci2em4lxv7w7femcvfpbua/294.jpg",
+    "attributes": [
+      {
+        "trait_type": "Class",
+        "value": "Senator"
+      },
+      {
+        "trait_type": "Locus",
+        "value": "Satrap Palace"
+      },
+      {
+        "trait_type": "Persona",
+        "value": "Zahara"
+      }
+    ]
+  },
+  "254": {
+    "id": 254,
+    "name": "Satrap #254",
+    "image": "ipfs://bafybeiee5vcu2osq6ng4wnwxcmabgfgnjnvqci2em4lxv7w7femcvfpbua/303.jpg",
+    "attributes": [
+      {
+        "trait_type": "Class",
+        "value": "Senator"
+      },
+      {
+        "trait_type": "Style",
+        "value": "Dish"
+      },
+      {
+        "trait_type": "Locus",
+        "value": "Roth Angels"
+      },
+      {
+        "trait_type": "Persona",
+        "value": "Darius"
+      }
+    ]
+  },
+  "255": {
+    "id": 255,
+    "name": "Satrap #255",
+    "image": "ipfs://bafybeiee5vcu2osq6ng4wnwxcmabgfgnjnvqci2em4lxv7w7femcvfpbua/338.jpg",
+    "attributes": [
+      {
+        "trait_type": "Class",
+        "value": "Senator"
+      },
+      {
+        "trait_type": "Locus",
+        "value": "Giardino"
+      },
+      {
+        "trait_type": "Persona",
+        "value": "Juno"
+      }
+    ]
+  },
+  "256": {
+    "id": 256,
+    "name": "Satrap #256",
+    "image": "ipfs://bafybeiee5vcu2osq6ng4wnwxcmabgfgnjnvqci2em4lxv7w7femcvfpbua/162.jpg",
+    "attributes": [
+      {
+        "trait_type": "Class",
+        "value": "Senator"
+      },
+      {
+        "trait_type": "Locus",
+        "value": "Treasury Gate"
+      },
+      {
+        "trait_type": "Persona",
+        "value": "Minerva"
+      }
+    ]
+  },
+  "257": {
+    "id": 257,
+    "name": "Satrap #257",
+    "image": "ipfs://bafybeiee5vcu2osq6ng4wnwxcmabgfgnjnvqci2em4lxv7w7femcvfpbua/119.jpg",
+    "attributes": [
+      {
+        "trait_type": "Class",
+        "value": "Senator"
+      },
+      {
+        "trait_type": "Locus",
+        "value": "Rotunda"
+      },
+      {
+        "trait_type": "Persona",
+        "value": "Dara"
+      }
+    ]
+  },
+  "258": {
+    "id": 258,
+    "name": "Satrap #258",
+    "image": "ipfs://bafybeiee5vcu2osq6ng4wnwxcmabgfgnjnvqci2em4lxv7w7femcvfpbua/138.jpg",
+    "attributes": [
+      {
+        "trait_type": "Class",
+        "value": "Senator"
+      },
+      {
+        "trait_type": "Locus",
+        "value": "Marble Gate"
+      },
+      {
+        "trait_type": "Persona",
+        "value": "Ardeshir"
+      }
+    ]
+  },
+  "259": {
+    "id": 259,
+    "name": "Satrap #259",
+    "image": "ipfs://bafybeiee5vcu2osq6ng4wnwxcmabgfgnjnvqci2em4lxv7w7femcvfpbua/118.jpg",
+    "attributes": [
+      {
+        "trait_type": "Class",
+        "value": "Senator"
+      },
+      {
+        "trait_type": "Locus",
+        "value": "Satrap Palace"
+      },
+      {
+        "trait_type": "Persona",
+        "value": "Darius"
+      }
+    ]
+  },
+  "260": {
+    "id": 260,
+    "name": "Satrap #260",
+    "image": "ipfs://bafybeiee5vcu2osq6ng4wnwxcmabgfgnjnvqci2em4lxv7w7femcvfpbua/283.jpg",
+    "attributes": [
+      {
+        "trait_type": "Class",
+        "value": "Senator"
+      },
+      {
+        "trait_type": "Locus",
+        "value": "Town Church"
+      },
+      {
+        "trait_type": "Persona",
+        "value": "Dara"
+      }
+    ]
+  },
+  "261": {
+    "id": 261,
+    "name": "Satrap #261",
+    "image": "ipfs://bafybeiee5vcu2osq6ng4wnwxcmabgfgnjnvqci2em4lxv7w7femcvfpbua/163.jpg",
+    "attributes": [
+      {
+        "trait_type": "Class",
+        "value": "Senator"
+      },
+      {
+        "trait_type": "Locus",
+        "value": "Persepolis"
+      },
+      {
+        "trait_type": "Persona",
+        "value": "Golden Juno"
+      }
+    ]
+  },
+  "262": {
+    "id": 262,
+    "name": "Satrap #262",
+    "image": "ipfs://bafybeiee5vcu2osq6ng4wnwxcmabgfgnjnvqci2em4lxv7w7femcvfpbua/155.jpg",
+    "attributes": [
+      {
+        "trait_type": "Class",
+        "value": "Senator"
+      },
+      {
+        "trait_type": "Locus",
+        "value": "Cave Sanctuary"
+      },
+      {
+        "trait_type": "Persona",
+        "value": "Artemis"
+      }
+    ]
+  },
+  "263": {
+    "id": 263,
+    "name": "Satrap #263",
+    "image": "ipfs://bafybeiee5vcu2osq6ng4wnwxcmabgfgnjnvqci2em4lxv7w7femcvfpbua/83.jpg",
+    "attributes": [
+      {
+        "trait_type": "Class",
+        "value": "Senator"
+      },
+      {
+        "trait_type": "Locus",
+        "value": "Treasury Gate"
+      },
+      {
+        "trait_type": "Persona",
+        "value": "Zahara"
+      }
+    ]
+  },
+  "264": {
+    "id": 264,
+    "name": "Satrap #264",
+    "image": "ipfs://bafybeiee5vcu2osq6ng4wnwxcmabgfgnjnvqci2em4lxv7w7femcvfpbua/117.jpg",
+    "attributes": [
+      {
+        "trait_type": "Class",
+        "value": "Senator"
+      },
+      {
+        "trait_type": "Style",
+        "value": "Dish"
+      },
+      {
+        "trait_type": "Locus",
+        "value": "Cathedral"
+      },
+      {
+        "trait_type": "Persona",
+        "value": "Minerva"
+      }
+    ]
+  },
+  "265": {
+    "id": 265,
+    "name": "Satrap #265",
+    "image": "ipfs://bafybeiee5vcu2osq6ng4wnwxcmabgfgnjnvqci2em4lxv7w7femcvfpbua/125.jpg",
+    "attributes": [
+      {
+        "trait_type": "Class",
+        "value": "Senator"
+      },
+      {
+        "trait_type": "Locus",
+        "value": "Persepolis"
+      },
+      {
+        "trait_type": "Persona",
+        "value": "Juno"
+      }
+    ]
+  },
+  "266": {
+    "id": 266,
+    "name": "Satrap #266",
+    "image": "ipfs://bafybeiee5vcu2osq6ng4wnwxcmabgfgnjnvqci2em4lxv7w7femcvfpbua/225.jpg",
+    "attributes": [
+      {
+        "trait_type": "Class",
+        "value": "Senator"
+      },
+      {
+        "trait_type": "Locus",
+        "value": "Long Hall"
+      },
+      {
+        "trait_type": "Persona",
+        "value": "Yax"
+      }
+    ]
+  },
+  "267": {
+    "id": 267,
+    "name": "Satrap #267",
+    "image": "ipfs://bafybeiee5vcu2osq6ng4wnwxcmabgfgnjnvqci2em4lxv7w7femcvfpbua/323.jpg",
+    "attributes": [
+      {
+        "trait_type": "Class",
+        "value": "Senator"
+      },
+      {
+        "trait_type": "Locus",
+        "value": "Patio de Los Leones"
+      },
+      {
+        "trait_type": "Persona",
+        "value": "Ardeshir"
+      }
+    ]
+  },
+  "268": {
+    "id": 268,
+    "name": "Satrap #268",
+    "image": "ipfs://bafybeiee5vcu2osq6ng4wnwxcmabgfgnjnvqci2em4lxv7w7femcvfpbua/289.jpg",
+    "attributes": [
+      {
+        "trait_type": "Class",
+        "value": "Senator"
+      },
+      {
+        "trait_type": "Locus",
+        "value": "Mint"
+      },
+      {
+        "trait_type": "Persona",
+        "value": "Merti"
+      }
+    ]
+  },
+  "269": {
+    "id": 269,
+    "name": "Satrap #269",
+    "image": "ipfs://bafybeiee5vcu2osq6ng4wnwxcmabgfgnjnvqci2em4lxv7w7femcvfpbua/255.jpg",
+    "attributes": [
+      {
+        "trait_type": "Class",
+        "value": "Senator"
+      },
+      {
+        "trait_type": "Locus",
+        "value": "Roth Sun"
+      },
+      {
+        "trait_type": "Persona",
+        "value": "Yax"
+      }
+    ]
+  },
+  "270": {
+    "id": 270,
+    "name": "Satrap #270",
+    "image": "ipfs://bafybeiee5vcu2osq6ng4wnwxcmabgfgnjnvqci2em4lxv7w7femcvfpbua/67.jpg",
+    "attributes": [
+      {
+        "trait_type": "Class",
+        "value": "Senator"
+      },
+      {
+        "trait_type": "Locus",
+        "value": "Giardino"
+      },
+      {
+        "trait_type": "Persona",
+        "value": "Ervin"
+      }
+    ]
+  },
+  "271": {
+    "id": 271,
+    "name": "Satrap #271",
+    "image": "ipfs://bafybeiee5vcu2osq6ng4wnwxcmabgfgnjnvqci2em4lxv7w7femcvfpbua/97.jpg",
+    "attributes": [
+      {
+        "trait_type": "Class",
+        "value": "Senator"
+      },
+      {
+        "trait_type": "Style",
+        "value": "Dish"
+      },
+      {
+        "trait_type": "Locus",
+        "value": "New World Arch"
+      },
+      {
+        "trait_type": "Persona",
+        "value": "Merti"
+      }
+    ]
+  },
+  "272": {
+    "id": 272,
+    "name": "Satrap #272",
+    "image": "ipfs://bafybeiee5vcu2osq6ng4wnwxcmabgfgnjnvqci2em4lxv7w7femcvfpbua/44.jpg",
+    "attributes": [
+      {
+        "trait_type": "Class",
+        "value": "Senator"
+      },
+      {
+        "trait_type": "Locus",
+        "value": "Giardino"
+      },
+      {
+        "trait_type": "Persona",
+        "value": "Zahara"
+      }
+    ]
+  },
+  "273": {
+    "id": 273,
+    "name": "Satrap #273",
+    "image": "ipfs://bafybeiee5vcu2osq6ng4wnwxcmabgfgnjnvqci2em4lxv7w7femcvfpbua/220.jpg",
+    "attributes": [
+      {
+        "trait_type": "Class",
+        "value": "Senator"
+      },
+      {
+        "trait_type": "Locus",
+        "value": "New World Arch"
+      },
+      {
+        "trait_type": "Persona",
+        "value": "Atlas"
+      }
+    ]
+  },
+  "274": {
+    "id": 274,
+    "name": "Satrap #274",
+    "image": "ipfs://bafybeiee5vcu2osq6ng4wnwxcmabgfgnjnvqci2em4lxv7w7femcvfpbua/261.jpg",
+    "attributes": [
+      {
+        "trait_type": "Class",
+        "value": "Senator"
+      },
+      {
+        "trait_type": "Style",
+        "value": "Dish"
+      },
+      {
+        "trait_type": "Locus",
+        "value": "Dungeon Temple"
+      },
+      {
+        "trait_type": "Persona",
+        "value": "Darius"
+      }
+    ]
+  },
+  "275": {
+    "id": 275,
+    "name": "Satrap #275",
+    "image": "ipfs://bafybeiee5vcu2osq6ng4wnwxcmabgfgnjnvqci2em4lxv7w7femcvfpbua/130.jpg",
+    "attributes": [
+      {
+        "trait_type": "Class",
+        "value": "Senator"
+      },
+      {
+        "trait_type": "Locus",
+        "value": "Giardino"
+      },
+      {
+        "trait_type": "Persona",
+        "value": "Darius"
+      }
+    ]
+  },
+  "276": {
+    "id": 276,
+    "name": "Satrap #276",
+    "image": "ipfs://bafybeiee5vcu2osq6ng4wnwxcmabgfgnjnvqci2em4lxv7w7femcvfpbua/316.jpg",
+    "attributes": [
+      {
+        "trait_type": "Class",
+        "value": "Senator"
+      },
+      {
+        "trait_type": "Locus",
+        "value": "Sanctuary"
+      },
+      {
+        "trait_type": "Persona",
+        "value": "Darius"
+      }
+    ]
+  },
+  "277": {
+    "id": 277,
+    "name": "Satrap #277",
+    "image": "ipfs://bafybeiee5vcu2osq6ng4wnwxcmabgfgnjnvqci2em4lxv7w7femcvfpbua/299.jpg",
+    "attributes": [
+      {
+        "trait_type": "Class",
+        "value": "Senator"
+      },
+      {
+        "trait_type": "Style",
+        "value": "Dish"
+      },
+      {
+        "trait_type": "Locus",
+        "value": "Town Church"
+      },
+      {
+        "trait_type": "Persona",
+        "value": "Juno"
+      }
+    ]
+  },
+  "278": {
+    "id": 278,
+    "name": "Satrap #278",
+    "image": "ipfs://bafybeiee5vcu2osq6ng4wnwxcmabgfgnjnvqci2em4lxv7w7femcvfpbua/52.jpg",
+    "attributes": [
+      {
+        "trait_type": "Class",
+        "value": "Senator"
+      },
+      {
+        "trait_type": "Locus",
+        "value": "Council"
+      },
+      {
+        "trait_type": "Persona",
+        "value": "Artemis"
+      }
+    ]
+  },
+  "279": {
+    "id": 279,
+    "name": "Satrap #279",
+    "image": "ipfs://bafybeiee5vcu2osq6ng4wnwxcmabgfgnjnvqci2em4lxv7w7femcvfpbua/136.jpg",
+    "attributes": [
+      {
+        "trait_type": "Class",
+        "value": "Senator"
+      },
+      {
+        "trait_type": "Locus",
+        "value": "Marble Gate"
+      },
+      {
+        "trait_type": "Persona",
+        "value": "Minerva"
+      }
+    ]
+  },
+  "280": {
+    "id": 280,
+    "name": "Satrap #280",
+    "image": "ipfs://bafybeiee5vcu2osq6ng4wnwxcmabgfgnjnvqci2em4lxv7w7femcvfpbua/171.jpg",
+    "attributes": [
+      {
+        "trait_type": "Class",
+        "value": "Senator"
+      },
+      {
+        "trait_type": "Locus",
+        "value": "Garden"
+      },
+      {
+        "trait_type": "Persona",
+        "value": "Atlas"
+      }
+    ]
+  },
+  "281": {
+    "id": 281,
+    "name": "Satrap #281",
+    "image": "ipfs://bafybeiee5vcu2osq6ng4wnwxcmabgfgnjnvqci2em4lxv7w7femcvfpbua/36.jpg",
+    "attributes": [
+      {
+        "trait_type": "Class",
+        "value": "Senator"
+      },
+      {
+        "trait_type": "Locus",
+        "value": "Underground"
+      },
+      {
+        "trait_type": "Persona",
+        "value": "Artemis"
+      }
+    ]
+  },
+  "282": {
+    "id": 282,
+    "name": "Satrap #282",
+    "image": "ipfs://bafybeiee5vcu2osq6ng4wnwxcmabgfgnjnvqci2em4lxv7w7femcvfpbua/66.jpg",
+    "attributes": [
+      {
+        "trait_type": "Class",
+        "value": "Senator"
+      },
+      {
+        "trait_type": "Locus",
+        "value": "Patio de Los Leones"
+      },
+      {
+        "trait_type": "Persona",
+        "value": "Ervin"
+      }
+    ]
+  },
+  "283": {
+    "id": 283,
+    "name": "Satrap #283",
+    "image": "ipfs://bafybeiee5vcu2osq6ng4wnwxcmabgfgnjnvqci2em4lxv7w7femcvfpbua/81.jpg",
+    "attributes": [
+      {
+        "trait_type": "Class",
+        "value": "Senator"
+      },
+      {
+        "trait_type": "Locus",
+        "value": "Sanctuary"
+      },
+      {
+        "trait_type": "Persona",
+        "value": "Ardeshir"
+      }
+    ]
+  },
+  "284": {
+    "id": 284,
+    "name": "Satrap #284",
+    "image": "ipfs://bafybeiee5vcu2osq6ng4wnwxcmabgfgnjnvqci2em4lxv7w7femcvfpbua/251.jpg",
+    "attributes": [
+      {
+        "trait_type": "Class",
+        "value": "Senator"
+      },
+      {
+        "trait_type": "Locus",
+        "value": "Palace"
+      },
+      {
+        "trait_type": "Persona",
+        "value": "Darius"
+      }
+    ]
+  },
+  "285": {
+    "id": 285,
+    "name": "Satrap #285",
+    "image": "ipfs://bafybeiee5vcu2osq6ng4wnwxcmabgfgnjnvqci2em4lxv7w7femcvfpbua/263.jpg",
+    "attributes": [
+      {
+        "trait_type": "Class",
+        "value": "Senator"
+      },
+      {
+        "trait_type": "Locus",
+        "value": "Babel"
+      },
+      {
+        "trait_type": "Persona",
+        "value": "Artemis"
+      }
+    ]
+  },
+  "286": {
+    "id": 286,
+    "name": "Satrap #286",
+    "image": "ipfs://bafybeiee5vcu2osq6ng4wnwxcmabgfgnjnvqci2em4lxv7w7femcvfpbua/241.jpg",
+    "attributes": [
+      {
+        "trait_type": "Class",
+        "value": "Senator"
+      },
+      {
+        "trait_type": "Locus",
+        "value": "Council"
+      },
+      {
+        "trait_type": "Persona",
+        "value": "Yax"
+      }
+    ]
+  },
+  "287": {
+    "id": 287,
+    "name": "Satrap #287",
+    "image": "ipfs://bafybeiee5vcu2osq6ng4wnwxcmabgfgnjnvqci2em4lxv7w7femcvfpbua/58.jpg",
+    "attributes": [
+      {
+        "trait_type": "Class",
+        "value": "Senator"
+      },
+      {
+        "trait_type": "Style",
+        "value": "Dish"
+      },
+      {
+        "trait_type": "Locus",
+        "value": "Underground"
+      },
+      {
+        "trait_type": "Persona",
+        "value": "Juno"
+      }
+    ]
+  },
+  "288": {
+    "id": 288,
+    "name": "Satrap #288",
+    "image": "ipfs://bafybeiee5vcu2osq6ng4wnwxcmabgfgnjnvqci2em4lxv7w7femcvfpbua/214.jpg",
+    "attributes": [
+      {
+        "trait_type": "Class",
+        "value": "Senator"
+      },
+      {
+        "trait_type": "Locus",
+        "value": "Dungeon Temple"
+      },
+      {
+        "trait_type": "Persona",
+        "value": "Dara"
+      }
+    ]
+  },
+  "289": {
+    "id": 289,
+    "name": "Satrap #289",
+    "image": "ipfs://bafybeiee5vcu2osq6ng4wnwxcmabgfgnjnvqci2em4lxv7w7femcvfpbua/218.jpg",
+    "attributes": [
+      {
+        "trait_type": "Class",
+        "value": "Senator"
+      },
+      {
+        "trait_type": "Locus",
+        "value": "Rotunda"
+      },
+      {
+        "trait_type": "Persona",
+        "value": "Artemis"
+      }
+    ]
+  },
+  "290": {
+    "id": 290,
+    "name": "Satrap #290",
+    "image": "ipfs://bafybeiee5vcu2osq6ng4wnwxcmabgfgnjnvqci2em4lxv7w7femcvfpbua/243.jpg",
+    "attributes": [
+      {
+        "trait_type": "Class",
+        "value": "Senator"
+      },
+      {
+        "trait_type": "Locus",
+        "value": "Meeting Room"
+      },
+      {
+        "trait_type": "Persona",
+        "value": "Artemis"
+      }
+    ]
+  },
+  "291": {
+    "id": 291,
+    "name": "Satrap #291",
+    "image": "ipfs://bafybeiee5vcu2osq6ng4wnwxcmabgfgnjnvqci2em4lxv7w7femcvfpbua/246.jpg",
+    "attributes": [
+      {
+        "trait_type": "Class",
+        "value": "Senator"
+      },
+      {
+        "trait_type": "Locus",
+        "value": "Dark Temple"
+      },
+      {
+        "trait_type": "Persona",
+        "value": "Darius"
+      }
+    ]
+  },
+  "292": {
+    "id": 292,
+    "name": "Satrap #292",
+    "image": "ipfs://bafybeiee5vcu2osq6ng4wnwxcmabgfgnjnvqci2em4lxv7w7femcvfpbua/248.jpg",
+    "attributes": [
+      {
+        "trait_type": "Class",
+        "value": "Senator"
+      },
+      {
+        "trait_type": "Locus",
+        "value": "Cave Sanctuary"
+      },
+      {
+        "trait_type": "Persona",
+        "value": "Ervin"
+      }
+    ]
+  },
+  "293": {
+    "id": 293,
+    "name": "Satrap #293",
+    "image": "ipfs://bafybeiee5vcu2osq6ng4wnwxcmabgfgnjnvqci2em4lxv7w7femcvfpbua/187.jpg",
+    "attributes": [
+      {
+        "trait_type": "Class",
+        "value": "Senator"
+      },
+      {
+        "trait_type": "Locus",
+        "value": "Garnier"
+      },
+      {
+        "trait_type": "Persona",
+        "value": "Ervin"
+      }
+    ]
+  },
+  "294": {
+    "id": 294,
+    "name": "Satrap #294",
+    "image": "ipfs://bafybeiee5vcu2osq6ng4wnwxcmabgfgnjnvqci2em4lxv7w7femcvfpbua/51.jpg",
+    "attributes": [
+      {
+        "trait_type": "Class",
+        "value": "Senator"
+      },
+      {
+        "trait_type": "Locus",
+        "value": "Sanctuary"
+      },
+      {
+        "trait_type": "Persona",
+        "value": "Merti"
+      }
+    ]
+  },
+  "295": {
+    "id": 295,
+    "name": "Satrap #295",
+    "image": "ipfs://bafybeiee5vcu2osq6ng4wnwxcmabgfgnjnvqci2em4lxv7w7femcvfpbua/322.jpg",
+    "attributes": [
+      {
+        "trait_type": "Class",
+        "value": "Senator"
+      },
+      {
+        "trait_type": "Locus",
+        "value": "Roth Sun"
+      },
+      {
+        "trait_type": "Persona",
+        "value": "Dara"
+      }
+    ]
+  },
+  "296": {
+    "id": 296,
+    "name": "Satrap #296",
+    "image": "ipfs://bafybeiee5vcu2osq6ng4wnwxcmabgfgnjnvqci2em4lxv7w7femcvfpbua/149.jpg",
+    "attributes": [
+      {
+        "trait_type": "Class",
+        "value": "Senator"
+      },
+      {
+        "trait_type": "Locus",
+        "value": "Sogno di Hambra"
+      },
+      {
+        "trait_type": "Persona",
+        "value": "Juno"
+      }
+    ]
+  },
+  "297": {
+    "id": 297,
+    "name": "Satrap #297",
+    "image": "ipfs://bafybeiee5vcu2osq6ng4wnwxcmabgfgnjnvqci2em4lxv7w7femcvfpbua/74.jpg",
+    "attributes": [
+      {
+        "trait_type": "Class",
+        "value": "Senator"
+      },
+      {
+        "trait_type": "Style",
+        "value": "Dish"
+      },
+      {
+        "trait_type": "Locus",
+        "value": "Patio de Los Leones"
+      },
+      {
+        "trait_type": "Persona",
+        "value": "Artemis"
+      }
+    ]
+  },
+  "298": {
+    "id": 298,
+    "name": "Satrap #298",
+    "image": "ipfs://bafybeiee5vcu2osq6ng4wnwxcmabgfgnjnvqci2em4lxv7w7femcvfpbua/38.jpg",
+    "attributes": [
+      {
+        "trait_type": "Class",
+        "value": "Senator"
+      },
+      {
+        "trait_type": "Locus",
+        "value": "Roth Angels"
+      },
+      {
+        "trait_type": "Persona",
+        "value": "Zahara"
+      }
+    ]
+  },
+  "299": {
+    "id": 299,
+    "name": "Satrap #299",
+    "image": "ipfs://bafybeiee5vcu2osq6ng4wnwxcmabgfgnjnvqci2em4lxv7w7femcvfpbua/285.jpg",
+    "attributes": [
+      {
+        "trait_type": "Class",
+        "value": "Senator"
+      },
+      {
+        "trait_type": "Locus",
+        "value": "Cathedral"
+      },
+      {
+        "trait_type": "Persona",
+        "value": "Ervin"
+      }
+    ]
+  },
+  "300": {
+    "id": 300,
+    "name": "Satrap #300",
+    "image": "ipfs://bafybeiee5vcu2osq6ng4wnwxcmabgfgnjnvqci2em4lxv7w7femcvfpbua/191.jpg",
+    "attributes": [
+      {
+        "trait_type": "Class",
+        "value": "Senator"
+      },
+      {
+        "trait_type": "Locus",
+        "value": "Sanctuary"
+      },
+      {
+        "trait_type": "Persona",
+        "value": "Juno"
+      }
+    ]
+  },
+  "301": {
+    "id": 301,
+    "name": "Satrap #301",
+    "image": "ipfs://bafybeiee5vcu2osq6ng4wnwxcmabgfgnjnvqci2em4lxv7w7femcvfpbua/237.jpg",
+    "attributes": [
+      {
+        "trait_type": "Class",
+        "value": "Senator"
+      },
+      {
+        "trait_type": "Locus",
+        "value": "Mint"
+      },
+      {
+        "trait_type": "Persona",
+        "value": "Ardeshir"
+      }
+    ]
+  },
+  "302": {
+    "id": 302,
+    "name": "Satrap #302",
+    "image": "ipfs://bafybeiee5vcu2osq6ng4wnwxcmabgfgnjnvqci2em4lxv7w7femcvfpbua/272.jpg",
+    "attributes": [
+      {
+        "trait_type": "Class",
+        "value": "Senator"
+      },
+      {
+        "trait_type": "Locus",
+        "value": "Roma"
+      },
+      {
+        "trait_type": "Persona",
+        "value": "Artemis"
+      }
+    ]
+  },
+  "303": {
+    "id": 303,
+    "name": "Satrap #303",
+    "image": "ipfs://bafybeiee5vcu2osq6ng4wnwxcmabgfgnjnvqci2em4lxv7w7femcvfpbua/152.jpg",
+    "attributes": [
+      {
+        "trait_type": "Class",
+        "value": "Senator"
+      },
+      {
+        "trait_type": "Locus",
+        "value": "Dark Temple"
+      },
+      {
+        "trait_type": "Persona",
+        "value": "Atlas"
+      }
+    ]
+  },
+  "304": {
+    "id": 304,
+    "name": "Satrap #304",
+    "image": "ipfs://bafybeiee5vcu2osq6ng4wnwxcmabgfgnjnvqci2em4lxv7w7femcvfpbua/76.jpg",
+    "attributes": [
+      {
+        "trait_type": "Class",
+        "value": "Senator"
+      },
+      {
+        "trait_type": "Locus",
+        "value": "Underground"
+      },
+      {
+        "trait_type": "Persona",
+        "value": "Juno"
+      }
+    ]
+  },
+  "305": {
+    "id": 305,
+    "name": "Satrap #305",
+    "image": "ipfs://bafybeiee5vcu2osq6ng4wnwxcmabgfgnjnvqci2em4lxv7w7femcvfpbua/49.jpg",
+    "attributes": [
+      {
+        "trait_type": "Class",
+        "value": "Senator"
+      },
+      {
+        "trait_type": "Locus",
+        "value": "Underground"
+      },
+      {
+        "trait_type": "Persona",
+        "value": "Ervin"
+      }
+    ]
+  },
+  "306": {
+    "id": 306,
+    "name": "Satrap #306",
+    "image": "ipfs://bafybeiee5vcu2osq6ng4wnwxcmabgfgnjnvqci2em4lxv7w7femcvfpbua/262.jpg",
+    "attributes": [
+      {
+        "trait_type": "Class",
+        "value": "Senator"
+      },
+      {
+        "trait_type": "Locus",
+        "value": "Palace"
+      },
+      {
+        "trait_type": "Persona",
+        "value": "Minerva"
+      }
+    ]
+  },
+  "307": {
+    "id": 307,
+    "name": "Satrap #307",
+    "image": "ipfs://bafybeiee5vcu2osq6ng4wnwxcmabgfgnjnvqci2em4lxv7w7femcvfpbua/47.jpg",
+    "attributes": [
+      {
+        "trait_type": "Class",
+        "value": "Senator"
+      },
+      {
+        "trait_type": "Locus",
+        "value": "New World Arch"
+      },
+      {
+        "trait_type": "Persona",
+        "value": "Zahara"
+      }
+    ]
+  },
+  "308": {
+    "id": 308,
+    "name": "Satrap #308",
+    "image": "ipfs://bafybeiee5vcu2osq6ng4wnwxcmabgfgnjnvqci2em4lxv7w7femcvfpbua/310.jpg",
+    "attributes": [
+      {
+        "trait_type": "Class",
+        "value": "Senator"
+      },
+      {
+        "trait_type": "Style",
+        "value": "Stamp Mosaic Dish"
+      },
+      {
+        "trait_type": "Locus",
+        "value": "Satrap Palace"
+      },
+      {
+        "trait_type": "Persona",
+        "value": "Minerva"
+      }
+    ]
+  },
+  "309": {
+    "id": 309,
+    "name": "Satrap #309",
+    "image": "ipfs://bafybeiee5vcu2osq6ng4wnwxcmabgfgnjnvqci2em4lxv7w7femcvfpbua/313.jpg",
+    "attributes": [
+      {
+        "trait_type": "Class",
+        "value": "Senator"
+      },
+      {
+        "trait_type": "Style",
+        "value": "Dish"
+      },
+      {
+        "trait_type": "Locus",
+        "value": "Satrap Palace"
+      },
+      {
+        "trait_type": "Persona",
+        "value": "Ardeshir"
+      }
+    ]
+  },
+  "310": {
+    "id": 310,
+    "name": "Satrap #310",
+    "image": "ipfs://bafybeiee5vcu2osq6ng4wnwxcmabgfgnjnvqci2em4lxv7w7femcvfpbua/231.jpg",
+    "attributes": [
+      {
+        "trait_type": "Class",
+        "value": "Senator"
+      },
+      {
+        "trait_type": "Locus",
+        "value": "Derafsh Kaviani"
+      },
+      {
+        "trait_type": "Persona",
+        "value": "Artemis"
+      }
+    ]
+  },
+  "311": {
+    "id": 311,
+    "name": "Satrap #311",
+    "image": "ipfs://bafybeiee5vcu2osq6ng4wnwxcmabgfgnjnvqci2em4lxv7w7femcvfpbua/73.jpg",
+    "attributes": [
+      {
+        "trait_type": "Class",
+        "value": "Senator"
+      },
+      {
+        "trait_type": "Locus",
+        "value": "Sogno di Town Church"
+      },
+      {
+        "trait_type": "Persona",
+        "value": "Minerva"
+      }
+    ]
+  },
+  "312": {
+    "id": 312,
+    "name": "Satrap #312",
+    "image": "ipfs://bafybeiee5vcu2osq6ng4wnwxcmabgfgnjnvqci2em4lxv7w7femcvfpbua/254.jpg",
+    "attributes": [
+      {
+        "trait_type": "Class",
+        "value": "Senator"
+      },
+      {
+        "trait_type": "Locus",
+        "value": "Roth Star"
+      },
+      {
+        "trait_type": "Persona",
+        "value": "Atlas"
+      }
+    ]
+  },
+  "313": {
+    "id": 313,
+    "name": "Satrap #313",
+    "image": "ipfs://bafybeiee5vcu2osq6ng4wnwxcmabgfgnjnvqci2em4lxv7w7femcvfpbua/222.jpg",
+    "attributes": [
+      {
+        "trait_type": "Class",
+        "value": "Senator"
+      },
+      {
+        "trait_type": "Locus",
+        "value": "Roth Sun"
+      },
+      {
+        "trait_type": "Persona",
+        "value": "Ervin"
+      }
+    ]
+  },
+  "314": {
+    "id": 314,
+    "name": "Satrap #314",
+    "image": "ipfs://bafybeiee5vcu2osq6ng4wnwxcmabgfgnjnvqci2em4lxv7w7femcvfpbua/154.jpg",
+    "attributes": [
+      {
+        "trait_type": "Class",
+        "value": "Senator"
+      },
+      {
+        "trait_type": "Style",
+        "value": "Dish"
+      },
+      {
+        "trait_type": "Locus",
+        "value": "Capriccio"
+      },
+      {
+        "trait_type": "Persona",
+        "value": "Yax"
+      }
+    ]
+  },
+  "315": {
+    "id": 315,
+    "name": "Satrap #315",
+    "image": "ipfs://bafybeiee5vcu2osq6ng4wnwxcmabgfgnjnvqci2em4lxv7w7femcvfpbua/62.jpg",
+    "attributes": [
+      {
+        "trait_type": "Class",
+        "value": "Senator"
+      },
+      {
+        "trait_type": "Locus",
+        "value": "Derafsh Kaviani"
+      },
+      {
+        "trait_type": "Persona",
+        "value": "Minerva"
+      }
+    ]
+  },
+  "316": {
+    "id": 316,
+    "name": "Satrap #316",
+    "image": "ipfs://bafybeiee5vcu2osq6ng4wnwxcmabgfgnjnvqci2em4lxv7w7femcvfpbua/106.jpg",
+    "attributes": [
+      {
+        "trait_type": "Class",
+        "value": "Senator"
+      },
+      {
+        "trait_type": "Locus",
+        "value": "New World Arch"
+      },
+      {
+        "trait_type": "Persona",
+        "value": "Minerva"
+      }
+    ]
+  },
+  "317": {
+    "id": 317,
+    "name": "Satrap #317",
+    "image": "ipfs://bafybeiee5vcu2osq6ng4wnwxcmabgfgnjnvqci2em4lxv7w7femcvfpbua/35.jpg",
+    "attributes": [
+      {
+        "trait_type": "Class",
+        "value": "Senator"
+      },
+      {
+        "trait_type": "Locus",
+        "value": "Town Church"
+      },
+      {
+        "trait_type": "Persona",
+        "value": "Ardeshir"
+      }
+    ]
+  },
+  "318": {
+    "id": 318,
+    "name": "Satrap #318",
+    "image": "ipfs://bafybeiee5vcu2osq6ng4wnwxcmabgfgnjnvqci2em4lxv7w7femcvfpbua/64.jpg",
+    "attributes": [
+      {
+        "trait_type": "Class",
+        "value": "Senator"
+      },
+      {
+        "trait_type": "Locus",
+        "value": "New World Arch"
+      },
+      {
+        "trait_type": "Persona",
+        "value": "Ardeshir"
+      }
+    ]
+  },
+  "319": {
+    "id": 319,
+    "name": "Satrap #319",
+    "image": "ipfs://bafybeiee5vcu2osq6ng4wnwxcmabgfgnjnvqci2em4lxv7w7femcvfpbua/265.jpg",
+    "attributes": [
+      {
+        "trait_type": "Class",
+        "value": "Senator"
+      },
+      {
+        "trait_type": "Locus",
+        "value": "Derafsh Kaviani"
+      },
+      {
+        "trait_type": "Persona",
+        "value": "Zahara"
+      }
+    ]
+  },
+  "320": {
+    "id": 320,
+    "name": "Satrap #320",
+    "image": "ipfs://bafybeiee5vcu2osq6ng4wnwxcmabgfgnjnvqci2em4lxv7w7femcvfpbua/156.jpg",
+    "attributes": [
+      {
+        "trait_type": "Class",
+        "value": "Senator"
+      },
+      {
+        "trait_type": "Locus",
+        "value": "Dungeon Temple"
+      },
+      {
+        "trait_type": "Persona",
+        "value": "Ardeshir"
+      }
+    ]
+  },
+  "321": {
+    "id": 321,
+    "name": "Satrap #321",
+    "image": "ipfs://bafybeiee5vcu2osq6ng4wnwxcmabgfgnjnvqci2em4lxv7w7femcvfpbua/197.jpg",
+    "attributes": [
+      {
+        "trait_type": "Class",
+        "value": "Senator"
+      },
+      {
+        "trait_type": "Locus",
+        "value": "Dark Temple"
+      },
+      {
+        "trait_type": "Persona",
+        "value": "Juno"
+      }
+    ]
+  },
+  "322": {
+    "id": 322,
+    "name": "Satrap #322",
+    "image": "ipfs://bafybeiee5vcu2osq6ng4wnwxcmabgfgnjnvqci2em4lxv7w7femcvfpbua/124.jpg",
+    "attributes": [
+      {
+        "trait_type": "Class",
+        "value": "Senator"
+      },
+      {
+        "trait_type": "Locus",
+        "value": "Garnier"
+      },
+      {
+        "trait_type": "Persona",
+        "value": "Juno"
+      }
+    ]
+  },
+  "323": {
+    "id": 323,
+    "name": "Satrap #323",
+    "image": "ipfs://bafybeiee5vcu2osq6ng4wnwxcmabgfgnjnvqci2em4lxv7w7femcvfpbua/319.jpg",
+    "attributes": [
+      {
+        "trait_type": "Class",
+        "value": "Senator"
+      },
+      {
+        "trait_type": "Locus",
+        "value": "Dungeon Temple"
+      },
+      {
+        "trait_type": "Persona",
+        "value": "Artemis"
+      }
+    ]
+  },
+  "324": {
+    "id": 324,
+    "name": "Satrap #324",
+    "image": "ipfs://bafybeiee5vcu2osq6ng4wnwxcmabgfgnjnvqci2em4lxv7w7femcvfpbua/315.jpg",
+    "attributes": [
+      {
+        "trait_type": "Class",
+        "value": "Senator"
+      },
+      {
+        "trait_type": "Locus",
+        "value": "Garnier"
+      },
+      {
+        "trait_type": "Persona",
+        "value": "Ardeshir"
+      }
+    ]
+  },
+  "325": {
+    "id": 325,
+    "name": "Satrap #325",
+    "image": "ipfs://bafybeiee5vcu2osq6ng4wnwxcmabgfgnjnvqci2em4lxv7w7femcvfpbua/167.jpg",
+    "attributes": [
+      {
+        "trait_type": "Class",
+        "value": "Senator"
+      },
+      {
+        "trait_type": "Locus",
+        "value": "Cave Sanctuary"
+      },
+      {
+        "trait_type": "Persona",
+        "value": "Merti"
+      }
+    ]
+  },
+  "326": {
+    "id": 326,
+    "name": "Satrap #326",
+    "image": "ipfs://bafybeiee5vcu2osq6ng4wnwxcmabgfgnjnvqci2em4lxv7w7femcvfpbua/249.jpg",
+    "attributes": [
+      {
+        "trait_type": "Class",
+        "value": "Senator"
+      },
+      {
+        "trait_type": "Locus",
+        "value": "Council"
+      },
+      {
+        "trait_type": "Persona",
+        "value": "Merti"
+      }
+    ]
+  },
+  "327": {
+    "id": 327,
+    "name": "Satrap #327",
+    "image": "ipfs://bafybeiee5vcu2osq6ng4wnwxcmabgfgnjnvqci2em4lxv7w7femcvfpbua/92.jpg",
+    "attributes": [
+      {
+        "trait_type": "Class",
+        "value": "Senator"
+      },
+      {
+        "trait_type": "Locus",
+        "value": "Dungeon Temple"
+      },
+      {
+        "trait_type": "Persona",
+        "value": "Minerva"
+      }
+    ]
+  },
+  "328": {
+    "id": 328,
+    "name": "Satrap #328",
+    "image": "ipfs://bafybeiee5vcu2osq6ng4wnwxcmabgfgnjnvqci2em4lxv7w7femcvfpbua/128.jpg",
+    "attributes": [
+      {
+        "trait_type": "Class",
+        "value": "Senator"
+      },
+      {
+        "trait_type": "Style",
+        "value": "Dish"
+      },
+      {
+        "trait_type": "Locus",
+        "value": "Galleria"
+      },
+      {
+        "trait_type": "Persona",
+        "value": "Artemis"
+      }
+    ]
+  },
+  "329": {
+    "id": 329,
+    "name": "Satrap #329",
+    "image": "ipfs://bafybeiee5vcu2osq6ng4wnwxcmabgfgnjnvqci2em4lxv7w7femcvfpbua/268.jpg",
+    "attributes": [
+      {
+        "trait_type": "Class",
+        "value": "Senator"
+      },
+      {
+        "trait_type": "Locus",
+        "value": "Long Hall"
+      },
+      {
+        "trait_type": "Persona",
+        "value": "Dara"
+      }
+    ]
+  },
+  "330": {
+    "id": 330,
+    "name": "Satrap #330",
+    "image": "ipfs://bafybeiee5vcu2osq6ng4wnwxcmabgfgnjnvqci2em4lxv7w7femcvfpbua/317.jpg",
+    "attributes": [
+      {
+        "trait_type": "Class",
+        "value": "Senator"
+      },
+      {
+        "trait_type": "Locus",
+        "value": "Giardino"
+      },
+      {
+        "trait_type": "Persona",
+        "value": "Ardeshir"
+      }
+    ]
+  },
+  "331": {
+    "id": 331,
+    "name": "Satrap #331",
+    "image": "ipfs://bafybeiee5vcu2osq6ng4wnwxcmabgfgnjnvqci2em4lxv7w7femcvfpbua/43.jpg",
+    "attributes": [
+      {
+        "trait_type": "Class",
+        "value": "Senator"
+      },
+      {
+        "trait_type": "Locus",
+        "value": "Roth Sun"
+      },
+      {
+        "trait_type": "Persona",
+        "value": "Juno"
+      }
+    ]
+  },
+  "332": {
+    "id": 332,
+    "name": "Satrap #332",
+    "image": "ipfs://bafybeiee5vcu2osq6ng4wnwxcmabgfgnjnvqci2em4lxv7w7femcvfpbua/192.jpg",
+    "attributes": [
+      {
+        "trait_type": "Class",
+        "value": "Senator"
+      },
+      {
+        "trait_type": "Locus",
+        "value": "Cathedral"
+      },
+      {
+        "trait_type": "Persona",
+        "value": "Darius"
+      }
+    ]
+  },
+  "333": {
+    "id": 333,
+    "name": "Satrap #333",
+    "image": "ipfs://bafybeiee5vcu2osq6ng4wnwxcmabgfgnjnvqci2em4lxv7w7femcvfpbua/161.jpg",
+    "attributes": [
+      {
+        "trait_type": "Class",
+        "value": "Senator"
+      },
+      {
+        "trait_type": "Locus",
+        "value": "Derafsh Kaviani"
+      },
+      {
+        "trait_type": "Persona",
+        "value": "Dara"
+      }
+    ]
+  },
+  "334": {
+    "id": 334,
+    "name": "Satrap #334",
+    "image": "ipfs://bafybeiee5vcu2osq6ng4wnwxcmabgfgnjnvqci2em4lxv7w7femcvfpbua/109.jpg",
+    "attributes": [
+      {
+        "trait_type": "Class",
+        "value": "Senator"
+      },
+      {
+        "trait_type": "Locus",
+        "value": "Roma"
+      },
+      {
+        "trait_type": "Persona",
+        "value": "Merti"
+      }
+    ]
+  },
+  "335": {
+    "id": 335,
+    "name": "Satrap #335",
+    "image": "ipfs://bafybeiee5vcu2osq6ng4wnwxcmabgfgnjnvqci2em4lxv7w7femcvfpbua/224.jpg",
+    "attributes": [
+      {
+        "trait_type": "Class",
+        "value": "Senator"
+      },
+      {
+        "trait_type": "Locus",
+        "value": "Roth Star"
+      },
+      {
+        "trait_type": "Persona",
+        "value": "Zahara"
+      }
+    ]
+  },
+  "336": {
+    "id": 336,
+    "name": "Satrap #336",
+    "image": "ipfs://bafybeiee5vcu2osq6ng4wnwxcmabgfgnjnvqci2em4lxv7w7femcvfpbua/291.jpg",
+    "attributes": [
+      {
+        "trait_type": "Class",
+        "value": "Senator"
+      },
+      {
+        "trait_type": "Locus",
+        "value": "Rotunda"
+      },
+      {
+        "trait_type": "Persona",
+        "value": "Darius"
+      }
+    ]
+  },
+  "337": {
+    "id": 337,
+    "name": "Satrap #337",
+    "image": "ipfs://bafybeiee5vcu2osq6ng4wnwxcmabgfgnjnvqci2em4lxv7w7femcvfpbua/194.jpg",
+    "attributes": [
+      {
+        "trait_type": "Class",
+        "value": "Senator"
+      },
+      {
+        "trait_type": "Locus",
+        "value": "Roth Star"
+      },
+      {
+        "trait_type": "Persona",
+        "value": "Artemis"
+      }
+    ]
+  },
+  "338": {
+    "id": 338,
+    "name": "Satrap #338",
+    "image": "ipfs://bafybeiee5vcu2osq6ng4wnwxcmabgfgnjnvqci2em4lxv7w7femcvfpbua/180.jpg",
+    "attributes": [
+      {
+        "trait_type": "Class",
+        "value": "Senator"
+      },
+      {
+        "trait_type": "Locus",
+        "value": "Treasury Gate"
+      },
+      {
+        "trait_type": "Persona",
+        "value": "Yax"
+      }
+    ]
+  },
+  "339": {
+    "id": 339,
+    "name": "Satrap #339",
+    "image": "ipfs://bafybeiee5vcu2osq6ng4wnwxcmabgfgnjnvqci2em4lxv7w7femcvfpbua/170.jpg",
+    "attributes": [
+      {
+        "trait_type": "Class",
+        "value": "Senator"
+      },
+      {
+        "trait_type": "Locus",
+        "value": "Treasury Gate"
+      },
+      {
+        "trait_type": "Persona",
+        "value": "Artemis"
+      }
+    ]
+  },
+  "340": {
+    "id": 340,
+    "name": "Satrap #340",
+    "image": "ipfs://bafybeiee5vcu2osq6ng4wnwxcmabgfgnjnvqci2em4lxv7w7femcvfpbua/137.jpg",
+    "attributes": [
+      {
+        "trait_type": "Class",
+        "value": "Senator"
+      },
+      {
+        "trait_type": "Locus",
+        "value": "Treasury Gate"
+      },
+      {
+        "trait_type": "Persona",
+        "value": "Ervin"
+      }
+    ]
+  },
+  "341": {
+    "id": 341,
+    "name": "Satrap #341",
+    "image": "ipfs://bafybeiee5vcu2osq6ng4wnwxcmabgfgnjnvqci2em4lxv7w7femcvfpbua/68.jpg",
+    "attributes": [
+      {
+        "trait_type": "Class",
+        "value": "Senator"
+      },
+      {
+        "trait_type": "Locus",
+        "value": "Town Church"
+      },
+      {
+        "trait_type": "Persona",
+        "value": "Yax"
+      }
+    ]
+  },
+  "342": {
+    "id": 342,
+    "name": "Satrap #342",
+    "image": "ipfs://bafybeiee5vcu2osq6ng4wnwxcmabgfgnjnvqci2em4lxv7w7femcvfpbua/210.jpg",
+    "attributes": [
+      {
+        "trait_type": "Class",
+        "value": "Senator"
+      },
+      {
+        "trait_type": "Locus",
+        "value": "Derafsh Kaviani"
+      },
+      {
+        "trait_type": "Persona",
+        "value": "Ervin"
+      }
+    ]
+  },
+  "343": {
+    "id": 343,
+    "name": "Satrap #343",
+    "image": "ipfs://bafybeiee5vcu2osq6ng4wnwxcmabgfgnjnvqci2em4lxv7w7femcvfpbua/217.jpg",
+    "attributes": [
+      {
+        "trait_type": "Class",
+        "value": "Senator"
+      },
+      {
+        "trait_type": "Locus",
+        "value": "Garden"
+      },
+      {
+        "trait_type": "Persona",
+        "value": "Artemis"
+      }
+    ]
+  },
+  "344": {
+    "id": 344,
+    "name": "Satrap #344",
+    "image": "ipfs://bafybeiee5vcu2osq6ng4wnwxcmabgfgnjnvqci2em4lxv7w7femcvfpbua/144.jpg",
+    "attributes": [
+      {
+        "trait_type": "Class",
+        "value": "Senator"
+      },
+      {
+        "trait_type": "Style",
+        "value": "Stamp Mosaic Dish"
+      },
+      {
+        "trait_type": "Locus",
+        "value": "Mint"
+      },
+      {
+        "trait_type": "Persona",
+        "value": "Dara"
+      }
+    ]
+  },
+  "345": {
+    "id": 345,
+    "name": "Satrap #345",
+    "image": "ipfs://bafybeiee5vcu2osq6ng4wnwxcmabgfgnjnvqci2em4lxv7w7femcvfpbua/95.jpg",
+    "attributes": [
+      {
+        "trait_type": "Class",
+        "value": "Senator"
+      },
+      {
+        "trait_type": "Locus",
+        "value": "Patio de Los Leones"
+      },
+      {
+        "trait_type": "Persona",
+        "value": "Dara"
+      }
+    ]
+  },
+  "346": {
+    "id": 346,
+    "name": "Satrap #346",
+    "image": "ipfs://bafybeiee5vcu2osq6ng4wnwxcmabgfgnjnvqci2em4lxv7w7femcvfpbua/107.jpg",
+    "attributes": [
+      {
+        "trait_type": "Class",
+        "value": "Senator"
+      },
+      {
+        "trait_type": "Locus",
+        "value": "Grand Mosque"
+      },
+      {
+        "trait_type": "Persona",
+        "value": "Minerva"
+      }
+    ]
+  },
+  "347": {
+    "id": 347,
+    "name": "Satrap #347",
+    "image": "ipfs://bafybeiee5vcu2osq6ng4wnwxcmabgfgnjnvqci2em4lxv7w7femcvfpbua/279.jpg",
+    "attributes": [
+      {
+        "trait_type": "Class",
+        "value": "Senator"
+      },
+      {
+        "trait_type": "Style",
+        "value": "Dish"
+      },
+      {
+        "trait_type": "Locus",
+        "value": "Treasury Gate"
+      },
+      {
+        "trait_type": "Persona",
+        "value": "Ervin"
+      }
+    ]
+  },
+  "348": {
+    "id": 348,
+    "name": "Satrap #348",
+    "image": "ipfs://bafybeiee5vcu2osq6ng4wnwxcmabgfgnjnvqci2em4lxv7w7femcvfpbua/211.jpg",
+    "attributes": [
+      {
+        "trait_type": "Class",
+        "value": "Senator"
+      },
+      {
+        "trait_type": "Locus",
+        "value": "Roth Star"
+      },
+      {
+        "trait_type": "Persona",
+        "value": "Ardeshir"
+      }
+    ]
+  },
+  "349": {
+    "id": 349,
+    "name": "Satrap #349",
+    "image": "ipfs://bafybeiee5vcu2osq6ng4wnwxcmabgfgnjnvqci2em4lxv7w7femcvfpbua/103.jpg",
+    "attributes": [
+      {
+        "trait_type": "Class",
+        "value": "Senator"
+      },
+      {
+        "trait_type": "Style",
+        "value": "Dish"
+      },
+      {
+        "trait_type": "Locus",
+        "value": "Patio de Los Leones"
+      },
+      {
+        "trait_type": "Persona",
+        "value": "Yax"
+      }
+    ]
+  },
+  "350": {
+    "id": 350,
+    "name": "Satrap #350",
+    "image": "ipfs://bafybeiee5vcu2osq6ng4wnwxcmabgfgnjnvqci2em4lxv7w7femcvfpbua/40.jpg",
+    "attributes": [
+      {
+        "trait_type": "Class",
+        "value": "Senator"
+      },
+      {
+        "trait_type": "Locus",
+        "value": "Roma"
+      },
+      {
+        "trait_type": "Persona",
+        "value": "Ardeshir"
+      }
+    ]
+  }
+}
