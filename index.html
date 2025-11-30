@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
     <title>TOADZ | Premier NFT Marketplace</title>
     <script src="https://cdn.jsdelivr.net/npm/ethers@6/dist/ethers.umd.min.js"></script>
+    <script src="toadz-web3.js"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
     <style>
@@ -391,6 +392,61 @@
             font-size: 12px;
             color: var(--text-muted);
             margin-top: 8px;
+        }
+
+        /* Connect Wallet Prompt */
+        .connect-prompt-section {
+            min-height: 60vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 40px 20px;
+        }
+
+        .connect-prompt-card {
+            text-align: center;
+            background: var(--bg-card);
+            border: 1px solid var(--border-subtle);
+            border-radius: 24px;
+            padding: 60px 40px;
+            max-width: 450px;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.3);
+        }
+
+        .connect-prompt-icon {
+            font-size: 64px;
+            margin-bottom: 24px;
+            opacity: 0.8;
+        }
+
+        .connect-prompt-card h2 {
+            font-size: 28px;
+            font-weight: 800;
+            margin-bottom: 12px;
+        }
+
+        .connect-prompt-card p {
+            color: var(--text-secondary);
+            font-size: 15px;
+            margin-bottom: 32px;
+            line-height: 1.5;
+        }
+
+        .connect-prompt-btn {
+            background: var(--accent);
+            color: var(--bg-void);
+            border: none;
+            border-radius: 12px;
+            padding: 16px 32px;
+            font-size: 16px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 150ms ease;
+        }
+
+        .connect-prompt-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px var(--accent-glow);
         }
 
         /* Sidebar LP Widget */
@@ -6746,8 +6802,51 @@
                 <div class="container">
                     <div class="page-hero-content">
                         <span class="hero-badge">🎨 CREATOR HUB</span>
-                        <h1>Launch Your Art</h1>
-                        <p>Be among the first creators on TOADZ Marketplace</p>
+                        <h1>Featured Artists</h1>
+                        <p>Discover and collect from the best digital artists</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Featured Artists -->
+            <section class="featured-artists-section">
+                <div class="container">
+                    <div class="featured-artists-grid">
+                        <!-- Artist 1 - Freak -->
+                        <div class="featured-artist-card" onclick="showPage('artist-storefront')">
+                            <div class="fa-banner" style="background-image: url('https://ipfs.io/ipfs/QmP45Rfhy75RybFuLcwd1CR9vF6qznw95qQPxcA5TeBNYk/667.png')"></div>
+                            <div class="fa-content">
+                                <div class="fa-avatar">
+                                    <img src="https://ipfs.io/ipfs/QmP45Rfhy75RybFuLcwd1CR9vF6qznw95qQPxcA5TeBNYk/666.png" alt="">
+                                </div>
+                                <div class="fa-badge">⭐ FEATURED</div>
+                                <h3 class="fa-name">Freak</h3>
+                                <p class="fa-style">Chaos & Dark Surrealism</p>
+                                <div class="fa-stats">
+                                    <div class="fa-stat"><span class="fa-stat-value">--</span><span class="fa-stat-label">Items</span></div>
+                                    <div class="fa-stat"><span class="fa-stat-value">--</span><span class="fa-stat-label">Volume</span></div>
+                                    <div class="fa-stat"><span class="fa-stat-value">--</span><span class="fa-stat-label">Collectors</span></div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Artist 2 - PastaPrimavera -->
+                        <div class="featured-artist-card" onclick="showPage('artist-storefront')">
+                            <div class="fa-banner" style="background-image: url('https://ipfs.io/ipfs/QmP45Rfhy75RybFuLcwd1CR9vF6qznw95qQPxcA5TeBNYk/421.png')"></div>
+                            <div class="fa-content">
+                                <div class="fa-avatar">
+                                    <img src="https://ipfs.io/ipfs/QmP45Rfhy75RybFuLcwd1CR9vF6qznw95qQPxcA5TeBNYk/420.png" alt="">
+                                </div>
+                                <div class="fa-badge hot">🔥 HOT</div>
+                                <h3 class="fa-name">PastaPrimavera</h3>
+                                <p class="fa-style">Italian-Inspired Digital</p>
+                                <div class="fa-stats">
+                                    <div class="fa-stat"><span class="fa-stat-value">--</span><span class="fa-stat-label">Items</span></div>
+                                    <div class="fa-stat"><span class="fa-stat-value">--</span><span class="fa-stat-label">Volume</span></div>
+                                    <div class="fa-stat"><span class="fa-stat-value">--</span><span class="fa-stat-label">Collectors</span></div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </section>
@@ -7008,125 +7107,114 @@
 
         <!-- MY NFTS PAGE -->
         <div id="page-my-nfts" class="page">
-            <!-- My NFTs Hero -->
-            <section class="page-hero my-nfts-hero">
-                <div class="container">
-                    <div class="my-profile-header">
-                        <div class="my-avatar">
-                            <span>👤</span>
-                        </div>
-                        <div class="my-profile-info">
-                            <h1>My Collection</h1>
-                            <p class="wallet-address">0x1234...5678</p>
-                        </div>
-                    </div>
-                    <div class="hero-stats-mini">
-                        <div class="mini-stat">
-                            <span class="mini-value">12</span>
-                            <span class="mini-label">Owned</span>
-                        </div>
-                        <div class="mini-stat">
-                            <span class="mini-value green">8</span>
-                            <span class="mini-label">Staked</span>
-                        </div>
-                        <div class="mini-stat">
-                            <span class="mini-value purple">3</span>
-                            <span class="mini-label">Listed</span>
-                        </div>
-                        <div class="mini-stat">
-                            <span class="mini-value gold">2</span>
-                            <span class="mini-label">Offers</span>
-                        </div>
-                    </div>
+            <!-- Not Connected State -->
+            <div id="my-nfts-not-connected" class="connect-prompt-section">
+                <div class="connect-prompt-card">
+                    <div class="connect-prompt-icon">👤</div>
+                    <h2>Connect Your Wallet</h2>
+                    <p>Connect your wallet to view your NFTs, track staking rewards, and manage your collection.</p>
+                    <button class="connect-prompt-btn" onclick="openConnectModal()">Connect Wallet →</button>
                 </div>
-            </section>
+            </div>
 
-            <div class="container">
-                <!-- Dashboard Cards -->
-                <div class="my-dashboard-grid">
-                    <!-- Portfolio Value -->
-                    <div class="dashboard-card portfolio-card">
-                        <div class="dashboard-card-header">
-                            <span class="dashboard-icon">💰</span>
-                            <h4>Portfolio Value</h4>
-                        </div>
-                        <div class="portfolio-value-main">
-                            <span class="portfolio-amount">24,850</span>
-                            <span class="portfolio-token">FLR</span>
-                        </div>
-                        <div class="portfolio-change positive">+12.4% (30d)</div>
-                    </div>
-
-                    <!-- Your Rank -->
-                    <div class="dashboard-card rank-card">
-                        <div class="dashboard-card-header">
-                            <span class="dashboard-icon">🏆</span>
-                            <h4>Your Rank</h4>
-                        </div>
-                        <div class="your-rank-display">
-                            <span class="rank-number">#47</span>
-                            <span class="rank-category">NFT Stakers</span>
-                        </div>
-                        <div class="rank-progress">
-                            <div class="rank-progress-bar" style="width: 68%"></div>
-                        </div>
-                        <div class="rank-next">32 more NFTs to reach #40</div>
-                    </div>
-
-                    <!-- Earnings -->
-                    <div class="dashboard-card earnings-card">
-                        <div class="dashboard-card-header">
-                            <span class="dashboard-icon">📈</span>
-                            <h4>POND Earned</h4>
-                        </div>
-                        <div class="earnings-value">
-                            <span class="earnings-amount green">+1,247</span>
-                            <span class="earnings-token">POND</span>
-                        </div>
-                        <div class="earnings-detail">From 8 staked NFTs • 1.2x multiplier</div>
-                    </div>
-
-                    <!-- Recent Activity -->
-                    <div class="dashboard-card activity-card">
-                        <div class="dashboard-card-header">
-                            <span class="dashboard-icon">⚡</span>
-                            <h4>Recent Activity</h4>
-                        </div>
-                        <div class="my-activity-list">
-                            <div class="my-activity-item">
-                                <span class="activity-dot green"></span>
-                                <span>Staked sToadz #421</span>
-                                <span class="activity-time">2h ago</span>
+            <!-- Connected State (hidden by default) -->
+            <div id="my-nfts-connected" style="display: none;">
+                <!-- My NFTs Hero -->
+                <section class="page-hero my-nfts-hero">
+                    <div class="container">
+                        <div class="my-profile-header">
+                            <div class="my-avatar">
+                                <span>👤</span>
                             </div>
-                            <div class="my-activity-item">
-                                <span class="activity-dot gold"></span>
-                                <span>Received offer 850 FLR</span>
-                                <span class="activity-time">5h ago</span>
+                            <div class="my-profile-info">
+                                <h1>My Collection</h1>
+                                <p class="wallet-address" id="my-wallet-address">0x1234...5678</p>
                             </div>
-                            <div class="my-activity-item">
-                                <span class="activity-dot purple"></span>
-                                <span>Listed Loft #89</span>
-                                <span class="activity-time">1d ago</span>
+                        </div>
+                        <div class="hero-stats-mini">
+                            <div class="mini-stat">
+                                <span class="mini-value" id="my-owned-count">--</span>
+                                <span class="mini-label">Owned</span>
                             </div>
-                            <div class="my-activity-item">
-                                <span class="activity-dot green"></span>
-                                <span>Earned +45 POND</span>
-                                <span class="activity-time">1d ago</span>
+                            <div class="mini-stat">
+                                <span class="mini-value green" id="my-staked-count">--</span>
+                                <span class="mini-label">Staked</span>
+                            </div>
+                            <div class="mini-stat">
+                                <span class="mini-value purple" id="my-listed-count">--</span>
+                                <span class="mini-label">Listed</span>
+                            </div>
+                            <div class="mini-stat">
+                                <span class="mini-value gold" id="my-offers-count">--</span>
+                                <span class="mini-label">Offers</span>
                             </div>
                         </div>
                     </div>
-                </div>
-
-                <section class="section">
-                    <div class="tabs">
-                        <button class="tab active">All</button>
-                        <button class="tab">Staked</button>
-                        <button class="tab">Listed</button>
-                        <button class="tab">Offers Received</button>
-                        <button class="tab">My Offers</button>
-                    </div>
-                    <div class="nft-grid" id="my-nfts-grid"></div>
                 </section>
+
+                <div class="container">
+                    <!-- Dashboard Cards -->
+                    <div class="my-dashboard-grid">
+                        <!-- Portfolio Value -->
+                        <div class="dashboard-card portfolio-card">
+                            <div class="dashboard-card-header">
+                                <span class="dashboard-icon">💰</span>
+                                <h4>Portfolio Value</h4>
+                            </div>
+                            <div class="portfolio-value-main">
+                                <span class="portfolio-amount" id="my-portfolio-value">--</span>
+                                <span class="portfolio-token">FLR</span>
+                            </div>
+                            <div class="portfolio-change">--</div>
+                        </div>
+
+                        <!-- Your Rank -->
+                        <div class="dashboard-card rank-card">
+                            <div class="dashboard-card-header">
+                                <span class="dashboard-icon">🏆</span>
+                                <h4>Your Rank</h4>
+                            </div>
+                            <div class="your-rank-display">
+                                <span class="rank-number" id="my-rank">--</span>
+                                <span class="rank-category">NFT Stakers</span>
+                            </div>
+                        </div>
+
+                        <!-- Earnings -->
+                        <div class="dashboard-card earnings-card">
+                            <div class="dashboard-card-header">
+                                <span class="dashboard-icon">📈</span>
+                                <h4>POND Earned</h4>
+                            </div>
+                            <div class="earnings-value">
+                                <span class="earnings-amount green" id="my-pond-earned">--</span>
+                                <span class="earnings-token">POND</span>
+                            </div>
+                        </div>
+
+                        <!-- Recent Activity -->
+                        <div class="dashboard-card activity-card">
+                            <div class="dashboard-card-header">
+                                <span class="dashboard-icon">⚡</span>
+                                <h4>Recent Activity</h4>
+                            </div>
+                            <div class="my-activity-list" id="my-activity-list">
+                                <div class="empty-state" style="padding: 20px;"><p>No activity yet</p></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <section class="section">
+                        <div class="tabs">
+                            <button class="tab active">All</button>
+                            <button class="tab">Staked</button>
+                            <button class="tab">Listed</button>
+                            <button class="tab">Offers Received</button>
+                            <button class="tab">My Offers</button>
+                        </div>
+                        <div class="nft-grid" id="my-nfts-grid"></div>
+                    </section>
+                </div>
             </div>
         </div>
 
@@ -7157,23 +7245,12 @@
             </section>
 
             <div class="container">
-                <!-- Featured Collection Banner -->
-                <div class="featured-collection-banner">
-                    <div class="fcb-images">
-                        <img src="https://ipfs.io/ipfs/QmP45Rfhy75RybFuLcwd1CR9vF6qznw95qQPxcA5TeBNYk/1.png" alt="">
-                        <img src="https://ipfs.io/ipfs/QmP45Rfhy75RybFuLcwd1CR9vF6qznw95qQPxcA5TeBNYk/2.png" alt="">
-                        <img src="https://ipfs.io/ipfs/QmP45Rfhy75RybFuLcwd1CR9vF6qznw95qQPxcA5TeBNYk/3.png" alt="">
-                    </div>
-                    <div class="fcb-content">
-                        <span class="fcb-badge">🔥 TOP VOLUME</span>
-                        <h3 class="fcb-title">sToadz</h3>
-                        <p class="fcb-desc">The original OG. Stake for POND rewards + LP boost multipliers.</p>
-                        <div class="fcb-stats">
-                            <span>Floor: <strong>3.0M FLR</strong></span>
-                            <span>Volume: <strong>26M FLR</strong></span>
-                            <span>Staked: <strong>847</strong></span>
-                        </div>
-                        <button class="fcb-btn" onclick="showPage('collection-detail')">View Collection →</button>
+                <!-- Coming Soon Banner -->
+                <div class="featured-collection-banner" style="background: linear-gradient(135deg, rgba(0,255,136,0.1), rgba(139,92,246,0.1));">
+                    <div class="fcb-content" style="text-align: center; width: 100%;">
+                        <span class="fcb-badge">🚀 COMING SOON</span>
+                        <h3 class="fcb-title">3D Toadz on Flare</h3>
+                        <p class="fcb-desc">New collections launching soon. Lock your Songbird NFTs to receive 3D airdrops.</p>
                     </div>
                 </div>
 
@@ -7640,17 +7717,35 @@
 
         // Navigation
         function showPage(page) {
-            // Protected pages require wallet connection
-            const protectedPages = ['my-nfts', 'user'];
-            if (protectedPages.includes(page) && (!window.toadz || !window.toadz.isConnected)) {
-                openConnectModal();
-                return;
-            }
-            
             document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
             document.getElementById('page-' + page).classList.add('active');
             
             document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
+            document.querySelectorAll('.mobile-nav-item').forEach(n => n.classList.remove('active'));
+            
+            // Update my-nfts page state based on wallet connection
+            if (page === 'my-nfts') {
+                updateMyNftsPageState();
+            }
+            
+            window.scrollTo(0, 0);
+        }
+
+        function updateMyNftsPageState() {
+            const notConnected = document.getElementById('my-nfts-not-connected');
+            const connected = document.getElementById('my-nfts-connected');
+            
+            if (window.toadz && window.toadz.isConnected) {
+                notConnected.style.display = 'none';
+                connected.style.display = 'block';
+                // Update wallet address display
+                const addr = window.toadz.userAddress;
+                document.getElementById('my-wallet-address').textContent = addr ? addr.slice(0,6) + '...' + addr.slice(-4) : '';
+            } else {
+                notConnected.style.display = 'flex';
+                connected.style.display = 'none';
+            }
+        }
             document.querySelectorAll('.mobile-nav-item').forEach(n => n.classList.remove('active'));
             
             window.scrollTo(0, 0);
@@ -7773,6 +7868,8 @@
                 document.querySelector('.connect-btn').onclick = null; // Disable click after connected
                 // Load pool data
                 loadPoolData();
+                // Update my-nfts page if we're on it
+                updateMyNftsPageState();
             }
         }
 
@@ -8301,6 +8398,5 @@ Submitted: ${formData.timestamp}
         // Load immediately
         loadPublicPoolStats();
     </script>
-    <script src="toadz-web3.js"></script>
 </body>
 </html>
