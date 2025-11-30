@@ -6071,6 +6071,24 @@
         #storefront-modal.open {
             display: flex;
         }
+        .emoji-pick {
+            width: 36px;
+            height: 36px;
+            border: 2px solid var(--border);
+            border-radius: 8px;
+            background: var(--bg-surface);
+            font-size: 18px;
+            cursor: pointer;
+            transition: all 0.15s;
+        }
+        .emoji-pick:hover {
+            border-color: var(--teal);
+            transform: scale(1.1);
+        }
+        .emoji-pick.selected {
+            border-color: var(--teal);
+            background: rgba(0, 200, 200, 0.15);
+        }
     </style>
 </head>
 <body>
@@ -6920,8 +6938,8 @@
                         <div class="featured-artist-card" onclick="viewStorefront('0xcEA86bBdb5cd33ddbA8dC0ed3c838605EeF7c715')">
                             <div class="fa-banner" style="background-image: url('https://ipfs.io/ipfs/QmP45Rfhy75RybFuLcwd1CR9vF6qznw95qQPxcA5TeBNYk/421.png')"></div>
                             <div class="fa-content">
-                                <div class="fa-avatar">
-                                    <img src="https://ipfs.io/ipfs/QmP45Rfhy75RybFuLcwd1CR9vF6qznw95qQPxcA5TeBNYk/420.png" alt="">
+                                <div class="fa-avatar" style="background: linear-gradient(135deg, #ff6b35, #f7c59f); display: flex; align-items: center; justify-content: center;">
+                                    <span style="font-size: 40px;">🍝</span>
                                 </div>
                                 <div class="fa-badge">⭐ FEATURED</div>
                                 <h3 class="fa-name">PastaPrimavera</h3>
@@ -7354,8 +7372,40 @@
                     <textarea id="sf-bio" placeholder="Tell people about your art..." rows="3"></textarea>
                 </div>
                 <div class="form-group">
-                    <label>Avatar URL</label>
-                    <input type="url" id="sf-avatar" placeholder="https://... or IPFS link">
+                    <label>Profile Picture</label>
+                    <div style="display: flex; gap: 12px; align-items: flex-start;">
+                        <!-- Preview circle -->
+                        <div id="sf-avatar-preview" style="width: 64px; height: 64px; min-width: 64px; border-radius: 50%; background: var(--bg-surface); border: 2px solid var(--border); display: flex; align-items: center; justify-content: center; font-size: 32px; overflow: hidden;">
+                            <span style="color: var(--text-muted);">?</span>
+                        </div>
+                        <div style="flex: 1;">
+                            <!-- Emoji picker -->
+                            <div style="margin-bottom: 8px;">
+                                <label style="font-size: 11px; color: var(--text-muted); margin-bottom: 4px; display: block;">Pick an emoji</label>
+                                <div id="sf-emoji-grid" style="display: flex; flex-wrap: wrap; gap: 4px;">
+                                    <button type="button" class="emoji-pick" onclick="selectEmoji('🎨')">🎨</button>
+                                    <button type="button" class="emoji-pick" onclick="selectEmoji('🖼️')">🖼️</button>
+                                    <button type="button" class="emoji-pick" onclick="selectEmoji('✨')">✨</button>
+                                    <button type="button" class="emoji-pick" onclick="selectEmoji('🔥')">🔥</button>
+                                    <button type="button" class="emoji-pick" onclick="selectEmoji('💎')">💎</button>
+                                    <button type="button" class="emoji-pick" onclick="selectEmoji('🐸')">🐸</button>
+                                    <button type="button" class="emoji-pick" onclick="selectEmoji('👾')">👾</button>
+                                    <button type="button" class="emoji-pick" onclick="selectEmoji('🍝')">🍝</button>
+                                    <button type="button" class="emoji-pick" onclick="selectEmoji('🌙')">🌙</button>
+                                    <button type="button" class="emoji-pick" onclick="selectEmoji('⚡')">⚡</button>
+                                    <button type="button" class="emoji-pick" onclick="selectEmoji('🎭')">🎭</button>
+                                    <button type="button" class="emoji-pick" onclick="selectEmoji('🦊')">🦊</button>
+                                </div>
+                            </div>
+                            <!-- Or paste URL -->
+                            <div>
+                                <label style="font-size: 11px; color: var(--text-muted); margin-bottom: 4px; display: block;">Or paste image URL</label>
+                                <input type="text" id="sf-avatar" placeholder="https://... or IPFS link" oninput="previewAvatarUrl(this.value)">
+                            </div>
+                        </div>
+                    </div>
+                    <input type="hidden" id="sf-avatar-type" value="">
+                    <input type="hidden" id="sf-avatar-emoji" value="">
                 </div>
                 <div class="form-group">
                     <label>Banner URL</label>
@@ -7791,12 +7841,54 @@
             showPage('artist-storefront');
         }
 
+        // Avatar/Emoji selection for storefront
+        function selectEmoji(emoji) {
+            // Update preview
+            const preview = document.getElementById('sf-avatar-preview');
+            preview.innerHTML = `<span style="font-size: 32px;">${emoji}</span>`;
+            preview.style.background = 'linear-gradient(135deg, var(--purple), var(--teal))';
+            
+            // Clear URL input
+            document.getElementById('sf-avatar').value = '';
+            
+            // Store selection
+            document.getElementById('sf-avatar-type').value = 'emoji';
+            document.getElementById('sf-avatar-emoji').value = emoji;
+            
+            // Highlight selected
+            document.querySelectorAll('.emoji-pick').forEach(btn => btn.classList.remove('selected'));
+            event.target.classList.add('selected');
+        }
+
+        function previewAvatarUrl(url) {
+            if (!url) return;
+            
+            const preview = document.getElementById('sf-avatar-preview');
+            preview.style.background = 'var(--bg-surface)';
+            preview.innerHTML = `<img src="${url}" style="width: 100%; height: 100%; object-fit: cover;" onerror="this.parentElement.innerHTML='<span style=color:var(--text-muted)>?</span>'">`;
+            
+            // Store selection
+            document.getElementById('sf-avatar-type').value = 'url';
+            document.getElementById('sf-avatar-emoji').value = '';
+            
+            // Clear emoji selection
+            document.querySelectorAll('.emoji-pick').forEach(btn => btn.classList.remove('selected'));
+        }
+
         function openCreateStorefront() {
             if (!window.toadz || !window.toadz.isConnected) {
                 showToast('Connect Wallet', 'Please connect your wallet first', 'error');
                 openConnectModal();
                 return;
             }
+            
+            // Reset avatar preview
+            const preview = document.getElementById('sf-avatar-preview');
+            if (preview) {
+                preview.innerHTML = '<span style="color: var(--text-muted);">?</span>';
+                preview.style.background = 'var(--bg-surface)';
+            }
+            document.querySelectorAll('.emoji-pick').forEach(btn => btn.classList.remove('selected'));
             
             // Check if admin
             const isAdmin = window.toadz.userAddress?.toLowerCase() === ADMIN_WALLET;
@@ -7831,6 +7923,8 @@
                 name: document.getElementById('sf-name').value,
                 bio: document.getElementById('sf-bio').value,
                 avatar: document.getElementById('sf-avatar').value,
+                avatarType: document.getElementById('sf-avatar-type').value || 'url',
+                avatarEmoji: document.getElementById('sf-avatar-emoji').value,
                 banner: document.getElementById('sf-banner').value,
                 twitter: document.getElementById('sf-twitter').value,
                 website: document.getElementById('sf-website').value
