@@ -9071,48 +9071,73 @@
             
             if (!currentViewingNFT) return;
             
-            const currentBid = currentViewingNFT.price || 0;
-            const minBid = currentBid > 0 ? Math.ceil(currentBid * 1.05) : 100;
-            
-            const amount = prompt(`Enter your bid (minimum ${minBid} FLR):`, minBid.toString());
-            if (!amount || isNaN(parseFloat(amount))) return;
-            
-            const bidAmount = parseFloat(amount);
-            if (bidAmount < minBid) {
-                showToast('Error', `Minimum bid is ${minBid} FLR`, 'error');
-                return;
-            }
-            
             try {
-                const provider = new ethers.BrowserProvider(window.ethereum);
-                const signer = await provider.getSigner();
+                // Check if there's an on-chain auction
+                const auctionRes = await fetch(`${INDEXER_URL}/api/nft/${id}/auction`);
+                const auctionData = await auctionRes.json();
                 
-                // Send bid amount to escrow (artist wallet for now)
-                const tx = await signer.sendTransaction({
-                    to: currentViewingNFT.artist_wallet,
-                    value: ethers.parseEther(bidAmount.toString())
-                });
-                
-                showToast('Processing...', 'Waiting for confirmation', 'info');
-                await tx.wait();
-                
-                // Record the bid
-                await fetch(`${INDEXER_URL}/api/place-bid`, {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({
-                        nftId: id,
-                        bidder: window.toadz.userAddress,
-                        amount: bidAmount,
-                        txHash: tx.hash
-                    })
-                });
-                
-                showToast('Bid Placed', `Your bid of ${bidAmount} FLR is now the highest`, 'success');
-                closeArtistNftModal();
+                if (auctionData.onChain && auctionData.auctionId) {
+                    // On-chain auction - call contract
+                    const currentBid = parseFloat(auctionData.highestBid) || 0;
+                    const startingPrice = parseFloat(auctionData.startingPrice) || 100;
+                    const minBid = currentBid > 0 ? Math.ceil(currentBid * 1.05) : startingPrice;
+                    
+                    if (auctionData.ended) {
+                        showToast('Auction Ended', 'This auction has already ended', 'error');
+                        return;
+                    }
+                    
+                    if (auctionData.timeRemaining <= 0) {
+                        showToast('Auction Expired', 'This auction has expired', 'error');
+                        return;
+                    }
+                    
+                    const amount = prompt(`Enter your bid (minimum ${minBid} FLR):\n\nCurrent high bid: ${currentBid} FLR\nTime remaining: ${Math.floor(auctionData.timeRemaining / 3600)}h ${Math.floor((auctionData.timeRemaining % 3600) / 60)}m`, minBid.toString());
+                    if (!amount || isNaN(parseFloat(amount))) return;
+                    
+                    const bidAmount = parseFloat(amount);
+                    if (bidAmount < minBid) {
+                        showToast('Error', `Minimum bid is ${minBid} FLR`, 'error');
+                        return;
+                    }
+                    
+                    const provider = new ethers.BrowserProvider(window.ethereum);
+                    const signer = await provider.getSigner();
+                    
+                    const auctionABI = ['function placeBid(uint256 auctionId) external payable'];
+                    const auctionContract = new ethers.Contract(auctionData.contractAddress, auctionABI, signer);
+                    
+                    showToast('Placing Bid...', 'Please confirm in wallet', 'info');
+                    const tx = await auctionContract.placeBid(auctionData.auctionId, {
+                        value: ethers.parseEther(bidAmount.toString())
+                    });
+                    
+                    showToast('Processing...', 'Waiting for confirmation', 'info');
+                    await tx.wait();
+                    
+                    // Record the bid in DB
+                    await fetch(`${INDEXER_URL}/api/place-bid`, {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({
+                            nftId: id,
+                            bidder: window.toadz.userAddress,
+                            amount: bidAmount,
+                            txHash: tx.hash
+                        })
+                    });
+                    
+                    showToast('Bid Placed', `Your bid of ${bidAmount} FLR is now the highest`, 'success');
+                    closeArtistNftModal();
+                    
+                } else {
+                    // No on-chain auction yet - show error
+                    showToast('Error', 'This auction is not yet active on-chain', 'error');
+                }
                 
             } catch (err) {
-                showToast('Error', err.message || 'Bid failed', 'error');
+                console.error('Bid error:', err);
+                showToast('Error', err.reason || err.message || 'Bid failed', 'error');
             }
         }
         
