@@ -8108,6 +8108,35 @@
                 if (emptyHint) {
                     emptyHint.textContent = isOwner ? 'Click "Upload NFT" to add your first piece!' : 'Artist hasn\'t uploaded any NFTs yet';
                 }
+                
+                // Load artist's NFTs
+                try {
+                    const nftRes = await fetch(`${INDEXER_URL}/api/storefront/${wallet}/nfts`);
+                    const nfts = await nftRes.json();
+                    
+                    if (nfts && nfts.length > 0) {
+                        nftGrid.innerHTML = nfts.map(nft => `
+                            <div class="nft-card" onclick="viewNFT('${nft.contract_address}', '${nft.token_id}')">
+                                <div class="nft-card-media">
+                                    ${nft.image_url?.includes('.mp4') || nft.image_url?.includes('.webm') 
+                                        ? `<video src="${nft.image_url}" muted loop playsinline onmouseover="this.play()" onmouseout="this.pause()"></video>`
+                                        : `<img src="${nft.image_url}" alt="${nft.name}">`
+                                    }
+                                </div>
+                                <div class="nft-card-info">
+                                    <h4>${nft.name}</h4>
+                                    <p class="nft-price">${nft.price > 0 ? nft.price + ' FLR' : 'Not listed'}</p>
+                                </div>
+                            </div>
+                        `).join('');
+                        
+                        // Update items count
+                        const itemsStat = profileCard.querySelector('.artist-stat-value');
+                        if (itemsStat) itemsStat.textContent = nfts.length;
+                    }
+                } catch (err) {
+                    console.error('Failed to load artist NFTs:', err);
+                }
                     
             } catch (err) {
                 console.error('Failed to load storefront:', err);
