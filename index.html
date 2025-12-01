@@ -9194,38 +9194,23 @@
                 const hasValidTokenId = nft.token_id && nft.token_id !== 'unknown' && nft.token_id !== 'null';
                 
                 if (isOwner || isAdmin) {
-                    // Check if auction needs to be started on-chain
-                    if (isAuction && !nft.auction_id && hasValidTokenId) {
-                        actionsHtml = `
-                            <button class="btn-bid" onclick="startAuctionOnChain(${nft.id})">🚀 Start Auction</button>
-                            <button class="btn-edit" onclick="editNFT(${nft.id})">✏️ Edit</button>
-                            <button class="btn-delete" onclick="deleteNFT(${nft.id}); closeArtistNftModal();">🗑️ Delete</button>
-                        `;
-                    } else if (isAuction && !nft.auction_id && !hasValidTokenId) {
-                        // Auction but no valid token - needs re-upload
-                        actionsHtml = `
-                            <button class="btn-edit" onclick="editNFT(${nft.id})">✏️ Edit</button>
-                            <button class="btn-delete" onclick="deleteNFT(${nft.id}); closeArtistNftModal();">🗑️ Delete</button>
-                            <p style="color: var(--text-muted); font-size: 12px; margin-top: 8px;">⚠️ NFT not minted on-chain. Delete and re-upload to enable auction.</p>
-                        `;
-                    } else {
-                        actionsHtml = `
-                            <button class="btn-edit" onclick="editNFT(${nft.id})">✏️ Edit</button>
-                            <button class="btn-delete" onclick="deleteNFT(${nft.id}); closeArtistNftModal();">🗑️ Delete</button>
-                        `;
+                    actionsHtml = `
+                        <button class="btn-edit" onclick="editNFT(${nft.id})">✏️ Edit</button>
+                        <button class="btn-delete" onclick="deleteNFT(${nft.id}); closeArtistNftModal();">🗑️ Delete</button>
+                    `;
+                    if (!hasValidTokenId) {
+                        actionsHtml += `<p style="color: var(--red); font-size: 12px; margin-top: 8px;">⚠️ Mint failed - delete and re-upload</p>`;
+                    } else if (isAuction && !nft.auction_id) {
+                        actionsHtml += `<p style="color: var(--gold); font-size: 12px; margin-top: 8px;">⚠️ Auction not started on-chain - delete and re-upload</p>`;
                     }
                 } else if (nft.price > 0) {
                     if (isAuction && nft.auction_id) {
-                        // Has on-chain auction - show bid button
                         actionsHtml = `
                             <button class="btn-bid" onclick="placeBid(${nft.id})">🔥 Place Bid</button>
                             <button class="btn-offer" onclick="makeOffer(${nft.id})">💬 Make Offer</button>
                         `;
                     } else if (isAuction && !nft.auction_id) {
-                        // Auction type but not active on-chain
-                        actionsHtml = `
-                            <button class="btn-bid" disabled style="opacity: 0.5; cursor: not-allowed;">⏳ Auction Not Started</button>
-                        `;
+                        actionsHtml = `<p style="color: var(--text-muted); text-align: center;">Auction not yet active</p>`;
                     } else {
                         actionsHtml = `
                             <button class="btn-buy" onclick="buyNFT(${nft.id})">Buy Now</button>
