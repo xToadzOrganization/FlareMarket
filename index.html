@@ -7631,6 +7631,7 @@
                     <button class="sf-action-btn edit" onclick="openEditStorefront()">✏️ Edit Storefront</button>
                     <button class="sf-action-btn upload" onclick="openUploadNFT()">📤 Upload NFT</button>
                     <button class="sf-action-btn bulk" onclick="openBulkUpload()">📦 Bulk Upload</button>
+                    <button class="sf-action-btn announce" onclick="openAnnouncementModal()">📢 Announcement</button>
                     <button class="sf-action-btn verify" id="sf-verify-btn" style="display: none;" onclick="toggleVerify()">✓ Verify</button>
                     <button class="sf-action-btn delete" id="sf-delete-btn" style="display: none;" onclick="deleteStorefront()">🗑️ Delete</button>
                 </div>
@@ -7650,11 +7651,11 @@
                     <!-- Left: Main Content -->
                     <div class="artist-main">
                         <!-- Tabs & NFTs -->
-                        <div class="artist-tabs">
-                            <button class="artist-tab active">All Items</button>
-                            <button class="artist-tab">On Sale</button>
-                            <button class="artist-tab">Auction</button>
-                            <button class="artist-tab">Sold</button>
+                        <div class="artist-tabs" id="sf-tabs">
+                            <button class="artist-tab active" onclick="filterStorefrontNFTs('all')">All Items</button>
+                            <button class="artist-tab" onclick="filterStorefrontNFTs('sale')">On Sale</button>
+                            <button class="artist-tab" onclick="filterStorefrontNFTs('auction')">Auction</button>
+                            <button class="artist-tab" onclick="filterStorefrontNFTs('sold')">Sold</button>
                         </div>
                         <div class="nft-grid" id="sf-nft-grid">
                             <div class="empty-state" style="grid-column: 1/-1;">
@@ -7785,22 +7786,6 @@
             </div>
         </div>
 
-        <!-- EDIT STOREFRONT MODAL -->
-        <div id="edit-storefront-modal" class="modal-overlay">
-            <div class="modal" style="max-width: 500px;">
-                <button class="modal-close" onclick="closeEditStorefront()">&times;</button>
-                <div style="padding: 24px;">
-                    <h2 style="margin-bottom: 20px;">Edit Storefront</h2>
-                    
-                    <form id="edit-storefront-form" class="apply-form">
-                        <div class="form-group">
-                            <label>Artist / Studio Name *</label>
-                            <input type="text" id="edit-sf-name" required>
-                        </div>
-                        <div class="form-group">
-                            <label>Bio</label>
-                            <textarea id="edit-sf-bio" rows="3"></textarea>
-
         <!-- BULK UPLOAD MODAL -->
         <div id="bulk-upload-modal" class="modal-overlay">
             <div class="modal" style="max-width: 600px; max-height: 90vh; overflow-y: auto;">
@@ -7906,6 +7891,27 @@
                         </div>
                         <button type="submit" class="apply-submit-btn">
                             Save Changes →
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <!-- ANNOUNCEMENT MODAL -->
+        <div id="announcement-modal" class="modal-overlay">
+            <div class="modal" style="max-width: 500px;">
+                <button class="modal-close" onclick="closeAnnouncementModal()">&times;</button>
+                <div style="padding: 24px;">
+                    <h2 style="margin-bottom: 8px;">📢 Post Announcement</h2>
+                    <p style="color: var(--text-muted); margin-bottom: 20px;">Share news with your collectors</p>
+                    
+                    <form id="announcement-form" class="apply-form">
+                        <div class="form-group">
+                            <label>Announcement *</label>
+                            <textarea id="announcement-text" placeholder="New drop coming this Friday! Don't miss it! 🔥" rows="4" required style="width: 100%; padding: 12px; background: var(--bg-surface); border: 1px solid var(--border); border-radius: 12px; color: var(--text); resize: vertical;"></textarea>
+                        </div>
+                        <button type="submit" class="apply-submit-btn">
+                            Post Announcement →
                         </button>
                     </form>
                 </div>
