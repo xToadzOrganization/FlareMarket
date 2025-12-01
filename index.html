@@ -7090,9 +7090,20 @@
                     
                     <form id="upload-nft-form" class="apply-form">
                         <div class="form-group">
-                            <label>Image URL *</label>
-                            <input type="url" id="nft-image" placeholder="IPFS link or image URL" required>
-                            <small style="color: var(--text-muted);">Tip: Upload to <a href="https://nft.storage" target="_blank" style="color: var(--teal);">NFT.Storage</a> for free permanent hosting</small>
+                            <label>Image *</label>
+                            <div id="nft-dropzone" style="border: 2px dashed var(--border); border-radius: 16px; padding: 40px 20px; text-align: center; cursor: pointer; transition: all 0.2s;" onclick="document.getElementById('nft-file-input').click()">
+                                <div id="nft-preview" style="display: none; margin-bottom: 12px;">
+                                    <img id="nft-preview-img" style="max-width: 200px; max-height: 200px; border-radius: 12px;">
+                                </div>
+                                <div id="nft-dropzone-text">
+                                    <div style="font-size: 48px; margin-bottom: 8px;">📤</div>
+                                    <p style="margin: 0; color: var(--text);">Drop image here or click to upload</p>
+                                    <small style="color: var(--text-muted);">PNG, JPG, GIF up to 10MB</small>
+                                </div>
+                            </div>
+                            <input type="file" id="nft-file-input" accept="image/*" style="display: none;" onchange="handleNFTImageSelect(this)">
+                            <input type="hidden" id="nft-image-url" value="">
+                            <div id="nft-upload-status" style="margin-top: 8px; font-size: 13px; display: none;"></div>
                         </div>
                         <div class="form-group">
                             <label>Name *</label>
@@ -7128,7 +7139,7 @@
                                 <span>⭐ Feature on homepage (costs extra 5 FLR)</span>
                             </label>
                         </div>
-                        <button type="submit" class="apply-submit-btn">
+                        <button type="submit" class="apply-submit-btn" id="nft-submit-btn">
                             Upload & List →
                         </button>
                     </form>
@@ -8085,7 +8096,19 @@
         }
 
         // Upload NFT modal
+        let nftImageFile = null;
+        let nftImageUrl = null;
+
         function openUploadNFT() {
+            // Reset form
+            nftImageFile = null;
+            nftImageUrl = null;
+            document.getElementById('nft-preview').style.display = 'none';
+            document.getElementById('nft-dropzone-text').style.display = 'block';
+            document.getElementById('nft-upload-status').style.display = 'none';
+            document.getElementById('nft-image-url').value = '';
+            document.getElementById('upload-nft-form').reset();
+            
             document.getElementById('upload-nft-modal').classList.add('open');
             document.body.style.overflow = 'hidden';
         }
@@ -8093,6 +8116,93 @@
         function closeUploadNFT() {
             document.getElementById('upload-nft-modal').classList.remove('open');
             document.body.style.overflow = '';
+        }
+
+        // Handle image file selection
+        function handleNFTImageSelect(input) {
+            const file = input.files[0];
+            if (!file) return;
+            
+            if (!file.type.startsWith('image/')) {
+                showToast('Error', 'Please select an image file', 'error');
+                return;
+            }
+            
+            if (file.size > 10 * 1024 * 1024) {
+                showToast('Error', 'Image must be under 10MB', 'error');
+                return;
+            }
+            
+            nftImageFile = file;
+            
+            // Show preview
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                document.getElementById('nft-preview-img').src = e.target.result;
+                document.getElementById('nft-preview').style.display = 'block';
+                document.getElementById('nft-dropzone-text').style.display = 'none';
+            };
+            reader.readAsDataURL(file);
+            
+            // Upload to IPFS immediately
+            uploadNFTImage(file);
+        }
+
+        async function uploadNFTImage(file) {
+            const status = document.getElementById('nft-upload-status');
+            status.style.display = 'block';
+            status.innerHTML = '<span style="color: var(--text-muted);">⏳ Uploading to IPFS...</span>';
+            
+            try {
+                const formData = new FormData();
+                formData.append('image', file);
+                
+                const res = await fetch(`${INDEXER_URL}/api/upload-image`, {
+                    method: 'POST',
+                    body: formData
+                });
+                
+                const result = await res.json();
+                
+                if (result.success) {
+                    nftImageUrl = result.url;
+                    document.getElementById('nft-image-url').value = result.url;
+                    status.innerHTML = '<span style="color: var(--teal);">✓ Uploaded to IPFS</span>';
+                } else {
+                    throw new Error(result.error || 'Upload failed');
+                }
+            } catch (err) {
+                console.error('Upload error:', err);
+                status.innerHTML = '<span style="color: #ff4757;">✗ Upload failed - try again</span>';
+                nftImageUrl = null;
+            }
+        }
+
+        // Drag and drop support
+        const dropzone = document.getElementById('nft-dropzone');
+        if (dropzone) {
+            dropzone.addEventListener('dragover', (e) => {
+                e.preventDefault();
+                dropzone.style.borderColor = 'var(--teal)';
+                dropzone.style.background = 'rgba(0, 200, 200, 0.05)';
+            });
+            
+            dropzone.addEventListener('dragleave', () => {
+                dropzone.style.borderColor = 'var(--border)';
+                dropzone.style.background = 'transparent';
+            });
+            
+            dropzone.addEventListener('drop', (e) => {
+                e.preventDefault();
+                dropzone.style.borderColor = 'var(--border)';
+                dropzone.style.background = 'transparent';
+                
+                const file = e.dataTransfer.files[0];
+                if (file) {
+                    document.getElementById('nft-file-input').files = e.dataTransfer.files;
+                    handleNFTImageSelect({ files: [file] });
+                }
+            });
         }
 
         // Toggle auction duration visibility
@@ -8105,9 +8215,18 @@
         document.getElementById('upload-nft-form')?.addEventListener('submit', async function(e) {
             e.preventDefault();
             
+            if (!nftImageUrl) {
+                showToast('Error', 'Please upload an image first', 'error');
+                return;
+            }
+            
+            const submitBtn = document.getElementById('nft-submit-btn');
+            submitBtn.textContent = 'Creating...';
+            submitBtn.disabled = true;
+            
             const data = {
                 wallet: window.toadz?.userAddress,
-                image: document.getElementById('nft-image').value,
+                image: nftImageUrl,
                 name: document.getElementById('nft-name').value,
                 description: document.getElementById('nft-description').value,
                 price: document.getElementById('nft-price').value,
@@ -8118,8 +8237,11 @@
             
             console.log('Upload NFT:', data);
             
-            // TODO: Implement actual NFT minting/listing
-            showToast('Coming Soon', 'NFT upload will be available soon!', 'info');
+            // TODO: Implement actual NFT minting/listing to smart contract
+            showToast('Coming Soon', 'NFT minting to blockchain coming soon! Image saved to IPFS.', 'info');
+            
+            submitBtn.textContent = 'Upload & List →';
+            submitBtn.disabled = false;
             closeUploadNFT();
         });
 
