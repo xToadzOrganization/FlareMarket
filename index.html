@@ -7874,7 +7874,7 @@
 
         <!-- UPLOAD NFT MODAL -->
         <div id="upload-nft-modal" class="modal-overlay">
-            <div class="modal" style="max-width: 500px;">
+            <div class="modal" style="max-width: 500px; max-height: 90vh; overflow-y: auto;">
                 <button class="modal-close" onclick="closeUploadNFT()">&times;</button>
                 <div style="padding: 24px;">
                     <h2 style="margin-bottom: 8px;">Upload NFT</h2>
@@ -9194,13 +9194,22 @@
                 const hasValidTokenId = nft.token_id && nft.token_id !== 'unknown' && nft.token_id !== 'null';
                 
                 if (isOwner || isAdmin) {
-                    actionsHtml = `
-                        <button class="btn-edit" onclick="editNFT(${nft.id})">✏️ Edit</button>
-                        <button class="btn-delete" onclick="deleteNFT(${nft.id}); closeArtistNftModal();">🗑️ Delete</button>
-                    `;
-                    // Only show warning for auctions without on-chain auction
-                    if (isAuction && !nft.auction_id) {
-                        actionsHtml += `<p style="color: var(--gold); font-size: 12px; margin-top: 8px;">⚠️ Auction not active - delete and re-upload as auction</p>`;
+                    if (isAuction && !nft.auction_id && hasValidTokenId) {
+                        // Has token but no auction - show start auction button
+                        actionsHtml = `
+                            <button class="btn-bid" onclick="startAuctionOnChain(${nft.id})">🚀 Start Auction</button>
+                            <button class="btn-edit" onclick="editNFT(${nft.id})">✏️ Edit</button>
+                            <button class="btn-delete" onclick="deleteNFT(${nft.id}); closeArtistNftModal();">🗑️ Delete</button>
+                        `;
+                    } else {
+                        actionsHtml = `
+                            <button class="btn-edit" onclick="editNFT(${nft.id})">✏️ Edit</button>
+                            <button class="btn-delete" onclick="deleteNFT(${nft.id}); closeArtistNftModal();">🗑️ Delete</button>
+                        `;
+                        // Only show warning for auctions without valid token
+                        if (isAuction && !nft.auction_id && !hasValidTokenId) {
+                            actionsHtml += `<p style="color: var(--gold); font-size: 12px; margin-top: 8px;">⚠️ Mint failed - delete and re-upload</p>`;
+                        }
                     }
                 } else if (nft.price > 0) {
                     if (isAuction && nft.auction_id) {
@@ -9442,59 +9451,27 @@
             if (!confirmed) return;
             
             try {
-                showToast('Creating Auction...', 'Please confirm in wallet', 'info');
+                showToast('Creating Auction...', 'Processing on-chain', 'info');
                 
-                const provider = new ethers.BrowserProvider(window.ethereum);
-                const signer = await provider.getSigner();
+                const res = await fetch(`${INDEXER_URL}/api/artist-nft/${id}/create-auction`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ wallet: window.toadz.userAddress })
+                });
                 
-                const auctionContract = new ethers.Contract(
-                    '0x45b20e28fFAFAF70681f4e67990Ae1B44E3d37fd',
-                    [
-                        'function createAuction(uint256 nftId, uint256 startingPrice, uint256 duration) external returns (uint256)',
-                        'event AuctionCreated(uint256 indexed auctionId, uint256 indexed nftId, address indexed artist, uint256 startingPrice, uint256 endTime)'
-                    ],
-                    signer
-                );
+                const result = await res.json();
                 
-                const startingPrice = ethers.parseEther(currentViewingNFT.price.toString());
-                const durationSeconds = (currentViewingNFT.auction_duration || 168) * 3600;
-                
-                console.log('Creating auction for token', tokenId, 'price:', currentViewingNFT.price, 'duration:', durationSeconds);
-                
-                const tx = await auctionContract.createAuction(tokenId, startingPrice, durationSeconds);
-                showToast('Processing...', 'Waiting for confirmation', 'info');
-                const receipt = await tx.wait();
-                
-                // Get auction ID from event
-                let auctionId = null;
-                for (const log of receipt.logs) {
-                    try {
-                        const parsed = auctionContract.interface.parseLog(log);
-                        if (parsed?.name === 'AuctionCreated') {
-                            auctionId = parsed.args[0].toString();
-                            break;
-                        }
-                    } catch {}
+                if (result.success && result.auctionId) {
+                    showToast('Auction Live! 🔥', `Auction #${result.auctionId} created`, 'success');
+                    closeArtistNftModal();
+                    if (currentStorefront) loadStorefrontPage(currentStorefront);
+                } else {
+                    throw new Error(result.error || 'Failed to create auction');
                 }
-                
-                console.log('Auction created, ID:', auctionId);
-                
-                // Update database with auction ID
-                if (auctionId) {
-                    await fetch(`${INDEXER_URL}/api/artist-nft/${id}/auction`, {
-                        method: 'POST',
-                        headers: { 'Content-Type': 'application/json' },
-                        body: JSON.stringify({ auctionId, txHash: tx.hash })
-                    });
-                }
-                
-                showToast('Auction Live! 🔥', 'Your auction is now active', 'success');
-                closeArtistNftModal();
-                if (currentStorefront) loadStorefrontPage(currentStorefront);
                 
             } catch (err) {
                 console.error('Start auction error:', err);
-                showToast('Error', err.reason || err.message || 'Failed to start auction', 'error');
+                showToast('Error', err.message || 'Failed to start auction', 'error');
             }
         }
         
@@ -10129,63 +10106,17 @@
                 if (result.success) {
                     const tokenId = result.tokenId;
                     const nftId = result.nftId;
+                    const auctionId = result.auctionId;
                     
-                    // If auction type, create on-chain auction
-                    if (data.saleType === 'auction' && tokenId && tokenId !== 'unknown') {
-                        try {
-                            submitBtn.textContent = 'Creating auction...';
-                            
-                            const provider = new ethers.BrowserProvider(window.ethereum);
-                            const signer = await provider.getSigner();
-                            
-                            const auctionContract = new ethers.Contract(
-                                '0x45b20e28fFAFAF70681f4e67990Ae1B44E3d37fd',
-                                [
-                                    'function createAuction(uint256 nftId, uint256 startingPrice, uint256 duration) external returns (uint256)',
-                                    'event AuctionCreated(uint256 indexed auctionId, uint256 indexed nftId, address indexed artist, uint256 startingPrice, uint256 endTime)'
-                                ],
-                                signer
-                            );
-                            
-                            const startingPrice = ethers.parseEther(data.price.toString());
-                            const durationSeconds = (data.auctionDuration || 168) * 3600; // hours to seconds
-                            
-                            console.log('Creating auction for token', tokenId, 'price:', data.price, 'duration:', durationSeconds);
-                            
-                            const tx = await auctionContract.createAuction(tokenId, startingPrice, durationSeconds);
-                            showToast('Processing...', 'Waiting for confirmation', 'info');
-                            const receipt = await tx.wait();
-                            
-                            // Get auction ID from event
-                            let auctionId = null;
-                            for (const log of receipt.logs) {
-                                try {
-                                    const parsed = auctionContract.interface.parseLog(log);
-                                    if (parsed?.name === 'AuctionCreated') {
-                                        auctionId = parsed.args[0].toString();
-                                        break;
-                                    }
-                                } catch {}
-                            }
-                            
-                            console.log('Auction created, ID:', auctionId);
-                            
-                            // Update database with auction ID
-                            if (auctionId && nftId) {
-                                await fetch(`${INDEXER_URL}/api/artist-nft/${nftId}/auction`, {
-                                    method: 'POST',
-                                    headers: { 'Content-Type': 'application/json' },
-                                    body: JSON.stringify({ auctionId, txHash: tx.hash })
-                                });
-                            }
-                            
-                            showToast('Auction Live! 🔥', `Token #${tokenId} auction started`, 'success');
-                        } catch (err) {
-                            console.error('Auction creation error:', err);
-                            showToast('Warning', 'NFT minted but auction creation failed: ' + (err.reason || err.message), 'error');
+                    // Show success based on what was created
+                    if (data.saleType === 'auction') {
+                        if (auctionId) {
+                            showToast('Auction Live! 🔥', `Token #${tokenId} auction started (Auction #${auctionId})`, 'success');
+                        } else if (tokenId && tokenId !== 'unknown') {
+                            showToast('NFT Minted', 'Token minted but auction creation failed on-chain', 'warning');
+                        } else {
+                            showToast('Upload Complete', 'NFT saved but minting had issues', 'warning');
                         }
-                    } else if (data.saleType === 'auction') {
-                        showToast('NFT Minted', 'Token minted but auction creation requires manual start', 'info');
                     } else {
                         showToast('NFT Minted! 🎉', `Token #${tokenId} created`, 'success');
                     }
