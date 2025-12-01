@@ -1129,6 +1129,281 @@
             scrollbar-width: none;
             -ms-overflow-style: none;
         }
+        
+        /* ============ ARTIST NFT MODAL ============ */
+        .artist-nft-modal {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 24px;
+            width: 100%;
+            max-width: 950px;
+            max-height: 90vh;
+            overflow-y: auto;
+            position: relative;
+            animation: modalSlide 0.3s ease;
+        }
+        
+        .artist-nft-modal-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            min-height: 500px;
+        }
+        
+        @media (max-width: 800px) {
+            .artist-nft-modal-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        .artist-nft-media {
+            background: var(--bg-void);
+            border-radius: 24px 0 0 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+        
+        .artist-nft-media img,
+        .artist-nft-media video {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            max-height: 500px;
+        }
+        
+        .artist-nft-details {
+            padding: 32px;
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+        
+        .artist-nft-badges {
+            display: flex;
+            gap: 8px;
+        }
+        
+        .artist-nft-badges .badge {
+            padding: 4px 10px;
+            border-radius: 20px;
+            font-size: 11px;
+            font-weight: 600;
+        }
+        
+        .artist-nft-badges .badge.featured {
+            background: linear-gradient(135deg, #ffd700, #ffaa00);
+            color: #000;
+        }
+        
+        .artist-nft-badges .badge.auction {
+            background: linear-gradient(135deg, #ff6b35, #f7931e);
+            color: #fff;
+        }
+        
+        .artist-nft-details h2 {
+            margin: 0;
+            font-size: 28px;
+        }
+        
+        .artist-nft-desc {
+            color: var(--text-dim);
+            line-height: 1.5;
+            margin: 0;
+        }
+        
+        .artist-nft-creator {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 12px;
+            background: var(--bg-surface);
+            border-radius: 12px;
+            cursor: pointer;
+        }
+        
+        .artist-nft-creator:hover {
+            background: var(--bg-hover);
+        }
+        
+        .creator-avatar {
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            background: var(--bg-void);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+        }
+        
+        .creator-avatar img {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+        
+        .creator-info {
+            flex: 1;
+        }
+        
+        .creator-label {
+            font-size: 11px;
+            color: var(--text-dim);
+        }
+        
+        .creator-name {
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+        
+        .artist-nft-price-box {
+            padding: 20px;
+            background: var(--bg-surface);
+            border-radius: 12px;
+            border: 1px solid var(--border);
+        }
+        
+        .price-label {
+            font-size: 12px;
+            color: var(--text-dim);
+            margin-bottom: 4px;
+        }
+        
+        .price-main {
+            font-size: 32px;
+            font-weight: 700;
+            color: var(--teal);
+        }
+        
+        .price-usd {
+            font-size: 14px;
+            color: var(--text-dim);
+        }
+        
+        .auction-info {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 12px;
+            padding-top: 12px;
+            border-top: 1px solid var(--border);
+        }
+        
+        .auction-stat-label {
+            font-size: 11px;
+            color: var(--text-dim);
+        }
+        
+        .auction-stat-value {
+            font-weight: 600;
+        }
+        
+        .artist-nft-actions {
+            display: flex;
+            gap: 12px;
+        }
+        
+        .artist-nft-actions button {
+            flex: 1;
+            padding: 14px 24px;
+            border-radius: 12px;
+            font-weight: 600;
+            font-size: 15px;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        
+        .btn-buy {
+            background: linear-gradient(135deg, var(--teal), var(--purple));
+            border: none;
+            color: white;
+        }
+        
+        .btn-buy:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(0, 200, 200, 0.3);
+        }
+        
+        .btn-bid {
+            background: linear-gradient(135deg, #ff6b35, #f7931e);
+            border: none;
+            color: white;
+        }
+        
+        .btn-offer {
+            background: transparent;
+            border: 2px solid var(--border);
+            color: var(--text);
+        }
+        
+        .btn-offer:hover {
+            border-color: var(--teal);
+        }
+        
+        .btn-edit {
+            background: var(--bg-surface);
+            border: 1px solid var(--border);
+            color: var(--text);
+        }
+        
+        .btn-delete {
+            background: transparent;
+            border: 2px solid #ff4444;
+            color: #ff4444;
+        }
+        
+        .artist-nft-meta {
+            padding: 16px;
+            background: var(--bg-surface);
+            border-radius: 12px;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+        
+        .meta-row {
+            display: flex;
+            justify-content: space-between;
+        }
+        
+        .meta-label {
+            color: var(--text-dim);
+            font-size: 13px;
+        }
+        
+        .meta-value {
+            font-size: 13px;
+        }
+        
+        .meta-value.link {
+            color: var(--teal);
+            text-decoration: none;
+        }
+        
+        .meta-value.link:hover {
+            text-decoration: underline;
+        }
+        
+        .artist-nft-share {
+            text-align: center;
+        }
+        
+        .share-btn {
+            background: transparent;
+            border: 1px solid var(--border);
+            color: var(--text-dim);
+            padding: 8px 16px;
+            border-radius: 8px;
+            cursor: pointer;
+        }
+        
+        .share-btn:hover {
+            border-color: var(--teal);
+            color: var(--teal);
+        }
 
         .nft-modal::-webkit-scrollbar {
             display: none;
@@ -3266,6 +3541,59 @@
         
         .nft-delete-btn:hover {
             background: red;
+        }
+        
+        .auction-badge {
+            position: absolute;
+            bottom: 8px;
+            left: 8px;
+            background: linear-gradient(135deg, #ff6b35, #f7931e);
+            color: white;
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-size: 10px;
+            font-weight: 600;
+        }
+        
+        .featured-badge {
+            position: absolute;
+            top: 8px;
+            left: 8px;
+            background: linear-gradient(135deg, #ffd700, #ffaa00);
+            color: #000;
+            padding: 4px 6px;
+            border-radius: 4px;
+            font-size: 12px;
+        }
+        
+        .nft-card.featured {
+            border: 2px solid #ffd700;
+            box-shadow: 0 0 20px rgba(255, 215, 0, 0.3);
+        }
+        
+        .nft-card-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 4px;
+        }
+        
+        .nft-time {
+            font-size: 11px;
+            color: var(--text-dim);
+        }
+        
+        .nft-card-artist {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 12px;
+            color: var(--text-dim);
+            margin: 4px 0;
+        }
+        
+        .artist-mini-avatar {
+            font-size: 14px;
         }
 
         .nft-image {
@@ -6248,9 +6576,9 @@
             
             <nav class="nav">
                 <button class="nav-item active" onclick="showPage('home')">Explore</button>
+                <button class="nav-item" onclick="showPage('artists')">Artists</button>
                 <button class="nav-item" onclick="showPage('collections')">Collections</button>
                 <button class="nav-item highlight" onclick="showPage('staking')">Staking</button>
-                <button class="nav-item" onclick="showPage('artists')">Artists</button>
                 <button class="nav-item" onclick="showPage('launchpad')">Launchpad</button>
                 <button class="nav-item" onclick="showPage('leaderboard')">🏆 Ranks</button>
                 <button class="nav-item" onclick="showPage('my-nfts')">My NFTs</button>
@@ -6411,6 +6739,15 @@
                             <span class="view-all" onclick="showPage('collections')">View All →</span>
                         </div>
                         <div class="scroll-container" id="collections-scroll"></div>
+                    </div>
+
+                    <!-- Featured Artist NFTs -->
+                    <div class="section-block" id="featured-nfts-section" style="display: none;">
+                        <div class="section-header">
+                            <h2 class="section-title">⭐ Featured</h2>
+                            <span class="view-all" onclick="showPage('artists')">View All Artists →</span>
+                        </div>
+                        <div class="nft-grid" id="featured-nfts-grid"></div>
                     </div>
 
                     <!-- Live Auctions -->
@@ -7694,6 +8031,56 @@
                     <img src="https://ipfs.io/ipfs/QmP45Rfhy75RybFuLcwd1CR9vF6qznw95qQPxcA5TeBNYk/777.png" alt="Fox Girl #777">
                     <div class="nft-rarity epic">EPIC</div>
                 </div>
+    
+    <!-- Artist NFT Detail Modal -->
+    <div class="modal-overlay" id="artist-nft-modal" onclick="closeArtistNftModal(event)">
+        <div class="artist-nft-modal" onclick="event.stopPropagation()">
+            <button class="modal-close" onclick="closeArtistNftModal()">&times;</button>
+            
+            <div class="artist-nft-modal-grid">
+                <div class="artist-nft-media" id="artist-nft-media">
+                    <!-- Media loads here -->
+                </div>
+                
+                <div class="artist-nft-details">
+                    <div class="artist-nft-badges" id="artist-nft-badges"></div>
+                    <h2 id="artist-nft-title">Loading...</h2>
+                    <p id="artist-nft-description" class="artist-nft-desc"></p>
+                    
+                    <div class="artist-nft-creator" id="artist-nft-creator">
+                        <!-- Artist info loads here -->
+                    </div>
+                    
+                    <div class="artist-nft-price-box" id="artist-nft-price-box">
+                        <!-- Price/auction info loads here -->
+                    </div>
+                    
+                    <div class="artist-nft-actions" id="artist-nft-actions">
+                        <!-- Buy/Bid buttons load here -->
+                    </div>
+                    
+                    <div class="artist-nft-meta">
+                        <div class="meta-row">
+                            <span class="meta-label">Contract</span>
+                            <a id="artist-nft-contract" href="#" target="_blank" class="meta-value link">--</a>
+                        </div>
+                        <div class="meta-row">
+                            <span class="meta-label">Token ID</span>
+                            <span id="artist-nft-tokenid" class="meta-value">--</span>
+                        </div>
+                        <div class="meta-row">
+                            <span class="meta-label">Network</span>
+                            <span class="meta-value">Flare</span>
+                        </div>
+                    </div>
+                    
+                    <div class="artist-nft-share">
+                        <button class="share-btn" onclick="shareNFT()">🔗 Share</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
                 
                 <div class="nft-modal-info">
                     <div class="nft-modal-header">
@@ -8136,19 +8523,19 @@
                     </div>
                     <div class="artist-profile-stats">
                         <div class="artist-stat-box">
-                            <span class="artist-stat-value">--</span>
+                            <span class="artist-stat-value" id="sf-stat-items">--</span>
                             <span class="artist-stat-label">Items</span>
                         </div>
                         <div class="artist-stat-box">
-                            <span class="artist-stat-value gold">--</span>
+                            <span class="artist-stat-value gold" id="sf-stat-volume">--</span>
                             <span class="artist-stat-label">Volume</span>
                         </div>
                         <div class="artist-stat-box">
-                            <span class="artist-stat-value">--</span>
+                            <span class="artist-stat-value" id="sf-stat-collectors">--</span>
                             <span class="artist-stat-label">Collectors</span>
                         </div>
                         <div class="artist-stat-box">
-                            <span class="artist-stat-value purple">--</span>
+                            <span class="artist-stat-value purple" id="sf-stat-tips">--</span>
                             <span class="artist-stat-label">Tips</span>
                         </div>
                     </div>
@@ -8191,26 +8578,32 @@
                         
                         nftGrid.innerHTML = nfts.map(nft => {
                             const isVideo = nft.image_url?.includes('.mp4') || nft.image_url?.includes('.webm');
+                            const isAuction = nft.sale_type === 'auction';
+                            const isFeatured = nft.featured === 1;
                             return `
-                            <div class="nft-card" onclick="viewNFT(${nft.id}, '${nft.contract_address}', '${nft.token_id}')">
+                            <div class="nft-card ${isFeatured ? 'featured' : ''}" onclick="viewNFT(${nft.id}, '${nft.contract_address}', '${nft.token_id}')">
                                 <div class="nft-card-media">
                                     ${isVideo 
                                         ? `<video src="${nft.image_url}" muted loop playsinline preload="metadata" onloadeddata="this.currentTime=0.5;" onmouseenter="this.play()" onmouseleave="this.pause();this.currentTime=0.5;"></video>`
                                         : `<img src="${nft.image_url}" alt="${nft.name}" onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22200%22 height=%22200%22><rect fill=%22%231a1a2e%22 width=%22200%22 height=%22200%22/><text x=%2250%25%22 y=%2250%25%22 fill=%22%23666%22 text-anchor=%22middle%22 dy=%22.3em%22>No Image</text></svg>'">`
                                     }
                                     ${isVideo ? '<div class="video-badge">▶</div>' : ''}
+                                    ${isAuction ? '<div class="auction-badge">🔥 Auction</div>' : ''}
+                                    ${isFeatured ? '<div class="featured-badge">⭐</div>' : ''}
                                     ${canDelete ? `<button class="nft-delete-btn" onclick="event.stopPropagation(); deleteNFT(${nft.id})">×</button>` : ''}
                                 </div>
                                 <div class="nft-card-info">
                                     <h4>${nft.name}</h4>
-                                    <p class="nft-price">${nft.price > 0 ? nft.price + ' FLR' : 'Not listed'}</p>
+                                    <div class="nft-card-row">
+                                        <span class="nft-price">${nft.price > 0 ? nft.price + ' FLR' : 'Not listed'}</span>
+                                        ${isAuction ? `<span class="nft-time">⏱ ${nft.auction_duration || 24}h</span>` : ''}
+                                    </div>
                                 </div>
                             </div>
                         `}).join('');
                         
                         // Update items count
-                        const itemsStat = profileCard.querySelector('.artist-stat-value');
-                        if (itemsStat) itemsStat.textContent = nfts.length;
+                        document.getElementById('sf-stat-items').textContent = nfts.length;
                     }
                 } catch (err) {
                     console.error('Failed to load artist NFTs:', err);
@@ -8257,9 +8650,148 @@
         }
         
         // View NFT detail (placeholder for now)
-        function viewNFT(id, contract, tokenId) {
-            // For now, show toast. Full modal coming later.
-            showToast('NFT Details', `Token #${tokenId} - Full detail page coming soon!`, 'info');
+        // Store current NFT being viewed
+        let currentViewingNFT = null;
+        
+        // View NFT detail modal
+        async function viewNFT(id, contract, tokenId) {
+            const modal = document.getElementById('artist-nft-modal');
+            modal.classList.add('active');
+            document.body.style.overflow = 'hidden';
+            
+            try {
+                const res = await fetch(`${INDEXER_URL}/api/artist-nft/${id}`);
+                const nft = await res.json();
+                currentViewingNFT = nft;
+                
+                const isVideo = nft.image_url?.includes('.mp4') || nft.image_url?.includes('.webm');
+                const isAuction = nft.sale_type === 'auction';
+                const isFeatured = nft.featured === 1;
+                const userWallet = window.toadz?.userAddress?.toLowerCase();
+                const isOwner = userWallet === nft.artist_wallet?.toLowerCase();
+                const isAdmin = userWallet === ADMIN_WALLET;
+                
+                // Media
+                document.getElementById('artist-nft-media').innerHTML = isVideo
+                    ? `<video src="${nft.image_url}" controls autoplay loop></video>`
+                    : `<img src="${nft.image_url}" alt="${nft.name}">`;
+                
+                // Badges
+                let badges = '';
+                if (isFeatured) badges += '<span class="badge featured">⭐ Featured</span>';
+                if (isAuction) badges += '<span class="badge auction">🔥 Auction</span>';
+                document.getElementById('artist-nft-badges').innerHTML = badges;
+                
+                // Title & description
+                document.getElementById('artist-nft-title').textContent = nft.name;
+                document.getElementById('artist-nft-description').textContent = nft.description || '';
+                
+                // Creator
+                const avatarHtml = nft.avatar_type === 'emoji' && nft.avatar_emoji
+                    ? `<span>${nft.avatar_emoji}</span>`
+                    : nft.avatar
+                        ? `<img src="${nft.avatar}" alt="">`
+                        : `<span>🎨</span>`;
+                        
+                document.getElementById('artist-nft-creator').innerHTML = `
+                    <div class="creator-avatar">${avatarHtml}</div>
+                    <div class="creator-info">
+                        <div class="creator-label">Created by</div>
+                        <div class="creator-name">${nft.artist_name || 'Artist'}${nft.verified ? ' <span style="color: var(--teal);">✓</span>' : ''}</div>
+                    </div>
+                `;
+                document.getElementById('artist-nft-creator').onclick = () => {
+                    closeArtistNftModal();
+                    viewStorefront(nft.artist_wallet);
+                };
+                
+                // Price box
+                const priceHtml = isAuction ? `
+                    <div class="price-label">Current Bid</div>
+                    <div class="price-main">${nft.price > 0 ? nft.price + ' FLR' : 'No bids yet'}</div>
+                    <div class="auction-info">
+                        <div>
+                            <div class="auction-stat-label">Time Left</div>
+                            <div class="auction-stat-value">⏱ ${nft.auction_duration || 24}h</div>
+                        </div>
+                        <div>
+                            <div class="auction-stat-label">Min Bid</div>
+                            <div class="auction-stat-value">${nft.price > 0 ? Math.ceil(nft.price * 1.05) : 100} FLR</div>
+                        </div>
+                    </div>
+                ` : `
+                    <div class="price-label">Price</div>
+                    <div class="price-main">${nft.price > 0 ? nft.price + ' FLR' : 'Not for sale'}</div>
+                `;
+                document.getElementById('artist-nft-price-box').innerHTML = priceHtml;
+                
+                // Actions
+                let actionsHtml = '';
+                if (isOwner || isAdmin) {
+                    actionsHtml = `
+                        <button class="btn-edit" onclick="editNFT(${nft.id})">✏️ Edit</button>
+                        <button class="btn-delete" onclick="deleteNFT(${nft.id}); closeArtistNftModal();">🗑️ Delete</button>
+                    `;
+                } else if (nft.price > 0) {
+                    if (isAuction) {
+                        actionsHtml = `
+                            <button class="btn-bid" onclick="placeBid(${nft.id})">🔥 Place Bid</button>
+                            <button class="btn-offer" onclick="makeOffer(${nft.id})">💬 Make Offer</button>
+                        `;
+                    } else {
+                        actionsHtml = `
+                            <button class="btn-buy" onclick="buyNFT(${nft.id})">Buy Now</button>
+                            <button class="btn-offer" onclick="makeOffer(${nft.id})">💬 Make Offer</button>
+                        `;
+                    }
+                }
+                document.getElementById('artist-nft-actions').innerHTML = actionsHtml;
+                
+                // Meta
+                document.getElementById('artist-nft-contract').textContent = nft.contract_address?.slice(0,8) + '...' + nft.contract_address?.slice(-6);
+                document.getElementById('artist-nft-contract').href = `https://flarescan.com/address/${nft.contract_address}`;
+                document.getElementById('artist-nft-tokenid').textContent = nft.token_id || 'N/A';
+                
+            } catch (err) {
+                console.error('Failed to load NFT:', err);
+                showToast('Error', 'Failed to load NFT details', 'error');
+            }
+        }
+        
+        function closeArtistNftModal(e) {
+            if (e && e.target !== e.currentTarget) return;
+            document.getElementById('artist-nft-modal').classList.remove('active');
+            document.body.style.overflow = '';
+            currentViewingNFT = null;
+        }
+        
+        function shareNFT() {
+            if (!currentViewingNFT) return;
+            const url = window.location.origin + window.location.pathname + `?nft=${currentViewingNFT.id}`;
+            navigator.clipboard.writeText(url);
+            showToast('Copied', 'Link copied to clipboard', 'success');
+        }
+        
+        // Buy NFT (placeholder)
+        async function buyNFT(id) {
+            showToast('Coming Soon', 'Buy functionality coming soon', 'info');
+        }
+        
+        // Place bid (placeholder)
+        async function placeBid(id) {
+            const amount = prompt('Enter your bid amount in FLR:');
+            if (!amount) return;
+            showToast('Coming Soon', 'Auction bidding coming soon', 'info');
+        }
+        
+        // Make offer (placeholder)
+        async function makeOffer(id) {
+            showToast('Coming Soon', 'Offers coming soon', 'info');
+        }
+        
+        // Edit NFT (placeholder)
+        function editNFT(id) {
+            showToast('Coming Soon', 'Edit functionality coming soon', 'info');
         }
         
         // Delete NFT (owner only)
@@ -8498,6 +9030,32 @@
             submitBtn.textContent = 'Minting...';
             submitBtn.disabled = true;
             
+            const isFeatured = document.getElementById('nft-featured').checked;
+            
+            // If featured, charge 5 FLR first
+            let featureTxHash = null;
+            if (isFeatured) {
+                try {
+                    submitBtn.textContent = 'Paying feature fee...';
+                    const provider = new ethers.BrowserProvider(window.ethereum);
+                    const signer = await provider.getSigner();
+                    const tx = await signer.sendTransaction({
+                        to: FEE_WALLET,
+                        value: ethers.parseEther('5')
+                    });
+                    await tx.wait();
+                    featureTxHash = tx.hash;
+                    showToast('Fee Paid', '5 FLR feature fee confirmed', 'success');
+                } catch (err) {
+                    showToast('Error', 'Feature fee payment failed: ' + err.message, 'error');
+                    submitBtn.textContent = 'Upload & List →';
+                    submitBtn.disabled = false;
+                    return;
+                }
+            }
+            
+            submitBtn.textContent = 'Minting...';
+            
             const data = {
                 artistWallet: window.toadz.userAddress,
                 imageUrl: nftImageUrl,
@@ -8507,7 +9065,8 @@
                 price: parseFloat(document.getElementById('nft-price').value) || 0,
                 saleType: document.getElementById('nft-sale-type').value,
                 auctionDuration: parseInt(document.getElementById('nft-auction-duration').value) || 0,
-                featured: document.getElementById('nft-featured').checked
+                featured: isFeatured,
+                featureTxHash: featureTxHash
             };
             
             console.log('Minting NFT:', data);
@@ -9034,6 +9593,86 @@
         renderArtists();
         renderAllCollections();
         renderActivityTicker();
+        loadFeaturedNFTs();
+        loadLiveAuctions();
+        
+        // Load featured NFTs from artist uploads
+        async function loadFeaturedNFTs() {
+            try {
+                const res = await fetch(`${INDEXER_URL}/api/featured-nfts?limit=8`);
+                const nfts = await res.json();
+                
+                const section = document.getElementById('featured-nfts-section');
+                const grid = document.getElementById('featured-nfts-grid');
+                
+                if (nfts && nfts.length > 0) {
+                    section.style.display = 'block';
+                    grid.innerHTML = nfts.map(nft => {
+                        const isVideo = nft.image_url?.includes('.mp4') || nft.image_url?.includes('.webm');
+                        return `
+                        <div class="nft-card featured" onclick="viewNFT(${nft.id}, '${nft.contract_address}', '${nft.token_id}')">
+                            <div class="nft-card-media">
+                                ${isVideo 
+                                    ? `<video src="${nft.image_url}" muted loop playsinline preload="metadata" onloadeddata="this.currentTime=0.5;" onmouseenter="this.play()" onmouseleave="this.pause();this.currentTime=0.5;"></video>`
+                                    : `<img src="${nft.image_url}" alt="${nft.name}">`
+                                }
+                                ${isVideo ? '<div class="video-badge">▶</div>' : ''}
+                                <div class="featured-badge">⭐</div>
+                            </div>
+                            <div class="nft-card-info">
+                                <h4>${nft.name}</h4>
+                                <div class="nft-card-artist">
+                                    <span class="artist-mini-avatar">${nft.avatar_type === 'emoji' ? nft.avatar_emoji : '🎨'}</span>
+                                    <span>${nft.artist_name || 'Artist'}${nft.verified ? ' ✓' : ''}</span>
+                                </div>
+                                <p class="nft-price">${nft.price > 0 ? nft.price + ' FLR' : 'Not listed'}</p>
+                            </div>
+                        </div>
+                    `}).join('');
+                }
+            } catch (err) {
+                console.error('Failed to load featured NFTs:', err);
+            }
+        }
+        
+        // Load live auctions
+        async function loadLiveAuctions() {
+            try {
+                const res = await fetch(`${INDEXER_URL}/api/auctions?limit=8`);
+                const nfts = await res.json();
+                
+                const grid = document.getElementById('auctions-grid');
+                if (!grid) return;
+                
+                if (nfts && nfts.length > 0) {
+                    grid.innerHTML = nfts.map(nft => {
+                        const isVideo = nft.image_url?.includes('.mp4') || nft.image_url?.includes('.webm');
+                        return `
+                        <div class="nft-card" onclick="viewNFT(${nft.id}, '${nft.contract_address}', '${nft.token_id}')">
+                            <div class="nft-card-media">
+                                ${isVideo 
+                                    ? `<video src="${nft.image_url}" muted loop playsinline preload="metadata" onloadeddata="this.currentTime=0.5;" onmouseenter="this.play()" onmouseleave="this.pause();this.currentTime=0.5;"></video>`
+                                    : `<img src="${nft.image_url}" alt="${nft.name}">`
+                                }
+                                ${isVideo ? '<div class="video-badge">▶</div>' : ''}
+                                <div class="auction-badge">🔥 Auction</div>
+                            </div>
+                            <div class="nft-card-info">
+                                <h4>${nft.name}</h4>
+                                <div class="nft-card-row">
+                                    <span class="nft-price">${nft.price > 0 ? nft.price + ' FLR' : 'No bids'}</span>
+                                    <span class="nft-time">⏱ ${nft.auction_duration || 24}h</span>
+                                </div>
+                            </div>
+                        </div>
+                    `}).join('');
+                } else {
+                    grid.innerHTML = '<div class="empty-state"><p>No live auctions</p></div>';
+                }
+            } catch (err) {
+                console.error('Failed to load auctions:', err);
+            }
+        }
 
         function renderActivityTicker() {
             const ticker = document.getElementById('activity-ticker');
