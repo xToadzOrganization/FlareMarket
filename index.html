@@ -9063,24 +9063,38 @@
         
         // Place bid
         async function placeBid(id) {
+            console.log('=== placeBid called ===');
+            console.log('NFT id:', id);
+            
             if (!window.toadz?.isConnected) {
                 showToast('Connect Wallet', 'Please connect your wallet', 'error');
                 openConnectModal();
                 return;
             }
             
-            if (!currentViewingNFT) return;
+            if (!currentViewingNFT) {
+                console.log('ERROR: No currentViewingNFT');
+                return;
+            }
             
             try {
                 // Check if there's an on-chain auction
+                console.log('Fetching auction data from:', `${INDEXER_URL}/api/nft/${id}/auction`);
                 const auctionRes = await fetch(`${INDEXER_URL}/api/nft/${id}/auction`);
                 const auctionData = await auctionRes.json();
+                console.log('Auction data received:', JSON.stringify(auctionData, null, 2));
                 
                 if (auctionData.onChain && auctionData.auctionId) {
+                    console.log('ON-CHAIN AUCTION DETECTED');
+                    console.log('Contract:', auctionData.contractAddress);
+                    console.log('Auction ID:', auctionData.auctionId);
+                    
                     // On-chain auction - call contract
                     const currentBid = parseFloat(auctionData.highestBid) || 0;
                     const startingPrice = parseFloat(auctionData.startingPrice) || 100;
                     const minBid = currentBid > 0 ? Math.ceil(currentBid * 1.05) : startingPrice;
+                    
+                    console.log('Bid calc - currentBid:', currentBid, 'startingPrice:', startingPrice, 'minBid:', minBid);
                     
                     if (auctionData.ended) {
                         showToast('Auction Ended', 'This auction has already ended', 'error');
@@ -9093,9 +9107,14 @@
                     }
                     
                     const amount = prompt(`Enter your bid (minimum ${minBid} FLR):\n\nCurrent high bid: ${currentBid} FLR\nTime remaining: ${Math.floor(auctionData.timeRemaining / 3600)}h ${Math.floor((auctionData.timeRemaining % 3600) / 60)}m`, minBid.toString());
-                    if (!amount || isNaN(parseFloat(amount))) return;
+                    if (!amount || isNaN(parseFloat(amount))) {
+                        console.log('User cancelled or invalid input');
+                        return;
+                    }
                     
                     const bidAmount = parseFloat(amount);
+                    console.log('User bid amount:', bidAmount);
+                    
                     if (bidAmount < minBid) {
                         showToast('Error', `Minimum bid is ${minBid} FLR`, 'error');
                         return;
@@ -9103,19 +9122,28 @@
                     
                     const provider = new ethers.BrowserProvider(window.ethereum);
                     const signer = await provider.getSigner();
+                    const signerAddr = await signer.getAddress();
+                    console.log('Signer address:', signerAddr);
                     
                     const auctionABI = ['function placeBid(uint256 auctionId) external payable'];
                     const auctionContract = new ethers.Contract(auctionData.contractAddress, auctionABI, signer);
+                    console.log('Auction contract created at:', auctionData.contractAddress);
+                    
+                    const valueWei = ethers.parseEther(bidAmount.toString());
+                    console.log('Calling placeBid with auctionId:', auctionData.auctionId, 'value:', valueWei.toString(), 'wei');
                     
                     showToast('Placing Bid...', 'Please confirm in wallet', 'info');
                     const tx = await auctionContract.placeBid(auctionData.auctionId, {
-                        value: ethers.parseEther(bidAmount.toString())
+                        value: valueWei
                     });
                     
+                    console.log('TX SENT:', tx.hash);
                     showToast('Processing...', 'Waiting for confirmation', 'info');
-                    await tx.wait();
+                    const receipt = await tx.wait();
+                    console.log('TX CONFIRMED. Block:', receipt.blockNumber);
                     
                     // Record the bid in DB
+                    console.log('Recording bid in database...');
                     await fetch(`${INDEXER_URL}/api/place-bid`, {
                         method: 'POST',
                         headers: { 'Content-Type': 'application/json' },
@@ -9131,12 +9159,16 @@
                     closeArtistNftModal();
                     
                 } else {
-                    // No on-chain auction yet - show error
+                    console.log('NOT ON-CHAIN AUCTION');
+                    console.log('onChain:', auctionData.onChain, 'auctionId:', auctionData.auctionId);
                     showToast('Error', 'This auction is not yet active on-chain', 'error');
                 }
                 
             } catch (err) {
-                console.error('Bid error:', err);
+                console.error('=== BID ERROR ===');
+                console.error('Error object:', err);
+                console.error('Message:', err.message);
+                console.error('Reason:', err.reason);
                 showToast('Error', err.reason || err.message || 'Bid failed', 'error');
             }
         }
