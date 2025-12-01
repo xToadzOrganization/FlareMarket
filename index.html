@@ -7162,19 +7162,21 @@
                     
                     <form id="upload-nft-form" class="apply-form">
                         <div class="form-group">
-                            <label>Image *</label>
+                            <label>Image or Video *</label>
                             <div id="nft-dropzone" style="border: 2px dashed var(--border); border-radius: 16px; padding: 40px 20px; text-align: center; cursor: pointer; transition: all 0.2s;" onclick="document.getElementById('nft-file-input').click()">
                                 <div id="nft-preview" style="display: none; margin-bottom: 12px;">
                                     <img id="nft-preview-img" style="max-width: 200px; max-height: 200px; border-radius: 12px;">
+                                    <video id="nft-preview-video" style="max-width: 200px; max-height: 200px; border-radius: 12px; display: none;" muted loop></video>
                                 </div>
                                 <div id="nft-dropzone-text">
                                     <div style="font-size: 48px; margin-bottom: 8px;">📤</div>
-                                    <p style="margin: 0; color: var(--text);">Drop image here or click to upload</p>
-                                    <small style="color: var(--text-muted);">PNG, JPG, GIF up to 10MB</small>
+                                    <p style="margin: 0; color: var(--text);">Drop file here or click to upload</p>
+                                    <small style="color: var(--text-muted);">PNG, JPG, GIF, MP4, WEBM up to 50MB</small>
                                 </div>
                             </div>
-                            <input type="file" id="nft-file-input" accept="image/*" style="display: none;" onchange="handleNFTImageSelect(this)">
+                            <input type="file" id="nft-file-input" accept="image/*,video/*" style="display: none;" onchange="handleNFTFileSelect(this)">
                             <input type="hidden" id="nft-image-url" value="">
+                            <input type="hidden" id="nft-file-type" value="image">
                             <div id="nft-upload-status" style="margin-top: 8px; font-size: 13px; display: none;"></div>
                         </div>
                         <div class="form-group">
@@ -8215,9 +8217,13 @@
             nftImageFile = null;
             nftImageUrl = null;
             document.getElementById('nft-preview').style.display = 'none';
+            document.getElementById('nft-preview-img').style.display = 'block';
+            document.getElementById('nft-preview-video').style.display = 'none';
+            document.getElementById('nft-preview-video').src = '';
             document.getElementById('nft-dropzone-text').style.display = 'block';
             document.getElementById('nft-upload-status').style.display = 'none';
             document.getElementById('nft-image-url').value = '';
+            document.getElementById('nft-file-type').value = 'image';
             document.getElementById('upload-nft-form').reset();
             
             document.getElementById('upload-nft-modal').classList.add('open');
@@ -8229,37 +8235,54 @@
             document.body.style.overflow = '';
         }
 
-        // Handle image file selection
-        function handleNFTImageSelect(input) {
+        // Handle image/video file selection
+        function handleNFTFileSelect(input) {
             const file = input.files[0];
             if (!file) return;
             
-            if (!file.type.startsWith('image/')) {
-                showToast('Error', 'Please select an image file', 'error');
+            const isVideo = file.type.startsWith('video/');
+            const isImage = file.type.startsWith('image/');
+            
+            if (!isVideo && !isImage) {
+                showToast('Error', 'Please select an image or video file', 'error');
                 return;
             }
             
-            if (file.size > 10 * 1024 * 1024) {
-                showToast('Error', 'Image must be under 10MB', 'error');
+            if (file.size > 50 * 1024 * 1024) {
+                showToast('Error', 'File must be under 50MB', 'error');
                 return;
             }
             
             nftImageFile = file;
+            document.getElementById('nft-file-type').value = isVideo ? 'video' : 'image';
             
             // Show preview
-            const reader = new FileReader();
-            reader.onload = function(e) {
-                document.getElementById('nft-preview-img').src = e.target.result;
-                document.getElementById('nft-preview').style.display = 'block';
-                document.getElementById('nft-dropzone-text').style.display = 'none';
-            };
-            reader.readAsDataURL(file);
+            const imgPreview = document.getElementById('nft-preview-img');
+            const vidPreview = document.getElementById('nft-preview-video');
             
-            // Upload to IPFS immediately
-            uploadNFTImage(file);
+            if (isVideo) {
+                imgPreview.style.display = 'none';
+                vidPreview.style.display = 'block';
+                vidPreview.src = URL.createObjectURL(file);
+                vidPreview.play();
+            } else {
+                vidPreview.style.display = 'none';
+                imgPreview.style.display = 'block';
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    imgPreview.src = e.target.result;
+                };
+                reader.readAsDataURL(file);
+            }
+            
+            document.getElementById('nft-preview').style.display = 'block';
+            document.getElementById('nft-dropzone-text').style.display = 'none';
+            
+            // Upload to IPFS
+            uploadNFTFile(file);
         }
 
-        async function uploadNFTImage(file) {
+        async function uploadNFTFile(file) {
             const status = document.getElementById('nft-upload-status');
             status.style.display = 'block';
             status.innerHTML = '<span style="color: var(--text-muted);">⏳ Uploading to IPFS...</span>';
@@ -8311,7 +8334,7 @@
                 const file = e.dataTransfer.files[0];
                 if (file) {
                     document.getElementById('nft-file-input').files = e.dataTransfer.files;
-                    handleNFTImageSelect({ files: [file] });
+                    handleNFTFileSelect({ files: [file] });
                 }
             });
         }
@@ -8338,6 +8361,7 @@
             const data = {
                 wallet: window.toadz?.userAddress,
                 image: nftImageUrl,
+                fileType: document.getElementById('nft-file-type').value,
                 name: document.getElementById('nft-name').value,
                 description: document.getElementById('nft-description').value,
                 price: document.getElementById('nft-price').value,
