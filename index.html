@@ -3180,6 +3180,26 @@
             background: var(--purple);
             color: white;
         }
+        
+        .sold-badge {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: rgba(0,0,0,0.85);
+            color: #ff4444;
+            padding: 8px 16px;
+            border-radius: 8px;
+            font-size: 14px;
+            font-weight: 700;
+            letter-spacing: 1px;
+            border: 2px solid #ff4444;
+            z-index: 5;
+        }
+        
+        .nft-card.sold .nft-card-media {
+            opacity: 0.5;
+        }
 
         .featured-info {
             padding: 12px;
@@ -7794,7 +7814,7 @@
                     <h2 style="margin-bottom: 8px;">Bulk Upload</h2>
                     <p style="color: var(--text-muted); margin-bottom: 20px;">Upload multiple NFTs at once (max 20)</p>
                     
-                    <div id="bulk-dropzone" style="border: 2px dashed var(--border); border-radius: 16px; padding: 40px 20px; text-align: center; cursor: pointer; transition: all 0.2s; margin-bottom: 20px;" onclick="document.getElementById('bulk-file-input').click()">
+                    <div id="bulk-dropzone" style="border: 2px dashed var(--border); border-radius: 16px; padding: 40px 20px; text-align: center; cursor: pointer; transition: all 0.2s; margin-bottom: 20px;" onclick="document.getElementById('bulk-file-input').click()" ondragover="event.preventDefault(); this.style.borderColor='var(--teal)'; this.style.background='rgba(0,212,170,0.1)';" ondragleave="this.style.borderColor='var(--border)'; this.style.background='transparent';" ondrop="event.preventDefault(); this.style.borderColor='var(--border)'; this.style.background='transparent'; handleBulkFileDrop(event)">
                         <div style="font-size: 48px; margin-bottom: 8px;">📦</div>
                         <p style="margin: 0; color: var(--text);">Drop multiple files here</p>
                         <small style="color: var(--text-muted);">PNG, JPG, GIF, MP4, WEBM up to 50MB each</small>
@@ -8801,39 +8821,20 @@
                     const nftRes = await fetch(`${INDEXER_URL}/api/storefront/${wallet}/nfts`);
                     const nfts = await nftRes.json();
                     
+                    // Store for filtering
+                    allStorefrontNFTs = nfts || [];
+                    
                     if (nfts && nfts.length > 0) {
-                        const userWallet = window.toadz?.userAddress?.toLowerCase();
-                        const canDelete = userWallet === wallet.toLowerCase() || userWallet === ADMIN_WALLET;
-                        
-                        nftGrid.innerHTML = nfts.map(nft => {
-                            const isVideo = nft.image_url?.includes('.mp4') || nft.image_url?.includes('.webm');
-                            const isAuction = nft.sale_type === 'auction';
-                            const isFeatured = nft.featured === 1;
-                            return `
-                            <div class="nft-card ${isFeatured ? 'featured' : ''}" onclick="viewNFT(${nft.id}, '${nft.contract_address}', '${nft.token_id}')">
-                                <div class="nft-card-media">
-                                    ${isVideo 
-                                        ? `<video src="${nft.image_url}" muted loop playsinline preload="metadata" onloadeddata="this.currentTime=0.5;" onmouseenter="this.play()" onmouseleave="this.pause();this.currentTime=0.5;"></video>`
-                                        : `<img src="${nft.image_url}" alt="${nft.name}" onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22200%22 height=%22200%22><rect fill=%22%231a1a2e%22 width=%22200%22 height=%22200%22/><text x=%2250%25%22 y=%2250%25%22 fill=%22%23666%22 text-anchor=%22middle%22 dy=%22.3em%22>No Image</text></svg>'">`
-                                    }
-                                    ${isVideo ? '<div class="video-badge">▶</div>' : ''}
-                                    ${isAuction ? '<div class="auction-badge">🔥 Auction</div>' : ''}
-                                    ${isFeatured ? '<div class="featured-badge">⭐</div>' : ''}
-                                    ${canDelete ? `<button class="nft-delete-btn" onclick="event.stopPropagation(); deleteNFT(${nft.id})">×</button>` : ''}
-                                </div>
-                                <div class="nft-card-info">
-                                    <h4>${nft.name}</h4>
-                                    <div class="nft-card-row">
-                                        <span class="nft-price">${nft.price > 0 ? nft.price + ' FLR' : 'Not listed'}</span>
-                                        ${isAuction ? `<span class="nft-time">⏱ ${nft.auction_duration || 24}h</span>` : ''}
-                                    </div>
-                                </div>
-                            </div>
-                        `}).join('');
-                        
+                        renderStorefrontNFTs(nfts);
                         // Update items count
                         document.getElementById('sf-stat-items').textContent = nfts.length;
                     }
+                    
+                    // Reset tabs to All Items
+                    document.querySelectorAll('#sf-tabs .artist-tab').forEach((tab, i) => {
+                        tab.classList.toggle('active', i === 0);
+                    });
+                    
                 } catch (err) {
                     console.error('Failed to load artist NFTs:', err);
                 }
@@ -9166,6 +9167,14 @@
         
         function closeBulkUpload() {
             document.getElementById('bulk-upload-modal').classList.remove('open');
+        }
+        
+        function handleBulkFileDrop(e) {
+            const files = Array.from(e.dataTransfer.files).filter(f => f.type.startsWith('image/') || f.type.startsWith('video/'));
+            if (files.length > 0) {
+                // Create a fake input object to reuse existing handler
+                handleBulkFileSelect({ files: files });
+            }
         }
         
         async function handleBulkFileSelect(input) {
@@ -9792,6 +9801,120 @@
             document.getElementById('edit-storefront-modal').classList.remove('open');
             document.body.style.overflow = '';
         }
+
+        // Storefront NFT filtering
+        let allStorefrontNFTs = [];
+        
+        function filterStorefrontNFTs(filter) {
+            // Update active tab
+            document.querySelectorAll('#sf-tabs .artist-tab').forEach((tab, i) => {
+                tab.classList.remove('active');
+                if ((filter === 'all' && i === 0) || 
+                    (filter === 'sale' && i === 1) ||
+                    (filter === 'auction' && i === 2) ||
+                    (filter === 'sold' && i === 3)) {
+                    tab.classList.add('active');
+                }
+            });
+            
+            // Filter NFTs
+            let filtered = allStorefrontNFTs;
+            if (filter === 'sale') {
+                filtered = allStorefrontNFTs.filter(n => n.sale_type === 'fixed' && n.price > 0 && n.status !== 'sold');
+            } else if (filter === 'auction') {
+                filtered = allStorefrontNFTs.filter(n => n.sale_type === 'auction' && n.status !== 'sold');
+            } else if (filter === 'sold') {
+                filtered = allStorefrontNFTs.filter(n => n.status === 'sold');
+            }
+            
+            renderStorefrontNFTs(filtered);
+        }
+        
+        function renderStorefrontNFTs(nfts) {
+            const grid = document.getElementById('sf-nft-grid');
+            const userWallet = window.toadz?.userAddress?.toLowerCase();
+            const canDelete = userWallet === currentStorefront?.toLowerCase() || userWallet === ADMIN_WALLET;
+            
+            if (!nfts || nfts.length === 0) {
+                grid.innerHTML = `
+                    <div class="empty-state" style="grid-column: 1/-1;">
+                        <div class="empty-icon">🎨</div>
+                        <p>No items</p>
+                    </div>`;
+                return;
+            }
+            
+            grid.innerHTML = nfts.map(nft => {
+                const isVideo = nft.image_url?.includes('.mp4') || nft.image_url?.includes('.webm');
+                const isAuction = nft.sale_type === 'auction';
+                const isFeatured = nft.featured === 1;
+                const isSold = nft.status === 'sold';
+                return `
+                <div class="nft-card ${isFeatured ? 'featured' : ''} ${isSold ? 'sold' : ''}" onclick="viewNFT(${nft.id}, '${nft.contract_address}', '${nft.token_id}')">
+                    <div class="nft-card-media">
+                        ${isVideo 
+                            ? `<video src="${nft.image_url}" muted loop playsinline preload="metadata" onloadeddata="this.currentTime=0.5;" onmouseenter="this.play()" onmouseleave="this.pause();this.currentTime=0.5;"></video>`
+                            : `<img src="${nft.image_url}" alt="${nft.name}" onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22200%22 height=%22200%22><rect fill=%22%231a1a2e%22 width=%22200%22 height=%22200%22/><text x=%2250%25%22 y=%2250%25%22 fill=%22%23666%22 text-anchor=%22middle%22 dy=%22.3em%22>No Image</text></svg>'">`
+                        }
+                        ${isVideo ? '<div class="video-badge">▶</div>' : ''}
+                        ${isAuction && !isSold ? '<div class="auction-badge">🔥 Auction</div>' : ''}
+                        ${isFeatured ? '<div class="featured-badge">⭐</div>' : ''}
+                        ${isSold ? '<div class="sold-badge">SOLD</div>' : ''}
+                        ${canDelete ? `<button class="nft-delete-btn" onclick="event.stopPropagation(); deleteNFT(${nft.id})">×</button>` : ''}
+                    </div>
+                    <div class="nft-card-info">
+                        <h4>${nft.name}</h4>
+                        <div class="nft-card-row">
+                            <span class="nft-price">${isSold ? 'Sold' : (nft.price > 0 ? nft.price + ' FLR' : 'Not listed')}</span>
+                            ${isAuction && !isSold ? `<span class="nft-time">⏱ ${nft.auction_duration || 24}h</span>` : ''}
+                        </div>
+                    </div>
+                </div>
+            `}).join('');
+        }
+
+        // Announcement functions
+        function openAnnouncementModal() {
+            document.getElementById('announcement-text').value = '';
+            document.getElementById('announcement-modal').classList.add('open');
+            document.body.style.overflow = 'hidden';
+        }
+        
+        function closeAnnouncementModal() {
+            document.getElementById('announcement-modal').classList.remove('open');
+            document.body.style.overflow = '';
+        }
+        
+        // Announcement form submit
+        document.getElementById('announcement-form')?.addEventListener('submit', async function(e) {
+            e.preventDefault();
+            
+            const text = document.getElementById('announcement-text').value;
+            if (!text) return;
+            
+            try {
+                const res = await fetch(`${INDEXER_URL}/api/storefront/${currentStorefront}/announcement`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ 
+                        wallet: window.toadz.userAddress,
+                        announcement: text 
+                    })
+                });
+                
+                const result = await res.json();
+                
+                if (result.success) {
+                    showToast('Posted', 'Announcement posted!', 'success');
+                    closeAnnouncementModal();
+                    loadStorefrontPage(currentStorefront);
+                } else {
+                    throw new Error(result.error);
+                }
+            } catch (err) {
+                showToast('Error', err.message, 'error');
+            }
+        });
 
         function selectEditEmoji(emoji) {
             const preview = document.getElementById('edit-sf-avatar-preview');
