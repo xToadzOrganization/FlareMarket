@@ -9023,7 +9023,6 @@
             ownerActions.style.display = 'none';
             nftGrid.innerHTML = '<div class="empty-state" style="grid-column: 1/-1;"><div class="empty-icon">⏳</div><p>Loading...</p></div>';
             allStorefrontNFTs = [];
-            document.getElementById('sf-stat-items').textContent = '--';
             
             try {
                 const res = await fetch(`${INDEXER_URL}/api/storefront/${wallet}`);
