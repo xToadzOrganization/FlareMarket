@@ -6736,10 +6736,145 @@
             margin-left: 6px;
             vertical-align: middle;
         }
+
+        /* Custom Dialog Modal */
+        .dialog-overlay {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(0,0,0,0.85);
+            backdrop-filter: blur(12px);
+            z-index: 99999;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+        .dialog-overlay.open {
+            display: flex;
+        }
+        .dialog-box {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            width: 100%;
+            max-width: 420px;
+            animation: modalSlide 0.25s ease;
+            overflow: hidden;
+        }
+        .dialog-header {
+            padding: 28px 28px 0;
+        }
+        .dialog-icon {
+            width: 56px;
+            height: 56px;
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 28px;
+            margin-bottom: 16px;
+        }
+        .dialog-icon.input { background: linear-gradient(135deg, var(--accent), var(--teal)); }
+        .dialog-icon.confirm { background: linear-gradient(135deg, var(--purple), #a78bfa); }
+        .dialog-icon.alert { background: linear-gradient(135deg, var(--gold), #fbbf24); }
+        .dialog-icon.danger { background: linear-gradient(135deg, var(--red), #f87171); }
+        .dialog-title {
+            font-size: 20px;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 8px;
+        }
+        .dialog-message {
+            font-size: 14px;
+            color: var(--text-secondary);
+            line-height: 1.5;
+            white-space: pre-line;
+        }
+        .dialog-body {
+            padding: 20px 28px;
+        }
+        .dialog-input {
+            width: 100%;
+            padding: 14px 16px;
+            background: var(--bg-surface);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            color: var(--text-primary);
+            font-size: 16px;
+            font-family: inherit;
+            outline: none;
+            transition: border-color 0.2s;
+        }
+        .dialog-input:focus {
+            border-color: var(--accent);
+        }
+        .dialog-input::placeholder {
+            color: var(--text-muted);
+        }
+        .dialog-footer {
+            padding: 0 28px 28px;
+            display: flex;
+            gap: 12px;
+        }
+        .dialog-btn {
+            flex: 1;
+            padding: 14px 20px;
+            border-radius: 12px;
+            font-size: 15px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s;
+            border: none;
+            font-family: inherit;
+        }
+        .dialog-btn-cancel {
+            background: var(--bg-surface);
+            border: 1px solid var(--border);
+            color: var(--text-secondary);
+        }
+        .dialog-btn-cancel:hover {
+            background: var(--bg-card-hover);
+            color: var(--text-primary);
+        }
+        .dialog-btn-confirm {
+            background: linear-gradient(135deg, var(--accent), var(--teal));
+            color: var(--bg-void);
+        }
+        .dialog-btn-confirm:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 4px 20px var(--accent-glow);
+        }
+        .dialog-btn-danger {
+            background: linear-gradient(135deg, var(--red), #f87171);
+            color: white;
+        }
+        .dialog-btn-danger:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 4px 20px var(--red-glow);
+        }
     </style>
 </head>
 <body>
     <div class="toast-container" id="toast-container"></div>
+    
+    <!-- Custom Dialog Modal -->
+    <div class="dialog-overlay" id="dialog-overlay">
+        <div class="dialog-box">
+            <div class="dialog-header">
+                <div class="dialog-icon" id="dialog-icon">💬</div>
+                <div class="dialog-title" id="dialog-title">Title</div>
+                <div class="dialog-message" id="dialog-message">Message</div>
+            </div>
+            <div class="dialog-body" id="dialog-body" style="display: none;">
+                <input type="text" class="dialog-input" id="dialog-input" placeholder="">
+            </div>
+            <div class="dialog-footer" id="dialog-footer">
+                <button class="dialog-btn dialog-btn-cancel" id="dialog-cancel">Cancel</button>
+                <button class="dialog-btn dialog-btn-confirm" id="dialog-confirm">Confirm</button>
+            </div>
+        </div>
+    </div>
+    
     <div class="ambient"></div>
 
     <header class="header">
@@ -8507,6 +8642,105 @@
             }, 4000);
         }
 
+        // Custom Dialog System
+        let dialogResolve = null;
+        
+        function showDialog({ title, message, type = 'input', icon = null, placeholder = '', defaultValue = '', confirmText = 'Confirm', cancelText = 'Cancel', danger = false }) {
+            return new Promise((resolve) => {
+                dialogResolve = resolve;
+                
+                const overlay = document.getElementById('dialog-overlay');
+                const iconEl = document.getElementById('dialog-icon');
+                const titleEl = document.getElementById('dialog-title');
+                const messageEl = document.getElementById('dialog-message');
+                const bodyEl = document.getElementById('dialog-body');
+                const inputEl = document.getElementById('dialog-input');
+                const confirmBtn = document.getElementById('dialog-confirm');
+                const cancelBtn = document.getElementById('dialog-cancel');
+                
+                // Set icon
+                const icons = { input: '✏️', confirm: '❓', alert: '⚠️', danger: '🗑️' };
+                iconEl.textContent = icon || icons[type] || '💬';
+                iconEl.className = 'dialog-icon ' + (danger ? 'danger' : type);
+                
+                titleEl.textContent = title;
+                messageEl.textContent = message;
+                
+                // Show/hide input
+                if (type === 'input') {
+                    bodyEl.style.display = 'block';
+                    inputEl.placeholder = placeholder;
+                    inputEl.value = defaultValue;
+                    setTimeout(() => inputEl.focus(), 100);
+                } else {
+                    bodyEl.style.display = 'none';
+                }
+                
+                // Show/hide cancel button
+                if (type === 'alert') {
+                    cancelBtn.style.display = 'none';
+                } else {
+                    cancelBtn.style.display = 'block';
+                }
+                
+                // Set button text and style
+                confirmBtn.textContent = confirmText;
+                cancelBtn.textContent = cancelText;
+                confirmBtn.className = 'dialog-btn ' + (danger ? 'dialog-btn-danger' : 'dialog-btn-confirm');
+                
+                overlay.classList.add('open');
+                
+                // Handle enter key for input
+                if (type === 'input') {
+                    inputEl.onkeydown = (e) => {
+                        if (e.key === 'Enter') {
+                            e.preventDefault();
+                            closeDialog(inputEl.value);
+                        } else if (e.key === 'Escape') {
+                            closeDialog(null);
+                        }
+                    };
+                }
+            });
+        }
+        
+        function closeDialog(result) {
+            document.getElementById('dialog-overlay').classList.remove('open');
+            if (dialogResolve) {
+                dialogResolve(result);
+                dialogResolve = null;
+            }
+        }
+        
+        // Dialog button handlers
+        document.addEventListener('DOMContentLoaded', () => {
+            document.getElementById('dialog-confirm').onclick = () => {
+                const type = document.getElementById('dialog-body').style.display === 'block' ? 'input' : 'confirm';
+                if (type === 'input') {
+                    closeDialog(document.getElementById('dialog-input').value);
+                } else {
+                    closeDialog(true);
+                }
+            };
+            document.getElementById('dialog-cancel').onclick = () => closeDialog(null);
+            document.getElementById('dialog-overlay').onclick = (e) => {
+                if (e.target.id === 'dialog-overlay') closeDialog(null);
+            };
+        });
+        
+        // Convenience wrappers
+        async function customPrompt(title, message, defaultValue = '', placeholder = '') {
+            return showDialog({ title, message, type: 'input', defaultValue, placeholder });
+        }
+        
+        async function customConfirm(title, message, danger = false) {
+            return showDialog({ title, message, type: 'confirm', danger, confirmText: danger ? 'Delete' : 'Confirm' });
+        }
+        
+        async function customAlert(title, message) {
+            return showDialog({ title, message, type: 'alert', confirmText: 'OK' });
+        }
+
         // Data
         // PLACEHOLDER DATA - Will be populated from backend/blockchain
         // Collections on Flare - update with real IPFS data when available
@@ -8857,7 +9091,7 @@
                 return;
             }
             
-            const amount = prompt('Enter tip amount in FLR:', '100');
+            const amount = await customPrompt('Send Tip', 'Enter tip amount in FLR', '100', 'Amount in FLR');
             if (!amount || isNaN(amount) || parseFloat(amount) <= 0) return;
             
             try {
@@ -9026,7 +9260,8 @@
                 return;
             }
             
-            if (!confirm(`Buy this NFT for ${price} FLR?`)) return;
+            const confirmed = await customConfirm('Confirm Purchase', `Buy this NFT for ${price} FLR?`);
+            if (!confirmed) return;
             
             try {
                 const provider = new ethers.BrowserProvider(window.ethereum);
@@ -9106,7 +9341,8 @@
                         return;
                     }
                     
-                    const amount = prompt(`Enter your bid (minimum ${minBid} FLR):\n\nCurrent high bid: ${currentBid} FLR\nTime remaining: ${Math.floor(auctionData.timeRemaining / 3600)}h ${Math.floor((auctionData.timeRemaining % 3600) / 60)}m`, minBid.toString());
+                    const timeStr = `${Math.floor(auctionData.timeRemaining / 3600)}h ${Math.floor((auctionData.timeRemaining % 3600) / 60)}m`;
+                    const amount = await customPrompt('Place Bid', `Current high bid: ${currentBid} FLR\nTime remaining: ${timeStr}\n\nMinimum bid: ${minBid} FLR`, minBid.toString(), 'Bid amount in FLR');
                     if (!amount || isNaN(parseFloat(amount))) {
                         console.log('User cancelled or invalid input');
                         return;
@@ -9182,7 +9418,7 @@
         async function editNFT(id) {
             if (!currentViewingNFT) return;
             
-            const newPrice = prompt('Enter new price (FLR):', currentViewingNFT.price || '100');
+            const newPrice = await customPrompt('Update Price', 'Enter new price in FLR', currentViewingNFT.price?.toString() || '100', 'Price in FLR');
             if (!newPrice || isNaN(parseFloat(newPrice))) return;
             
             try {
@@ -9457,13 +9693,14 @@
                 return;
             }
             
-            const recipient = prompt(`Transfer ${selectedNFTs.length} NFTs to address:`);
+            const recipient = await customPrompt('Transfer NFTs', `Enter recipient address for ${selectedNFTs.length} NFT(s)`, '', '0x...');
             if (!recipient || !recipient.startsWith('0x')) {
-                showToast('Invalid Address', 'Please enter a valid wallet address', 'error');
+                if (recipient !== null) showToast('Invalid Address', 'Please enter a valid wallet address', 'error');
                 return;
             }
             
-            if (!confirm(`Transfer ${selectedNFTs.length} NFTs to ${recipient.slice(0,8)}...?`)) return;
+            const confirmed = await customConfirm('Confirm Transfer', `Transfer ${selectedNFTs.length} NFT(s) to ${recipient.slice(0,8)}...?`);
+            if (!confirmed) return;
             
             showToast('Transferring...', 'Please confirm transactions in wallet', 'info');
             
@@ -9502,9 +9739,9 @@
                 return;
             }
             
-            const price = prompt(`Set price for ${selectedNFTs.length} NFTs (FLR):`);
+            const price = await customPrompt('List NFTs', `Set price for ${selectedNFTs.length} NFT(s)`, '', 'Price in FLR');
             if (!price || isNaN(parseFloat(price))) {
-                showToast('Invalid Price', 'Please enter a valid price', 'error');
+                if (price !== null) showToast('Invalid Price', 'Please enter a valid price', 'error');
                 return;
             }
             
@@ -9519,7 +9756,8 @@
         
         // Delete NFT (owner only)
         async function deleteNFT(id) {
-            if (!confirm('Delete this NFT from your storefront? The on-chain token will remain.')) return;
+            const confirmed = await customConfirm('Delete NFT', 'Remove this NFT from your storefront?\nThe on-chain token will remain.', true);
+            if (!confirmed) return;
             
             try {
                 const res = await fetch(`${INDEXER_URL}/api/artist-nft/${id}`, {
@@ -9543,7 +9781,8 @@
         async function deleteStorefront() {
             if (!currentStorefront) return;
             
-            if (!confirm('Are you sure you want to delete this storefront? This cannot be undone.')) return;
+            const confirmed = await customConfirm('Delete Storefront', 'Are you sure you want to delete this storefront?\nThis cannot be undone.', true);
+            if (!confirmed) return;
             
             try {
                 const res = await fetch(`${INDEXER_URL}/api/storefront/${currentStorefront}`, {
@@ -10917,14 +11156,14 @@
 
         async function doAddLiquidity() {
             if (!window.toadz || !window.toadz.addLiquidity) {
-                alert('Please connect wallet first');
+                showToast('Connect Wallet', 'Please connect your wallet first', 'error');
                 openConnectModal();
                 return;
             }
             
             const flrAmount = parseFloat(document.getElementById('flr-input').value);
             if (!flrAmount || flrAmount <= 0) {
-                alert('Enter FLR amount');
+                showToast('Invalid Amount', 'Enter FLR amount', 'error');
                 return;
             }
             
@@ -10974,7 +11213,7 @@
 
         async function doSwap() {
             if (!window.toadz) {
-                alert('Please connect wallet first');
+                showToast('Connect Wallet', 'Please connect your wallet first', 'error');
                 openConnectModal();
                 return;
             }
@@ -10984,7 +11223,7 @@
             const toAmount = parseFloat(document.getElementById('swap-to-input').value);
             
             if (!fromAmount || fromAmount <= 0) {
-                alert('Enter amount to swap');
+                showToast('Invalid Amount', 'Enter amount to swap', 'error');
                 return;
             }
             
@@ -11067,14 +11306,14 @@
                 const result = await response.json();
                 
                 if (result.success) {
-                    alert('Application submitted! We\'ll review it within 48 hours.');
+                    showToast('Application Submitted', 'We\'ll review it within 48 hours', 'success');
                     this.reset();
                 } else {
-                    alert('Error: ' + (result.error || 'Failed to submit'));
+                    showToast('Error', result.error || 'Failed to submit', 'error');
                 }
             } catch (err) {
                 console.error('Submit error:', err);
-                alert('Failed to submit. Please try again or email contact@artdept.fun');
+                showToast('Error', 'Failed to submit. Please try again or email contact@artdept.fun', 'error');
             }
             
             submitBtn.textContent = originalText;
