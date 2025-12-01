@@ -130,6 +130,10 @@ async function connectWallet(walletType = 'metamask') {
         const network = await provider.getNetwork();
         currentChain = Number(network.chainId);
 
+        // Save connection state
+        localStorage.setItem('toadz_connected', 'true');
+        localStorage.setItem('toadz_wallet_type', walletType);
+
         // Initialize contracts based on chain
         initContracts();
 
@@ -173,6 +177,10 @@ function disconnectWallet() {
     pondContract = null;
     poolContract = null;
     marketplaceContract = null;
+    
+    // Clear saved connection
+    localStorage.removeItem('toadz_connected');
+    localStorage.removeItem('toadz_wallet_type');
     vaultContract = null;
     updateWalletUI();
 }
@@ -751,5 +759,22 @@ window.toadz = {
     CHAINS,
     get userAddress() { return userAddress; },
     get currentChain() { return currentChain; },
-    get isConnected() { return !!userAddress; }
+    get isConnected() { return !!userAddress; },
+    get signer() { return signer; }
 };
+
+// Auto-reconnect on page load if previously connected
+(async function autoReconnect() {
+    if (localStorage.getItem('toadz_connected') === 'true' && window.ethereum) {
+        try {
+            // Check if still authorized
+            const accounts = await window.ethereum.request({ method: 'eth_accounts' });
+            if (accounts.length > 0) {
+                console.log('Auto-reconnecting wallet...');
+                await connectWallet(localStorage.getItem('toadz_wallet_type') || 'metamask');
+            }
+        } catch (e) {
+            console.log('Auto-reconnect failed:', e);
+        }
+    }
+})();
