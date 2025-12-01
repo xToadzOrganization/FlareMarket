@@ -9198,10 +9198,9 @@
                         <button class="btn-edit" onclick="editNFT(${nft.id})">✏️ Edit</button>
                         <button class="btn-delete" onclick="deleteNFT(${nft.id}); closeArtistNftModal();">🗑️ Delete</button>
                     `;
-                    if (!hasValidTokenId) {
-                        actionsHtml += `<p style="color: var(--red); font-size: 12px; margin-top: 8px;">⚠️ Mint failed - delete and re-upload</p>`;
-                    } else if (isAuction && !nft.auction_id) {
-                        actionsHtml += `<p style="color: var(--gold); font-size: 12px; margin-top: 8px;">⚠️ Auction not started on-chain - delete and re-upload</p>`;
+                    // Only show warning for auctions without on-chain auction
+                    if (isAuction && !nft.auction_id) {
+                        actionsHtml += `<p style="color: var(--gold); font-size: 12px; margin-top: 8px;">⚠️ Auction not active - delete and re-upload as auction</p>`;
                     }
                 } else if (nft.price > 0) {
                     if (isAuction && nft.auction_id) {
