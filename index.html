@@ -8354,30 +8354,55 @@
                 return;
             }
             
+            if (!window.toadz?.userAddress) {
+                showToast('Error', 'Please connect your wallet', 'error');
+                return;
+            }
+            
             const submitBtn = document.getElementById('nft-submit-btn');
-            submitBtn.textContent = 'Creating...';
+            submitBtn.textContent = 'Minting...';
             submitBtn.disabled = true;
             
             const data = {
-                wallet: window.toadz?.userAddress,
-                image: nftImageUrl,
+                artistWallet: window.toadz.userAddress,
+                imageUrl: nftImageUrl,
                 fileType: document.getElementById('nft-file-type').value,
                 name: document.getElementById('nft-name').value,
                 description: document.getElementById('nft-description').value,
-                price: document.getElementById('nft-price').value,
+                price: parseFloat(document.getElementById('nft-price').value) || 0,
                 saleType: document.getElementById('nft-sale-type').value,
-                auctionDuration: document.getElementById('nft-auction-duration').value,
+                auctionDuration: parseInt(document.getElementById('nft-auction-duration').value) || 0,
                 featured: document.getElementById('nft-featured').checked
             };
             
-            console.log('Upload NFT:', data);
+            console.log('Minting NFT:', data);
             
-            // TODO: Implement actual NFT minting/listing to smart contract
-            showToast('Coming Soon', 'NFT minting to blockchain coming soon! Image saved to IPFS.', 'info');
+            try {
+                const res = await fetch(`${INDEXER_URL}/api/mint-nft`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(data)
+                });
+                
+                const result = await res.json();
+                
+                if (result.success) {
+                    showToast('NFT Minted! 🎉', `Token #${result.tokenId} created`, 'success');
+                    closeUploadNFT();
+                    // Reload storefront to show new NFT
+                    if (currentStorefront) {
+                        loadStorefrontPage(currentStorefront);
+                    }
+                } else {
+                    throw new Error(result.error || 'Minting failed');
+                }
+            } catch (err) {
+                console.error('Mint error:', err);
+                showToast('Error', err.message || 'Failed to mint NFT', 'error');
+            }
             
             submitBtn.textContent = 'Upload & List →';
             submitBtn.disabled = false;
-            closeUploadNFT();
         });
 
         // Edit storefront modal
