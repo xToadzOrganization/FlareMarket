@@ -6576,9 +6576,9 @@
             
             <nav class="nav">
                 <button class="nav-item active" onclick="showPage('home')">Explore</button>
-                <button class="nav-item" onclick="showPage('collections')">Collections</button>
-                <button class="nav-item highlight" onclick="showPage('staking')">Staking</button>
                 <button class="nav-item" onclick="showPage('artists')">Artists</button>
+                <button class="nav-item highlight" onclick="showPage('staking')">Staking</button>
+                <button class="nav-item" onclick="showPage('collections')">Collections</button>
                 <button class="nav-item" onclick="showPage('launchpad')">Launchpad</button>
                 <button class="nav-item" onclick="showPage('leaderboard')">🏆 Ranks</button>
                 <button class="nav-item" onclick="showPage('my-nfts')">My NFTs</button>
@@ -8656,7 +8656,7 @@
         // View NFT detail modal
         async function viewNFT(id, contract, tokenId) {
             const modal = document.getElementById('artist-nft-modal');
-            modal.classList.add('active');
+            modal.classList.add('open');
             document.body.style.overflow = 'hidden';
             
             try {
@@ -8760,7 +8760,7 @@
         
         function closeArtistNftModal(e) {
             if (e && e.target !== e.currentTarget) return;
-            document.getElementById('artist-nft-modal').classList.remove('active');
+            document.getElementById('artist-nft-modal').classList.remove('open');
             document.body.style.overflow = '';
             currentViewingNFT = null;
         }
