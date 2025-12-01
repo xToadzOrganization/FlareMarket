@@ -10165,6 +10165,32 @@
         renderActivityTicker();
         loadFeaturedNFTs();
         loadLiveAuctions();
+        loadArtistActivity();
+        
+        // Load artist activity for ticker
+        async function loadArtistActivity() {
+            const ticker = document.getElementById('activity-ticker');
+            if (!ticker) return;
+            
+            try {
+                const res = await fetch(`${INDEXER_URL}/api/artist-activity?limit=15`);
+                const activity = await res.json();
+                
+                if (activity && activity.length > 0) {
+                    const items = activity.map(a => {
+                        const icon = a.type === 'auction' ? '🔥' : '📋';
+                        return `<div class="ticker-item">${icon} ${a.name} ${a.type} by ${a.artist} for ${a.price} FLR</div>`;
+                    }).join('');
+                    // Duplicate for seamless loop
+                    ticker.innerHTML = items + items;
+                } else {
+                    ticker.innerHTML = '<div class="ticker-item">No activity yet • List your first NFT</div>';
+                }
+            } catch (err) {
+                console.error('Failed to load artist activity:', err);
+                ticker.innerHTML = '<div class="ticker-item">No activity yet</div>';
+            }
+        }
         
         // Load featured NFTs from artist uploads
         async function loadFeaturedNFTs() {
