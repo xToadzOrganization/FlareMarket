@@ -4086,7 +4086,21 @@
         .artist-avatar-large {
             width: 120px;
             height: 120px;
+            border-radius: 50%;
+            overflow: hidden;
             position: relative;
+            border: 4px solid var(--bg-card);
+        }
+
+        .artist-avatar-large.emoji-avatar {
+            background: #1a1a2e;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .artist-avatar-large.emoji-avatar span {
+            font-size: 64px;
         }
 
         .artist-avatar-large img {
@@ -4094,7 +4108,6 @@
             height: 100%;
             border-radius: 50%;
             object-fit: cover;
-            border: 4px solid var(--bg-card);
         }
 
         .verified-ring {
@@ -4103,13 +4116,14 @@
             right: 4px;
             width: 28px;
             height: 28px;
-            background: var(--purple);
+            background: var(--teal);
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
             font-size: 14px;
             border: 3px solid var(--bg-card);
+            color: var(--bg-void);
         }
 
         .artist-profile-name {
@@ -4976,6 +4990,17 @@
             margin: -40px auto 12px;
             position: relative;
             z-index: 1;
+        }
+
+        .fa-avatar.emoji-avatar {
+            background: #1a1a2e;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .fa-avatar.emoji-avatar span {
+            font-size: 42px;
         }
 
         .fa-avatar img {
@@ -6986,7 +7011,7 @@
                         <div class="featured-artist-card" onclick="viewStorefront('0xcEA86bBdb5cd33ddbA8dC0ed3c838605EeF7c715')">
                             <div class="fa-banner" style="background-image: url('https://ipfs.io/ipfs/QmP45Rfhy75RybFuLcwd1CR9vF6qznw95qQPxcA5TeBNYk/421.png')"></div>
                             <div class="fa-content">
-                                <div class="fa-avatar" style="background: linear-gradient(135deg, #ff6b35, #f7c59f); display: flex; align-items: center; justify-content: center;">
+                                <div class="fa-avatar emoji-avatar">
                                     <span style="font-size: 40px;">🍝</span>
                                 </div>
                                 <div class="fa-badge">⭐ FEATURED</div>
@@ -7046,6 +7071,16 @@
                     <button class="sf-action-btn delete" id="sf-delete-btn" style="display: none;" onclick="deleteStorefront()">🗑️ Delete</button>
                 </div>
 
+                <!-- Announcement (dynamic) -->
+                <div class="artist-announcement" id="sf-announcement" style="display: none;">
+                    <div class="announcement-header">
+                        <span class="announcement-icon">📢</span>
+                        <span class="announcement-title">Announcement</span>
+                        <span class="announcement-time" id="sf-announcement-time"></span>
+                    </div>
+                    <p class="announcement-text" id="sf-announcement-text"></p>
+                </div>
+
                 <!-- Main Content Grid -->
                 <div class="artist-content-grid">
                     <!-- Left: Main Content -->
@@ -7061,7 +7096,7 @@
                             <div class="empty-state" style="grid-column: 1/-1;">
                                 <div class="empty-icon">🎨</div>
                                 <p>No items yet</p>
-                                <span>Artist hasn't uploaded any NFTs</span>
+                                <span id="sf-empty-hint">Artist hasn't uploaded any NFTs</span>
                             </div>
                         </div>
                     </div>
@@ -7072,7 +7107,44 @@
                         <div class="artist-activity-card">
                             <h4 class="sidebar-card-title"><span class="live-dot"></span>Activity</h4>
                             <div class="artist-activity-list" id="sf-activity-list">
-                                <div class="empty-state"><p>No activity yet</p></div>
+                                <div class="artist-activity-item">
+                                    <span class="activity-icon sale">💰</span>
+                                    <div class="activity-details">
+                                        <span class="activity-event">No sales yet</span>
+                                        <span class="activity-amount">--</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Top Collectors -->
+                        <div class="artist-collectors-card">
+                            <h4 class="sidebar-card-title">🏆 Top Collectors</h4>
+                            <div class="top-collectors-list" id="sf-collectors-list">
+                                <div class="collector-item">
+                                    <span class="collector-rank gold">1</span>
+                                    <span class="collector-avatar">🐸</span>
+                                    <div class="collector-info">
+                                        <span class="collector-name">--</span>
+                                        <span class="collector-count">0 items</span>
+                                    </div>
+                                </div>
+                                <div class="collector-item">
+                                    <span class="collector-rank silver">2</span>
+                                    <span class="collector-avatar">🦊</span>
+                                    <div class="collector-info">
+                                        <span class="collector-name">--</span>
+                                        <span class="collector-count">0 items</span>
+                                    </div>
+                                </div>
+                                <div class="collector-item">
+                                    <span class="collector-rank bronze">3</span>
+                                    <span class="collector-avatar">🐱</span>
+                                    <div class="collector-info">
+                                        <span class="collector-name">--</span>
+                                        <span class="collector-count">0 items</span>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </aside>
@@ -7887,15 +7959,15 @@
                     // Handle emoji vs image avatar
                     let avatarHtml;
                     if (s.avatar_type === 'emoji' && s.avatar_emoji) {
-                        avatarHtml = `<div class="fa-avatar" style="background: linear-gradient(135deg, var(--purple), var(--teal)); display: flex; align-items: center; justify-content: center;">
+                        avatarHtml = `<div class="fa-avatar emoji-avatar">
                             <span style="font-size: 32px;">${s.avatar_emoji}</span>
                         </div>`;
                     } else if (s.avatar) {
                         avatarHtml = `<div class="fa-avatar">
-                            <img src="${s.avatar}" alt="" onerror="this.parentElement.innerHTML='<span style=font-size:32px>${s.name.charAt(0)}</span>'; this.parentElement.style.background='linear-gradient(135deg, var(--purple), var(--teal))'; this.parentElement.style.display='flex'; this.parentElement.style.alignItems='center'; this.parentElement.style.justifyContent='center';">
+                            <img src="${s.avatar}" alt="" onerror="this.parentElement.classList.add('emoji-avatar'); this.parentElement.innerHTML='<span style=font-size:32px>${s.name.charAt(0)}</span>';">
                         </div>`;
                     } else {
-                        avatarHtml = `<div class="fa-avatar" style="background: linear-gradient(135deg, var(--purple), var(--teal)); display: flex; align-items: center; justify-content: center;">
+                        avatarHtml = `<div class="fa-avatar emoji-avatar">
                             <span style="font-size: 32px;">${s.name.charAt(0)}</span>
                         </div>`;
                     }
@@ -7955,29 +8027,36 @@
                     banner.style.backgroundImage = 'linear-gradient(135deg, var(--purple), var(--teal))';
                 }
                 
-                // Build avatar HTML
+                // Build avatar HTML - circular frame
                 let avatarHtml;
                 if (s.avatar_type === 'emoji' && s.avatar_emoji) {
-                    avatarHtml = `<div class="artist-avatar-large" style="background: linear-gradient(135deg, var(--purple), var(--teal)); display: flex; align-items: center; justify-content: center;">
+                    avatarHtml = `<div class="artist-avatar-large emoji-avatar">
                         <span style="font-size: 48px;">${s.avatar_emoji}</span>
-                        ${s.verified ? '<span class="verified-badge">✓</span>' : ''}
+                        ${s.verified ? '<span class="verified-ring">✓</span>' : ''}
                     </div>`;
                 } else if (s.avatar) {
                     avatarHtml = `<div class="artist-avatar-large">
-                        <img src="${s.avatar}" alt="${s.name}" onerror="this.parentElement.innerHTML='<span style=font-size:48px>${s.name.charAt(0)}</span>'">
-                        ${s.verified ? '<span class="verified-badge">✓</span>' : ''}
+                        <img src="${s.avatar}" alt="${s.name}" onerror="this.parentElement.innerHTML='<span style=font-size:48px>${s.name.charAt(0)}</span>'; this.parentElement.classList.add('emoji-avatar');">
+                        ${s.verified ? '<span class="verified-ring">✓</span>' : ''}
                     </div>`;
                 } else {
-                    avatarHtml = `<div class="artist-avatar-large" style="background: linear-gradient(135deg, var(--purple), var(--teal)); display: flex; align-items: center; justify-content: center;">
+                    avatarHtml = `<div class="artist-avatar-large emoji-avatar">
                         <span style="font-size: 48px;">${s.name.charAt(0)}</span>
                     </div>`;
                 }
                 
-                // Build profile card
+                // Check if visitor (not owner)
+                const userWallet = window.toadz?.userAddress?.toLowerCase();
+                const isOwner = userWallet === wallet.toLowerCase();
+                const isAdmin = userWallet === ADMIN_WALLET;
+                const isVisitor = !isOwner && userWallet;
+                
+                // Build profile card with stats and actions
                 profileCard.innerHTML = `
                     ${avatarHtml}
                     <div class="artist-profile-info">
                         <h1 class="artist-profile-name">${s.name}${s.verified ? '<span class="verified-badge">✓</span>' : ''}</h1>
+                        <p class="artist-profile-style">${s.bio?.split('•')[0]?.trim() || ''}</p>
                         <p class="artist-profile-bio">${s.bio || ''}</p>
                         <div class="artist-socials">
                             ${s.twitter ? `<a href="https://twitter.com/${s.twitter.replace('@','')}" target="_blank" class="artist-social">𝕏</a>` : ''}
@@ -7990,21 +8069,27 @@
                             <span class="artist-stat-label">Items</span>
                         </div>
                         <div class="artist-stat-box">
-                            <span class="artist-stat-value">--</span>
+                            <span class="artist-stat-value gold">--</span>
                             <span class="artist-stat-label">Volume</span>
                         </div>
                         <div class="artist-stat-box">
                             <span class="artist-stat-value">--</span>
                             <span class="artist-stat-label">Collectors</span>
                         </div>
+                        <div class="artist-stat-box">
+                            <span class="artist-stat-value purple">--</span>
+                            <span class="artist-stat-label">Tips</span>
+                        </div>
                     </div>
+                    ${isVisitor ? `
+                    <div class="artist-actions">
+                        <button class="artist-tip-btn" onclick="tipArtist('${wallet}')">💰 Tip Artist</button>
+                        <button class="artist-follow-btn" onclick="followArtist('${wallet}')">+ Follow</button>
+                    </div>
+                    ` : ''}
                 `;
                 
                 // Show owner/admin actions
-                const userWallet = window.toadz?.userAddress?.toLowerCase();
-                const isOwner = userWallet === wallet.toLowerCase();
-                const isAdmin = userWallet === ADMIN_WALLET;
-                
                 if (isOwner || isAdmin) {
                     ownerActions.style.display = 'flex';
                     deleteBtn.style.display = isAdmin ? 'block' : 'none';
@@ -8018,13 +8103,11 @@
                     }
                 }
                 
-                // Load artist's NFTs (TODO: implement when NFT upload is working)
-                nftGrid.innerHTML = `
-                    <div class="empty-state" style="grid-column: 1/-1;">
-                        <div class="empty-icon">🎨</div>
-                        <p>No items yet</p>
-                        <span>${isOwner ? 'Click "Upload NFT" to add your first piece!' : 'Artist hasn\'t uploaded any NFTs yet'}</span>
-                    </div>`;
+                // Update empty hint for owner
+                const emptyHint = document.getElementById('sf-empty-hint');
+                if (emptyHint) {
+                    emptyHint.textContent = isOwner ? 'Click "Upload NFT" to add your first piece!' : 'Artist hasn\'t uploaded any NFTs yet';
+                }
                     
             } catch (err) {
                 console.error('Failed to load storefront:', err);
@@ -8034,6 +8117,36 @@
                         <p>Storefront not found</p>
                     </div>`;
             }
+        }
+        
+        // Tip artist
+        async function tipArtist(wallet) {
+            if (!window.toadz?.isConnected) {
+                showToast('Connect Wallet', 'Please connect your wallet to tip', 'error');
+                openConnectModal();
+                return;
+            }
+            
+            const amount = prompt('Enter tip amount in FLR:', '100');
+            if (!amount || isNaN(amount) || parseFloat(amount) <= 0) return;
+            
+            try {
+                const provider = new ethers.BrowserProvider(window.ethereum);
+                const signer = await provider.getSigner();
+                const tx = await signer.sendTransaction({
+                    to: wallet,
+                    value: ethers.parseEther(amount)
+                });
+                await tx.wait();
+                showToast('Tip Sent! 💰', `${amount} FLR sent to artist`, 'success');
+            } catch (err) {
+                showToast('Error', err.message || 'Failed to send tip', 'error');
+            }
+        }
+        
+        // Follow artist (placeholder)
+        function followArtist(wallet) {
+            showToast('Following!', 'You\'ll be notified of new drops', 'success');
         }
 
         // Delete storefront (admin only)
