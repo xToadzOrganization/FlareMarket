@@ -1130,17 +1130,18 @@
             -ms-overflow-style: none;
         }
         
-        /* ============ ARTIST NFT MODAL ============ */
+        /* ============ ARTIST NFT MODAL - ELEGANT GRADIENT ============ */
         .artist-nft-modal {
-            background: var(--bg-card);
-            border: 1px solid var(--border);
-            border-radius: 24px;
+            background: linear-gradient(145deg, #16161f 0%, #0d0d14 100%);
+            border: 1px solid #222233;
+            border-radius: 28px;
             width: 100%;
             max-width: 950px;
             max-height: 90vh;
             overflow-y: auto;
             position: relative;
             animation: modalSlide 0.3s ease;
+            box-shadow: 0 30px 60px rgba(0,0,0,0.5);
         }
         
         .artist-nft-modal-grid {
@@ -1156,27 +1157,28 @@
         }
         
         .artist-nft-media {
-            background: var(--bg-void);
-            border-radius: 24px 0 0 24px;
+            background: linear-gradient(180deg, #1a1a28 0%, #0f0f18 100%);
+            padding: 28px;
             display: flex;
             align-items: center;
             justify-content: center;
-            overflow: hidden;
+            border-radius: 28px 0 0 28px;
         }
         
         .artist-nft-media img,
         .artist-nft-media video {
             width: 100%;
-            height: 100%;
-            object-fit: contain;
             max-height: 500px;
+            object-fit: contain;
+            border-radius: 20px;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.5);
         }
         
         .artist-nft-details {
-            padding: 32px;
+            padding: 40px;
             display: flex;
             flex-direction: column;
-            gap: 16px;
+            gap: 20px;
         }
         
         .artist-nft-badges {
@@ -1185,52 +1187,58 @@
         }
         
         .artist-nft-badges .badge {
-            padding: 4px 10px;
+            padding: 8px 14px;
             border-radius: 20px;
             font-size: 11px;
             font-weight: 600;
         }
         
         .artist-nft-badges .badge.featured {
-            background: linear-gradient(135deg, #ffd700, #ffaa00);
-            color: #000;
+            background: linear-gradient(135deg, rgba(255,215,0,0.2), rgba(255,170,0,0.1));
+            color: #ffd700;
         }
         
         .artist-nft-badges .badge.auction {
-            background: linear-gradient(135deg, #ff6b35, #f7931e);
-            color: #fff;
+            background: linear-gradient(135deg, rgba(255,100,50,0.2), rgba(255,50,100,0.1));
+            color: #ff6b6b;
         }
         
         .artist-nft-details h2 {
             margin: 0;
-            font-size: 28px;
+            font-size: 30px;
+            font-weight: 700;
+            letter-spacing: -0.5px;
         }
         
         .artist-nft-desc {
-            color: var(--text-dim);
-            line-height: 1.5;
+            color: #888;
+            line-height: 1.7;
+            font-size: 15px;
             margin: 0;
         }
         
         .artist-nft-creator {
             display: flex;
             align-items: center;
-            gap: 12px;
-            padding: 12px;
-            background: var(--bg-surface);
-            border-radius: 12px;
+            gap: 14px;
+            padding: 18px 20px;
+            background: linear-gradient(135deg, rgba(124,58,237,0.08), rgba(0,212,170,0.05));
+            border: 1px solid rgba(124,58,237,0.15);
+            border-radius: 16px;
             cursor: pointer;
+            transition: all 0.2s;
         }
         
         .artist-nft-creator:hover {
-            background: var(--bg-hover);
+            border-color: rgba(124,58,237,0.3);
+            background: linear-gradient(135deg, rgba(124,58,237,0.12), rgba(0,212,170,0.08));
         }
         
         .creator-avatar {
-            width: 44px;
-            height: 44px;
+            width: 52px;
+            height: 52px;
             border-radius: 50%;
-            background: var(--bg-void);
+            background: linear-gradient(135deg, #7c3aed, #00d4aa);
             display: flex;
             align-items: center;
             justify-content: center;
@@ -1250,55 +1258,69 @@
         
         .creator-label {
             font-size: 11px;
-            color: var(--text-dim);
+            color: #666;
         }
         
         .creator-name {
             font-weight: 600;
+            font-size: 16px;
             display: flex;
             align-items: center;
             gap: 6px;
         }
         
+        .creator-arrow {
+            color: #444;
+            font-size: 18px;
+            margin-left: auto;
+        }
+        
         .artist-nft-price-box {
-            padding: 20px;
-            background: var(--bg-surface);
-            border-radius: 12px;
-            border: 1px solid var(--border);
+            background: #111119;
+            border: 1px solid #1f1f2f;
+            border-radius: 18px;
+            padding: 24px;
+        }
+        
+        .price-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
         }
         
         .price-label {
             font-size: 12px;
-            color: var(--text-dim);
-            margin-bottom: 4px;
+            color: #555;
+            margin-bottom: 6px;
         }
         
         .price-main {
-            font-size: 32px;
+            font-size: 36px;
             font-weight: 700;
-            color: var(--teal);
+            color: #00d4aa;
         }
         
         .price-usd {
             font-size: 14px;
-            color: var(--text-dim);
+            color: #555;
         }
         
         .auction-info {
             display: flex;
             justify-content: space-between;
-            margin-top: 12px;
-            padding-top: 12px;
-            border-top: 1px solid var(--border);
+            margin-top: 16px;
+            padding-top: 16px;
+            border-top: 1px solid #1f1f2f;
         }
         
         .auction-stat-label {
             font-size: 11px;
-            color: var(--text-dim);
+            color: #555;
         }
         
         .auction-stat-value {
             font-weight: 600;
+            color: #fff;
         }
         
         .artist-nft-actions {
@@ -1308,60 +1330,72 @@
         
         .artist-nft-actions button {
             flex: 1;
-            padding: 14px 24px;
-            border-radius: 12px;
+            padding: 18px;
+            border-radius: 14px;
             font-weight: 600;
             font-size: 15px;
             cursor: pointer;
-            transition: all 0.2s;
+            border: none;
+            transition: all 0.25s;
         }
         
         .btn-buy {
-            background: linear-gradient(135deg, var(--teal), var(--purple));
-            border: none;
+            background: linear-gradient(135deg, #7c3aed, #00d4aa);
             color: white;
+            box-shadow: 0 8px 25px rgba(124,58,237,0.25);
         }
         
         .btn-buy:hover {
             transform: translateY(-2px);
-            box-shadow: 0 8px 20px rgba(0, 200, 200, 0.3);
+            box-shadow: 0 12px 35px rgba(124,58,237,0.35);
         }
         
         .btn-bid {
             background: linear-gradient(135deg, #ff6b35, #f7931e);
-            border: none;
             color: white;
+            box-shadow: 0 8px 25px rgba(255,107,53,0.25);
+        }
+        
+        .btn-bid:hover {
+            transform: translateY(-2px);
         }
         
         .btn-offer {
-            background: transparent;
-            border: 2px solid var(--border);
-            color: var(--text);
+            background: rgba(255,255,255,0.03);
+            border: 1px solid #2a2a3a;
+            color: #aaa;
         }
         
         .btn-offer:hover {
-            border-color: var(--teal);
+            border-color: #3a3a4a;
+            color: #fff;
         }
         
         .btn-edit {
-            background: var(--bg-surface);
-            border: 1px solid var(--border);
-            color: var(--text);
+            background: rgba(255,255,255,0.03);
+            border: 1px solid #2a2a3a;
+            color: #aaa;
         }
         
         .btn-delete {
             background: transparent;
-            border: 2px solid #ff4444;
+            border: 1px solid rgba(255,68,68,0.3);
             color: #ff4444;
         }
         
+        .btn-delete:hover {
+            background: rgba(255,68,68,0.1);
+            border-color: #ff4444;
+        }
+        
         .artist-nft-meta {
-            padding: 16px;
-            background: var(--bg-surface);
-            border-radius: 12px;
+            padding: 18px;
+            background: rgba(255,255,255,0.02);
+            border: 1px solid #1f1f2f;
+            border-radius: 14px;
             display: flex;
             flex-direction: column;
-            gap: 8px;
+            gap: 10px;
         }
         
         .meta-row {
@@ -1370,16 +1404,17 @@
         }
         
         .meta-label {
-            color: var(--text-dim);
+            color: #555;
             font-size: 13px;
         }
         
         .meta-value {
             font-size: 13px;
+            color: #aaa;
         }
         
         .meta-value.link {
-            color: var(--teal);
+            color: #00d4aa;
             text-decoration: none;
         }
         
@@ -1393,16 +1428,17 @@
         
         .share-btn {
             background: transparent;
-            border: 1px solid var(--border);
-            color: var(--text-dim);
-            padding: 8px 16px;
-            border-radius: 8px;
+            border: 1px solid #2a2a3a;
+            color: #666;
+            padding: 10px 20px;
+            border-radius: 10px;
             cursor: pointer;
+            transition: all 0.2s;
         }
         
         .share-btn:hover {
-            border-color: var(--teal);
-            color: var(--teal);
+            border-color: #00d4aa;
+            color: #00d4aa;
         }
 
         .nft-modal::-webkit-scrollbar {
@@ -3495,9 +3531,7 @@
         .nft-card-info h4 {
             margin: 0 0 4px 0;
             font-size: 14px;
-            white-space: nowrap;
-            overflow: hidden;
-            text-overflow: ellipsis;
+            line-height: 1.3;
         }
         
         .nft-card-info .nft-price {
@@ -8760,6 +8794,14 @@
         
         function closeArtistNftModal(e) {
             if (e && e.target !== e.currentTarget) return;
+            
+            // Pause any playing video
+            const video = document.querySelector('#artist-nft-media video');
+            if (video) {
+                video.pause();
+                video.currentTime = 0;
+            }
+            
             document.getElementById('artist-nft-modal').classList.remove('open');
             document.body.style.overflow = '';
             currentViewingNFT = null;
