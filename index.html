@@ -4761,6 +4761,13 @@
             margin-bottom: 12px;
         }
 
+        .artist-profile-tagline {
+            font-size: 14px;
+            color: var(--purple);
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+
         .artist-profile-bio {
             font-size: 14px;
             color: var(--text-secondary);
@@ -7070,7 +7077,7 @@
                                 <div class="spotlight-content">
                                     <div class="spotlight-label">
                                         <span class="live-dot"></span>
-                                        DROPPING THIS MONTH
+                                        DROPPING NOW
                                     </div>
                                     <h2 class="spotlight-title foxgirls-title">Fox Girls</h2>
                                     <p class="spotlight-desc">5,000 unique foxes. Free mint for sToadz <span class="green">stakers</span>.</p>
@@ -7300,7 +7307,7 @@
                                 <p>3,333 supply</p>
                             </div>
                             <div class="drop-item-price">
-                                <div class="free">FREE: Stake Loft or SBC in Vault</div>
+                                <div class="free">FREE: Stake Loft or SBC</div>
                                 <div class="paid">or 100 FLR</div>
                             </div>
                             <button class="remind-btn" onclick="this.innerHTML='✓ Reminded'; this.classList.add('reminded')">🔔 Remind</button>
@@ -8050,8 +8057,12 @@
                             <input type="text" id="edit-sf-name" required>
                         </div>
                         <div class="form-group">
+                            <label>Tagline</label>
+                            <input type="text" id="edit-sf-tagline" placeholder="Short & punchy - e.g. Digital surrealist from Tokyo" maxlength="80">
+                        </div>
+                        <div class="form-group">
                             <label>Bio</label>
-                            <textarea id="edit-sf-bio" rows="3"></textarea>
+                            <textarea id="edit-sf-bio" rows="3" placeholder="Tell your story..."></textarea>
                         </div>
                         <div class="form-group">
                             <label>Profile Picture</label>
@@ -9007,9 +9018,12 @@
             const deleteBtn = document.getElementById('sf-delete-btn');
             const nftGrid = document.getElementById('sf-nft-grid');
             
-            // Reset
+            // Reset everything immediately
             profileCard.innerHTML = '<div class="empty-state"><div class="empty-icon">⏳</div><p>Loading artist...</p></div>';
             ownerActions.style.display = 'none';
+            nftGrid.innerHTML = '<div class="empty-state" style="grid-column: 1/-1;"><div class="empty-icon">⏳</div><p>Loading...</p></div>';
+            allStorefrontNFTs = [];
+            document.getElementById('sf-stat-items').textContent = '--';
             
             try {
                 const res = await fetch(`${INDEXER_URL}/api/storefront/${wallet}`);
@@ -9052,8 +9066,8 @@
                     ${avatarHtml}
                     <div class="artist-profile-info">
                         <h1 class="artist-profile-name">${s.name}${s.verified ? '<span class="verified-badge">✓</span>' : ''}</h1>
-                        <p class="artist-profile-style">${s.bio?.split('•')[0]?.trim() || ''}</p>
-                        <p class="artist-profile-bio">${s.bio || ''}</p>
+                        ${s.tagline ? `<p class="artist-profile-tagline">${s.tagline}</p>` : ''}
+                        ${s.bio ? `<p class="artist-profile-bio">${s.bio}</p>` : ''}
                         <div class="artist-socials">
                             ${s.twitter ? `<a href="https://twitter.com/${s.twitter.replace('@','')}" target="_blank" class="artist-social">𝕏</a>` : ''}
                             ${s.website ? `<a href="${s.website}" target="_blank" class="artist-social">🌐</a>` : ''}
@@ -9107,8 +9121,10 @@
                 
                 // Load artist's NFTs
                 try {
+                    console.log('Loading NFTs for wallet:', wallet);
                     const nftRes = await fetch(`${INDEXER_URL}/api/storefront/${wallet}/nfts`);
                     const nfts = await nftRes.json();
+                    console.log('Loaded NFTs:', nfts.length, 'for', wallet);
                     
                     // Store for filtering
                     allStorefrontNFTs = nfts || [];
@@ -10237,6 +10253,7 @@
                 .then(res => res.json())
                 .then(s => {
                     document.getElementById('edit-sf-name').value = s.name || '';
+                    document.getElementById('edit-sf-tagline').value = s.tagline || '';
                     document.getElementById('edit-sf-bio').value = s.bio || '';
                     document.getElementById('edit-sf-avatar').value = s.avatar || '';
                     document.getElementById('edit-sf-avatar-type').value = s.avatar_type || 'url';
@@ -10403,6 +10420,7 @@
             
             const data = {
                 name: document.getElementById('edit-sf-name').value,
+                tagline: document.getElementById('edit-sf-tagline').value,
                 bio: document.getElementById('edit-sf-bio').value,
                 avatar: document.getElementById('edit-sf-avatar').value,
                 avatarType: document.getElementById('edit-sf-avatar-type').value,
