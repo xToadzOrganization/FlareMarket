@@ -2733,6 +2733,71 @@
         .activity-ticker:hover {
             animation-play-state: paused;
         }
+        
+        .ticker-item-v2 {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 6px 16px 6px 6px;
+            background: rgba(255,255,255,0.05);
+            border-radius: 8px;
+            margin-right: 12px;
+            white-space: nowrap;
+        }
+        
+        .ticker-thumb {
+            width: 36px;
+            height: 36px;
+            border-radius: 6px;
+            overflow: hidden;
+            flex-shrink: 0;
+        }
+        
+        .ticker-thumb img,
+        .ticker-thumb video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .ticker-info {
+            display: flex;
+            flex-direction: column;
+            gap: 2px;
+        }
+        
+        .ticker-type {
+            font-size: 9px;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+        }
+        
+        .ticker-type.listed {
+            color: var(--teal);
+        }
+        
+        .ticker-type.auction {
+            color: #ff6b35;
+        }
+        
+        .ticker-type.sold {
+            color: #ffd700;
+        }
+        
+        .ticker-name {
+            font-size: 12px;
+            font-weight: 500;
+            max-width: 120px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+        
+        .ticker-price {
+            font-size: 12px;
+            font-weight: 600;
+            color: var(--teal);
+        }
 
         @keyframes tickerScroll {
             0% { transform: translateX(0); }
@@ -10178,10 +10243,25 @@
                 
                 if (activity && activity.length > 0) {
                     const items = activity.map(a => {
-                        const icon = a.type === 'auction' ? '🔥' : '📋';
-                        return `<div class="ticker-item">${icon} ${a.name} ${a.type} by ${a.artist} for ${a.price} FLR</div>`;
+                        const typeLabel = a.type === 'auction' ? 'AUCTION' : 'LISTED';
+                        const typeClass = a.type === 'auction' ? 'auction' : 'listed';
+                        const thumb = a.image_url || '';
+                        const isVideo = thumb.includes('.mp4') || thumb.includes('.webm');
+                        return `
+                            <div class="ticker-item-v2">
+                                <div class="ticker-thumb">
+                                    ${isVideo 
+                                        ? `<video src="${thumb}" muted loop autoplay playsinline></video>`
+                                        : `<img src="${thumb}" alt="">`
+                                    }
+                                </div>
+                                <div class="ticker-info">
+                                    <span class="ticker-type ${typeClass}">${typeLabel}</span>
+                                    <span class="ticker-name">${a.name}</span>
+                                </div>
+                                <span class="ticker-price">${a.price} FLR</span>
+                            </div>`;
                     }).join('');
-                    // Duplicate for seamless loop
                     ticker.innerHTML = items + items;
                 } else {
                     ticker.innerHTML = '<div class="ticker-item">No activity yet • List your first NFT</div>';
