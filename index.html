@@ -2558,6 +2558,26 @@
             font-weight: 900;
             margin-bottom: 8px;
         }
+        
+        .foxgirls-title {
+            background: linear-gradient(90deg, 
+                #ff1493 0%, 
+                #ff1493 45%, 
+                #ffffff 50%, 
+                #ff1493 55%, 
+                #ff1493 100%
+            );
+            background-size: 200% 100%;
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            animation: hotPinkFill 3s ease-in-out infinite;
+        }
+        
+        @keyframes hotPinkFill {
+            0% { background-position: 100% 0; }
+            100% { background-position: -100% 0; }
+        }
 
         .spotlight-desc {
             color: var(--text-secondary);
@@ -7052,7 +7072,7 @@
                                         <span class="live-dot"></span>
                                         DROPPING NOW
                                     </div>
-                                    <h2 class="spotlight-title">Fox Girls</h2>
+                                    <h2 class="spotlight-title foxgirls-title">Fox Girls</h2>
                                     <p class="spotlight-desc">5,000 unique foxes. Free mint for sToadz <span class="green">stakers</span>.</p>
                                     <div class="spotlight-meta">
                                         <span class="spotlight-stat"><strong>2,847</strong> minted</span>
@@ -8971,10 +8991,13 @@
 
         let currentStorefront = null; // Track currently viewed storefront
 
-        function viewStorefront(wallet) {
+        function viewStorefront(wallet, skipHash = false) {
             currentStorefront = wallet;
             loadStorefrontPage(wallet);
-            showPage('artist-storefront');
+            showPage('artist-storefront', true); // Don't let showPage set generic hash
+            if (!skipHash) {
+                window.location.hash = `artist-storefront:${wallet}`;
+            }
         }
 
         async function loadStorefrontPage(wallet) {
@@ -10611,7 +10634,17 @@
         // Handle URL hash routing on load and hash changes
         function handleHashRoute() {
             const hash = window.location.hash.slice(1); // Remove #
-            const validPages = ['home', 'artists', 'staking', 'collections', 'launchpad', 'leaderboard', 'my-nfts'];
+            const validPages = ['home', 'artists', 'staking', 'collections', 'launchpad', 'leaderboard', 'my-nfts', 'artist-storefront', 'mint'];
+            
+            // Check if it's an artist storefront hash (artist-storefront:wallet)
+            if (hash.startsWith('artist-storefront:')) {
+                const wallet = hash.split(':')[1];
+                if (wallet) {
+                    viewStorefront(wallet, true);
+                    return;
+                }
+            }
+            
             const page = validPages.includes(hash) ? hash : 'home';
             showPage(page, true);
         }
