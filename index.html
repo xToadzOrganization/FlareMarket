@@ -8032,12 +8032,10 @@
                 if (s.avatar_type === 'emoji' && s.avatar_emoji) {
                     avatarHtml = `<div class="artist-avatar-large emoji-avatar">
                         <span style="font-size: 48px;">${s.avatar_emoji}</span>
-                        ${s.verified ? '<span class="verified-ring">✓</span>' : ''}
                     </div>`;
                 } else if (s.avatar) {
                     avatarHtml = `<div class="artist-avatar-large">
                         <img src="${s.avatar}" alt="${s.name}" onerror="this.parentElement.innerHTML='<span style=font-size:48px>${s.name.charAt(0)}</span>'; this.parentElement.classList.add('emoji-avatar');">
-                        ${s.verified ? '<span class="verified-ring">✓</span>' : ''}
                     </div>`;
                 } else {
                     avatarHtml = `<div class="artist-avatar-large emoji-avatar">
