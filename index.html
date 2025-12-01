@@ -8119,8 +8119,8 @@
                             <div class="nft-card" onclick="viewNFT('${nft.contract_address}', '${nft.token_id}')">
                                 <div class="nft-card-media">
                                     ${nft.image_url?.includes('.mp4') || nft.image_url?.includes('.webm') 
-                                        ? `<video src="${nft.image_url}" muted loop playsinline onmouseover="this.play()" onmouseout="this.pause()"></video>`
-                                        : `<img src="${nft.image_url}" alt="${nft.name}">`
+                                        ? `<video src="${nft.image_url}" muted loop playsinline autoplay></video>`
+                                        : `<img src="${nft.image_url}" alt="${nft.name}" onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22200%22 height=%22200%22><rect fill=%22%231a1a2e%22 width=%22200%22 height=%22200%22/><text x=%2250%25%22 y=%2250%25%22 fill=%22%23666%22 text-anchor=%22middle%22 dy=%22.3em%22>No Image</text></svg>'">`
                                     }
                                 </div>
                                 <div class="nft-card-info">
@@ -8176,6 +8176,11 @@
         // Follow artist (placeholder)
         function followArtist(wallet) {
             showToast('Following!', 'You\'ll be notified of new drops', 'success');
+        }
+        
+        // View NFT detail (placeholder for now)
+        function viewNFT(contract, tokenId) {
+            showToast('NFT Details', `Token #${tokenId} - Full detail page coming soon!`, 'info');
         }
 
         // Delete storefront (admin only)
