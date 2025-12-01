@@ -3577,6 +3577,62 @@
             background: red;
         }
         
+        .bulk-action-btn {
+            background: var(--bg-surface);
+            border: 1px solid var(--border);
+            color: var(--text);
+            padding: 8px 16px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 13px;
+            transition: all 0.2s;
+        }
+        
+        .bulk-action-btn:hover {
+            border-color: var(--teal);
+            color: var(--teal);
+        }
+        
+        .bulk-action-btn.active {
+            background: var(--teal);
+            color: #000;
+            border-color: var(--teal);
+        }
+        
+        .nft-card.selectable {
+            cursor: pointer;
+        }
+        
+        .nft-card.selected {
+            border: 2px solid var(--teal);
+            box-shadow: 0 0 20px rgba(0,212,170,0.3);
+        }
+        
+        .nft-card .select-check {
+            position: absolute;
+            top: 8px;
+            left: 8px;
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            background: rgba(0,0,0,0.5);
+            border: 2px solid white;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 14px;
+        }
+        
+        .nft-card.selectable .select-check {
+            display: flex;
+        }
+        
+        .nft-card.selected .select-check {
+            background: var(--teal);
+            border-color: var(--teal);
+        }
+        
         .auction-badge {
             position: absolute;
             bottom: 8px;
@@ -7509,6 +7565,7 @@
                 <div id="sf-owner-actions" class="sf-owner-actions" style="display: none;">
                     <button class="sf-action-btn edit" onclick="openEditStorefront()">✏️ Edit Storefront</button>
                     <button class="sf-action-btn upload" onclick="openUploadNFT()">📤 Upload NFT</button>
+                    <button class="sf-action-btn bulk" onclick="openBulkUpload()">📦 Bulk Upload</button>
                     <button class="sf-action-btn verify" id="sf-verify-btn" style="display: none;" onclick="toggleVerify()">✓ Verify</button>
                     <button class="sf-action-btn delete" id="sf-delete-btn" style="display: none;" onclick="deleteStorefront()">🗑️ Delete</button>
                 </div>
@@ -7678,6 +7735,50 @@
                         <div class="form-group">
                             <label>Bio</label>
                             <textarea id="edit-sf-bio" rows="3"></textarea>
+
+        <!-- BULK UPLOAD MODAL -->
+        <div id="bulk-upload-modal" class="modal-overlay">
+            <div class="modal" style="max-width: 600px; max-height: 90vh; overflow-y: auto;">
+                <button class="modal-close" onclick="closeBulkUpload()">&times;</button>
+                <div style="padding: 24px;">
+                    <h2 style="margin-bottom: 8px;">Bulk Upload</h2>
+                    <p style="color: var(--text-muted); margin-bottom: 20px;">Upload multiple NFTs at once (max 20)</p>
+                    
+                    <div id="bulk-dropzone" style="border: 2px dashed var(--border); border-radius: 16px; padding: 40px 20px; text-align: center; cursor: pointer; transition: all 0.2s; margin-bottom: 20px;" onclick="document.getElementById('bulk-file-input').click()">
+                        <div style="font-size: 48px; margin-bottom: 8px;">📦</div>
+                        <p style="margin: 0; color: var(--text);">Drop multiple files here</p>
+                        <small style="color: var(--text-muted);">PNG, JPG, GIF, MP4, WEBM up to 50MB each</small>
+                    </div>
+                    <input type="file" id="bulk-file-input" accept="image/*,video/*" multiple style="display: none;" onchange="handleBulkFileSelect(this)">
+                    
+                    <div id="bulk-items-list" style="margin-bottom: 20px;"></div>
+                    
+                    <div class="form-group">
+                        <label>Default Price (FLR)</label>
+                        <input type="number" id="bulk-default-price" placeholder="1000" value="100" min="1" style="width: 100%; padding: 12px; background: var(--bg-surface); border: 1px solid var(--border); border-radius: 12px; color: var(--text);">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>Sale Type</label>
+                        <select id="bulk-sale-type" style="width: 100%; padding: 12px; background: var(--bg-surface); border: 1px solid var(--border); border-radius: 12px; color: var(--text);">
+                            <option value="fixed">Fixed Price</option>
+                            <option value="auction">Auction</option>
+                        </select>
+                    </div>
+                    
+                    <div id="bulk-progress" style="display: none; margin-bottom: 16px;">
+                        <div style="background: var(--bg-surface); border-radius: 8px; height: 8px; overflow: hidden;">
+                            <div id="bulk-progress-bar" style="background: var(--teal); height: 100%; width: 0%; transition: width 0.3s;"></div>
+                        </div>
+                        <p id="bulk-progress-text" style="text-align: center; margin-top: 8px; font-size: 13px; color: var(--text-muted);"></p>
+                    </div>
+                    
+                    <button type="button" class="apply-submit-btn" id="bulk-submit-btn" onclick="submitBulkUpload()" disabled>
+                        Upload All →
+                    </button>
+                </div>
+            </div>
+        </div>
                         </div>
                         <div class="form-group">
                             <label>Profile Picture</label>
@@ -7830,12 +7931,19 @@
                     </div>
 
                     <section class="section">
-                        <div class="tabs">
-                            <button class="tab active">All</button>
-                            <button class="tab">Staked</button>
-                            <button class="tab">Listed</button>
-                            <button class="tab">Offers Received</button>
-                            <button class="tab">My Offers</button>
+                        <div class="tabs" style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px;">
+                            <div style="display: flex; gap: 8px;">
+                                <button class="tab active">All</button>
+                                <button class="tab">Staked</button>
+                                <button class="tab">Listed</button>
+                                <button class="tab">Offers Received</button>
+                                <button class="tab">My Offers</button>
+                            </div>
+                            <div style="display: flex; gap: 8px;">
+                                <button class="bulk-action-btn" onclick="toggleBulkSelect()">☑️ Select</button>
+                                <button class="bulk-action-btn" id="bulk-transfer-btn" onclick="bulkTransfer()" style="display: none;">📤 Transfer</button>
+                                <button class="bulk-action-btn" id="bulk-list-btn" onclick="bulkList()" style="display: none;">💰 List</button>
+                            </div>
                         </div>
                         <div class="nft-grid" id="my-nfts-grid"></div>
                     </section>
@@ -8814,16 +8922,110 @@
             showToast('Copied', 'Link copied to clipboard', 'success');
         }
         
-        // Buy NFT (placeholder)
+        // Buy NFT
         async function buyNFT(id) {
-            showToast('Coming Soon', 'Buy functionality coming soon', 'info');
+            if (!window.toadz?.isConnected) {
+                showToast('Connect Wallet', 'Please connect your wallet', 'error');
+                openConnectModal();
+                return;
+            }
+            
+            if (!currentViewingNFT) return;
+            
+            const price = currentViewingNFT.price;
+            if (!price || price <= 0) {
+                showToast('Error', 'NFT is not for sale', 'error');
+                return;
+            }
+            
+            if (!confirm(`Buy this NFT for ${price} FLR?`)) return;
+            
+            try {
+                const provider = new ethers.BrowserProvider(window.ethereum);
+                const signer = await provider.getSigner();
+                
+                // Send payment to artist
+                const tx = await signer.sendTransaction({
+                    to: currentViewingNFT.artist_wallet,
+                    value: ethers.parseEther(price.toString())
+                });
+                
+                showToast('Processing...', 'Waiting for confirmation', 'info');
+                await tx.wait();
+                
+                // Record the sale
+                await fetch(`${INDEXER_URL}/api/buy-nft`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        nftId: id,
+                        buyer: window.toadz.userAddress,
+                        txHash: tx.hash
+                    })
+                });
+                
+                showToast('Purchased', 'NFT is now yours', 'success');
+                closeArtistNftModal();
+                if (currentStorefront) loadStorefrontPage(currentStorefront);
+                
+            } catch (err) {
+                showToast('Error', err.message || 'Purchase failed', 'error');
+            }
         }
         
-        // Place bid (placeholder)
+        // Place bid
         async function placeBid(id) {
-            const amount = prompt('Enter your bid amount in FLR:');
-            if (!amount) return;
-            showToast('Coming Soon', 'Auction bidding coming soon', 'info');
+            if (!window.toadz?.isConnected) {
+                showToast('Connect Wallet', 'Please connect your wallet', 'error');
+                openConnectModal();
+                return;
+            }
+            
+            if (!currentViewingNFT) return;
+            
+            const currentBid = currentViewingNFT.price || 0;
+            const minBid = currentBid > 0 ? Math.ceil(currentBid * 1.05) : 100;
+            
+            const amount = prompt(`Enter your bid (minimum ${minBid} FLR):`, minBid.toString());
+            if (!amount || isNaN(parseFloat(amount))) return;
+            
+            const bidAmount = parseFloat(amount);
+            if (bidAmount < minBid) {
+                showToast('Error', `Minimum bid is ${minBid} FLR`, 'error');
+                return;
+            }
+            
+            try {
+                const provider = new ethers.BrowserProvider(window.ethereum);
+                const signer = await provider.getSigner();
+                
+                // Send bid amount to escrow (artist wallet for now)
+                const tx = await signer.sendTransaction({
+                    to: currentViewingNFT.artist_wallet,
+                    value: ethers.parseEther(bidAmount.toString())
+                });
+                
+                showToast('Processing...', 'Waiting for confirmation', 'info');
+                await tx.wait();
+                
+                // Record the bid
+                await fetch(`${INDEXER_URL}/api/place-bid`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        nftId: id,
+                        bidder: window.toadz.userAddress,
+                        amount: bidAmount,
+                        txHash: tx.hash
+                    })
+                });
+                
+                showToast('Bid Placed', `Your bid of ${bidAmount} FLR is now the highest`, 'success');
+                closeArtistNftModal();
+                
+            } catch (err) {
+                showToast('Error', err.message || 'Bid failed', 'error');
+            }
         }
         
         // Make offer (placeholder)
@@ -8831,9 +9033,335 @@
             showToast('Coming Soon', 'Offers coming soon', 'info');
         }
         
-        // Edit NFT (placeholder)
-        function editNFT(id) {
-            showToast('Coming Soon', 'Edit functionality coming soon', 'info');
+        // Edit NFT
+        async function editNFT(id) {
+            if (!currentViewingNFT) return;
+            
+            const newPrice = prompt('Enter new price (FLR):', currentViewingNFT.price || '100');
+            if (!newPrice || isNaN(parseFloat(newPrice))) return;
+            
+            try {
+                const res = await fetch(`${INDEXER_URL}/api/artist-nft/${id}`, {
+                    method: 'PUT',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        wallet: window.toadz.userAddress,
+                        price: parseFloat(newPrice),
+                        saleType: currentViewingNFT.sale_type,
+                        auctionDuration: currentViewingNFT.auction_duration
+                    })
+                });
+                
+                if (res.ok) {
+                    showToast('Updated', 'Price updated successfully', 'success');
+                    closeArtistNftModal();
+                    if (currentStorefront) loadStorefrontPage(currentStorefront);
+                } else {
+                    throw new Error('Failed to update');
+                }
+            } catch (err) {
+                showToast('Error', err.message, 'error');
+            }
+        }
+        
+        // ==================== BULK UPLOAD ====================
+        let bulkUploadFiles = [];
+        let bulkUploadUrls = [];
+        
+        function openBulkUpload() {
+            bulkUploadFiles = [];
+            bulkUploadUrls = [];
+            document.getElementById('bulk-items-list').innerHTML = '';
+            document.getElementById('bulk-submit-btn').disabled = true;
+            document.getElementById('bulk-progress').style.display = 'none';
+            document.getElementById('bulk-upload-modal').classList.add('open');
+        }
+        
+        function closeBulkUpload() {
+            document.getElementById('bulk-upload-modal').classList.remove('open');
+        }
+        
+        async function handleBulkFileSelect(input) {
+            const files = Array.from(input.files).slice(0, 20);
+            const listEl = document.getElementById('bulk-items-list');
+            
+            for (const file of files) {
+                const isVideo = file.type.startsWith('video/');
+                const itemId = bulkUploadFiles.length;
+                
+                bulkUploadFiles.push({
+                    file,
+                    name: file.name.replace(/\.[^/.]+$/, ''),
+                    description: '',
+                    fileType: isVideo ? 'video' : 'image',
+                    uploading: false,
+                    uploaded: false,
+                    url: null
+                });
+                
+                const itemEl = document.createElement('div');
+                itemEl.className = 'bulk-item';
+                itemEl.style.cssText = 'display: flex; align-items: center; gap: 12px; padding: 12px; background: var(--bg-surface); border-radius: 12px; margin-bottom: 8px;';
+                itemEl.innerHTML = `
+                    <div style="width: 50px; height: 50px; background: var(--bg-void); border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 20px;">
+                        ${isVideo ? '🎬' : '🖼️'}
+                    </div>
+                    <div style="flex: 1;">
+                        <input type="text" value="${file.name.replace(/\.[^/.]+$/, '')}" 
+                               onchange="bulkUploadFiles[${itemId}].name = this.value"
+                               style="width: 100%; padding: 8px; background: var(--bg-void); border: 1px solid var(--border); border-radius: 8px; color: var(--text); font-size: 13px;">
+                    </div>
+                    <div id="bulk-item-status-${itemId}" style="font-size: 12px; color: var(--text-muted);">Ready</div>
+                    <button onclick="removeBulkItem(${itemId})" style="background: none; border: none; color: #ff4444; cursor: pointer; font-size: 18px;">×</button>
+                `;
+                listEl.appendChild(itemEl);
+            }
+            
+            document.getElementById('bulk-submit-btn').disabled = bulkUploadFiles.length === 0;
+            input.value = '';
+        }
+        
+        function removeBulkItem(index) {
+            bulkUploadFiles.splice(index, 1);
+            // Rebuild list
+            const listEl = document.getElementById('bulk-items-list');
+            listEl.innerHTML = '';
+            bulkUploadFiles.forEach((item, i) => {
+                const itemEl = document.createElement('div');
+                itemEl.className = 'bulk-item';
+                itemEl.style.cssText = 'display: flex; align-items: center; gap: 12px; padding: 12px; background: var(--bg-surface); border-radius: 12px; margin-bottom: 8px;';
+                itemEl.innerHTML = `
+                    <div style="width: 50px; height: 50px; background: var(--bg-void); border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 20px;">
+                        ${item.fileType === 'video' ? '🎬' : '🖼️'}
+                    </div>
+                    <div style="flex: 1;">
+                        <input type="text" value="${item.name}" 
+                               onchange="bulkUploadFiles[${i}].name = this.value"
+                               style="width: 100%; padding: 8px; background: var(--bg-void); border: 1px solid var(--border); border-radius: 8px; color: var(--text); font-size: 13px;">
+                    </div>
+                    <div id="bulk-item-status-${i}" style="font-size: 12px; color: var(--text-muted);">Ready</div>
+                    <button onclick="removeBulkItem(${i})" style="background: none; border: none; color: #ff4444; cursor: pointer; font-size: 18px;">×</button>
+                `;
+                listEl.appendChild(itemEl);
+            });
+            document.getElementById('bulk-submit-btn').disabled = bulkUploadFiles.length === 0;
+        }
+        
+        async function submitBulkUpload() {
+            if (!window.toadz?.isConnected) {
+                showToast('Connect Wallet', 'Please connect your wallet', 'error');
+                return;
+            }
+            
+            const submitBtn = document.getElementById('bulk-submit-btn');
+            const progressEl = document.getElementById('bulk-progress');
+            const progressBar = document.getElementById('bulk-progress-bar');
+            const progressText = document.getElementById('bulk-progress-text');
+            
+            submitBtn.disabled = true;
+            submitBtn.textContent = 'Uploading files...';
+            progressEl.style.display = 'block';
+            
+            const defaultPrice = parseFloat(document.getElementById('bulk-default-price').value) || 100;
+            const saleType = document.getElementById('bulk-sale-type').value;
+            
+            // Step 1: Upload all files to server
+            const nfts = [];
+            for (let i = 0; i < bulkUploadFiles.length; i++) {
+                const item = bulkUploadFiles[i];
+                const statusEl = document.getElementById(`bulk-item-status-${i}`);
+                
+                statusEl.textContent = 'Uploading...';
+                statusEl.style.color = 'var(--teal)';
+                
+                try {
+                    const formData = new FormData();
+                    formData.append('file', item.file);
+                    
+                    const res = await fetch(`${INDEXER_URL}/api/upload`, {
+                        method: 'POST',
+                        body: formData
+                    });
+                    
+                    const data = await res.json();
+                    if (data.url) {
+                        item.url = data.url;
+                        statusEl.textContent = 'Uploaded';
+                        nfts.push({
+                            imageUrl: data.url,
+                            name: item.name,
+                            description: item.description,
+                            fileType: item.fileType,
+                            price: defaultPrice,
+                            saleType: saleType,
+                            auctionDuration: saleType === 'auction' ? 168 : 0,
+                            featured: false
+                        });
+                    } else {
+                        throw new Error('No URL returned');
+                    }
+                } catch (err) {
+                    statusEl.textContent = 'Failed';
+                    statusEl.style.color = '#ff4444';
+                }
+                
+                progressBar.style.width = `${((i + 1) / bulkUploadFiles.length) * 50}%`;
+                progressText.textContent = `Uploaded ${i + 1}/${bulkUploadFiles.length} files`;
+            }
+            
+            // Step 2: Bulk mint
+            submitBtn.textContent = 'Minting NFTs...';
+            progressText.textContent = 'Minting on blockchain...';
+            
+            try {
+                const res = await fetch(`${INDEXER_URL}/api/bulk-mint`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        artistWallet: window.toadz.userAddress,
+                        nfts: nfts
+                    })
+                });
+                
+                const result = await res.json();
+                
+                progressBar.style.width = '100%';
+                progressText.textContent = `Minted ${result.successCount}/${result.totalCount} NFTs`;
+                
+                showToast('Bulk Upload Complete', `${result.successCount} NFTs created`, 'success');
+                
+                setTimeout(() => {
+                    closeBulkUpload();
+                    if (currentStorefront) loadStorefrontPage(currentStorefront);
+                }, 1500);
+                
+            } catch (err) {
+                showToast('Error', err.message, 'error');
+            }
+            
+            submitBtn.textContent = 'Upload All →';
+            submitBtn.disabled = false;
+        }
+        
+        // ==================== BULK SELECT / TRANSFER / LIST ====================
+        let bulkSelectMode = false;
+        let selectedNFTs = [];
+        
+        function toggleBulkSelect() {
+            bulkSelectMode = !bulkSelectMode;
+            selectedNFTs = [];
+            
+            const selectBtn = document.querySelector('.bulk-action-btn');
+            const transferBtn = document.getElementById('bulk-transfer-btn');
+            const listBtn = document.getElementById('bulk-list-btn');
+            
+            if (bulkSelectMode) {
+                selectBtn.classList.add('active');
+                selectBtn.textContent = '✓ Done';
+                transferBtn.style.display = 'inline-block';
+                listBtn.style.display = 'inline-block';
+                
+                // Add selectable class to all NFT cards
+                document.querySelectorAll('#my-nfts-grid .nft-card').forEach(card => {
+                    card.classList.add('selectable');
+                    // Add checkbox overlay
+                    if (!card.querySelector('.select-check')) {
+                        const check = document.createElement('div');
+                        check.className = 'select-check';
+                        check.innerHTML = '✓';
+                        card.querySelector('.nft-card-media').appendChild(check);
+                    }
+                });
+            } else {
+                selectBtn.classList.remove('active');
+                selectBtn.textContent = '☑️ Select';
+                transferBtn.style.display = 'none';
+                listBtn.style.display = 'none';
+                
+                // Remove selectable class
+                document.querySelectorAll('#my-nfts-grid .nft-card').forEach(card => {
+                    card.classList.remove('selectable', 'selected');
+                });
+            }
+        }
+        
+        function toggleNFTSelection(card, nftId, collection) {
+            if (!bulkSelectMode) return;
+            
+            const index = selectedNFTs.findIndex(n => n.id === nftId && n.collection === collection);
+            if (index > -1) {
+                selectedNFTs.splice(index, 1);
+                card.classList.remove('selected');
+            } else {
+                selectedNFTs.push({ id: nftId, collection: collection });
+                card.classList.add('selected');
+            }
+        }
+        
+        async function bulkTransfer() {
+            if (selectedNFTs.length === 0) {
+                showToast('No NFTs Selected', 'Select NFTs to transfer', 'error');
+                return;
+            }
+            
+            const recipient = prompt(`Transfer ${selectedNFTs.length} NFTs to address:`);
+            if (!recipient || !recipient.startsWith('0x')) {
+                showToast('Invalid Address', 'Please enter a valid wallet address', 'error');
+                return;
+            }
+            
+            if (!confirm(`Transfer ${selectedNFTs.length} NFTs to ${recipient.slice(0,8)}...?`)) return;
+            
+            showToast('Transferring...', 'Please confirm transactions in wallet', 'info');
+            
+            try {
+                const provider = new ethers.BrowserProvider(window.ethereum);
+                const signer = await provider.getSigner();
+                
+                const ERC721_ABI = [
+                    "function safeTransferFrom(address from, address to, uint256 tokenId) external",
+                    "function transferFrom(address from, address to, uint256 tokenId) external"
+                ];
+                
+                let successCount = 0;
+                for (const nft of selectedNFTs) {
+                    try {
+                        const contract = new ethers.Contract(nft.collection, ERC721_ABI, signer);
+                        const tx = await contract.transferFrom(window.toadz.userAddress, recipient, nft.id);
+                        await tx.wait();
+                        successCount++;
+                    } catch (err) {
+                        console.error(`Failed to transfer #${nft.id}:`, err);
+                    }
+                }
+                
+                showToast('Transfer Complete', `${successCount}/${selectedNFTs.length} NFTs transferred`, 'success');
+                toggleBulkSelect();
+                
+            } catch (err) {
+                showToast('Error', err.message, 'error');
+            }
+        }
+        
+        async function bulkList() {
+            if (selectedNFTs.length === 0) {
+                showToast('No NFTs Selected', 'Select NFTs to list', 'error');
+                return;
+            }
+            
+            const price = prompt(`Set price for ${selectedNFTs.length} NFTs (FLR):`);
+            if (!price || isNaN(parseFloat(price))) {
+                showToast('Invalid Price', 'Please enter a valid price', 'error');
+                return;
+            }
+            
+            showToast('Listing...', 'Processing listings', 'info');
+            
+            // For artist NFTs, use our API
+            // For on-chain NFTs, would need marketplace contract
+            // For now, show coming soon for on-chain
+            showToast('Coming Soon', 'Bulk listing for on-chain NFTs coming soon', 'info');
+            toggleBulkSelect();
         }
         
         // Delete NFT (owner only)
