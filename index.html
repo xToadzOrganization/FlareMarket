@@ -6576,9 +6576,9 @@
             
             <nav class="nav">
                 <button class="nav-item active" onclick="showPage('home')">Explore</button>
-                <button class="nav-item" onclick="showPage('artists')">Artists</button>
                 <button class="nav-item" onclick="showPage('collections')">Collections</button>
                 <button class="nav-item highlight" onclick="showPage('staking')">Staking</button>
+                <button class="nav-item" onclick="showPage('artists')">Artists</button>
                 <button class="nav-item" onclick="showPage('launchpad')">Launchpad</button>
                 <button class="nav-item" onclick="showPage('leaderboard')">🏆 Ranks</button>
                 <button class="nav-item" onclick="showPage('my-nfts')">My NFTs</button>
@@ -8032,56 +8032,6 @@
                     <div class="nft-rarity epic">EPIC</div>
                 </div>
     
-    <!-- Artist NFT Detail Modal -->
-    <div class="modal-overlay" id="artist-nft-modal" onclick="closeArtistNftModal(event)">
-        <div class="artist-nft-modal" onclick="event.stopPropagation()">
-            <button class="modal-close" onclick="closeArtistNftModal()">&times;</button>
-            
-            <div class="artist-nft-modal-grid">
-                <div class="artist-nft-media" id="artist-nft-media">
-                    <!-- Media loads here -->
-                </div>
-                
-                <div class="artist-nft-details">
-                    <div class="artist-nft-badges" id="artist-nft-badges"></div>
-                    <h2 id="artist-nft-title">Loading...</h2>
-                    <p id="artist-nft-description" class="artist-nft-desc"></p>
-                    
-                    <div class="artist-nft-creator" id="artist-nft-creator">
-                        <!-- Artist info loads here -->
-                    </div>
-                    
-                    <div class="artist-nft-price-box" id="artist-nft-price-box">
-                        <!-- Price/auction info loads here -->
-                    </div>
-                    
-                    <div class="artist-nft-actions" id="artist-nft-actions">
-                        <!-- Buy/Bid buttons load here -->
-                    </div>
-                    
-                    <div class="artist-nft-meta">
-                        <div class="meta-row">
-                            <span class="meta-label">Contract</span>
-                            <a id="artist-nft-contract" href="#" target="_blank" class="meta-value link">--</a>
-                        </div>
-                        <div class="meta-row">
-                            <span class="meta-label">Token ID</span>
-                            <span id="artist-nft-tokenid" class="meta-value">--</span>
-                        </div>
-                        <div class="meta-row">
-                            <span class="meta-label">Network</span>
-                            <span class="meta-value">Flare</span>
-                        </div>
-                    </div>
-                    
-                    <div class="artist-nft-share">
-                        <button class="share-btn" onclick="shareNFT()">🔗 Share</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-                
                 <div class="nft-modal-info">
                     <div class="nft-modal-header">
                         <div class="nft-modal-collection">Fox Girls</div>
@@ -8191,6 +8141,56 @@
                                 <span class="activity-time">5d ago</span>
                             </div>
                         </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Artist NFT Detail Modal -->
+    <div class="modal-overlay" id="artist-nft-modal" onclick="closeArtistNftModal(event)">
+        <div class="artist-nft-modal" onclick="event.stopPropagation()">
+            <button class="modal-close" onclick="closeArtistNftModal()">&times;</button>
+            
+            <div class="artist-nft-modal-grid">
+                <div class="artist-nft-media" id="artist-nft-media">
+                    <!-- Media loads here -->
+                </div>
+                
+                <div class="artist-nft-details">
+                    <div class="artist-nft-badges" id="artist-nft-badges"></div>
+                    <h2 id="artist-nft-title">Loading...</h2>
+                    <p id="artist-nft-description" class="artist-nft-desc"></p>
+                    
+                    <div class="artist-nft-creator" id="artist-nft-creator">
+                        <!-- Artist info loads here -->
+                    </div>
+                    
+                    <div class="artist-nft-price-box" id="artist-nft-price-box">
+                        <!-- Price/auction info loads here -->
+                    </div>
+                    
+                    <div class="artist-nft-actions" id="artist-nft-actions">
+                        <!-- Buy/Bid buttons load here -->
+                    </div>
+                    
+                    <div class="artist-nft-meta">
+                        <div class="meta-row">
+                            <span class="meta-label">Contract</span>
+                            <a id="artist-nft-contract" href="#" target="_blank" class="meta-value link">--</a>
+                        </div>
+                        <div class="meta-row">
+                            <span class="meta-label">Token ID</span>
+                            <span id="artist-nft-tokenid" class="meta-value">--</span>
+                        </div>
+                        <div class="meta-row">
+                            <span class="meta-label">Network</span>
+                            <span class="meta-value">Flare</span>
+                        </div>
+                    </div>
+                    
+                    <div class="artist-nft-share">
+                        <button class="share-btn" onclick="shareNFT()">🔗 Share</button>
                     </div>
                 </div>
             </div>
