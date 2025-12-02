@@ -10,11 +10,11 @@ const fs = require('fs');
 
 // ==================== CONFIG ====================
 const PORT = process.env.PORT || 8080;
-const RPC_URL = process.env.FLARE_RPC || 'https://rpc.ankr.com/flare';
+const RPC_URL = process.env.FLARE_RPC || 'http://116.202.51.39:9650/ext/bc/C/rpc';
 const FALLBACK_RPC = 'https://flare-api.flare.network/ext/C/rpc';
 const POLL_INTERVAL = 3000; // 3 seconds
-const BATCH_SIZE = parseInt(process.env.BATCH_SIZE || '25'); // Blocks per query - public RPC limited
-const INDEX_DELAY = 100; // ms between batches (rate limiting)
+const BATCH_SIZE = parseInt(process.env.BATCH_SIZE || '2000'); // Private RPC can handle more
+const INDEX_DELAY = 50; // ms between batches
 
 // Flare Mainnet Collections
 const COLLECTIONS = {
@@ -185,6 +185,15 @@ const stmts = {
             updated_at = strftime('%s', 'now')
         WHERE excluded.block_number >= nft_ownership.block_number
     `),
+    // For snapshot - always overwrite regardless of block number
+    forceUpsertOwnership: db.prepare(`
+        INSERT INTO nft_ownership (collection, token_id, owner, block_number, updated_at)
+        VALUES (?, ?, ?, ?, strftime('%s', 'now'))
+        ON CONFLICT(collection, token_id) DO UPDATE SET
+            owner = excluded.owner,
+            block_number = excluded.block_number,
+            updated_at = strftime('%s', 'now')
+    `),
     getUserNfts: db.prepare(`
         SELECT collection, token_id FROM nft_ownership 
         WHERE LOWER(owner) = LOWER(?) 
@@ -283,17 +292,14 @@ async function indexTransfers() {
         const syncRow = stmts.getGlobalSync.get();
         let fromBlock = syncRow ? syncRow.last_block + 1 : 0;
         
-        // If starting fresh, start from recent blocks
-        // With public RPC (30 block limit), we start close to current
-        // Set START_BLOCK env var + private node to backfill history
+        // If starting fresh, start from block 0 (full history)
+        // Set START_BLOCK env var to override
         if (fromBlock === 0) {
             const startBlock = process.env.START_BLOCK;
             if (startBlock) {
                 fromBlock = parseInt(startBlock);
-            } else {
-                // Default: start 50k blocks back (~1 day of Flare blocks)
-                fromBlock = Math.max(0, currentBlock - 50000);
             }
+            // Otherwise stays at 0 - full history with private RPC
         }
         
         if (fromBlock >= currentBlock) {
@@ -446,6 +452,77 @@ async function verifyUserNfts(userAddress) {
     return verified;
 }
 
+// ==================== SNAPSHOT ====================
+let isSnapshotting = false;
+let snapshotProgress = { running: false, collection: null, loaded: 0, total: 0 };
+
+async function snapshotCollection(collectionAddress, collectionName) {
+    const p = await getProvider();
+    const contract = new ethers.Contract(collectionAddress, [
+        'function ownerOf(uint256 tokenId) view returns (address)',
+        'function totalSupply() view returns (uint256)'
+    ], p);
+    
+    let maxTokenId = 10000;
+    try {
+        const supply = await contract.totalSupply();
+        maxTokenId = supply.toNumber();
+        console.log(`  ${collectionName}: totalSupply = ${maxTokenId}`);
+    } catch (e) {
+        console.log(`  ${collectionName}: no totalSupply, scanning up to ${maxTokenId}`);
+    }
+    
+    let loaded = 0;
+    let notFound = 0;
+    const currentBlock = await p.getBlockNumber();
+    
+    // Batch check ownership - smaller batches for public RPC
+    const batchSize = 20;
+    for (let startId = 0; startId <= maxTokenId && notFound < 100; startId += batchSize) {
+        const promises = [];
+        for (let tokenId = startId; tokenId < startId + batchSize && tokenId <= maxTokenId; tokenId++) {
+            promises.push(
+                contract.ownerOf(tokenId)
+                    .then(owner => ({ tokenId, owner: owner.toLowerCase(), exists: true }))
+                    .catch(() => ({ tokenId, owner: null, exists: false }))
+            );
+        }
+        
+        const results = await Promise.all(promises);
+        
+        // Insert in transaction
+        const insertBatch = db.transaction(() => {
+            for (const r of results) {
+                if (r.exists && r.owner) {
+                    stmts.forceUpsertOwnership.run(
+                        collectionAddress.toLowerCase(),
+                        r.tokenId,
+                        r.owner,
+                        currentBlock
+                    );
+                    loaded++;
+                    notFound = 0; // Reset counter on success
+                } else {
+                    notFound++;
+                }
+            }
+        });
+        insertBatch();
+        
+        snapshotProgress.loaded = loaded;
+        
+        // Rate limit for public RPC
+        await new Promise(resolve => setTimeout(resolve, 200));
+        
+        // Progress log every 100 tokens
+        if (startId % 100 === 0 && startId > 0) {
+            console.log(`    ${collectionName}: ${loaded} tokens loaded (checked ${startId})`);
+        }
+    }
+    
+    return loaded;
+}
+
 // ==================== HELPERS ====================
 function getCollectionName(address) {
     if (!address) return 'Unknown';
@@ -547,6 +624,46 @@ app.get('/collections', (req, res) => {
     res.json(collections);
 });
 
+// Get NFTs in a collection
+app.get('/nfts/:collectionAddress', (req, res) => {
+    try {
+        const addr = req.params.collectionAddress.toLowerCase();
+        const nfts = db.prepare(`
+            SELECT token_id, owner, block_number, updated_at 
+            FROM nft_ownership 
+            WHERE collection = ?
+            ORDER BY token_id ASC
+        `).all(addr);
+        res.json(nfts);
+    } catch (err) {
+        res.status(500).json({ error: err.message });
+    }
+});
+
+// Get single NFT
+app.get('/nft/:collectionAddress/:tokenId', (req, res) => {
+    try {
+        const addr = req.params.collectionAddress.toLowerCase();
+        const tokenId = parseInt(req.params.tokenId);
+        const nft = db.prepare(`
+            SELECT * FROM nft_ownership WHERE collection = ? AND token_id = ?
+        `).get(addr, tokenId);
+        
+        if (!nft) {
+            return res.status(404).json({ error: 'NFT not found' });
+        }
+        
+        const col = COLLECTIONS_NORMALIZED[addr];
+        res.json({
+            ...nft,
+            collection_name: col?.name || 'Unknown',
+            symbol: col?.symbol || '???'
+        });
+    } catch (err) {
+        res.status(500).json({ error: err.message });
+    }
+});
+
 // Activity feed
 app.get('/activity', (req, res) => {
     try {
@@ -613,6 +730,124 @@ app.get('/floors', (req, res) => {
 // Sync status
 app.get('/sync', (req, res) => {
     res.json(indexingProgress);
+});
+
+// ==================== ADMIN ENDPOINTS ====================
+
+// POST /admin/snapshot - Load current NFT ownership via ownerOf() calls
+// Use this to bootstrap data before event indexing catches up
+app.post('/admin/snapshot', async (req, res) => {
+    if (isSnapshotting) {
+        return res.status(409).json({ 
+            error: 'Snapshot already in progress',
+            progress: snapshotProgress 
+        });
+    }
+    
+    isSnapshotting = true;
+    snapshotProgress = { running: true, collection: null, loaded: 0, total: Object.keys(COLLECTIONS).length };
+    
+    // Return immediately, run in background
+    res.json({ 
+        success: true, 
+        message: 'Snapshot started. Check /admin/snapshot/status for progress.',
+        collections: Object.keys(COLLECTIONS).length
+    });
+    
+    // Run snapshot in background
+    (async () => {
+        const results = [];
+        let totalLoaded = 0;
+        let index = 0;
+        
+        for (const [addr, data] of Object.entries(COLLECTIONS)) {
+            index++;
+            snapshotProgress.collection = data.name;
+            snapshotProgress.loaded = 0;
+            snapshotProgress.index = index;
+            
+            console.log(`[Snapshot ${index}/${Object.keys(COLLECTIONS).length}] ${data.name}...`);
+            
+            try {
+                const loaded = await snapshotCollection(addr, data.name);
+                results.push({ collection: data.name, address: addr, loaded });
+                totalLoaded += loaded;
+                console.log(`  ✓ ${data.name}: ${loaded} NFTs`);
+            } catch (err) {
+                console.error(`  ✗ ${data.name}: ${err.message}`);
+                results.push({ collection: data.name, address: addr, error: err.message });
+            }
+        }
+        
+        console.log(`[Snapshot Complete] Total: ${totalLoaded} NFTs across ${results.length} collections`);
+        snapshotProgress = { running: false, complete: true, totalLoaded, results };
+        isSnapshotting = false;
+    })();
+});
+
+// GET /admin/snapshot/status - Check snapshot progress
+app.get('/admin/snapshot/status', (req, res) => {
+    res.json(snapshotProgress);
+});
+
+// POST /admin/reset - Wipe NFT data and reset block cursor
+// USE THIS BEFORE switching to private RPC for full re-index
+app.post('/admin/reset', (req, res) => {
+    try {
+        // Wipe NFT ownership
+        const deleted = db.prepare('DELETE FROM nft_ownership').run();
+        
+        // Reset block cursor to 0
+        stmts.setGlobalSync.run(0);
+        
+        // Clear collection sync states
+        db.prepare('DELETE FROM sync_state').run();
+        
+        console.log(`[RESET] Wiped ${deleted.changes} NFT records, reset block cursor to 0`);
+        
+        res.json({
+            success: true,
+            message: 'NFT data wiped, block cursor reset to 0. Indexer will start from START_BLOCK env var or recent blocks.',
+            deleted: deleted.changes
+        });
+    } catch (err) {
+        res.status(500).json({ error: err.message });
+    }
+});
+
+// GET /admin/status - Detailed indexer status
+app.get('/admin/status', (req, res) => {
+    try {
+        const syncState = stmts.getGlobalSync.get();
+        const totalNfts = db.prepare('SELECT COUNT(*) as count FROM nft_ownership').get();
+        const totalEvents = db.prepare('SELECT COUNT(*) as count FROM events').get();
+        
+        // Per-collection breakdown
+        const perCollection = db.prepare(`
+            SELECT o.collection, COUNT(*) as nft_count, COUNT(DISTINCT o.owner) as owner_count
+            FROM nft_ownership o
+            GROUP BY o.collection
+        `).all();
+        
+        // Add names
+        const collectionsWithNames = perCollection.map(c => ({
+            ...c,
+            name: COLLECTIONS_NORMALIZED[c.collection]?.name || 'Unknown'
+        }));
+        
+        res.json({
+            indexer: indexingProgress,
+            snapshot: snapshotProgress,
+            database: {
+                lastBlock: syncState?.last_block || 0,
+                totalNFTs: totalNfts.count,
+                totalEvents: totalEvents.count
+            },
+            collections: collectionsWithNames
+        });
+    } catch (err) {
+        res.status(500).json({ error: err.message });
+    }
 });
 
 // Force reindex (admin)
