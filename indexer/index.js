@@ -10,10 +10,10 @@ const fs = require('fs');
 
 // ==================== CONFIG ====================
 const PORT = process.env.PORT || 8080;
-const RPC_URL = process.env.FLARE_RPC || 'https://flare-api.flare.network/ext/C/rpc';
-const FALLBACK_RPC = 'https://rpc.ankr.com/flare';
+const RPC_URL = process.env.FLARE_RPC || 'https://rpc.ankr.com/flare';
+const FALLBACK_RPC = 'https://flare-api.flare.network/ext/C/rpc';
 const POLL_INTERVAL = 3000; // 3 seconds
-const BATCH_SIZE = parseInt(process.env.BATCH_SIZE || '30'); // Blocks per query - public RPC limited to 30
+const BATCH_SIZE = parseInt(process.env.BATCH_SIZE || '25'); // Blocks per query - public RPC limited
 const INDEX_DELAY = 100; // ms between batches (rate limiting)
 
 // Flare Mainnet Collections
