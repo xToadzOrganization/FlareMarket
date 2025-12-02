@@ -6910,6 +6910,69 @@
     </style>
 </head>
 <body>
+    <!-- Welcome Banner -->
+    <div id="welcome-banner" style="
+        background: linear-gradient(135deg, rgba(139,92,246,0.2) 0%, #0e0e14 100%);
+        border-left: 4px solid #8b5cf6;
+        padding: 24px 32px;
+        margin: 80px 20px 0 20px;
+        border-radius: 12px;
+        position: relative;
+        z-index: 50;
+    ">
+        <button onclick="document.getElementById('welcome-banner').style.display='none'; localStorage.setItem('toadz_banner_dismissed','1')" style="
+            position: absolute;
+            top: 16px;
+            right: 16px;
+            background: rgba(255,255,255,0.1);
+            border: none;
+            color: #8a8a9a;
+            cursor: pointer;
+            font-size: 16px;
+            width: 28px;
+            height: 28px;
+            border-radius: 6px;
+        ">×</button>
+        
+        <div style="max-width: 700px;">
+            <h3 style="margin: 0 0 12px; font-size: 20px; font-weight: 700; color: #fff;">
+                🐸 Welcome to TOADZ Beta
+            </h3>
+            <p style="margin: 0; color: #8a8a9a; font-size: 14px; line-height: 1.7;">
+                We're building the premier NFT marketplace for Flare & Songbird. This is an early beta — 
+                things will change, improve, and occasionally break. We will post annnouncements here in the early days (congrats for being early).
+                Join our Discord to follow development.
+            </p>
+            <div style="margin-top: 16px; display: flex; gap: 12px; flex-wrap: wrap;">
+                <a href="https://discord.gg/toadz" target="_blank" style="
+                    background: #8b5cf6;
+                    color: #fff;
+                    border: none;
+                    padding: 10px 20px;
+                    border-radius: 8px;
+                    font-size: 13px;
+                    font-weight: 600;
+                    cursor: pointer;
+                    text-decoration: none;
+                ">Join Discord</a>
+                <a href="https://twitter.com/ToadzNFT" target="_blank" style="
+                    background: transparent;
+                    color: #8a8a9a;
+                    border: 1px solid #333;
+                    padding: 10px 20px;
+                    border-radius: 8px;
+                    font-size: 13px;
+                    cursor: pointer;
+                    text-decoration: none;
+                ">Follow Updates</a>
+            </div>
+        </div>
+    </div>
+    <script>
+        if(localStorage.getItem('toadz_banner_dismissed')==='1') {
+            document.getElementById('welcome-banner').style.display='none';
+        }
+    </script>
     <div class="toast-container" id="toast-container"></div>
     
     <!-- Custom Dialog Modal -->
