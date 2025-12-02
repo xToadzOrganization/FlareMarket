@@ -6940,8 +6940,8 @@
             </h3>
             <p style="margin: 0; color: #8a8a9a; font-size: 14px; line-height: 1.7;">
                 We're building the premier NFT marketplace for Flare & Songbird. This is an early beta — 
-                things will change, improve, and occasionally break. We will post annnouncements here in the early days (congrats for being early).
-                Join our Discord to follow development.
+                things will change, improve, and occasionally break. Join our Discord to follow development 
+                and help shape the future of TOADZ.
             </p>
             <div style="margin-top: 16px; display: flex; gap: 12px; flex-wrap: wrap;">
                 <a href="https://discord.gg/toadz" target="_blank" style="
@@ -10976,7 +10976,7 @@
             container.innerHTML = collections.map(c => `
                 <div class="collection-card-full" onclick="showPage('collection-detail')">
                     <div class="collection-card-image">
-                        <img src="${c.image || ''}" alt="${c.name}" onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2280%22>🔥</text></svg>'">
+                        <img src="${c.image || ''}" alt="${c.name}" style="${c.name === 'Block Bonez' ? 'animation: none !important;' : ''}" onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2280%22>🔥</text></svg>'">
                     </div>
                     <div class="collection-card-info">
                         <div class="collection-card-name">${c.name}</div>
@@ -11014,9 +11014,9 @@
             `).join('');
         }
 
-        // Flare collection data
+        // Flare collection data with images
         const FLARE_COLLECTIONS = {
-            '0xd1eF6460D9d06a4Ce74d9800b1BC11Ade822b349': { name: 'Block Bonez', symbol: 'BONEZ', image: '' },
+            '0xd1eF6460D9d06a4Ce74d9800b1BC11Ade822b349': { name: 'Block Bonez', symbol: 'BONEZ', image: 'https://ipfs.io/ipfs/bafybeihbaw7yw7jxvnvl6fpzg7je4hvzjmrfd2zw5oklp3a6lus4zqod4q/BareBonez.gif' },
             '0x4FD29d6c713a390Aa38b650254D0cD38a4982dBD': { name: 'Focus Pass', symbol: 'FOCUS', image: '' },
             '0x862B713fEcEbC5304eD7aF993D79A3a6AE8747Dd': { name: 'Flare Apes', symbol: 'FAPES', image: '' },
             '0x94Aa172076A59bAa1B5D63Ae4DBF722F74E45e57': { name: 'Block Bonez Traits', symbol: 'TRAITS', image: '' },
