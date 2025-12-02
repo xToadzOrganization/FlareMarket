@@ -10827,12 +10827,14 @@
                     const collections = await res.json();
                     console.log('Flare collections from indexer:', collections);
                     
-                    // Fetch stats for each collection
+                    // Fetch stats and images for each collection
+                    const provider = new ethers.JsonRpcProvider('https://flare-api.flare.network/ext/C/rpc');
+                    
                     collectionsArray = await Promise.all(collections.map(async (c) => {
                         const addr = c.address;
                         const info = FLARE_COLLECTIONS[addr] || { name: c.name, symbol: c.symbol, image: '' };
                         
-                        // Get collection stats (owner count, total indexed)
+                        // Get collection stats
                         let stats = { owners: 0, totalIndexed: 0 };
                         try {
                             const statsRes = await fetch(`${FLARE_INDEXER_URL}/collection/${addr}`);
@@ -10841,11 +10843,42 @@
                             }
                         } catch (e) {}
                         
+                        // Fetch image from token metadata (try token 1, then 0)
+                        let image = info.image || '';
+                        if (!image) {
+                            try {
+                                const contract = new ethers.Contract(addr, ['function tokenURI(uint256) view returns (string)'], provider);
+                                let tokenURI = '';
+                                try {
+                                    tokenURI = await contract.tokenURI(1);
+                                } catch {
+                                    tokenURI = await contract.tokenURI(0);
+                                }
+                                
+                                // Convert IPFS to HTTP gateway
+                                if (tokenURI.startsWith('ipfs://')) {
+                                    tokenURI = tokenURI.replace('ipfs://', 'https://ipfs.io/ipfs/');
+                                }
+                                
+                                // Fetch metadata
+                                const metaRes = await fetch(tokenURI);
+                                if (metaRes.ok) {
+                                    const meta = await metaRes.json();
+                                    image = meta.image || '';
+                                    if (image.startsWith('ipfs://')) {
+                                        image = image.replace('ipfs://', 'https://ipfs.io/ipfs/');
+                                    }
+                                }
+                            } catch (e) {
+                                console.log('Failed to fetch image for', c.name, e.message);
+                            }
+                        }
+                        
                         return {
                             address: addr,
                             name: info.name || c.name,
                             symbol: info.symbol || c.symbol,
-                            image: info.image || '',
+                            image: image,
                             supply: stats.totalIndexed || '?',
                             owners: stats.owners || 0,
                             floor: '--'
