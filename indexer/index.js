@@ -292,14 +292,12 @@ async function indexTransfers() {
         const syncRow = stmts.getGlobalSync.get();
         let fromBlock = syncRow ? syncRow.last_block + 1 : 0;
         
-        // If starting fresh, start from block 0 (full history)
-        // Set START_BLOCK env var to override
-        if (fromBlock === 0) {
-            const startBlock = process.env.START_BLOCK;
-            if (startBlock) {
-                fromBlock = parseInt(startBlock);
-            }
-            // Otherwise stays at 0 - full history with private RPC
+        // START_BLOCK env var forces minimum block (for pruned nodes)
+        const startBlock = process.env.START_BLOCK ? parseInt(process.env.START_BLOCK) : 0;
+        if (startBlock > 0 && fromBlock < startBlock) {
+            console.log(`Jumping from block ${fromBlock} to START_BLOCK ${startBlock}`);
+            fromBlock = startBlock;
+            stmts.setGlobalSync.run(startBlock);
         }
         
         if (fromBlock >= currentBlock) {
