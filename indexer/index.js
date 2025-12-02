@@ -283,11 +283,10 @@ async function indexTransfers() {
         const syncRow = stmts.getGlobalSync.get();
         let fromBlock = syncRow ? syncRow.last_block + 1 : 0;
         
-        // If starting fresh, start from a reasonable block (Flare mainnet launched around block 0)
-        // For speed, you can set this to a more recent block if you know when NFTs were deployed
+        // If starting fresh, start from a reasonable block
+        // Flare NFTs deployed much later - skip early blocks
         if (fromBlock === 0) {
-            // Check env var for start block override
-            fromBlock = parseInt(process.env.START_BLOCK || '0');
+            fromBlock = parseInt(process.env.START_BLOCK || '40000000');
         }
         
         if (fromBlock >= currentBlock) {
@@ -299,33 +298,20 @@ async function indexTransfers() {
         
         console.log(`Indexing blocks ${fromBlock} to ${toBlock} (${currentBlock - fromBlock} behind)...`);
         
-        // Get all collection addresses
-        const collectionAddresses = Object.keys(COLLECTIONS);
-        
-        // Query Transfer events for all collections at once
-        const filter = {
-            address: collectionAddresses,
-            topics: [TRANSFER_TOPIC],
-            fromBlock,
-            toBlock
-        };
-        
+        // Query each collection separately (some RPCs don't support address arrays)
         let logs = [];
-        try {
-            logs = await p.getLogs(filter);
-        } catch (err) {
-            console.error('Failed to get logs:', err.message);
-            // Try smaller batch
-            if (BATCH_SIZE > 500) {
-                console.log('Retrying with smaller batch...');
-                const smallerToBlock = Math.min(fromBlock + 500, currentBlock);
-                try {
-                    logs = await p.getLogs({...filter, toBlock: smallerToBlock});
-                } catch (err2) {
-                    console.error('Smaller batch also failed:', err2.message);
-                    isIndexing = false;
-                    return;
-                }
+        for (const address of Object.keys(COLLECTIONS)) {
+            try {
+                const filter = {
+                    address: address,
+                    topics: [TRANSFER_TOPIC],
+                    fromBlock,
+                    toBlock
+                };
+                const collectionLogs = await p.getLogs(filter);
+                logs = logs.concat(collectionLogs);
+            } catch (err) {
+                console.log(`  Error querying ${COLLECTIONS[address]?.name || address}: ${err.message}`);
             }
         }
         
