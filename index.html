@@ -10998,7 +10998,7 @@
             if (!container) return;
             
             container.innerHTML = collections.map(c => `
-                <div class="collection-card-full" onclick="showPage('collection-detail')">
+                <div class="collection-card-full" onclick="loadCollectionDetail('${c.address}', 'flare')">
                     <div class="collection-card-image">
                         <img src="${c.image || ''}" alt="${c.name}" style="${c.name === 'Block Bonez' ? 'animation: none !important;' : ''}" onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2280%22>🔥</text></svg>'">
                     </div>
@@ -11019,11 +11019,64 @@
             `).join('');
         }
         
+        async function loadCollectionDetail(address, chain) {
+            const indexerUrl = chain === 'flare' ? FLARE_INDEXER_URL : INDEXER_URL;
+            const collectionsData = chain === 'flare' ? FLARE_COLLECTIONS : SONGBIRD_COLLECTIONS;
+            const info = collectionsData[address] || {};
+            
+            // Update header
+            document.querySelector('.collection-header-image img').src = info.image || '';
+            document.querySelector('.collection-header-name').textContent = info.name || 'Unknown';
+            document.querySelector('.collection-header-desc').textContent = info.description || '';
+            
+            // Fetch stats
+            try {
+                const res = await fetch(`${indexerUrl}/collection/${address}`);
+                if (res.ok) {
+                    const stats = await res.json();
+                    const statValues = document.querySelectorAll('.collection-stat-value');
+                    if (statValues[0]) statValues[0].textContent = stats.totalIndexed || '?';
+                    if (statValues[1]) statValues[1].textContent = '--';
+                    if (statValues[2]) statValues[2].textContent = '--';
+                    if (statValues[3]) statValues[3].textContent = stats.owners || '?';
+                }
+            } catch (e) {}
+            
+            // Fetch NFTs
+            const nftGrid = document.getElementById('collection-nfts');
+            nftGrid.innerHTML = '<div class="empty-state"><div class="empty-icon">⏳</div><p>Loading NFTs...</p></div>';
+            
+            try {
+                const res = await fetch(`${indexerUrl}/nfts/${address}?limit=50`);
+                if (res.ok) {
+                    const nfts = await res.json();
+                    if (nfts.length === 0) {
+                        nftGrid.innerHTML = '<div class="empty-state"><div class="empty-icon">🎨</div><h3>No NFTs listed yet</h3><p>Be the first to list!</p></div>';
+                    } else {
+                        nftGrid.innerHTML = nfts.map(nft => `
+                            <div class="nft-card">
+                                <div class="nft-card-image">
+                                    <img src="${nft.image || ''}" alt="${nft.name || '#' + nft.tokenId}" onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2280%22>${chain === 'flare' ? '🔥' : '🐦'}</text></svg>'">
+                                </div>
+                                <div class="nft-card-info">
+                                    <div class="nft-card-name">${nft.name || '#' + nft.tokenId}</div>
+                                </div>
+                            </div>
+                        `).join('');
+                    }
+                }
+            } catch (e) {
+                nftGrid.innerHTML = '<div class="empty-state"><div class="empty-icon">🎨</div><h3>No NFTs listed yet</h3><p>Be the first to list!</p></div>';
+            }
+            
+            showPage('collection-detail');
+        }
+        
         function renderFlareToScroll(container, collections) {
             if (!container) return;
             
             container.innerHTML = collections.map(c => `
-                <div class="collection-card" onclick="showPage('collection-detail')">
+                <div class="collection-card" onclick="loadCollectionDetail('${c.address}', 'flare')">
                     <div class="collection-image">
                         <img src="${c.image || ''}" alt="${c.name}" onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2280%22>🔥</text></svg>'">
                     </div>
