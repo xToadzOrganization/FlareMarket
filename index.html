@@ -8679,6 +8679,7 @@
         // Current network state
         let currentNetwork = 'flare';
         const INDEXER_URL = 'https://toadz-indexer-production.up.railway.app';
+        const FLARE_INDEXER_URL = 'https://flaremarket-production.up.railway.app';
 
         // Toast notifications
         function showToast(title, message, type = 'info') {
@@ -10679,10 +10680,94 @@
                 // Update wallet address display
                 const addr = window.toadz.userAddress;
                 document.getElementById('my-wallet-address').textContent = addr ? addr.slice(0,6) + '...' + addr.slice(-4) : '';
+                // Load user's NFTs
+                loadMyNfts(addr);
             } else {
                 notConnected.style.display = 'flex';
                 connected.style.display = 'none';
             }
+        }
+        
+        async function loadMyNfts(userAddress) {
+            if (!userAddress) return;
+            
+            const grid = document.getElementById('my-nfts-grid');
+            if (!grid) return;
+            
+            grid.innerHTML = '<div class="empty-state"><div class="empty-icon">⏳</div><p>Loading your NFTs...</p></div>';
+            
+            let allNfts = [];
+            
+            // Fetch from Flare indexer
+            try {
+                const flareRes = await fetch(`${FLARE_INDEXER_URL}/user/${userAddress}/nfts`);
+                if (flareRes.ok) {
+                    const data = await flareRes.json();
+                    console.log('Flare NFTs:', data);
+                    if (data.collections && data.collections.length > 0) {
+                        for (const col of data.collections) {
+                            for (const tokenId of col.tokenIds) {
+                                allNfts.push({
+                                    collection: col.name,
+                                    collectionAddress: col.collection,
+                                    tokenId: tokenId,
+                                    chain: 'flare',
+                                    image: '' // Would need metadata fetch
+                                });
+                            }
+                        }
+                    }
+                }
+            } catch (e) {
+                console.log('Flare NFTs fetch error:', e);
+            }
+            
+            // Also fetch from Songbird indexer
+            try {
+                const sgbRes = await fetch(`${INDEXER_URL}/user/${userAddress}/nfts`);
+                if (sgbRes.ok) {
+                    const data = await sgbRes.json();
+                    console.log('Songbird NFTs:', data);
+                    if (data.collections && data.collections.length > 0) {
+                        for (const col of data.collections) {
+                            for (const tokenId of col.tokenIds) {
+                                const colInfo = SONGBIRD_COLLECTIONS[col.collection?.toLowerCase()] || {};
+                                allNfts.push({
+                                    collection: col.name || colInfo.name || 'Unknown',
+                                    collectionAddress: col.collection,
+                                    tokenId: tokenId,
+                                    chain: 'songbird',
+                                    image: colInfo.image || ''
+                                });
+                            }
+                        }
+                    }
+                }
+            } catch (e) {
+                console.log('Songbird NFTs fetch error:', e);
+            }
+            
+            // Update count
+            document.getElementById('my-owned-count').textContent = allNfts.length;
+            
+            if (allNfts.length === 0) {
+                grid.innerHTML = '<div class="empty-state"><div class="empty-icon">🎨</div><p>No NFTs found</p><span>Buy or mint NFTs to see them here</span></div>';
+                return;
+            }
+            
+            // Render NFTs
+            grid.innerHTML = allNfts.map(n => `
+                <div class="nft-card" data-collection="${n.collectionAddress}" data-token="${n.tokenId}">
+                    <div class="nft-image">
+                        <img src="${n.image || ''}" alt="${n.collection} #${n.tokenId}" onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2280%22>${n.chain === 'flare' ? '🔥' : '🐦'}</text></svg>'">
+                        <span class="nft-badge">${n.chain === 'flare' ? 'FLR' : 'SGB'}</span>
+                    </div>
+                    <div class="nft-info">
+                        <div class="nft-collection">${n.collection}</div>
+                        <div class="nft-name">#${n.tokenId}</div>
+                    </div>
+                </div>
+            `).join('');
         }
 
         function handleUserMenuClick() {
@@ -10712,14 +10797,150 @@
             if (chain === 'songbird') {
                 loadSongbirdData();
             } else {
-                // Reset to Flare (empty for now)
-                renderCollections();
-                renderAllCollections();
-                renderActivityTicker();
+                // Load Flare collections from indexer
+                loadFlareData();
             }
             
             showToast('Network', `Switched to ${chain === 'flare' ? 'Flare' : 'Songbird'}`, 'info');
         }
+
+        // Load Flare data from indexer
+        async function loadFlareData() {
+            const gridContainer = document.getElementById('all-collections-grid');
+            const homeScroll = document.getElementById('collections-scroll');
+            
+            console.log('loadFlareData called');
+            
+            // Show loading state
+            if (gridContainer) {
+                gridContainer.innerHTML = '<div class="empty-state full-width"><div class="empty-icon">⏳</div><p>Loading Flare collections...</p></div>';
+            }
+            if (homeScroll) {
+                homeScroll.innerHTML = '<div class="empty-state"><div class="empty-icon">⏳</div><p>Loading...</p></div>';
+            }
+            
+            let collectionsArray = [];
+            
+            try {
+                const res = await fetch(`${FLARE_INDEXER_URL}/collections`);
+                if (res.ok) {
+                    const collections = await res.json();
+                    console.log('Flare collections from indexer:', collections);
+                    
+                    // Fetch stats for each collection
+                    collectionsArray = await Promise.all(collections.map(async (c) => {
+                        const addr = c.address;
+                        const info = FLARE_COLLECTIONS[addr] || { name: c.name, symbol: c.symbol, image: '' };
+                        
+                        // Get collection stats (owner count, total indexed)
+                        let stats = { owners: 0, totalIndexed: 0 };
+                        try {
+                            const statsRes = await fetch(`${FLARE_INDEXER_URL}/collection/${addr}`);
+                            if (statsRes.ok) {
+                                stats = await statsRes.json();
+                            }
+                        } catch (e) {}
+                        
+                        return {
+                            address: addr,
+                            name: info.name || c.name,
+                            symbol: info.symbol || c.symbol,
+                            image: info.image || '',
+                            supply: stats.totalIndexed || '?',
+                            owners: stats.owners || 0,
+                            floor: '--'
+                        };
+                    }));
+                }
+            } catch (err) {
+                console.log('Flare indexer fetch failed:', err);
+            }
+            
+            // Fallback if no data
+            if (collectionsArray.length === 0) {
+                collectionsArray = Object.entries(FLARE_COLLECTIONS).map(([addr, info]) => ({
+                    address: addr,
+                    name: info.name,
+                    symbol: info.symbol,
+                    image: info.image || '',
+                    supply: '?',
+                    floor: '--'
+                }));
+            }
+            
+            console.log('Rendering', collectionsArray.length, 'Flare collections');
+            
+            renderFlareToGrid(gridContainer, collectionsArray);
+            renderFlareToScroll(homeScroll, collectionsArray);
+        }
+        
+        function renderFlareToGrid(container, collections) {
+            if (!container) return;
+            
+            container.innerHTML = collections.map(c => `
+                <div class="collection-card-full" onclick="showPage('collection-detail')">
+                    <div class="collection-card-image">
+                        <img src="${c.image || ''}" alt="${c.name}" onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2280%22>🔥</text></svg>'">
+                    </div>
+                    <div class="collection-card-info">
+                        <div class="collection-card-name">${c.name}</div>
+                        <div class="collection-card-stats">
+                            <div class="collection-card-stat">
+                                <span class="stat-label">Floor</span>
+                                <span class="stat-value">${c.floor}</span>
+                            </div>
+                            <div class="collection-card-stat">
+                                <span class="stat-label">Items</span>
+                                <span class="stat-value">${typeof c.supply === 'number' ? c.supply.toLocaleString() : c.supply}</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            `).join('');
+        }
+        
+        function renderFlareToScroll(container, collections) {
+            if (!container) return;
+            
+            container.innerHTML = collections.map(c => `
+                <div class="collection-card" onclick="showPage('collection-detail')">
+                    <div class="collection-image">
+                        <img src="${c.image || ''}" alt="${c.name}" onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2280%22>🔥</text></svg>'">
+                    </div>
+                    <div class="collection-info">
+                        <div class="collection-name">${c.name}</div>
+                        <div class="collection-meta">
+                            <span class="collection-items">${typeof c.supply === 'number' ? c.supply.toLocaleString() : c.supply} items</span>
+                            <span class="collection-floor">${c.floor}</span>
+                        </div>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        // Flare collection data
+        const FLARE_COLLECTIONS = {
+            '0xd1eF6460D9d06a4Ce74d9800b1BC11Ade822b349': { name: 'Block Bonez', symbol: 'BONEZ', image: '' },
+            '0x4FD29d6c713a390Aa38b650254D0cD38a4982dBD': { name: 'Focus Pass', symbol: 'FOCUS', image: '' },
+            '0x862B713fEcEbC5304eD7aF993D79A3a6AE8747Dd': { name: 'Flare Apes', symbol: 'FAPES', image: '' },
+            '0x94Aa172076A59bAa1B5D63Ae4DBF722F74E45e57': { name: 'Block Bonez Traits', symbol: 'TRAITS', image: '' },
+            '0xc5F0C8b27dd920F4F469a857D6F0fEcF0fA2bDb8': { name: 'Flare Punks', symbol: 'FPUNKS', image: '' },
+            '0x9d8644A5D8A4ed0B4Ca462Ef32A6d47Eb03c59db': { name: 'Lucky Claw', symbol: 'CLAW', image: '' },
+            '0x595FA9efFad5c0c214b00b1e3004302519BfC1Db': { name: 'Flaremingo Frens', symbol: 'FRENS', image: '' },
+            '0x93365AACe3db5407B0976C0a6C5F46B21BAd3923': { name: 'The Fat Kittens', symbol: 'KITTEN', image: '' },
+            '0x2959D636871D9714dD6E00F4e9700CCc346CC39E': { name: 'Doodle Bunny', symbol: 'BUNNY', image: '' },
+            '0xE2432F1e376482Ec914ebBb910D3BfD8E3F3F29e': { name: 'The Flaremingos', symbol: 'MINGO', image: '' },
+            '0x01269ec72CDC62EB5e90a30363264029A45f43d1': { name: 'Phoenix Project Founders', symbol: 'PHOENIX', image: '' },
+            '0xe6E5fa0b12D9E8ed12Cb8AB733E6444f3c74c68c': { name: 'Poodle & Friends', symbol: 'POODLE', image: '' },
+            '0x5F4283Cf126a4dCcE16b66854Cc9A713893c0000': { name: 'Smuggler Chimps', symbol: 'CHIMP', image: '' },
+            '0x127bB21A24B8Ea5913F1c8c9868800fbCeF1316E': { name: 'Super Bad Monsters', symbol: 'SBM', image: '' },
+            '0xd2516A06D1fAbB9ba84b5fD1de940F6F0EaE3673': { name: 'Minerals', symbol: 'MINERAL', image: '' },
+            '0xa574dD4393e828B8CF7c3C379861C748d321bBFd': { name: 'FlareRock', symbol: 'FROCK', image: '' },
+            '0x9f338Ac5D000BAAB73F619fc75115F2FE9773736': { name: 'Mutant Ape Flare Serum', symbol: 'MAFS', image: '' },
+            '0xf799F44bf672f5c2a141778c328e386eCD867330': { name: 'Phoenix Project Liquidity', symbol: 'PHOENIX-LIQ', image: '' },
+            '0xBc25d2997a7a7b42D2501A4c4d0169f135743a64': { name: 'PoodleFriendIslands', symbol: 'ISLAND', image: '' },
+            '0xbC42e9a6C24664749b2a0D571Fd67f23386e34b8': { name: 'Floor-Sweeper', symbol: 'SWEEP', image: '' }
+        };
 
         // Load Songbird data from indexer
         // Songbird collection data - defined once at top level
@@ -10870,14 +11091,12 @@
 
         // Initialize
         renderAuctions();
-        renderCollections();
+        loadFlareData(); // Load Flare collections by default
         renderNFTs('nft-grid');
-        renderNFTs('my-nfts-grid');
         renderNFTs('artist-nfts');
         renderNFTs('collection-nfts');
         renderStakingPools();
         renderArtists();
-        renderAllCollections();
         renderActivityTicker();
         loadFeaturedNFTs();
         loadLiveAuctions();
