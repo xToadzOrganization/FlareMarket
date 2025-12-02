@@ -10764,12 +10764,15 @@
         async function loadCollectionDetailByAddress(address, chain) {
             const indexerUrl = chain === 'flare' ? FLARE_INDEXER_URL : INDEXER_URL;
             const collectionsData = chain === 'flare' ? FLARE_COLLECTIONS : SONGBIRD_COLLECTIONS;
-            const info = collectionsData[address] || {};
+            const info = collectionsData[address.toLowerCase()] || collectionsData[address] || {};
             
             // Update header
-            document.querySelector('.collection-header-image img').src = info.image || '';
-            document.querySelector('.collection-header-name').textContent = info.name || 'Unknown';
-            document.querySelector('.collection-header-desc').textContent = info.description || '';
+            const headerImg = document.querySelector('.collection-header-image img');
+            if (headerImg) headerImg.src = info.image || '';
+            const headerName = document.querySelector('.collection-header-name');
+            if (headerName) headerName.textContent = info.name || 'Unknown';
+            const headerDesc = document.querySelector('.collection-header-desc');
+            if (headerDesc) headerDesc.textContent = info.description || '';
             
             // Fetch stats
             try {
@@ -10793,25 +10796,60 @@
                 if (res.ok) {
                     const nfts = await res.json();
                     if (nfts.length === 0) {
-                        nftGrid.innerHTML = '<div class="empty-state"><div class="empty-icon">🎨</div><h3>No NFTs listed yet</h3><p>Be the first to list!</p></div>';
+                        nftGrid.innerHTML = '<div class="empty-state"><div class="empty-icon">🎨</div><h3>No NFTs indexed yet</h3><p>Indexing in progress...</p></div>';
                     } else {
+                        // Render with placeholders first
                         nftGrid.innerHTML = nfts.map(nft => `
-                            <div class="nft-card">
+                            <div class="nft-card" data-token-id="${nft.token_id || nft.tokenId}">
                                 <div class="nft-card-image">
-                                    <img src="${nft.image || ''}" alt="#${nft.token_id || nft.tokenId}" onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2280%22>${chain === 'flare' ? '🔥' : '🐦'}</text></svg>'">
+                                    <img src="" alt="#${nft.token_id || nft.tokenId}" data-loading="true" onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2280%22>${chain === 'flare' ? '🔥' : '🐦'}</text></svg>'">
                                 </div>
                                 <div class="nft-card-info">
                                     <div class="nft-card-name">#${nft.token_id || nft.tokenId || '?'}</div>
                                 </div>
                             </div>
                         `).join('');
+                        
+                        // Fetch images from chain in background
+                        fetchNFTImages(address, nfts, chain);
                     }
                 }
             } catch (e) {
-                nftGrid.innerHTML = '<div class="empty-state"><div class="empty-icon">🎨</div><h3>No NFTs listed yet</h3><p>Be the first to list!</p></div>';
+                nftGrid.innerHTML = '<div class="empty-state"><div class="empty-icon">🎨</div><h3>No NFTs indexed yet</h3><p>Indexing in progress...</p></div>';
             }
             
             showPage('collection-detail', true);
+        }
+        
+        async function fetchNFTImages(contractAddress, nfts, chain) {
+            const rpc = chain === 'flare' ? 'https://flare-api.flare.network/ext/C/rpc' : 'https://songbird-api.flare.network/ext/C/rpc';
+            const provider = new ethers.JsonRpcProvider(rpc);
+            const contract = new ethers.Contract(contractAddress, ['function tokenURI(uint256) view returns (string)'], provider);
+            
+            for (const nft of nfts.slice(0, 20)) { // Limit to first 20 for speed
+                const tokenId = nft.token_id || nft.tokenId;
+                try {
+                    let tokenURI = await contract.tokenURI(tokenId);
+                    if (tokenURI.startsWith('ipfs://')) {
+                        tokenURI = tokenURI.replace('ipfs://', 'https://ipfs.io/ipfs/');
+                    }
+                    
+                    const metaRes = await fetch(tokenURI);
+                    if (metaRes.ok) {
+                        const meta = await metaRes.json();
+                        let image = meta.image || '';
+                        if (image.startsWith('ipfs://')) {
+                            image = image.replace('ipfs://', 'https://ipfs.io/ipfs/');
+                        }
+                        
+                        // Update the card
+                        const card = document.querySelector(`.nft-card[data-token-id="${tokenId}"] img`);
+                        if (card) card.src = image;
+                    }
+                } catch (e) {
+                    console.log('Failed to fetch metadata for token', tokenId);
+                }
+            }
         }
         
         // Listen for back/forward buttons
@@ -11117,16 +11155,19 @@
         async function loadCollectionDetail(address, chain, slug) {
             const indexerUrl = chain === 'flare' ? FLARE_INDEXER_URL : INDEXER_URL;
             const collectionsData = chain === 'flare' ? FLARE_COLLECTIONS : SONGBIRD_COLLECTIONS;
-            const info = collectionsData[address] || {};
+            const info = collectionsData[address.toLowerCase()] || collectionsData[address] || {};
             
             // Update URL with clean slug
             const urlSlug = slug || info.slug || address;
             history.pushState(null, '', '/FlareMarket/collection/' + urlSlug);
             
             // Update header
-            document.querySelector('.collection-header-image img').src = info.image || '';
-            document.querySelector('.collection-header-name').textContent = info.name || 'Unknown';
-            document.querySelector('.collection-header-desc').textContent = info.description || '';
+            const headerImg = document.querySelector('.collection-header-image img');
+            if (headerImg) headerImg.src = info.image || '';
+            const headerName = document.querySelector('.collection-header-name');
+            if (headerName) headerName.textContent = info.name || 'Unknown';
+            const headerDesc = document.querySelector('.collection-header-desc');
+            if (headerDesc) headerDesc.textContent = info.description || '';
             
             // Fetch stats
             try {
@@ -11150,22 +11191,26 @@
                 if (res.ok) {
                     const nfts = await res.json();
                     if (nfts.length === 0) {
-                        nftGrid.innerHTML = '<div class="empty-state"><div class="empty-icon">🎨</div><h3>No NFTs listed yet</h3><p>Be the first to list!</p></div>';
+                        nftGrid.innerHTML = '<div class="empty-state"><div class="empty-icon">🎨</div><h3>No NFTs indexed yet</h3><p>Indexing in progress...</p></div>';
                     } else {
+                        // Render with placeholders first
                         nftGrid.innerHTML = nfts.map(nft => `
-                            <div class="nft-card">
+                            <div class="nft-card" data-token-id="${nft.token_id || nft.tokenId}">
                                 <div class="nft-card-image">
-                                    <img src="${nft.image || ''}" alt="${nft.name || '#' + (nft.token_id || nft.tokenId)}" onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2280%22>${chain === 'flare' ? '🔥' : '🐦'}</text></svg>'">
+                                    <img src="" alt="#${nft.token_id || nft.tokenId}" onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2280%22>${chain === 'flare' ? '🔥' : '🐦'}</text></svg>'">
                                 </div>
                                 <div class="nft-card-info">
                                     <div class="nft-card-name">#${nft.token_id || nft.tokenId || '?'}</div>
                                 </div>
                             </div>
                         `).join('');
+                        
+                        // Fetch images from chain in background
+                        fetchNFTImages(address, nfts, chain);
                     }
                 }
             } catch (e) {
-                nftGrid.innerHTML = '<div class="empty-state"><div class="empty-icon">🎨</div><h3>No NFTs listed yet</h3><p>Be the first to list!</p></div>';
+                nftGrid.innerHTML = '<div class="empty-state"><div class="empty-icon">🎨</div><h3>No NFTs indexed yet</h3><p>Indexing in progress...</p></div>';
             }
             
             showPage('collection-detail');
