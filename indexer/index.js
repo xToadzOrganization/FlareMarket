@@ -13,7 +13,7 @@ const PORT = process.env.PORT || 8080;
 const RPC_URL = process.env.FLARE_RPC || 'https://flare-api.flare.network/ext/C/rpc';
 const FALLBACK_RPC = 'https://rpc.ankr.com/flare';
 const POLL_INTERVAL = 3000; // 3 seconds
-const BATCH_SIZE = 2000; // Blocks per query
+const BATCH_SIZE = parseInt(process.env.BATCH_SIZE || '30'); // Blocks per query - public RPC limited to 30
 const INDEX_DELAY = 100; // ms between batches (rate limiting)
 
 // Flare Mainnet Collections
@@ -283,10 +283,17 @@ async function indexTransfers() {
         const syncRow = stmts.getGlobalSync.get();
         let fromBlock = syncRow ? syncRow.last_block + 1 : 0;
         
-        // If starting fresh, start from a reasonable block
-        // Flare NFTs deployed much later - skip early blocks
+        // If starting fresh, start from recent blocks
+        // With public RPC (30 block limit), we start close to current
+        // Set START_BLOCK env var + private node to backfill history
         if (fromBlock === 0) {
-            fromBlock = parseInt(process.env.START_BLOCK || '40000000');
+            const startBlock = process.env.START_BLOCK;
+            if (startBlock) {
+                fromBlock = parseInt(startBlock);
+            } else {
+                // Default: start 50k blocks back (~1 day of Flare blocks)
+                fromBlock = Math.max(0, currentBlock - 50000);
+            }
         }
         
         if (fromBlock >= currentBlock) {
