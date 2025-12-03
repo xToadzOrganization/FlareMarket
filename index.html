@@ -4,6 +4,18 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
     <title>TOADZ | Premier NFT Marketplace</title>
+    <!-- Twitter Card / Open Graph -->
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="TOADZ Marketplace">
+    <meta property="og:title" id="og-title" content="TOADZ | Premier NFT Marketplace on Flare">
+    <meta property="og:description" id="og-description" content="Trade NFTs on Flare & Songbird. Zero platform fees. Earn by sharing.">
+    <meta property="og:image" id="og-image" content="https://toadz.market/preview.png">
+    <meta property="og:url" id="og-url" content="https://toadz.market">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@sToadz">
+    <meta name="twitter:title" id="tw-title" content="TOADZ | Premier NFT Marketplace on Flare">
+    <meta name="twitter:description" id="tw-description" content="Trade NFTs on Flare & Songbird. Zero platform fees. Earn by sharing.">
+    <meta name="twitter:image" id="tw-image" content="https://toadz.market/preview.png">
     <script src="https://cdn.jsdelivr.net/npm/ethers@6/dist/ethers.umd.min.js"></script>
     <script src="toadz-web3.js"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -5981,6 +5993,398 @@
             .podium-item { width: 100%; max-width: 280px; }
             .podium-item.first { order: -1; }
         }
+
+        /* ========== SOCIALS PAGE ========== */
+        .socials-hero::before {
+            background: radial-gradient(ellipse, rgba(0,255,136,0.12) 0%, transparent 70%);
+        }
+
+        .race-arena {
+            position: relative;
+            width: 100%;
+            height: 500px;
+            background: radial-gradient(ellipse at center, rgba(245,158,11,0.08) 0%, var(--bg-card) 50%, var(--bg-void) 100%);
+            border-radius: 20px;
+            border: 1px solid var(--border);
+            overflow: hidden;
+            margin-bottom: 32px;
+        }
+
+        .race-canvas { width: 100%; height: 100%; }
+
+        .race-center-prize {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+            pointer-events: none;
+            z-index: 10;
+        }
+
+        .prize-chest {
+            font-size: 64px;
+            animation: chest-pulse 2s ease-in-out infinite;
+            filter: drop-shadow(0 0 30px rgba(245,158,11,0.5));
+        }
+
+        @keyframes chest-pulse {
+            0%, 100% { transform: scale(1); filter: drop-shadow(0 0 30px rgba(245,158,11,0.5)); }
+            50% { transform: scale(1.1); filter: drop-shadow(0 0 50px rgba(245,158,11,0.8)); }
+        }
+
+        .prize-amount {
+            font-size: 24px;
+            font-weight: 900;
+            color: var(--gold);
+            text-shadow: 0 2px 10px rgba(0,0,0,0.5);
+            margin-top: 8px;
+        }
+
+        .prize-label {
+            font-size: 11px;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .race-info {
+            position: absolute;
+            top: 16px;
+            left: 16px;
+            background: rgba(0,0,0,0.7);
+            backdrop-filter: blur(10px);
+            padding: 12px 16px;
+            border-radius: 12px;
+            border: 1px solid var(--border);
+        }
+
+        .race-info-title {
+            font-size: 13px;
+            font-weight: 700;
+            margin-bottom: 4px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .race-info-title .live {
+            width: 8px;
+            height: 8px;
+            background: var(--accent);
+            border-radius: 50%;
+            animation: pulse 1.5s infinite;
+        }
+
+        .race-countdown {
+            font-size: 20px;
+            font-weight: 800;
+            color: var(--gold);
+        }
+
+        .your-position {
+            position: absolute;
+            top: 16px;
+            right: 16px;
+            background: rgba(0,0,0,0.7);
+            backdrop-filter: blur(10px);
+            padding: 16px 20px;
+            border-radius: 12px;
+            border: 1px solid var(--accent);
+            text-align: center;
+        }
+
+        .your-position-label {
+            font-size: 11px;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            margin-bottom: 4px;
+        }
+
+        .your-position-rank {
+            font-size: 32px;
+            font-weight: 900;
+            color: var(--accent);
+        }
+
+        .your-position-points {
+            font-size: 12px;
+            color: var(--text-secondary);
+        }
+
+        .hub-section {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 24px;
+            margin-bottom: 24px;
+        }
+
+        .hub-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 20px;
+        }
+
+        .hub-title {
+            font-size: 18px;
+            font-weight: 800;
+        }
+
+        .hub-tier {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 14px;
+            background: var(--bg-surface);
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 700;
+        }
+
+        .hub-stats {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 16px;
+            margin-bottom: 20px;
+        }
+
+        .hub-stat {
+            background: var(--bg-surface);
+            border-radius: 12px;
+            padding: 16px;
+            text-align: center;
+        }
+
+        .hub-stat-value {
+            font-size: 24px;
+            font-weight: 800;
+            color: var(--accent);
+        }
+
+        .hub-stat-value.gold { color: var(--gold); }
+        .hub-stat-value.purple { color: var(--purple); }
+
+        .hub-stat-label {
+            font-size: 11px;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            margin-top: 4px;
+        }
+
+        .referral-box {
+            display: flex;
+            gap: 12px;
+            align-items: center;
+        }
+
+        .referral-input {
+            flex: 1;
+            background: var(--bg-void);
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            padding: 14px 16px;
+            font-size: 13px;
+            color: var(--text-secondary);
+            font-family: monospace;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .referral-btn {
+            padding: 14px 20px;
+            border-radius: 10px;
+            font-size: 13px;
+            font-weight: 700;
+            cursor: pointer;
+            border: none;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 150ms ease;
+        }
+
+        .referral-btn.primary {
+            background: var(--accent);
+            color: #000;
+        }
+
+        .referral-btn.primary:hover {
+            background: var(--accent-dim);
+            transform: translateY(-2px);
+        }
+
+        .referral-btn.twitter {
+            background: #000;
+            color: #fff;
+            border: 1px solid #333;
+        }
+
+        .referral-btn.twitter:hover {
+            background: #111;
+            border-color: #555;
+        }
+
+        .socials-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 24px;
+        }
+
+        .social-lb {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            overflow: hidden;
+        }
+
+        .social-lb-header {
+            padding: 16px 20px;
+            border-bottom: 1px solid var(--border);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .social-lb-title {
+            font-size: 14px;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .social-lb-subtitle {
+            font-size: 11px;
+            color: var(--text-muted);
+        }
+
+        .social-lb-list {
+            padding: 8px;
+            max-height: 400px;
+            overflow-y: auto;
+        }
+
+        .slb-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 12px;
+            border-radius: 10px;
+            transition: background 150ms ease;
+        }
+
+        .slb-item:hover { background: var(--bg-surface); }
+
+        .slb-rank {
+            width: 28px;
+            height: 28px;
+            background: var(--bg-surface);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+            font-weight: 800;
+            color: var(--text-muted);
+        }
+
+        .slb-item:nth-child(1) .slb-rank { background: linear-gradient(135deg, #FFD700, #FFA500); color: #000; }
+        .slb-item:nth-child(2) .slb-rank { background: linear-gradient(135deg, #C0C0C0, #A8A8A8); color: #000; }
+        .slb-item:nth-child(3) .slb-rank { background: linear-gradient(135deg, #CD7F32, #B8860B); color: #000; }
+
+        .slb-avatar {
+            width: 36px;
+            height: 36px;
+            background: var(--bg-elevated);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 16px;
+        }
+
+        .slb-info { flex: 1; min-width: 0; }
+
+        .slb-name {
+            font-size: 13px;
+            font-weight: 600;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .slb-meta {
+            font-size: 11px;
+            color: var(--text-muted);
+        }
+
+        .slb-stats { text-align: right; }
+
+        .slb-primary {
+            font-size: 14px;
+            font-weight: 800;
+            color: var(--accent);
+        }
+
+        .slb-secondary {
+            font-size: 11px;
+            color: var(--gold);
+        }
+
+        .how-it-works {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 16px;
+            margin-top: 32px;
+        }
+
+        .how-step {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .how-step-icon { font-size: 32px; margin-bottom: 12px; }
+        .how-step-title { font-size: 13px; font-weight: 700; margin-bottom: 6px; }
+        .how-step-desc { font-size: 11px; color: var(--text-muted); line-height: 1.5; }
+
+        .tier-bronze { color: #CD7F32; }
+        .tier-silver { color: #C0C0C0; }
+        .tier-gold { color: #FFD700; }
+        .tier-diamond { color: #B9F2FF; }
+        .tier-legendary { 
+            background: linear-gradient(135deg, #FFD700, #FF6B6B, #4ECDC4);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .social-empty {
+            padding: 40px 20px;
+            text-align: center;
+        }
+
+        .social-empty-icon { font-size: 40px; margin-bottom: 12px; opacity: 0.5; }
+        .social-empty p { color: var(--text-muted); font-size: 13px; }
+
+        @media (max-width: 1000px) {
+            .socials-grid { grid-template-columns: 1fr; }
+            .hub-stats { grid-template-columns: repeat(3, 1fr); }
+            .how-it-works { grid-template-columns: repeat(2, 1fr); }
+            .race-arena { height: 400px; }
+        }
+
+        @media (max-width: 600px) {
+            .hub-stats { grid-template-columns: repeat(2, 1fr); }
+            .how-it-works { grid-template-columns: 1fr; }
+            .referral-box { flex-direction: column; }
+            .referral-input { width: 100%; }
+            .race-arena { height: 350px; }
+        }
+
         .collection-header {
             padding: 24px 0;
             display: flex;
@@ -7008,7 +7412,7 @@
                 <button class="nav-item" onclick="showPage('artists')">Artists</button>
                 <button class="nav-item" onclick="showPage('collections')">Collections</button>
                 <button class="nav-item" onclick="showPage('launchpad')">Launchpad</button>
-                <button class="nav-item" onclick="showPage('leaderboard')">🏆 Ranks</button>
+                <button class="nav-item" onclick="showPage('socials')">📣 Socials</button>
                 <button class="nav-item" onclick="showPage('my-nfts')">My NFTs</button>
             </nav>
             
@@ -7209,33 +7613,144 @@
         </div>
 
         <!-- LEADERBOARD PAGE -->
-        <div id="page-leaderboard" class="page">
-            <section class="page-hero leaderboard-hero">
+        <div id="page-socials" class="page">
+            <section class="page-hero socials-hero">
                 <div class="container">
                     <div class="page-hero-content">
-                        <span class="hero-badge gold-badge">🏆 LEADERBOARD</span>
-                        <h1>Top Performers</h1>
-                        <p>The biggest stakers, traders, and liquidity providers</p>
+                        <span class="hero-badge" style="background: linear-gradient(135deg, var(--accent), var(--teal)); color: #000;">📣 RACE TO THE CHEST</span>
+                        <h1>Share. Earn. Win.</h1>
+                        <p>Every share moves you closer to the prize. Top 3 split the pot every week.</p>
                     </div>
                 </div>
             </section>
 
             <section class="section">
                 <div class="container" style="max-width: 1100px;">
-                    <!-- Time Filter -->
-                    <div class="leaderboard-filters">
-                        <button class="lb-filter active">All Time</button>
-                        <button class="lb-filter">30 Days</button>
-                        <button class="lb-filter">7 Days</button>
-                        <button class="lb-filter">24 Hours</button>
+                    
+                    <!-- Race Visualization -->
+                    <div class="race-arena" id="race-arena">
+                        <canvas class="race-canvas" id="race-canvas"></canvas>
+                        
+                        <div class="race-center-prize">
+                            <div class="prize-chest">🏆</div>
+                            <div class="prize-amount" id="prize-amount">10,000 POND</div>
+                            <div class="prize-label">Weekly Prize</div>
+                        </div>
+                        
+                        <div class="race-info">
+                            <div class="race-info-title">
+                                <span class="live"></span>
+                                <span>Live Race</span>
+                            </div>
+                            <div class="race-countdown" id="race-countdown">6d 23h 45m</div>
+                        </div>
+                        
+                        <div class="your-position" id="your-position" style="display: none;">
+                            <div class="your-position-label">Your Rank</div>
+                            <div class="your-position-rank" id="your-rank">#1</div>
+                            <div class="your-position-points" id="your-points">0 pts</div>
+                        </div>
                     </div>
-
-                    <!-- Coming Soon State -->
-                    <div class="empty-state full-width" style="padding: 80px 20px;">
-                        <div class="empty-icon">🏆</div>
-                        <p>Leaderboard coming soon</p>
-                        <span>Rankings will appear once trading begins</span>
+                    
+                    <!-- Your Hub -->
+                    <div class="hub-section" id="user-hub">
+                        <div class="hub-header">
+                            <div class="hub-title">🐸 Your Referral Hub</div>
+                            <div class="hub-tier" id="user-tier">
+                                <span>🥉</span>
+                                <span class="tier-bronze">Bronze</span>
+                            </div>
+                        </div>
+                        
+                        <div class="hub-stats">
+                            <div class="hub-stat">
+                                <div class="hub-stat-value purple" id="hub-points">0</div>
+                                <div class="hub-stat-label">Weekly Pts</div>
+                            </div>
+                            <div class="hub-stat">
+                                <div class="hub-stat-value" id="hub-referrals">0</div>
+                                <div class="hub-stat-label">Referrals</div>
+                            </div>
+                            <div class="hub-stat">
+                                <div class="hub-stat-value" id="hub-sales">0</div>
+                                <div class="hub-stat-label">Sales</div>
+                            </div>
+                            <div class="hub-stat">
+                                <div class="hub-stat-value gold" id="hub-earnings">0</div>
+                                <div class="hub-stat-label">FLR Earned</div>
+                            </div>
+                            <div class="hub-stat">
+                                <div class="hub-stat-value" id="hub-clicks">0</div>
+                                <div class="hub-stat-label">Clicks</div>
+                            </div>
+                        </div>
+                        
+                        <div class="referral-box">
+                            <div class="referral-input" id="referral-link">Connect wallet to get your referral link</div>
+                            <button class="referral-btn primary" onclick="copyReferralLink()">📋 Copy Link</button>
+                            <button class="referral-btn twitter" onclick="shareToTwitterGeneral()">𝕏 Share</button>
+                        </div>
                     </div>
+                    
+                    <!-- Leaderboards -->
+                    <div class="socials-grid">
+                        <!-- Weekly Race -->
+                        <div class="social-lb">
+                            <div class="social-lb-header">
+                                <div>
+                                    <div class="social-lb-title">🏁 Weekly Race</div>
+                                    <div class="social-lb-subtitle">Points reset every Sunday</div>
+                                </div>
+                            </div>
+                            <div class="social-lb-list" id="weekly-leaderboard">
+                                <div class="social-empty">
+                                    <div class="social-empty-icon">🏁</div>
+                                    <p>Race starts when you share.<br>Be the first!</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- All-Time Earners -->
+                        <div class="social-lb">
+                            <div class="social-lb-header">
+                                <div>
+                                    <div class="social-lb-title">💰 Top Earners</div>
+                                    <div class="social-lb-subtitle">All-time referral earnings</div>
+                                </div>
+                            </div>
+                            <div class="social-lb-list" id="earnings-leaderboard">
+                                <div class="social-empty">
+                                    <div class="social-empty-icon">💰</div>
+                                    <p>Earn 1% of every sale<br>from your referrals</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- How It Works -->
+                    <div class="how-it-works">
+                        <div class="how-step">
+                            <div class="how-step-icon">🔗</div>
+                            <div class="how-step-title">Get Your Link</div>
+                            <div class="how-step-desc">Connect wallet to generate your unique referral link</div>
+                        </div>
+                        <div class="how-step">
+                            <div class="how-step-icon">📣</div>
+                            <div class="how-step-title">Share Everywhere</div>
+                            <div class="how-step-desc">Post on Twitter, Discord, anywhere. Each click = 1 point</div>
+                        </div>
+                        <div class="how-step">
+                            <div class="how-step-icon">💵</div>
+                            <div class="how-step-title">Earn 1% Forever</div>
+                            <div class="how-step-desc">Get 1% of every NFT sale from people you referred</div>
+                        </div>
+                        <div class="how-step">
+                            <div class="how-step-icon">🏆</div>
+                            <div class="how-step-title">Win Weekly</div>
+                            <div class="how-step-desc">Top 3 racers split 10,000 POND every Sunday</div>
+                        </div>
+                    </div>
+                    
                 </div>
             </section>
         </div>
@@ -8701,6 +9216,7 @@
                     
                     <div class="artist-nft-share">
                         <button class="share-btn" onclick="shareNFT()">🔗 Share</button>
+                        <button class="share-btn" onclick="shareToTwitter()" style="background:#000;border:1px solid #333;">𝕏 Tweet</button>
                     </div>
                 </div>
             </div>
@@ -8733,7 +9249,7 @@
         <!-- Expandable Menu -->
         <div class="mobile-menu-expand" id="mobile-menu-expand">
             <button class="mobile-menu-item" onclick="showPage('artists'); toggleMobileMenu()">Artists</button>
-            <button class="mobile-menu-item" onclick="showPage('leaderboard'); toggleMobileMenu()">🏆 Ranks</button>
+            <button class="mobile-menu-item" onclick="showPage('socials'); toggleMobileMenu()">📣 Socials</button>
             <button class="mobile-menu-item" onclick="showPage('my-nfts'); toggleMobileMenu()">My NFTs</button>
         </div>
     </nav>
@@ -9390,12 +9906,25 @@
         
         function shareNFT() {
             if (!currentViewingNFT) return;
-            const url = window.location.origin + window.location.pathname + `?nft=${currentViewingNFT.id}`;
+            const refParam = window.toadz?.userAddress ? `&ref=${window.toadz.userAddress}` : '';
+            const url = window.location.origin + window.location.pathname + `?nft=${currentViewingNFT.id}${refParam}`;
             navigator.clipboard.writeText(url);
-            showToast('Copied', 'Link copied to clipboard', 'success');
+            showToast('Copied', 'Referral link copied. Earn 1% on sales!', 'success');
         }
         
-        // Buy NFT
+        // Share to Twitter
+        function shareToTwitter() {
+            if (!currentViewingNFT) return;
+            const refParam = window.toadz?.userAddress ? `&ref=${window.toadz.userAddress}` : '';
+            const shareUrl = window.location.origin + window.location.pathname + `?nft=${currentViewingNFT.id}${refParam}`;
+            const name = currentViewingNFT.name || 'NFT';
+            const price = currentViewingNFT.price ? ` • ${currentViewingNFT.price} FLR` : '';
+            const text = encodeURIComponent(`${name}${price}\n\nListed on @sToadz marketplace 🐸\n\n`);
+            window.open(`https://twitter.com/intent/tweet?text=${text}&url=${encodeURIComponent(shareUrl)}`, '_blank', 'width=550,height=420');
+            trackTwitterShare('nft', currentViewingNFT.id);
+        }
+        
+        // Buy NFT (with referral split)
         async function buyNFT(id) {
             if (!window.toadz?.isConnected) {
                 showToast('Connect Wallet', 'Please connect your wallet', 'error');
@@ -9411,21 +9940,51 @@
                 return;
             }
             
+            const referrer = getReferrer();
             const confirmed = await customConfirm('Confirm Purchase', `Buy this NFT for ${price} FLR?`);
             if (!confirmed) return;
             
             try {
                 const provider = new ethers.BrowserProvider(window.ethereum);
                 const signer = await provider.getSigner();
+                const totalWei = ethers.parseEther(price.toString());
+                
+                // Calculate splits (1% to referrer if exists)
+                const referralWei = referrer ? (totalWei * 1n) / 100n : 0n;
+                const artistWei = totalWei - referralWei;
                 
                 // Send payment to artist
+                showToast('Processing...', 'Sending payment', 'info');
                 const tx = await signer.sendTransaction({
                     to: currentViewingNFT.artist_wallet,
-                    value: ethers.parseEther(price.toString())
+                    value: artistWei
                 });
-                
-                showToast('Processing...', 'Waiting for confirmation', 'info');
                 await tx.wait();
+                
+                // Send referral fee if applicable
+                let refTxHash = null;
+                if (referrer && referralWei > 0n) {
+                    const refTx = await signer.sendTransaction({ to: referrer, value: referralWei });
+                    await refTx.wait();
+                    refTxHash = refTx.hash;
+                    
+                    // Track referral sale
+                    try {
+                        await fetch(`${INDEXER_URL}/api/referral/sale`, {
+                            method: 'POST',
+                            headers: { 'Content-Type': 'application/json' },
+                            body: JSON.stringify({
+                                referrer,
+                                buyer: window.toadz.userAddress,
+                                nftId: id,
+                                salePrice: price,
+                                referralAmount: parseFloat(ethers.formatEther(referralWei)),
+                                txHash: tx.hash,
+                                referralTxHash: refTxHash
+                            })
+                        });
+                    } catch (e) {}
+                }
                 
                 // Record the sale
                 await fetch(`${INDEXER_URL}/api/buy-nft`, {
@@ -10710,6 +11269,11 @@
                 updateMyNftsPageState();
             }
             
+            // Initialize socials page
+            if (page === 'socials') {
+                onSocialsPageShow();
+            }
+            
             window.scrollTo(0, 0);
         }
         
@@ -10749,7 +11313,7 @@
                 }
             }
             
-            const validPages = ['', 'artists', 'staking', 'collections', 'launchpad', 'leaderboard', 'my-nfts', 'mint'];
+            const validPages = ['', 'artists', 'staking', 'collections', 'launchpad', 'socials', 'my-nfts', 'mint'];
             const page = validPages.includes(path) ? (path || 'home') : 'home';
             showPage(page, true);
         }
@@ -12120,6 +12684,328 @@
         
         // Load immediately
         loadPublicPoolStats();
+        
+        // ==================== REFERRAL SYSTEM ====================
+        const REFERRAL_KEY = 'toadz_referrer';
+        let raceParticipants = [];
+        let raceAnimationId = null;
+        
+        // Initialize referral tracking on page load
+        function initReferralTracking() {
+            const params = new URLSearchParams(window.location.search);
+            const ref = params.get('ref');
+            
+            if (ref && ref.startsWith('0x') && ref.length === 42) {
+                if (!localStorage.getItem(REFERRAL_KEY)) {
+                    localStorage.setItem(REFERRAL_KEY, ref.toLowerCase());
+                    trackReferralClick(ref);
+                }
+            }
+        }
+        
+        // Track click
+        async function trackReferralClick(referrer) {
+            try {
+                await fetch(`${INDEXER_URL}/api/referral/click`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ referrer })
+                });
+            } catch (e) {}
+        }
+        
+        // Get referrer
+        function getReferrer() {
+            const ref = localStorage.getItem(REFERRAL_KEY);
+            if (ref && window.toadz?.userAddress?.toLowerCase() === ref.toLowerCase()) return null;
+            return ref;
+        }
+        
+        // Get user's referral link
+        function getUserRefLink() {
+            if (!window.toadz?.userAddress) return null;
+            return `${window.location.origin}${window.location.pathname}?ref=${window.toadz.userAddress}`;
+        }
+        
+        // Copy referral link
+        function copyReferralLink() {
+            const link = getUserRefLink();
+            if (!link) {
+                showToast('Connect Wallet', 'Connect your wallet first', 'error');
+                return;
+            }
+            navigator.clipboard.writeText(link);
+            showToast('Copied', 'Share it everywhere. Earn 1% on every sale!', 'success');
+        }
+        
+        // Share to Twitter (general)
+        function shareToTwitterGeneral() {
+            const link = getUserRefLink();
+            if (!link) {
+                showToast('Connect Wallet', 'Connect your wallet first', 'error');
+                return;
+            }
+            const tweets = [
+                `Trading NFTs on Flare? Check out @sToadz marketplace 🐸\n\nZero fees. Real utility.\n\n`,
+                `Found the cleanest NFT marketplace on Flare 🔥\n\n@sToadz - Zero platform fees\n\n`,
+                `@sToadz marketplace is what NFT trading should be.\n\nNo BS. No fees. Just trade. 🐸\n\n`
+            ];
+            const text = encodeURIComponent(tweets[Math.floor(Math.random() * tweets.length)]);
+            window.open(`https://twitter.com/intent/tweet?text=${text}&url=${encodeURIComponent(link)}`, '_blank', 'width=550,height=420');
+            trackTwitterShare('general');
+        }
+        
+        // Track Twitter share
+        async function trackTwitterShare(type = 'general', nftId = null) {
+            if (!window.toadz?.userAddress) return;
+            try {
+                await fetch(`${INDEXER_URL}/api/referral/twitter-share`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ wallet: window.toadz.userAddress, shareType: type, nftId })
+                });
+            } catch (e) {}
+        }
+        
+        // ==================== RACE VISUALIZATION ====================
+        let raceTime = 0;
+        
+        function initRaceCanvas() {
+            const canvas = document.getElementById('race-canvas');
+            if (!canvas) return;
+            
+            const ctx = canvas.getContext('2d');
+            const container = document.getElementById('race-arena');
+            
+            function resize() {
+                canvas.width = container.offsetWidth;
+                canvas.height = container.offsetHeight;
+            }
+            resize();
+            window.addEventListener('resize', resize);
+            
+            function animate() {
+                raceTime += 0.015;
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+                
+                const centerX = canvas.width / 2;
+                const centerY = canvas.height / 2;
+                const maxRadius = Math.min(centerX, centerY) - 70;
+                
+                // Draw track rings (more visible)
+                for (let i = 1; i <= 5; i++) {
+                    ctx.beginPath();
+                    ctx.arc(centerX, centerY, maxRadius * (i / 5), 0, Math.PI * 2);
+                    ctx.strokeStyle = `rgba(255,255,255,${0.04 + (i === 5 ? 0.03 : 0)})`;
+                    ctx.lineWidth = 1;
+                    ctx.stroke();
+                }
+                
+                // Draw participants
+                const participants = raceParticipants.length > 0 ? raceParticipants : [];
+                
+                participants.forEach((p, i) => {
+                    const wobble = Math.sin(raceTime + i * 1.3) * 0.04;
+                    const angle = (i / Math.max(participants.length, 1)) * Math.PI * 2 - Math.PI / 2 + wobble;
+                    const distance = maxRadius * p.position;
+                    const x = centerX + Math.cos(angle) * distance;
+                    const y = centerY + Math.sin(angle) * distance;
+                    const pulse = 1 + Math.sin(raceTime * 2 + i) * 0.08;
+                    
+                    // Glow for top 3
+                    if (i < 3) {
+                        const glowColors = ['rgba(255,215,0,0.45)', 'rgba(192,192,192,0.35)', 'rgba(205,127,50,0.3)'];
+                        ctx.beginPath();
+                        ctx.arc(x, y, 30 * pulse, 0, Math.PI * 2);
+                        ctx.fillStyle = glowColors[i];
+                        ctx.fill();
+                    }
+                    
+                    // Avatar circle
+                    ctx.beginPath();
+                    ctx.arc(x, y, 20 * pulse, 0, Math.PI * 2);
+                    const colors = ['#FFD700', '#C0C0C0', '#CD7F32'];
+                    ctx.fillStyle = i < 3 ? colors[i] : '#1a1a24';
+                    ctx.fill();
+                    ctx.strokeStyle = i < 3 ? colors[i] : '#444';
+                    ctx.lineWidth = 2;
+                    ctx.stroke();
+                    
+                    // Rank number
+                    ctx.fillStyle = i < 3 ? '#000' : '#999';
+                    ctx.font = 'bold 11px Inter, Arial, sans-serif';
+                    ctx.textAlign = 'center';
+                    ctx.textBaseline = 'middle';
+                    ctx.fillText(i + 1, x, y);
+                    
+                    // Wallet label for top 8
+                    if (i < 8 && p.wallet) {
+                        ctx.fillStyle = 'rgba(255,255,255,0.7)';
+                        ctx.font = '9px Inter, Arial, sans-serif';
+                        ctx.fillText(p.wallet.slice(0,6) + '...' + p.wallet.slice(-4), x, y + 28);
+                        ctx.fillStyle = i < 3 ? colors[i] : '#00ff88';
+                        ctx.font = 'bold 9px Inter, Arial, sans-serif';
+                        ctx.fillText(p.points + ' pts', x, y + 40);
+                    }
+                });
+                
+                raceAnimationId = requestAnimationFrame(animate);
+            }
+            
+            animate();
+        }
+        
+        // Load race data
+        async function loadRaceData() {
+            try {
+                const res = await fetch(`${INDEXER_URL}/api/referral/race`);
+                if (res.ok) {
+                    const data = await res.json();
+                    raceParticipants = data.participants || [];
+                    const timeLeft = data.weekEnd - Math.floor(Date.now() / 1000);
+                    updateCountdown(timeLeft);
+                }
+            } catch (e) {
+                console.log('Failed to load race data');
+            }
+        }
+        
+        // Update countdown display
+        function updateCountdown(seconds) {
+            const days = Math.floor(seconds / 86400);
+            const hours = Math.floor((seconds % 86400) / 3600);
+            const mins = Math.floor((seconds % 3600) / 60);
+            const el = document.getElementById('race-countdown');
+            if (el) el.textContent = `${days}d ${hours}h ${mins}m`;
+        }
+        
+        // Load user stats
+        async function loadUserStats() {
+            const linkEl = document.getElementById('referral-link');
+            if (!window.toadz?.userAddress) {
+                if (linkEl) linkEl.textContent = 'Connect wallet to get your referral link';
+                const posEl = document.getElementById('your-position');
+                if (posEl) posEl.style.display = 'none';
+                return;
+            }
+            
+            if (linkEl) linkEl.textContent = getUserRefLink();
+            
+            try {
+                const res = await fetch(`${INDEXER_URL}/api/referral/stats/${window.toadz.userAddress}`);
+                if (res.ok) {
+                    const stats = await res.json();
+                    
+                    const pts = document.getElementById('hub-points');
+                    const refs = document.getElementById('hub-referrals');
+                    const sales = document.getElementById('hub-sales');
+                    const earn = document.getElementById('hub-earnings');
+                    const clicks = document.getElementById('hub-clicks');
+                    
+                    if (pts) pts.textContent = stats.weeklyPoints || 0;
+                    if (refs) refs.textContent = stats.referrals || 0;
+                    if (sales) sales.textContent = stats.sales || 0;
+                    if (earn) earn.textContent = (stats.earnings || 0).toFixed(2);
+                    if (clicks) clicks.textContent = stats.clicks || 0;
+                    
+                    updateTierBadge(stats.earnings || 0);
+                    
+                    if (stats.rank) {
+                        const posEl = document.getElementById('your-position');
+                        const rankEl = document.getElementById('your-rank');
+                        const ptsEl = document.getElementById('your-points');
+                        if (posEl) posEl.style.display = 'block';
+                        if (rankEl) rankEl.textContent = `#${stats.rank}`;
+                        if (ptsEl) ptsEl.textContent = `${stats.weeklyPoints || 0} pts`;
+                    }
+                }
+            } catch (e) {}
+        }
+        
+        // Update tier badge
+        function updateTierBadge(earnings) {
+            const tierEl = document.getElementById('user-tier');
+            if (!tierEl) return;
+            
+            let tier = { icon: '🥉', name: 'Bronze', class: 'tier-bronze' };
+            if (earnings >= 5000) tier = { icon: '🌟', name: 'Legendary', class: 'tier-legendary' };
+            else if (earnings >= 1000) tier = { icon: '💎', name: 'Diamond', class: 'tier-diamond' };
+            else if (earnings >= 500) tier = { icon: '🥇', name: 'Gold', class: 'tier-gold' };
+            else if (earnings >= 100) tier = { icon: '🥈', name: 'Silver', class: 'tier-silver' };
+            
+            tierEl.innerHTML = `<span>${tier.icon}</span><span class="${tier.class}">${tier.name}</span>`;
+        }
+        
+        // Load leaderboards
+        async function loadLeaderboards() {
+            // Weekly
+            try {
+                const res = await fetch(`${INDEXER_URL}/api/referral/leaderboard/weekly?limit=10`);
+                if (res.ok) {
+                    const data = await res.json();
+                    renderLeaderboard('weekly-leaderboard', data, 'weekly_points', 'pts');
+                }
+            } catch (e) {}
+            
+            // Earnings
+            try {
+                const res = await fetch(`${INDEXER_URL}/api/referral/leaderboard/earnings?limit=10`);
+                if (res.ok) {
+                    const data = await res.json();
+                    renderLeaderboard('earnings-leaderboard', data, 'total_earnings', 'FLR');
+                }
+            } catch (e) {}
+        }
+        
+        // Render leaderboard
+        function renderLeaderboard(containerId, data, valueKey, suffix) {
+            const container = document.getElementById(containerId);
+            if (!container) return;
+            
+            if (!data || data.length === 0) {
+                container.innerHTML = `
+                    <div class="social-empty">
+                        <div class="social-empty-icon">${containerId.includes('weekly') ? '🏁' : '💰'}</div>
+                        <p>Be the first to join!</p>
+                    </div>
+                `;
+                return;
+            }
+            
+            container.innerHTML = data.map((item, i) => `
+                <div class="slb-item">
+                    <div class="slb-rank">${i + 1}</div>
+                    <div class="slb-avatar">${getTierEmoji(item.total_earnings || 0)}</div>
+                    <div class="slb-info">
+                        <div class="slb-name">${item.wallet.slice(0,6)}...${item.wallet.slice(-4)}</div>
+                        <div class="slb-meta">${item.total_referrals || item.weekly_referrals || 0} referrals</div>
+                    </div>
+                    <div class="slb-stats">
+                        <div class="slb-primary">${item[valueKey] || 0} ${suffix}</div>
+                        <div class="slb-secondary">${item.total_sales || item.weekly_sales || 0} sales</div>
+                    </div>
+                </div>
+            `).join('');
+        }
+        
+        function getTierEmoji(earnings) {
+            if (earnings >= 5000) return '🌟';
+            if (earnings >= 1000) return '💎';
+            if (earnings >= 500) return '🥇';
+            if (earnings >= 100) return '🥈';
+            return '🥉';
+        }
+        
+        // Called when showing socials page
+        function onSocialsPageShow() {
+            initRaceCanvas();
+            loadRaceData();
+            loadUserStats();
+            loadLeaderboards();
+        }
+        
+        // Init referral tracking on load
+        initReferralTracking();
     </script>
 </body>
 </html>
