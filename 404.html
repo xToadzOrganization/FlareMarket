@@ -2,14 +2,27 @@
 <html>
 <head>
     <meta charset="utf-8">
-    <title>Redirecting...</title>
+    <title>TOADZ</title>
     <script>
-        // Redirect to index.html with path preserved
-        var path = window.location.pathname + window.location.search;
-        window.location.replace('/FlareMarket/?p=' + encodeURIComponent(path));
+        // GitHub Pages SPA redirect
+        // Converts /FlareMarket/collection/stoadz to /FlareMarket/?route=collection/stoadz
+        var pathSegmentsToKeep = 1; // Keep /FlareMarket/
+        var l = window.location;
+        var path = l.pathname.split('/').slice(pathSegmentsToKeep + 1).join('/');
+        if (path) {
+            l.replace(
+                l.protocol + '//' + l.hostname + (l.port ? ':' + l.port : '') +
+                l.pathname.split('/').slice(0, pathSegmentsToKeep + 1).join('/') + '/' +
+                '?route=' + path +
+                (l.search ? '&' + l.search.slice(1) : '') +
+                l.hash
+            );
+        } else {
+            l.replace(l.protocol + '//' + l.hostname + (l.port ? ':' + l.port : '') + '/FlareMarket/');
+        }
     </script>
 </head>
 <body>
-    Redirecting...
+    <p>Redirecting...</p>
 </body>
 </html>
