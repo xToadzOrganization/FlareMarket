@@ -10717,9 +10717,9 @@
         function handleHashRoute() {
             // Check for redirect from 404.html
             const params = new URLSearchParams(window.location.search);
-            const redirectPath = params.get('p');
+            const redirectPath = params.get('p') || params.get('route');
             if (redirectPath) {
-                history.replaceState(null, '', redirectPath);
+                history.replaceState(null, '', '/FlareMarket/' + redirectPath);
             }
             
             const path = window.location.pathname.replace('/FlareMarket', '').replace(/^\//, '');
@@ -10766,8 +10766,7 @@
             showPage('collection-detail', true);
             
             const indexerUrl = chain === 'flare' ? FLARE_INDEXER_URL : INDEXER_URL;
-            const collectionsData = chain === 'flare' ? FLARE_COLLECTIONS : SONGBIRD_COLLECTIONS;
-            const info = collectionsData[address.toLowerCase()] || collectionsData[address] || {};
+            const info = getCollectionInfo(address, chain);
             
             // Update header immediately
             const headerImg = document.querySelector('.collection-header-image img');
@@ -10948,29 +10947,36 @@
             showToast('Network', `Switched to ${chain === 'flare' ? 'Flare' : 'Songbird'}`, 'info');
         }
 
-        // Flare collection data with images
+        // Flare collection data with images - ALL LOWERCASE KEYS
         const FLARE_COLLECTIONS = {
-            '0xd1eF6460D9d06a4Ce74d9800b1BC11Ade822b349': { name: 'Block Bonez', symbol: 'BONEZ', slug: 'block-bonez', image: 'blockbonez.png' },
-            '0x4FD29d6c713a390Aa38b650254D0cD38a4982dBD': { name: 'Focus Pass', symbol: 'FOCUS', slug: 'focus-pass', image: 'focuspass.png' },
-            '0x862B713fEcEbC5304eD7aF993D79A3a6AE8747Dd': { name: 'Flare Apes', symbol: 'FAPES', slug: 'flare-apes', image: '' },
-            '0x94Aa172076A59bAa1B5D63Ae4DBF722F74E45e57': { name: 'Block Bonez Traits', symbol: 'TRAITS', slug: 'block-bonez-traits', image: '' },
-            '0xc5F0C8b27dd920F4F469a857D6F0fEcF0fA2bDb8': { name: 'Flare Punks', symbol: 'FPUNKS', slug: 'flare-punks', image: '' },
-            '0x9d8644A5D8A4ed0B4Ca462Ef32A6d47Eb03c59db': { name: 'Lucky Claw', symbol: 'CLAW', slug: 'lucky-claw', image: '' },
-            '0x595FA9efFad5c0c214b00b1e3004302519BfC1Db': { name: 'Flaremingo Frens', symbol: 'FRENS', slug: 'flaremingo-frens', image: 'https://ipfs.io/ipfs/QmTNmPZTGqsoRxLmj9idjCpdxLsY434PgTsHB2FkoiXEUE/1.png' },
-            '0x93365AACe3db5407B0976C0a6C5F46B21BAd3923': { name: 'The Fat Kittens', symbol: 'KITTEN', slug: 'fat-kittens', image: '' },
-            '0x2959D636871D9714dD6E00F4e9700CCc346CC39E': { name: 'Doodle Bunny', symbol: 'BUNNY', slug: 'doodle-bunny', image: '' },
-            '0xE2432F1e376482Ec914ebBb910D3BfD8E3F3F29e': { name: 'The Flaremingos', symbol: 'MINGO', slug: 'flaremingos', image: '' },
-            '0x01269ec72CDC62EB5e90a30363264029A45f43d1': { name: 'Phoenix Project Founders', symbol: 'PHOENIX', slug: 'phoenix-founders', image: '' },
-            '0xe6E5fa0b12D9E8ed12Cb8AB733E6444f3c74c68c': { name: 'Poodle & Friends', symbol: 'POODLE', slug: 'poodle-friends', image: 'https://ipfs.io/ipfs/bafybeicd3jwz5j3sbyjadl6zwot3jaamwqsrmgq25gvxkj25ttdqzic4zy/1.png' },
-            '0x5F4283Cf126a4dCcE16b66854Cc9A713893c0000': { name: 'Smuggler Chimps', symbol: 'CHIMP', slug: 'smuggler-chimps', image: '' },
-            '0x127bB21A24B8Ea5913F1c8c9868800fbCeF1316E': { name: 'Super Bad Monsters', symbol: 'SBM', slug: 'super-bad-monsters', image: '' },
-            '0xd2516A06D1fAbB9ba84b5fD1de940F6F0EaE3673': { name: 'Minerals', symbol: 'MINERAL', slug: 'minerals', image: 'https://ipfs.io/ipfs/QmagMFqse3TgMvjgZfUXASLqq4qiboBiG5cqvpFtbgo5CW/still.png' },
-            '0xa574dD4393e828B8CF7c3C379861C748d321bBFd': { name: 'FlareRock', symbol: 'FROCK', slug: 'flarerock', image: 'flarerock.png' },
-            '0x9f338Ac5D000BAAB73F619fc75115F2FE9773736': { name: 'Mutant Ape Flare Serum', symbol: 'MAFS', slug: 'mutant-ape-serum', image: '' },
-            '0xf799F44bf672f5c2a141778c328e386eCD867330': { name: 'Phoenix Project Liquidity', symbol: 'PHOENIX-LIQ', slug: 'phoenix-liquidity', image: '' },
-            '0xBc25d2997a7a7b42D2501A4c4d0169f135743a64': { name: 'PoodleFriendIslands', symbol: 'ISLAND', slug: 'poodle-islands', image: 'https://ipfs.io/ipfs/bafybeihlyofvjfavatfm3oyfog53mtxgvarphef2pumfweztpitb5xjznm/1.png' },
-            '0xbC42e9a6C24664749b2a0D571Fd67f23386e34b8': { name: 'Floor-Sweeper', symbol: 'SWEEP', slug: 'floor-sweeper', image: '' }
+            '0xd1ef6460d9d06a4ce74d9800b1bc11ade822b349': { name: 'Block Bonez', symbol: 'BONEZ', slug: 'block-bonez', image: 'https://ipfs.io/ipfs/QmBlockBonez/1.png' },
+            '0x4fd29d6c713a390aa38b650254d0cd38a4982dbd': { name: 'Focus Pass', symbol: 'FOCUS', slug: 'focus-pass', image: 'https://ipfs.io/ipfs/QmFocusPass/1.png' },
+            '0x862b713fecebc5304ed7af993d79a3a6ae8747dd': { name: 'Flare Apes', symbol: 'FAPES', slug: 'flare-apes', image: 'https://ipfs.io/ipfs/QmFlareApes/1.png' },
+            '0x94aa172076a59baa1b5d63ae4dbf722f74e45e57': { name: 'Block Bonez Traits', symbol: 'TRAITS', slug: 'block-bonez-traits', image: 'https://ipfs.io/ipfs/QmBlockBonezTraits/1.png' },
+            '0xc5f0c8b27dd920f4f469a857d6f0fecf0fa2bdb8': { name: 'Flare Punks', symbol: 'FPUNKS', slug: 'flare-punks', image: 'https://ipfs.io/ipfs/QmFlarePunks/1.png' },
+            '0x9d8644a5d8a4ed0b4ca462ef32a6d47eb03c59db': { name: 'Lucky Claw', symbol: 'CLAW', slug: 'lucky-claw', image: 'https://ipfs.io/ipfs/QmLuckyClaw/1.png' },
+            '0x595fa9effad5c0c214b00b1e3004302519bfc1db': { name: 'Flaremingo Frens', symbol: 'FRENS', slug: 'flaremingo-frens', image: 'https://ipfs.io/ipfs/QmTNmPZTGqsoRxLmj9idjCpdxLsY434PgTsHB2FkoiXEUE/1.png' },
+            '0x93365aace3db5407b0976c0a6c5f46b21bad3923': { name: 'The Fat Kittens', symbol: 'KITTEN', slug: 'fat-kittens', image: 'https://ipfs.io/ipfs/QmFatKittens/1.png' },
+            '0x2959d636871d9714dd6e00f4e9700ccc346cc39e': { name: 'Doodle Bunny', symbol: 'BUNNY', slug: 'doodle-bunny', image: 'https://ipfs.io/ipfs/QmDoodleBunny/1.png' },
+            '0xe2432f1e376482ec914ebbb910d3bfd8e3f3f29e': { name: 'The Flaremingos', symbol: 'MINGO', slug: 'flaremingos', image: 'https://ipfs.io/ipfs/QmFlaremingos/1.png' },
+            '0x01269ec72cdc62eb5e90a30363264029a45f43d1': { name: 'Phoenix Project Founders', symbol: 'PHOENIX', slug: 'phoenix-founders', image: 'https://ipfs.io/ipfs/QmPhoenix/1.png' },
+            '0xe6e5fa0b12d9e8ed12cb8ab733e6444f3c74c68c': { name: 'Poodle & Friends', symbol: 'POODLE', slug: 'poodle-friends', image: 'https://ipfs.io/ipfs/bafybeicd3jwz5j3sbyjadl6zwot3jaamwqsrmgq25gvxkj25ttdqzic4zy/1.png' },
+            '0x5f4283cf126a4dcce16b66854cc9a713893c0000': { name: 'Smuggler Chimps', symbol: 'CHIMP', slug: 'smuggler-chimps', image: 'https://ipfs.io/ipfs/QmSmugglerChimps/1.png' },
+            '0x127bb21a24b8ea5913f1c8c9868800fbcef1316e': { name: 'Super Bad Monsters', symbol: 'SBM', slug: 'super-bad-monsters', image: 'https://ipfs.io/ipfs/QmSuperBadMonsters/1.png' },
+            '0xd2516a06d1fabb9ba84b5fd1de940f6f0eae3673': { name: 'Minerals', symbol: 'MINERAL', slug: 'minerals', image: 'https://ipfs.io/ipfs/QmagMFqse3TgMvjgZfUXASLqq4qiboBiG5cqvpFtbgo5CW/still.png' },
+            '0xa574dd4393e828b8cf7c3c379861c748d321bbfd': { name: 'FlareRock', symbol: 'FROCK', slug: 'flarerock', image: 'https://ipfs.io/ipfs/QmFlareRock/1.png' },
+            '0x9f338ac5d000baab73f619fc75115f2fe9773736': { name: 'Mutant Ape Flare Serum', symbol: 'MAFS', slug: 'mutant-ape-serum', image: 'https://ipfs.io/ipfs/QmMAFS/1.png' },
+            '0xf799f44bf672f5c2a141778c328e386ecd867330': { name: 'Phoenix Project Liquidity', symbol: 'PHOENIX-LIQ', slug: 'phoenix-liquidity', image: 'https://ipfs.io/ipfs/QmPhoenixLiq/1.png' },
+            '0xbc25d2997a7a7b42d2501a4c4d0169f135743a64': { name: 'PoodleFriendIslands', symbol: 'ISLAND', slug: 'poodle-islands', image: 'https://ipfs.io/ipfs/bafybeihlyofvjfavatfm3oyfog53mtxgvarphef2pumfweztpitb5xjznm/1.png' },
+            '0xbc42e9a6c24664749b2a0d571fd67f23386e34b8': { name: 'Floor-Sweeper', symbol: 'SWEEP', slug: 'floor-sweeper', image: 'https://ipfs.io/ipfs/QmFloorSweeper/1.png' }
         };
+        
+        // Helper to find collection info regardless of address case
+        function getCollectionInfo(address, chain) {
+            const collections = chain === 'flare' ? FLARE_COLLECTIONS : SONGBIRD_COLLECTIONS;
+            const normalized = address.toLowerCase();
+            return collections[normalized] || {};
+        }
         
         // Slug to address lookup
         function getAddressFromSlug(slug, chain) {
@@ -11008,7 +11014,7 @@
                     const provider = new ethers.JsonRpcProvider('https://flare-api.flare.network/ext/C/rpc');
                     
                     collectionsArray = await Promise.all(collections.map(async (c) => {
-                        const addr = c.address;
+                        const addr = c.address.toLowerCase();
                         const info = FLARE_COLLECTIONS[addr] || { name: c.name, symbol: c.symbol, image: '' };
                         
                         // Get collection stats
@@ -11116,8 +11122,7 @@
             showPage('collection-detail');
             
             const indexerUrl = chain === 'flare' ? FLARE_INDEXER_URL : INDEXER_URL;
-            const collectionsData = chain === 'flare' ? FLARE_COLLECTIONS : SONGBIRD_COLLECTIONS;
-            const info = collectionsData[address.toLowerCase()] || collectionsData[address] || {};
+            const info = getCollectionInfo(address, chain);
             
             // Update URL
             const urlSlug = slug || info.slug || address;
@@ -11260,7 +11265,7 @@
             if (!container) return;
             
             container.innerHTML = collections.map(c => `
-                <div class="collection-card-full" onclick="showPage('collection-detail')">
+                <div class="collection-card-full" onclick="loadCollectionDetail('${c.address}', 'songbird', '${c.slug || ''}')">
                     <div class="collection-card-image">
                         <img src="${c.image}" alt="${c.name}" onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2280%22>🐸</text></svg>'">
                         <span class="collection-boost-badge">🔥 LP Boost</span>
@@ -11287,7 +11292,7 @@
             
             // Use same card format as Flare collections for home scroll
             container.innerHTML = collections.map(c => `
-                <div class="collection-card" onclick="showPage('collection-detail')">
+                <div class="collection-card" onclick="loadCollectionDetail('${c.address}', 'songbird', '${c.slug || ''}')">
                     <div class="collection-image">
                         <img src="${c.image}" alt="${c.name}" onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2280%22>🐸</text></svg>'">
                         <span class="collection-badge">LP Boost</span>
